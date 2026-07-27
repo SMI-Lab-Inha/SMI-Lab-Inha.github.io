@@ -1,1 +1,322 @@
-[]
+[
+  {
+    "type": "journal",
+    "authors": "Seo JH",
+    "title": "Floating offshore substations for offshore wind energy: A review of design challenges, structural integrity, and standardisation gaps",
+    "venue": "Ocean Engineering",
+    "year": "2026",
+    "volume": "363, Part 1",
+    "pages": "126528",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Kim DK, Sung SH, Song SW, Kim SJ, Prabowo AR, Kim S, Seo JH, Ringsberg JW",
+    "title": "A SHAP value method for ultimate strength prediction of stiffened panel: A data-driven tool in engineering",
+    "venue": "Ocean Engineering",
+    "year": "2026",
+    "volume": "343, Part 1",
+    "pages": "123159",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Ou B, Cerik BC, Huang L",
+    "title": "Seakeeping analysis of catamaran and barge floats for floating solar arrays: A CFD study with experimental validation",
+    "venue": "Ocean Engineering",
+    "year": "2025",
+    "volume": "326",
+    "pages": "120970",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Huang L, Elzaabalawy H, Sarhaan M, Sherif A, Ding H, Ou B, Yang D, Cerik BC",
+    "title": "Developing reliable floating solar systems on seas: A review",
+    "venue": "Ocean Engineering",
+    "year": "2025",
+    "volume": "322",
+    "pages": "120525",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Huang L",
+    "title": "Recent advances in mechanical analysis and design of dynamic power cables for floating offshore wind turbines",
+    "venue": "Ocean Engineering",
+    "year": "2024",
+    "volume": "311, Part 1",
+    "pages": "118810",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Gausden A, Cerik BC",
+    "title": "Single-use vape batteries: investigating their potential as ignition sources in waste and recycling streams",
+    "venue": "Batteries",
+    "year": "2024",
+    "volume": "10(7)",
+    "pages": "236",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Choung J",
+    "title": "Fracture prediction of steel-plated structures under low-velocity impact",
+    "venue": "Journal of Marine Science and Engineering",
+    "year": "2023",
+    "volume": "11(4)",
+    "pages": "699",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Kim H, Cerik BC, Choung J",
+    "title": "Effect of hull inelasticity on whipping responses by underwater explosions",
+    "venue": "Ships and Offshore Structures",
+    "year": "2023",
+    "volume": "18(4)",
+    "pages": "558–566",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Kim H, Cerik BC, Choung J",
+    "title": "Effects of fracture models on structural damage and acceleration in naval ships due to underwater explosions",
+    "venue": "Ocean Engineering",
+    "year": "2022",
+    "volume": "266",
+    "pages": "112930",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Choung J",
+    "title": "Fracture estimation in ship collision analysis—strain rate and thermal softening effects",
+    "venue": "Metals",
+    "year": "2021",
+    "volume": "11(9)",
+    "pages": "1402",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Lee K, Choung J",
+    "title": "Evaluation of localized necking models for fracture prediction in punch-loaded steel panels",
+    "venue": "Journal of Marine Science and Engineering",
+    "year": "2021",
+    "volume": "9(2)",
+    "pages": "117",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Choung J",
+    "title": "Progressive collapse analysis of intact and damaged ships under unsymmetrical bending",
+    "venue": "Journal of Marine Science and Engineering",
+    "year": "2020",
+    "volume": "8(12)",
+    "pages": "988",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Park SJ, Cerik BC, Choung J",
+    "title": "Comparative study on ductile fracture prediction of high-tensile strength marine structural steels",
+    "venue": "Ships and Offshore Structures",
+    "year": "2020",
+    "volume": "15(sup1)",
+    "pages": "208–219",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Choung J",
+    "title": "Rate-dependent combined necking and fracture model for predicting ductile fracture with shell elements at high strain rates",
+    "venue": "International Journal of Impact Engineering",
+    "year": "2020",
+    "volume": "146",
+    "pages": "103697",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Choung J",
+    "title": "Ductile fracture behavior of mild and high-tensile strength shipbuilding steels",
+    "venue": "Applied Sciences",
+    "year": "2020",
+    "volume": "10(20)",
+    "pages": "7034",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Topa A, Cerik BC, Kim DK",
+    "title": "A useful manufacturing guide for rotary piercing seamless pipe by ALE method",
+    "venue": "Journal of Marine Science and Engineering",
+    "year": "2020",
+    "volume": "8(10)",
+    "pages": "756",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Park SJ, Choung J",
+    "title": "Use of localized necking and fracture as a failure criterion in ship collision analysis",
+    "venue": "Marine Structures",
+    "year": "2020",
+    "volume": "73",
+    "pages": "102787",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Choung J",
+    "title": "On the prediction of ductile fracture in ship structures with shell elements at low temperatures",
+    "venue": "Thin-Walled Structures",
+    "year": "2020",
+    "volume": "151",
+    "pages": "106721",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Li M, Kefal A, Cerik BC, Oterkus E",
+    "title": "Dent damage identification in stiffened cylindrical structures using inverse Finite Element Method",
+    "venue": "Ocean Engineering",
+    "year": "2020",
+    "volume": "198",
+    "pages": "106944",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Park SJ, Lee K, Cerik BC, Choung J",
+    "title": "Ductile fracture prediction of EH36 grade steel based on Hosford–Coulomb model",
+    "venue": "Ships and Offshore Structures",
+    "year": "2019",
+    "volume": "14(sup1)",
+    "pages": "219–230",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Ringsberg JW, Choung J",
+    "title": "Revisiting MARSTRUCT benchmark study on side-shell collision with a combined localized necking and stress-state dependent ductile fracture model",
+    "venue": "Ocean Engineering",
+    "year": "2019",
+    "volume": "187",
+    "pages": "106173",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Park B, Park SJ, Choung J",
+    "title": "Modeling, testing and calibration of ductile crack formation in grade DH36 ship plates",
+    "venue": "Marine Structures",
+    "year": "2019",
+    "volume": "66",
+    "pages": "27–43",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Lee K, Park SJ, Choung J",
+    "title": "Simulation of ship collision and grounding damage using Hosford-Coulomb fracture model for shell elements",
+    "venue": "Ocean Engineering",
+    "year": "2019",
+    "volume": "173",
+    "pages": "415–432",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Noh MH, Cerik BC, Han D, Choung J",
+    "title": "Lateral impact tests on FH32 grade steel stiffened plates at room and sub-zero temperatures",
+    "venue": "International Journal of Impact Engineering",
+    "year": "2018",
+    "volume": "115",
+    "pages": "36–47",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC",
+    "title": "Ultimate longitudinal compressive strength of steel plates with lateral patch load induced plastic deformation",
+    "venue": "Thin-Walled Structures",
+    "year": "2018",
+    "volume": "122",
+    "pages": "416–424",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC",
+    "title": "Large inelastic deformation of aluminium alloy plates in high-speed vessels subjected to slamming",
+    "venue": "Journal of Marine Science and Technology",
+    "year": "2017",
+    "volume": "22(2)",
+    "pages": "301–312",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC",
+    "title": "Damage assessment of marine grade aluminium alloy-plated structures due to air blast and explosive loads",
+    "venue": "Thin-Walled Structures",
+    "year": "2017",
+    "volume": "110",
+    "pages": "123–132",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "A comparative study on damage assessment of tubular members subjected to mass impact",
+    "venue": "Marine Structures",
+    "year": "2016",
+    "volume": "46",
+    "pages": "1–29",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC",
+    "title": "Ultimate strength of locally damaged steel stiffened cylinders under axial compression",
+    "venue": "Thin-Walled Structures",
+    "year": "2015",
+    "volume": "95",
+    "pages": "138–151",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "On the resistance of steel ring-stiffened cylinders subjected to low-velocity mass impact",
+    "venue": "International Journal of Impact Engineering",
+    "year": "2015",
+    "volume": "84",
+    "pages": "108–123",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Cho S-R",
+    "title": "Numerical investigation on the ultimate strength of stiffened cylindrical shells considering residual stresses and shakedown",
+    "venue": "Journal of Marine Science and Technology",
+    "year": "2013",
+    "volume": "18(4)",
+    "pages": "524–534",
+    "doi": ""
+  },
+  {
+    "type": "journal",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "Probabilistic ultimate strength analysis of submarine pressure hulls",
+    "venue": "International Journal of Naval Architecture and Ocean Engineering",
+    "year": "2013",
+    "volume": "5(1)",
+    "pages": "101–115",
+    "doi": ""
+  }
+]

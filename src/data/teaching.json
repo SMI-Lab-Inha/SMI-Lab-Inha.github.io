@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "code": "NOE1201",
+    "title": "Statics",
+    "titleKo": "정역학",
+    "level": "Undergraduate",
+    "semester": "Year 1, semester 2",
+    "description": ""
+  },
+  {
+    "code": "NOE2001",
+    "title": "Dynamics",
+    "titleKo": "동역학",
+    "level": "Undergraduate",
+    "semester": "Year 2, semester 1",
+    "description": ""
+  },
+  {
+    "code": "NOE2503",
+    "title": "Mechanics of Materials",
+    "titleKo": "재료역학",
+    "level": "Undergraduate",
+    "semester": "Year 2, semester 1",
+    "description": ""
+  },
+  {
+    "code": "NOE3201",
+    "title": "Structural Mechanics and Design of Marine Structures",
+    "titleKo": "조선해양구조역학",
+    "level": "Undergraduate",
+    "semester": "Year 3, semester 2",
+    "description": ""
+  },
+  {
+    "code": "NOE6039",
+    "title": "Offshore Wind Power: Fundamentals and Applications",
+    "titleKo": "해상풍력발전 기초 및 응용",
+    "level": "Graduate",
+    "semester": "",
+    "description": ""
+  },
+  {
+    "code": "NOE6040",
+    "title": "Offshore Wind Power: Analysis and Design",
+    "titleKo": "해상풍력발전 해석 및 설계",
+    "level": "Graduate",
+    "semester": "",
+    "description": ""
+  }
+]

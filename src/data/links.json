@@ -2,16 +2,8 @@
   {
     "group": "Lab",
     "items": [
-      {
-        "label": "SMI-Lab-Inha on GitHub",
-        "url": "https://github.com/SMI-Lab-Inha",
-        "note": "Open-source research software"
-      },
-      {
-        "label": "OpenFAST syntax highlighting — VS Code Marketplace",
-        "url": "",
-        "note": "TODO(user): Marketplace URL"
-      }
+      { "label": "SMI-Lab-Inha on GitHub", "url": "https://github.com/SMI-Lab-Inha", "note": "Open-source research software" },
+      { "label": "OpenFAST syntax highlighting — VS Code Marketplace", "url": "", "note": "TODO(user): Marketplace URL" }
     ]
   },
   {
@@ -23,14 +15,122 @@
     ]
   },
   {
-    "group": "University",
+    "group": "Inha University",
     "items": [
-      { "label": "Inha University", "url": "https://www.inha.ac.kr/", "note": "" },
-      {
-        "label": "Department of Naval Architecture and Ocean Engineering",
-        "url": "",
-        "note": "TODO(user): departmental URL"
-      }
+      { "label": "Inha University — 인하대학교 홈페이지", "url": "https://www.inha.ac.kr/kr/index.do", "note": "" },
+      { "label": "Dept. of Naval Architecture and Ocean Engineering — NAOE", "url": "https://naoe.inha.ac.kr/naoe/index.do", "note": "" },
+      { "label": "Dept. NAOE academic staff", "url": "https://naoe.inha.ac.kr/naoe/1786/subview.do", "note": "" },
+      { "label": "College of Engineering", "url": "https://engcollege.inha.ac.kr/engineering/index.do", "note": "" },
+      { "label": "Graduate School", "url": "https://grad.inha.ac.kr/grad/index.do", "note": "" },
+      { "label": "Graduate School of Engineering", "url": "https://engrad.inha.ac.kr/engrad/index.do", "note": "" }
+    ]
+  },
+  {
+    "group": "Professional organisations — Korea",
+    "items": [
+      { "label": "The Society of Naval Architects of Korea — SNAK", "url": "https://www.snak.or.kr/", "note": "" },
+      { "label": "The Korean Society of Ocean Engineers — KSOE", "url": "http://ksoe.or.kr/", "note": "" },
+      { "label": "The Korea Wind Energy Association — KWEA", "url": "https://kwea.or.kr/", "note": "" },
+      { "label": "The Korean New and Renewable Energy Association — KSNRE", "url": "https://www.ksnre.or.kr/", "note": "" }
+    ]
+  },
+  {
+    "group": "Professional organisations — abroad",
+    "items": [
+      { "label": "The Royal Institution of Naval Architects — RINA", "url": "https://rina.org.uk/", "note": "" },
+      { "label": "The Institute of Marine Engineering, Science and Technology — IMarEST", "url": "https://www.imarest.org/", "note": "" },
+      { "label": "The Society of Naval Architects and Marine Engineers — SNAME", "url": "https://sname.org/", "note": "" },
+      { "label": "The Japan Society of Naval Architects and Ocean Engineers — JASNAOE", "url": "https://www.jasnaoe.or.jp/en/", "note": "" }
+    ]
+  },
+  {
+    "group": "Classification societies",
+    "items": [
+      { "label": "Korean Register — KR", "url": "https://www.krs.co.kr/kor/", "note": "" },
+      { "label": "Det Norske Veritas — DNV", "url": "https://www.dnv.co.kr/", "note": "" },
+      { "label": "American Bureau of Shipping — ABS", "url": "https://ww2.eagle.org/en.html", "note": "" },
+      { "label": "Lloyd's Register — LR", "url": "https://www.lr.org/en/", "note": "" },
+      { "label": "Bureau Veritas — BV", "url": "https://group.bureauveritas.com/", "note": "" },
+      { "label": "ClassNK", "url": "https://www.classnk.com/hp/en/index.html", "note": "" },
+      { "label": "International Association of Classification Societies — IACS", "url": "https://iacs.org.uk/", "note": "" }
+    ]
+  },
+  {
+    "group": "Korean shipbuilders",
+    "items": [
+      { "label": "HD Hyundai Heavy Industries — HHI", "url": "https://www.hhi.co.kr/kr/main", "note": "" },
+      { "label": "Samsung Heavy Industries — SHI", "url": "https://samsungshi.com/Ko/Default.aspx", "note": "" },
+      { "label": "Hanwha Ocean", "url": "https://www.hanwhaocean.com/", "note": "" },
+      { "label": "HD Samho Heavy Industries", "url": "https://www.hshi.co.kr/", "note": "" },
+      { "label": "HD Korea Shipbuilding & Offshore Engineering", "url": "https://www.hdksoe.co.kr/kr/main", "note": "" },
+      { "label": "HJ Shipbuilding & Construction", "url": "https://www.hjsc.co.kr/main/index.asp", "note": "" },
+      { "label": "Korea Offshore & Shipbuilding Association — KOSHIPA", "url": "https://www.koshipa.or.kr/", "note": "" }
+    ]
+  },
+  {
+    "group": "Korean research institutes",
+    "items": [
+      { "label": "Korea Research Institute of Ships & Ocean Engineering — KRISO", "url": "https://www.kriso.re.kr/", "note": "" },
+      { "label": "Research Institute of Medium & Small Shipbuilding — RIMSE", "url": "https://www.rims.re.kr/", "note": "" },
+      { "label": "Korea Marine Equipment Research Institute — KOMERI", "url": "https://www.komeri.re.kr/", "note": "" },
+      { "label": "Korea Maritime Institute — KMI", "url": "https://www.kmi.re.kr/web/main/main.do?rbsIdx=1", "note": "" },
+      { "label": "Korea Polar Research Institute — KOPRI", "url": "https://www.kopri.re.kr/", "note": "" }
+    ]
+  },
+  {
+    "group": "Materials and components",
+    "items": [
+      { "label": "POSCO", "url": "https://www.posco.co.kr/", "note": "" },
+      { "label": "Hyundai Steel", "url": "https://www.hyundai-steel.com/kr", "note": "" },
+      { "label": "LS Cable — LS전선", "url": "https://www.lscns.co.kr", "note": "" },
+      { "label": "Taihan Cable — 대한전선", "url": "https://www.taihan.com/", "note": "" },
+      { "label": "Daihan Anchor Chain Mfg Co. Ltd.", "url": "http://www.dhac.co.kr/", "note": "" }
+    ]
+  },
+  {
+    "group": "Government and funding agencies",
+    "items": [
+      { "label": "Ministry of Trade, Industry and Energy — MOTIE", "url": "https://www.motie.go.kr/", "note": "" },
+      { "label": "Ministry of Oceans and Fisheries — MOF", "url": "https://www.mof.go.kr/index.do", "note": "" },
+      { "label": "National Research Foundation of Korea — NRF", "url": "https://www.nrf.re.kr/", "note": "" },
+      { "label": "Korea Institute of Energy Technology Evaluation and Planning — KETEP", "url": "https://ketep.re.kr/", "note": "" },
+      { "label": "Korea Institute of Marine Science & Technology Promotion — KIMST", "url": "https://www.kimst.re.kr/", "note": "" },
+      { "label": "Horizon Europe", "url": "https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en", "note": "" },
+      { "label": "Engineering and Physical Sciences Research Council — EPSRC, UK", "url": "https://www.ukri.org/councils/epsrc/", "note": "" }
+    ]
+  },
+  {
+    "group": "International research networks",
+    "items": [
+      { "label": "International Ship and Offshore Structures Congress — ISSC", "url": "", "note": "TODO(user): URL" },
+      { "label": "IEA Wind Energy TCP", "url": "https://iea-wind.org/", "note": "" }
+    ]
+  },
+  {
+    "group": "Key journals",
+    "items": [
+      { "label": "Marine Structures — Elsevier", "url": "https://www.sciencedirect.com/journal/marine-structures", "note": "" },
+      { "label": "Ocean Engineering — Elsevier", "url": "https://www.sciencedirect.com/journal/ocean-engineering", "note": "" },
+      { "label": "Applied Ocean Research — Elsevier", "url": "https://www.sciencedirect.com/journal/applied-ocean-research", "note": "" },
+      { "label": "International Journal of Naval Architecture and Ocean Engineering — Elsevier", "url": "https://www.sciencedirect.com/journal/international-journal-of-naval-architecture-and-ocean-engineering", "note": "" },
+      { "label": "Thin-Walled Structures — Elsevier", "url": "https://www.sciencedirect.com/journal/thin-walled-structures", "note": "" },
+      { "label": "International Journal of Impact Engineering — Elsevier", "url": "https://www.sciencedirect.com/journal/international-journal-of-impact-engineering", "note": "" },
+      { "label": "Engineering Fracture Mechanics — Elsevier", "url": "https://www.sciencedirect.com/journal/engineering-fracture-mechanics", "note": "" },
+      { "label": "International Journal of Mechanical Sciences — Elsevier", "url": "https://www.sciencedirect.com/journal/international-journal-of-mechanical-sciences", "note": "" },
+      { "label": "Renewable Energy — Elsevier", "url": "https://www.sciencedirect.com/journal/renewable-energy", "note": "" },
+      { "label": "Renewable and Sustainable Energy Reviews — Elsevier", "url": "https://www.sciencedirect.com/journal/renewable-and-sustainable-energy-reviews", "note": "" },
+      { "label": "Journal of Marine Science and Technology — Springer", "url": "https://link.springer.com/journal/773", "note": "" },
+      { "label": "Journal of Ocean Engineering and Marine Energy — Springer", "url": "https://link.springer.com/journal/40722", "note": "" },
+      { "label": "Journal of Offshore Mechanics and Arctic Engineering — ASME", "url": "https://asmedigitalcollection.asme.org/offshoremechanics", "note": "" },
+      { "label": "Ships and Offshore Structures — Taylor & Francis", "url": "https://www.tandfonline.com/journals/tsos20", "note": "" },
+      { "label": "Journal of Marine Science and Engineering — MDPI", "url": "https://www.mdpi.com/journal/jmse", "note": "" },
+      { "label": "Journal of Ship Research — OnePetro", "url": "https://onepetro.org/jsr?searchresult=1", "note": "" },
+      { "label": "Journal of Ship Production and Design — OnePetro", "url": "https://onepetro.org/jspd?searchresult=1", "note": "" },
+      { "label": "International Journal of Maritime Engineering — RINA", "url": "https://rina.org.uk/publications/rina-transactions/", "note": "" },
+      { "label": "Brodogradnja", "url": "https://brodogradnja.fsb.hr/", "note": "" },
+      { "label": "Proceedings of the Institution of Mechanical Engineers, Part M", "url": "https://journals.sagepub.com/home/pim", "note": "" },
+      { "label": "Wind Energy — Wiley", "url": "https://onlinelibrary.wiley.com/journal/10991824", "note": "" },
+      { "label": "Wind Energy Science — EAWE", "url": "https://eawe.eu/wes-journal/", "note": "" }
     ]
   }
 ]

@@ -95,7 +95,7 @@ const profiles = d.profiles.filter((p) => p.url);
           ) : (
             <ul>
               {[...d.service, ...d.awards].map((item: any) => (
-                <li>{item}</li>
+                <li>{item.startsWith('TODO') ? <span class="todo">{item}</span> : item}</li>
               ))}
             </ul>
           )

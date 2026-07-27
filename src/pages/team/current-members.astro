@@ -30,6 +30,9 @@ const byGroup = groups
                   <article class="card person">
                     {m.photo && <img src={m.photo} alt={`Portrait of ${m.name}`} />}
                     <h3>{m.name}</h3>
+                    {m.nameKo && <p class="name-ko">{m.nameKo}</p>}
+                    {m.role && <p class="role">{m.role}</p>}
+                    {m.year && <p class="muted year">{m.year}</p>}
                     {m.topic && <p class="muted">{m.topic}</p>}
                     {m.email && (
                       <p>
@@ -69,5 +72,35 @@ const byGroup = groups
 
   .person h3 {
     font-size: 1.08rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .person p {
+    margin-bottom: 0.35rem;
+  }
+
+  .person p:last-child {
+    margin-bottom: 0;
+  }
+
+  .name-ko {
+    font-family: var(--font-serif);
+    color: var(--c-text-muted);
+  }
+
+  .role {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--c-accent-hover);
+    background: var(--c-accent-soft);
+    border-radius: 999px;
+    padding: 0.15em 0.7em;
+  }
+
+  .year {
+    font-size: 0.88rem;
   }
 </style>

@@ -1,8 +1,8 @@
 [
   {
     "name": "VANE",
-    "expansion": "Visualization and Automated Natural-frequency Extraction",
-    "description": "Post-processing of OpenFAST linearization output for floating offshore wind turbines: automated modal identification, natural frequency extraction, and mode visualisation.",
+    "expansion": "Visualisation and Automated Natural-frequency Extraction",
+    "description": "Post-processing of OpenFAST linearisation output for floating offshore wind turbines: automated modal identification, natural frequency extraction, and mode visualisation.",
     "status": "public",
     "repo": "",
     "docs": ""

@@ -12,7 +12,7 @@ function isActive(href: string) {
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="/">
-      <span class="brand-mark">SMI</span>
+      <img class="brand-mark" src="/images/icon.png" alt="" width="44" height="44" />
       <span class="brand-text">
         <strong>{site.fullName}</strong>
         <small>{site.university}</small>
@@ -110,15 +110,15 @@ function isActive(href: string) {
     padding-block: 0.8rem;
   }
 
+  /* The logo mark is navy-on-white, so it needs a light disc behind it to sit
+     on the navy header bar. */
   .brand-mark {
-    font-family: var(--font-serif);
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    border: 1.5px solid rgba(255, 255, 255, 0.55);
-    border-radius: 4px;
-    padding: 0.28em 0.5em;
-    line-height: 1;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: #fff;
+    padding: 2px;
+    flex-shrink: 0;
   }
 
   .brand-text {

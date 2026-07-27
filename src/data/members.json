@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "name": "Jun Soo Lim",
+    "nameKo": "임준수",
+    "group": "Undergraduate researchers",
+    "year": "Admitted 2021",
+    "topic": "Joined September 2025 as the lab's first member.",
+    "photo": "",
+    "email": "",
+    "role": ""
+  },
+  {
+    "name": "Kyusung Shim",
+    "nameKo": "심규성",
+    "group": "Undergraduate researchers",
+    "year": "Admitted 2021",
+    "topic": "Naval ship structures.",
+    "photo": "",
+    "email": "",
+    "role": "Lab manager"
+  },
+  {
+    "name": "Jinwoo Song",
+    "nameKo": "송진우",
+    "group": "Undergraduate researchers",
+    "year": "Admitted 2023",
+    "topic": "Offshore structural mechanics.",
+    "photo": "",
+    "email": "",
+    "role": ""
+  },
+  {
+    "name": "Woojin Lee",
+    "nameKo": "이우진",
+    "group": "Undergraduate researchers",
+    "year": "Admitted 2022",
+    "topic": "Alternative fuel storage systems.",
+    "photo": "",
+    "email": "",
+    "role": ""
+  },
+  {
+    "name": "Jun Hyeok Hwang",
+    "nameKo": "황준혁",
+    "group": "Undergraduate researchers",
+    "year": "Admitted 2022",
+    "topic": "Ship and offshore structural mechanics.",
+    "photo": "",
+    "email": "",
+    "role": ""
+  },
+  {
+    "name": "Hui Won Lee",
+    "nameKo": "이희원",
+    "group": "Undergraduate researchers",
+    "year": "Admitted 2022",
+    "topic": "Structural design.",
+    "photo": "",
+    "email": "",
+    "role": ""
+  }
+]

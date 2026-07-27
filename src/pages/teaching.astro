@@ -5,38 +5,76 @@ import Pending from '../components/Pending.astro';
 import courses from '../data/teaching.json';
 
 const list = courses as any[];
+const levels = ['Undergraduate', 'Graduate'];
+const byLevel = levels
+  .map((l) => ({ level: l, items: list.filter((c) => c.level === l) }))
+  .filter((l) => l.items.length > 0);
 ---
 
-<Base title="Teaching" description="Courses taught by the SMI Lab at Inha University.">
+<Base
+  title="Teaching"
+  description="Undergraduate and graduate courses taught by the SMI Lab in the Department of Naval Architecture and Ocean Engineering, Inha University."
+>
   <PageHeader
     eyebrow="Education"
     title="Teaching"
-    lead="Undergraduate and graduate courses in the Department of Naval Architecture and Ocean Engineering."
+    lead="Engineering mechanics for marine structures, from statics through to the analysis and design of offshore wind systems."
   />
 
   <section class="section">
     <div class="wrap">
       {
-        list.length === 0 ? (
+        byLevel.length === 0 ? (
           <Pending
             what="No courses are listed yet."
-            how="Add entries to src/data/teaching.json with code, title, level ('Undergraduate' or 'Graduate'), semester, and a short description."
+            how="Add entries to src/data/teaching.json."
           />
         ) : (
-          <div class="stack">
-            {list.map((c) => (
-              <article class="card">
-                <p class="eyebrow">
-                  {c.level}
-                  {c.semester && ` · ${c.semester}`}
-                </p>
-                <h3>
-                  {c.code && <span class="code">{c.code}</span>}
-                  {c.title}
-                </h3>
-                {c.description && <p class="muted">{c.description}</p>}
-              </article>
-            ))}
+          <div class="layout">
+            <div>
+              {byLevel.map((g) => (
+                <div class="group">
+                  <h2>
+                    {g.level}
+                    <span class="ko">{g.level === 'Undergraduate' ? '학부 교과목' : '대학원 교과목'}</span>
+                  </h2>
+                  <ul class="list-plain courses">
+                    {g.items.map((c) => (
+                      <li>
+                        <span class="code">{c.code}</span>
+                        <span>
+                          <strong>{c.title}</strong>
+                          {c.titleKo && <span class="title-ko"> · {c.titleKo}</span>}
+                          {c.semester && <div class="muted sem">{c.semester}</div>}
+                          {c.description && <div class="muted">{c.description}</div>}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <aside class="outcomes">
+              <img src="/images/teaching.jpg" alt="Sketch of a lecturer deriving added-mass relations at a blackboard" />
+              <h3>Undergraduate outcomes</h3>
+              <ul>
+                <li>Master the fundamental principles of engineering mechanics: statics, dynamics, and structural mechanics</li>
+                <li>Develop problem-solving skills for marine technology challenges</li>
+                <li>Practise industry-standard design methodologies</li>
+                <li>Appraise the integration of engineering principles with sustainable technology</li>
+              </ul>
+              <h3>Graduate outcomes</h3>
+              <ul>
+                <li>Conduct independent research in marine structural mechanics</li>
+                <li>Apply advanced analysis techniques to complex offshore systems</li>
+                <li>Develop solutions for fixed and floating wind energy platforms</li>
+                <li>Contribute to the global transition towards sustainable marine infrastructure</li>
+              </ul>
+              <p class="muted tools">
+                Graduate courses use industry-standard software including OrcaFlex and OpenFAST.
+              </p>
+            </aside>
           </div>
         )
       }
@@ -45,15 +83,107 @@ const list = courses as any[];
 </Base>
 
 <style>
-  .stack {
+  .layout {
     display: grid;
-    gap: 1.2rem;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+
+  .group + .group {
+    margin-top: 2.8rem;
+  }
+
+  .group h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--c-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .ko {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--c-text-muted);
+  }
+
+  .courses li {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 1rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--c-border);
+    max-width: none;
   }
 
   .code {
     font-family: var(--font-mono);
-    font-size: 0.85em;
+    font-size: 0.85rem;
     color: var(--c-text-muted);
-    margin-right: 0.6em;
+  }
+
+  .title-ko {
+    color: var(--c-text-muted);
+    font-weight: 400;
+  }
+
+  .sem {
+    font-size: 0.88rem;
+    margin-top: 0.15rem;
+  }
+
+  .outcomes {
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .outcomes img {
+    width: 100%;
+    border-radius: var(--radius);
+    background: #fff;
+    margin-bottom: 1.2rem;
+  }
+
+  .outcomes h3 {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
+  .outcomes h3 + ul {
+    margin-bottom: 1.4rem;
+  }
+
+  .outcomes ul {
+    padding-left: 1.05rem;
+  }
+
+  .outcomes li {
+    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .tools {
+    font-size: 0.88rem;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 860px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .courses li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
   }
 </style>

@@ -19,12 +19,12 @@
   --c-text-muted: #5a6a7f;
   --c-text-faint: #8593a6;
 
-  /* Brand */
-  --c-navy: #0e2a47;
-  --c-navy-deep: #071a2e;
-  --c-accent: #0f6f8f;
-  --c-accent-hover: #0b566f;
-  --c-accent-soft: #e3f1f6;
+  /* Brand — sampled from the lab logo: deep navy wordmark, cyan wave/turbine */
+  --c-navy: #123f6d;
+  --c-navy-deep: #0a2745;
+  --c-accent: #12628f;
+  --c-accent-hover: #0d4a6d;
+  --c-accent-soft: #e2f0f8;
 
   /* Type */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -56,8 +56,8 @@
 
     --c-navy: #0d1520;
     --c-navy-deep: #070d15;
-    --c-accent: #4bb8d8;
-    --c-accent-hover: #74cbe6;
+    --c-accent: #4fb4e4;
+    --c-accent-hover: #78c9ef;
     --c-accent-soft: #14293a;
 
     color-scheme: dark;
