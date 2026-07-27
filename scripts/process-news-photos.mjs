@@ -18,8 +18,6 @@ const MAP = {
   '3.Inha interview.png': 'inha-interview',
   '4. KSOE presentation.png': 'ksoe-2025',
   '5. MADEX.jpg': 'madex-2025',
-  '6. JMSE SI 1.png': 'jmse-special-issue-1',
-  '7. JMSE SI 2.png': 'jmse-special-issue-2',
   '8. ISSC.png': 'issc-2025',
   "9. Teacher's day.png": 'teachers-day',
   '10. INAOE.png': 'ijnaoe',
