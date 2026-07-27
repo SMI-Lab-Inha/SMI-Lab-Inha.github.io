@@ -1,48 +1,137 @@
 // Self-hosts the site's typefaces so no third-party font request is made.
 //
-// Choices are deliberately British: Libre Caslon Text after William Caslon
-// (London, 1720s), Libre Baskerville after John Baskerville (Birmingham,
-// 1750s), and Cabin, a humanist sans in the Edward Johnston / Eric Gill
-// lineage that gave us the London Underground and Gill Sans letterforms.
+// Latin is Helvetica: macOS uses the system face directly, and everywhere else
+// Arimo stands in — it is metrically compatible with Helvetica and Arial, so
+// line breaks and measure stay identical across platforms.
+//
+// Korean is Pretendard, the modern Korean face used across contemporary Korean
+// web design.
+//
+// Google slices its Korean families into hundreds of unicode-range subsets (372
+// for Noto Sans KR), and 128 Hangul characters still scatter across 27 of them,
+// which came to 841 KB of mostly-unused glyphs. Pretendard is therefore
+// downloaded whole and cut down here to exactly the characters the built site
+// renders, which is a few kilobytes.
+//
+// Run `npm run build` first: this reads dist/ to learn which characters are used.
 import fs from 'node:fs';
 import path from 'node:path';
+import subsetFont from 'subset-font';
 
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36';
 
-const FAMILIES = [
-  'Libre+Caslon+Text:ital,wght@0,400;0,700;1,400',
-  'Libre+Baskerville:wght@700',
-  'Cabin:wght@400;500;600',
+// The legacy CSS API returns whole, unsliced TTFs, which is what we want to cut
+// down ourselves. The modern css2 API only serves pre-sliced subsets, and a
+// single Greek alpha in "generalised-α" was enough to drag in three 95 KB Greek
+// slices.
+const LATIN_CSS = 'https://fonts.googleapis.com/css?family=Arimo:400,400i,500,700';
+const LEGACY_UA = 'Mozilla/4.0';
+
+const PRETENDARD =
+  'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard/dist/public/static';
+const KO_WEIGHTS = [
+  ['Regular', 400],
+  ['SemiBold', 600],
 ];
 
 const OUT_DIR = 'public/fonts';
-fs.mkdirSync(OUT_DIR, { recursive: true });
+const DIST = 'dist';
 
-let css = '';
-for (const fam of FAMILIES) {
-  const res = await fetch(`https://fonts.googleapis.com/css2?family=${fam}&display=swap`, {
-    headers: { 'User-Agent': UA },
-  });
-  css += (await res.text()) + '\n';
+/* ---- characters the built site renders --------------------------------- */
+
+const stripTags = (html) =>
+  html
+    .replace(/<script[\s\S]*?<\/script>/g, ' ')
+    .replace(/<style[\s\S]*?<\/style>/g, ' ')
+    .replace(/<[^>]+>/g, ' ');
+
+function walk(dir, out = []) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) walk(p, out);
+    else if (e.name.endsWith('.html')) out.push(p);
+  }
+  return out;
 }
 
-const urls = [...new Set(css.match(/https:\/\/[^)]*\.woff2/g) ?? [])];
-let total = 0;
+if (!fs.existsSync(DIST)) {
+  console.error('dist/ not found — run `npm run build` first.');
+  process.exit(1);
+}
 
-for (const [i, url] of urls.entries()) {
-  const family = url.split('/s/')[1].split('/')[0];
-  const name = `${family}-${i + 1}.woff2`;
-  const res = await fetch(url, { headers: { 'User-Agent': UA } });
-  const buf = Buffer.from(await res.arrayBuffer());
-  fs.writeFileSync(path.join(OUT_DIR, name), buf);
-  total += buf.length;
-  css = css.split(url).join(`/fonts/${name}`);
+const used = new Set();
+for (const f of walk(DIST)) for (const ch of stripTags(fs.readFileSync(f, 'utf8'))) used.add(ch);
+for (let c = 0x20; c <= 0x7e; c++) used.add(String.fromCodePoint(c));
+
+const isCjk = (ch) => {
+  const c = ch.codePointAt(0);
+  return (
+    (c >= 0x1100 && c <= 0x11ff) ||
+    (c >= 0x3130 && c <= 0x318f) ||
+    (c >= 0xac00 && c <= 0xd7af) ||
+    (c >= 0x4e00 && c <= 0x9fff) ||
+    (c >= 0x3000 && c <= 0x303f)
+  );
+};
+
+const allChars = [...used].join('');
+const koChars = [...used].filter(isCjk).join('');
+console.log(`${used.size} characters used, ${koChars.length} of them Korean or Hanja`);
+
+fs.mkdirSync(OUT_DIR, { recursive: true });
+for (const f of fs.readdirSync(OUT_DIR)) fs.unlinkSync(path.join(OUT_DIR, f));
+
+let css = '';
+let total = 0;
+let n = 0;
+
+/* ---- Latin: whole Arimo, subset locally -------------------------------- */
+
+const latinCss = await (await fetch(LATIN_CSS, { headers: { 'User-Agent': LEGACY_UA } })).text();
+
+for (const block of latinCss.split('@font-face').slice(1)) {
+  const url = block.match(/url\((https:[^)]+\.ttf)\)/)?.[1];
+  if (!url) continue;
+  const style = block.match(/font-style:\s*(\w+)/)?.[1] ?? 'normal';
+  const weight = block.match(/font-weight:\s*(\d+)/)?.[1] ?? '400';
+
+  const src = Buffer.from(
+    await (await fetch(url, { headers: { 'User-Agent': UA } })).arrayBuffer()
+  );
+  const out = await subsetFont(src, allChars, { targetFormat: 'woff2' });
+  const name = `arimo-${weight}${style === 'italic' ? 'i' : ''}.woff2`;
+  fs.writeFileSync(path.join(OUT_DIR, name), out);
+  total += out.length;
+  n++;
+  console.log(
+    `  Arimo ${weight}${style === 'italic' ? ' italic' : ''}: ${Math.round(src.length / 1024)} KB -> ${Math.round(out.length / 1024)} KB`
+  );
+  css += `@font-face{font-family:'Arimo';font-style:${style};font-weight:${weight};font-display:swap;src:url(/fonts/${name}) format('woff2');}\n`;
+}
+
+/* ---- Korean: Pretendard, subset locally -------------------------------- */
+
+for (const [weightName, weight] of KO_WEIGHTS) {
+  const src = Buffer.from(
+    await (
+      await fetch(`${PRETENDARD}/Pretendard-${weightName}.otf`, { headers: { 'User-Agent': UA } })
+    ).arrayBuffer()
+  );
+  const out = await subsetFont(src, koChars, { targetFormat: 'woff2' });
+  const name = `pretendard-${weight}.woff2`;
+  fs.writeFileSync(path.join(OUT_DIR, name), out);
+  total += out.length;
+  console.log(
+    `  Pretendard ${weightName}: ${Math.round(src.length / 1024)} KB -> ${Math.round(out.length / 1024)} KB`
+  );
+  css += `@font-face{font-family:'Pretendard';font-style:normal;font-weight:${weight};font-display:swap;src:url(/fonts/${name}) format('woff2');}\n`;
 }
 
 fs.writeFileSync(
   'src/styles/fonts.css',
-  '/* Generated by scripts/fetch-fonts.mjs — self-hosted, no third-party requests. */\n' + css
+  '/* Generated by scripts/fetch-fonts.mjs — self-hosted, subset to the characters the site uses. */\n' +
+    css
 );
 
-console.log(`${urls.length} files, ${Math.round(total / 1024)} KB total`);
+console.log(`${fs.readdirSync(OUT_DIR).length} files, ${Math.round(total / 1024)} KB total`);
