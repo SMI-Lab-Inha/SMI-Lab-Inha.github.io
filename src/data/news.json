@@ -1,142 +1,213 @@
 [
   {
     "date": "",
+    "display": "",
     "title": "We are recruiting",
     "body": "The lab is recruiting graduate students for the 2026 intake: two MSc places and one PhD place. Undergraduate research slots are currently full.",
     "link": "/join-us",
-    "linkText": "Read the details"
+    "linkText": "Read the details",
+    "image": "",
+    "imageAlt": "",
+    "pinned": true
   },
   {
-    "date": "17 July 2026",
+    "date": "2026-07-17",
+    "display": "17 July 2026",
     "title": "Website brought up to date",
     "body": "As of 17 July 2026, the SMI Lab homepage is up to date, fully operational, and filled with all necessary information.",
     "link": "",
-    "linkText": ""
+    "linkText": "",
+    "image": "",
+    "imageAlt": ""
   },
   {
-    "date": "July 2026",
+    "date": "2026-07-01",
+    "display": "1–3 July 2026",
+    "title": "Students complete the 22nd IACS CSR-H practical training course",
+    "body": "All six SMI Lab students attended the 22nd IACS CSR-H practical training course, held at Inha Technical College and run by the Ship and Offshore Plant Structure Research Committee of the Society of Naval Architects of Korea, with support from the Korean Register. The course worked through the Harmonised Common Structural Rules on an Aframax tanker midship section using KR SeaTrust-HullScan.",
+    "link": "/team/current-members",
+    "linkText": "Meet the team",
+    "image": "/images/news/csrh-2026.webp",
+    "imageAlt": "Students at the 22nd IACS CSR-H practical training course"
+  },
+  {
+    "date": "2026-07-01",
+    "display": "July 2026",
     "title": "Editorial board appointment — International Journal of Naval Architecture and Ocean Engineering",
     "body": "Professor Jae Hoon Seo has been appointed an Editorial Board Member of the International Journal of Naval Architecture and Ocean Engineering for the term July 2026 to July 2028. The journal ranks 5th of 25 in the Engineering, Marine category.",
     "link": "https://www.sciencedirect.com/journal/international-journal-of-naval-architecture-and-ocean-engineering",
-    "linkText": "The journal"
+    "linkText": "The journal",
+    "image": "/images/news/ijnaoe.webp",
+    "imageAlt": "International Journal of Naval Architecture and Ocean Engineering"
   },
   {
-    "date": "",
-    "title": "Teacher's Day 2026",
-    "body": "The lab celebrated Teacher's Day for the first time.",
+    "date": "2026-05-15",
+    "display": "15 May 2026",
+    "title": "Teachers' Day",
+    "body": "The lab celebrated Teachers' Day for the first time.",
     "link": "",
-    "linkText": ""
+    "linkText": "",
+    "image": "/images/news/teachers-day.webp",
+    "imageAlt": "The lab celebrating Teachers' Day"
   },
   {
     "date": "",
+    "display": "",
     "title": "Hui Won Lee joins the lab",
-    "body": "Hui Won Lee joins as the lab's sixth member, a 3rd-year student interested in structural design.",
+    "body": "Hui Won Lee joins as the lab's sixth member, working on engineering critical assessment of IMO independent Type B and Type C tanks.",
     "link": "/team/current-members",
-    "linkText": "Meet the team"
+    "linkText": "Meet the team",
+    "image": "",
+    "imageAlt": ""
   },
   {
     "date": "",
+    "display": "",
     "title": "Jun Hyeok Hwang joins the lab",
-    "body": "Jun Hyeok Hwang joins as the lab's fifth member, a 3rd-year student interested in ship and offshore structural mechanics.",
+    "body": "Jun Hyeok Hwang joins as the lab's fifth member, working on out-of-plane and in-plane bending induced fatigue of fairlead mooring chain.",
     "link": "/team/current-members",
-    "linkText": "Meet the team"
+    "linkText": "Meet the team",
+    "image": "",
+    "imageAlt": ""
   },
   {
     "date": "",
+    "display": "",
     "title": "Woojin Lee joins the lab",
-    "body": "Woojin Lee joins as the lab's fourth member, a 3rd-year student interested in alternative fuel storage systems.",
+    "body": "Woojin Lee joins as the lab's fourth member, working on the ultimate strength of ship structures.",
     "link": "/team/current-members",
-    "linkText": "Meet the team"
+    "linkText": "Meet the team",
+    "image": "",
+    "imageAlt": ""
   },
   {
-    "date": "2025–2028",
+    "date": "",
+    "display": "",
     "title": "ISSC Specialist Committee V.4 appointment",
-    "body": "Professor Seo has been appointed to Specialist Committee V.4 — Offshore Renewable Energy of the International Ship and Offshore Structures Congress, recognising expertise in offshore renewable energy systems and structural integrity.",
+    "body": "Professor Seo has been appointed to Specialist Committee V.4 — Offshore Renewable Energy of the International Ship and Offshore Structures Congress for 2025–2028, representing the Republic of Korea.",
     "link": "",
-    "linkText": ""
+    "linkText": "",
+    "image": "/images/news/issc-2025.webp",
+    "imageAlt": "ISSC Specialist Committee V.4 appointment"
   },
   {
     "date": "",
+    "display": "",
     "title": "Jinwoo Song joins the lab",
-    "body": "Jinwoo Song joins as the lab's third member, a 4th-year student interested in offshore structural mechanics.",
+    "body": "Jinwoo Song joins as the lab's third member, working on the structural integrity of dynamic power cables.",
     "link": "/team/current-members",
-    "linkText": "Meet the team"
-  },
-  {
-    "date": "September 2025",
-    "title": "Kyusung Shim joins the lab",
-    "body": "Kyusung Shim joins as the lab's second member, a 3rd-year student interested in naval ship structures.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team"
+    "linkText": "Meet the team",
+    "image": "",
+    "imageAlt": ""
   },
   {
     "date": "",
+    "display": "",
     "title": "Guest editor — Data-Driven Methods for Marine Structures, Second Edition",
     "body": "Professor Seo serves as Guest Editor for this Journal of Marine Science and Engineering special issue. Submission deadline: 10 January 2026.",
     "link": "https://www.mdpi.com/journal/jmse/special_issues/6HV653VZK4",
-    "linkText": "Special issue"
+    "linkText": "Special issue",
+    "image": "/images/news/jmse-special-issue-1.webp",
+    "imageAlt": "Journal of Marine Science and Engineering special issue"
   },
   {
     "date": "",
+    "display": "",
     "title": "Guest editor — New Advances in the Analysis and Design of Marine Structures",
     "body": "Professor Seo serves as Guest Editor for this Journal of Marine Science and Engineering special issue, focusing on renewable energy applications and structural integrity. Submission deadline: 30 November 2025.",
     "link": "https://www.mdpi.com/journal/jmse/special_issues/LC37SGM94B",
-    "linkText": "Special issue"
+    "linkText": "Special issue",
+    "image": "/images/news/jmse-special-issue-2.webp",
+    "imageAlt": "Journal of Marine Science and Engineering special issue"
   },
   {
-    "date": "September 2025",
-    "title": "Jun Soo Lim joins the lab",
-    "body": "Jun Soo Lim joins as the lab's first member, a student demonstrating a willingness to learn new skills.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team"
-  },
-  {
-    "date": "22–26 September 2025",
+    "date": "2025-09-22",
+    "display": "22–26 September 2025",
     "title": "ISSC 2025, Wuxi",
     "body": "Professor Seo attended the 22nd International Ship and Offshore Structures Congress as an Observer representing the Republic of Korea, held in Wuxi, China.",
     "link": "https://www.issc2025.com/",
-    "linkText": "ISSC 2025"
+    "linkText": "ISSC 2025",
+    "image": "",
+    "imageAlt": ""
   },
   {
-    "date": "29 May 2025",
+    "date": "2025-09-01",
+    "display": "September 2025",
+    "title": "Kyusung Shim joins the lab",
+    "body": "Kyusung Shim joins as the lab's second member, working on fracture mechanics and naval ship structures.",
+    "link": "/team/current-members",
+    "linkText": "Meet the team",
+    "image": "",
+    "imageAlt": ""
+  },
+  {
+    "date": "2025-09-01",
+    "display": "September 2025",
+    "title": "Jun Soo Lim joins the lab",
+    "body": "Jun Soo Lim joins as the lab's first member, working on propeller–ice interaction and ice milling.",
+    "link": "/team/current-members",
+    "linkText": "Meet the team",
+    "image": "",
+    "imageAlt": ""
+  },
+  {
+    "date": "2025-05-29",
+    "display": "29 May 2025",
     "title": "MADEX 2025 naval seminar",
     "body": "Professor Seo chaired the Naval Vessel Integrated Survivability / Damage Control / Special Performance session at MADEX 2025 in Busan.",
     "link": "",
-    "linkText": ""
+    "linkText": "",
+    "image": "/images/news/madex-2025.webp",
+    "imageAlt": "MADEX 2025 naval seminar in Busan"
   },
   {
-    "date": "29 May 2025",
+    "date": "2025-05-29",
+    "display": "29 May 2025",
     "title": "Inha University interview",
     "body": "An interview published on the Inha University homepage discussing Professor Seo's personal story and future contributions to the community.",
     "link": "https://www.inha.ac.kr/kr/953/subview.do?&enc=Zm5jdDF8QEB8JTJGYmJzJTJGa3IlMkYxMCUyRjQwNjEyJTJGYXJ0Y2xWaWV3LmRvJTNGcGFnZSUzRDElMjZzcmNoQ29sdW1uJTNEJTI2c3JjaFdyZCUzRCUyNmJic0NsU2VxJTNEJTI2YmJzT3BlbldyZFNlcSUzRCUyNnJnc0JnbmRlU3RyJTNEJTI2cmdzRW5kZGVTdHIlM0QlMjZpc1ZpZXdNaW5lJTNEZmFsc2UlMjZwYXNzd29yZCUzRCUyNg==",
-    "linkText": "Read the interview"
+    "linkText": "Read the interview",
+    "image": "/images/news/inha-interview.webp",
+    "imageAlt": "Interview published on the Inha University homepage"
   },
   {
-    "date": "9 May 2025",
+    "date": "2025-05-09",
+    "display": "9 May 2025",
     "title": "KSOE 2025 spring meeting",
     "body": "Professor Seo presented \"Development of a Machine Learning Model for Real-Time Monitoring of FOWT Mooring Systems\" at the Korean Society of Ocean Engineers meeting in Busan.",
     "link": "",
-    "linkText": ""
+    "linkText": "",
+    "image": "/images/news/ksoe-2025.webp",
+    "imageAlt": "Presentation at the KSOE 2025 spring meeting in Busan"
   },
   {
-    "date": "30 April 2025",
+    "date": "2025-04-30",
+    "display": "30 April 2025",
     "title": "Arirang TV interview",
     "body": "Professor Seo was interviewed regarding US Navy Secretary John Phelan's visit to Korean shipyards, commenting on strategic shipbuilding cooperation between South Korea and the USA.",
     "link": "https://www.arirang.com/news/view?id=283026&lang=en",
-    "linkText": "Watch the interview"
+    "linkText": "Watch the interview",
+    "image": "/images/news/arirang-tv.webp",
+    "imageAlt": "Arirang TV interview"
   },
   {
-    "date": "31 March 2025",
+    "date": "2025-03-31",
+    "display": "31 March 2025",
     "title": "SNAK greeting",
     "body": "Professor Seo's greeting as a new faculty member was published in the March 2025 issue of SNAKZINE.",
     "link": "https://www.snak.or.kr/snakzine/sub.html?md_no=957",
-    "linkText": "SNAKZINE"
+    "linkText": "SNAKZINE",
+    "image": "/images/news/snakzine.webp",
+    "imageAlt": "SNAKZINE new faculty greeting"
   },
   {
-    "date": "1 March 2025",
+    "date": "2025-03-01",
+    "display": "1 March 2025",
     "title": "Lab established",
     "body": "The Marine Structural Mechanics and Integrity Lab was established as Professor Jae Hoon Seo joined Inha University.",
     "link": "",
-    "linkText": ""
+    "linkText": "",
+    "image": "",
+    "imageAlt": ""
   }
 ]

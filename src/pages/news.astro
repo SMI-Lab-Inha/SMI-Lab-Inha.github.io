@@ -4,12 +4,21 @@ import PageHeader from '../components/PageHeader.astro';
 import Pending from '../components/Pending.astro';
 import news from '../data/news.json';
 
-// Kept in the order the lab publishes them (newest first) rather than sorted,
-// because several items carry no precise date.
-const items = news as any[];
+const all = news as any[];
+
+// Pinned items sit at the top; the rest run newest first. Items whose date the
+// lab has not yet supplied keep their relative order at the foot of the list
+// rather than being given an invented one.
+const pinned = all.filter((n) => n.pinned);
+const dated = all.filter((n) => !n.pinned && n.date).sort((a, b) => b.date.localeCompare(a.date));
+const undated = all.filter((n) => !n.pinned && !n.date);
+const items = [...pinned, ...dated, ...undated];
 ---
 
-<Base title="News" description="Announcements and updates from the SMI Lab.">
+<Base
+  title="News"
+  description="Announcements and updates from the SMI Lab at Inha University: appointments, conferences, publications, and the people joining the group."
+>
   <PageHeader eyebrow="Lab" title="News" />
 
   <section class="section">
@@ -22,15 +31,24 @@ const items = news as any[];
           />
         ) : (
           items.map((item) => (
-            <article class="item">
-              {item.date && <p class="date">{item.date}</p>}
-              <h2>{item.title}</h2>
-              <p>{item.body}</p>
-              {item.link && (
-                <p class="more">
-                  <a href={item.link}>{item.linkText || 'More'} →</a>
-                </p>
+            <article class={`item${item.image ? ' has-image' : ''}`}>
+              {item.image && (
+                <img src={item.image} alt={item.imageAlt} loading="lazy" />
               )}
+              <div>
+                {item.pinned ? (
+                  <p class="date pin">Now open</p>
+                ) : (
+                  item.display && <p class="date">{item.display}</p>
+                )}
+                <h2>{item.title}</h2>
+                <p>{item.body}</p>
+                {item.link && (
+                  <p class="more">
+                    <a href={item.link}>{item.linkText || 'More'} →</a>
+                  </p>
+                )}
+              </div>
             </article>
           ))
         )
@@ -41,7 +59,7 @@ const items = news as any[];
 
 <style>
   .item {
-    padding-block: 1.6rem;
+    padding-block: 1.8rem;
     border-top: 1px solid var(--c-border);
   }
 
@@ -50,18 +68,49 @@ const items = news as any[];
     padding-top: 0;
   }
 
+  .item.has-image {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .item img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--c-border);
+    background: var(--c-bg-subtle);
+  }
+
   .item h2 {
     margin-top: 0;
-    margin-bottom: 0.3rem;
-    font-size: 1.22rem;
+    margin-bottom: 0.35rem;
+    font-size: 1.2rem;
   }
 
   .item p:last-child {
     margin-bottom: 0;
   }
 
+  .date {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .date.pin {
+    display: inline-block;
+    background: var(--c-accent);
+    color: #fff;
+    border-radius: 3px;
+    padding: 0.15em 0.55em;
+  }
+
   .more {
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
     font-size: 0.93rem;
   }
 
@@ -74,12 +123,10 @@ const items = news as any[];
     text-decoration: underline;
   }
 
-  .date {
-    color: var(--c-accent);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
+  @media (max-width: 640px) {
+    .item.has-image {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
   }
 </style>

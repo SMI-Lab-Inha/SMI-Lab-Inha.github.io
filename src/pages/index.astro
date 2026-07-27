@@ -7,7 +7,12 @@ import software from '../data/software.json';
 import members from '../data/members.json';
 import d from '../data/director.json';
 
-const latest = (news as any[]).slice(0, 4);
+// Same ordering as the news page: pinned first, then newest first by date.
+const allNews = news as any[];
+const latest = [
+  ...allNews.filter((n) => n.pinned),
+  ...allNews.filter((n) => !n.pinned && n.date).sort((a, b) => b.date.localeCompare(a.date)),
+].slice(0, 5);
 const publicPkgs = (software as any[]).filter((s) => s.status === 'public');
 const alphaPkgs = (software as any[]).filter((s) => s.status === 'alpha');
 const people = members as any[];
@@ -45,15 +50,6 @@ const glance = [
         width="560"
         height="560"
       />
-    </div>
-  </section>
-
-  <section class="figures">
-    <div class="wrap figures-inner">
-      <div><span class="fig">{d.stats.papers}</span><span class="lab">Journal papers</span></div>
-      <div><span class="fig">{d.stats.citations}</span><span class="lab">Citations</span></div>
-      <div><span class="fig">{d.stats.hIndex}</span><span class="lab">h-index</span></div>
-      <div><span class="fig">2025</span><span class="lab">Lab founded</span></div>
     </div>
   </section>
 
@@ -197,7 +193,7 @@ const glance = [
         {
           latest.map((n) => (
             <li>
-              {n.date && <span class="news-date">{n.date}</span>}
+              <span class="news-date">{n.pinned ? 'Now open' : n.display}</span>
               <a href={n.link && n.link.startsWith('/') ? n.link : '/news'}>{n.title}</a>
             </li>
           ))
@@ -318,45 +314,6 @@ const glance = [
     background: #fff;
     border-radius: var(--radius);
     padding: 1.1rem;
-  }
-
-  /* Key figures ------------------------------------------------------- */
-  .figures {
-    background: var(--c-bg);
-    border-bottom: 1px solid var(--c-border);
-  }
-
-  .figures-inner {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-    gap: 1px;
-    background: var(--c-border);
-    border-inline: 1px solid var(--c-border);
-  }
-
-  .figures-inner > div {
-    background: var(--c-bg);
-    padding: 1.5rem 1.2rem;
-    text-align: center;
-  }
-
-  .fig {
-    display: block;
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.1rem);
-    font-weight: 700;
-    color: var(--c-accent);
-    line-height: 1.1;
-  }
-
-  .lab {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.74rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--c-text-muted);
-    margin-top: 0.35rem;
   }
 
   /* Shared section head ----------------------------------------------- */
