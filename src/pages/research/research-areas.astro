@@ -42,6 +42,18 @@ import areas from '../../data/research-areas.json';
                 ))}
               </ul>
 
+              {area.slug === 'fracture-and-impact' && (
+                <figure class="diagram">
+                  <img
+                    src="/images/structural-integrity-diagram.webp"
+                    alt="Diagram: advanced structural integrity, linking fracture mechanics, engineering critical assessment and life extension, impact and collapse, and material modelling"
+                    width="720"
+                    height="1080"
+                    loading="lazy"
+                  />
+                </figure>
+              )}
+
               {'emerging' in area && area.emerging && (
                 <p class="aside">
                   <strong>Emerging direction.</strong> {area.emerging}
@@ -156,6 +168,18 @@ import areas from '../../data/research-areas.json';
     background: var(--c-bg-subtle);
     border-radius: 0 var(--radius) var(--radius) 0;
     max-width: 72ch;
+  }
+
+  .diagram {
+    margin: 1.6rem 0 0;
+    max-width: 26rem;
+  }
+
+  .diagram img {
+    width: 100%;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    background: #fff;
   }
 
   .cross .area-index {

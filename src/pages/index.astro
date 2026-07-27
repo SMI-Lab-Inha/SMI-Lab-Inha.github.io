@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+import news from '../data/news.json';
+
+const latest = (news as any[]).slice(0, 4);
 
 const glance = [
   'Mooring and dynamic power cable integrity for floating offshore wind: virtual sensing, tension estimation, fatigue assessment',
@@ -13,19 +16,28 @@ const glance = [
 
 <Base title={site.fullName} description={site.shortDescription}>
   <section class="hero">
-    <div class="wrap">
-      <p class="hero-eyebrow">
-        {site.department} · {site.university}
-      </p>
-      <h1>Marine Structural Mechanics<br />and Integrity Lab</h1>
-      <p class="hero-tagline">
-        Structural integrity of ships and offshore wind structures.<br />
-        Mechanics, monitoring, and open research software.
-      </p>
-      <p class="hero-actions">
-        <a class="btn" href="/research/research-areas">Our research</a>
-        <a class="btn btn--ghost" href="/research/software">Software</a>
-      </p>
+    <div class="wrap hero-inner">
+      <div>
+        <p class="hero-eyebrow">
+          {site.department} · {site.university}
+        </p>
+        <h1>Marine Structural Mechanics<br />and Integrity Lab</h1>
+        <p class="hero-tagline">
+          Structural integrity, fatigue, and digital technologies for ships and offshore
+          renewable energy systems.
+        </p>
+        <p class="hero-actions">
+          <a class="btn" href="/research/research-areas">Our research</a>
+          <a class="btn btn--ghost" href="/research/software">Software</a>
+        </p>
+      </div>
+      <img
+        class="hero-logo"
+        src="/images/logo.webp"
+        alt="SMI Lab logo: a ship, an offshore wind turbine, and a circuit-brain motif above stylised waves"
+        width="560"
+        height="560"
+      />
     </div>
   </section>
 
@@ -96,6 +108,25 @@ const glance = [
   </section>
 
   <section class="section">
+    <div class="wrap">
+      <div class="news-head">
+        <h2>What's happening</h2>
+        <a href="/news">All news →</a>
+      </div>
+      <ul class="list-plain news-list">
+        {
+          latest.map((n) => (
+            <li>
+              {n.date && <span class="news-date">{n.date}</span>}
+              <a href={n.link && n.link.startsWith('/') ? n.link : '/news'}>{n.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="wrap cta">
       <h2>Work with us</h2>
       <p>
@@ -131,9 +162,79 @@ const glance = [
     padding-block: clamp(3.2rem, 9vw, 6.5rem);
   }
 
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
   .hero h1 {
     color: #fff;
     margin-bottom: 0.5em;
+  }
+
+  /* The logo artwork is navy-on-white, so it needs a light panel behind it. */
+  .hero-logo {
+    width: 100%;
+    max-width: 18rem;
+    justify-self: end;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.2rem;
+  }
+
+  .news-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--c-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .news-head h2 {
+    margin: 0;
+  }
+
+  .news-head a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+
+  .news-list {
+    margin-top: 1.2rem;
+  }
+
+  .news-list li {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1rem;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--c-border);
+    max-width: none;
+  }
+
+  .news-date {
+    color: var(--c-text-muted);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 860px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-logo {
+      justify-self: start;
+      max-width: 12rem;
+    }
+
+    .news-list li {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
   }
 
   .hero-eyebrow {

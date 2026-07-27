@@ -1,7 +1,9 @@
 ---
 import site from '../data/site.json';
+import d from '../data/director.json';
 
 const year = new Date().getFullYear();
+const profiles = d.profiles.filter((p) => p.url);
 ---
 
 <footer class="site-footer">
@@ -16,6 +18,15 @@ const year = new Date().getFullYear();
       <p class="footer-meta">
         <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
+      <ul class="footer-profiles list-plain">
+        {
+          profiles.map((p) => (
+            <li>
+              <a href={p.url}>{p.label}</a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
@@ -72,6 +83,18 @@ const year = new Date().getFullYear();
 
   .site-footer a:hover {
     color: #fff;
+  }
+
+  .footer-profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+    margin: 0;
+    font-size: 0.86rem;
+  }
+
+  .footer-profiles li::after {
+    content: '';
   }
 
   .footer-nav ul {
