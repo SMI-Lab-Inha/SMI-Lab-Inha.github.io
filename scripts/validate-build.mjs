@@ -72,6 +72,11 @@ function contrastRatio(foreground, background) {
 
 const globalCssFile = path.resolve('src/styles/global.css');
 const globalCss = fs.readFileSync(globalCssFile, 'utf8');
+for (const explicitTheme of ['light', 'dark']) {
+  if (!globalCss.includes(`:root[data-theme='${explicitTheme}']`)) {
+    fail(globalCssFile, `missing explicit ${explicitTheme} theme override`);
+  }
+}
 const themeBlocks = [...globalCss.matchAll(/:root\s*{([^}]+)}/g)].map((match) =>
   parseCssVariables(match[1]),
 );
@@ -143,6 +148,19 @@ for (const file of htmlFiles) {
   const currentCount = (html.match(/aria-current="page"/g) ?? []).length;
   if (currentCount > 1) fail(file, `multiple links claim aria-current=page (${currentCount})`);
 
+  const themeControlCount = (html.match(/id="theme-select"/g) ?? []).length;
+  if (themeControlCount !== 1) {
+    fail(file, `expected one colour-theme control, found ${themeControlCount}`);
+  }
+  for (const theme of ['system', 'light', 'dark']) {
+    if (!new RegExp(`<option\\b[^>]*value="${theme}"`).test(html)) {
+      fail(file, `colour-theme control is missing the ${theme} option`);
+    }
+  }
+  if (!html.includes("localStorage.getItem('smi-theme')")) {
+    fail(file, 'missing early theme-preference restoration');
+  }
+
   if (/(?:[A-Za-z\p{Script=Hangul}]|:)<a\b[^>]*href="mailto:/u.test(html)) {
     fail(file, 'email link is missing whitespace before it');
   }
@@ -175,4 +193,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Validated ${htmlFiles.length} HTML pages: British English metadata, colour contrast, heading order, email spacing, images, JSON-LD, TODOs, and internal links.`);
+console.log(`Validated ${htmlFiles.length} HTML pages: British English metadata, colour themes, contrast, heading order, email spacing, images, JSON-LD, TODOs, and internal links.`);

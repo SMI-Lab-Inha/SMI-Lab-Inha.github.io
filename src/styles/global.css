@@ -30,6 +30,7 @@
   --c-accent: #051766;
   --c-accent-hover: #030d3d;
   --c-accent-soft: #eaf4fc;
+  --c-on-accent: #ffffff;
 
   /* Type — Helvetica throughout. macOS resolves the first two names to the real
      thing; elsewhere the self-hosted Arimo takes over, which is metrically
@@ -69,9 +70,49 @@
     --c-accent: #53aae2;
     --c-accent-hover: #86c6ec;
     --c-accent-soft: #0d1b33;
+    --c-on-accent: #030d3d;
 
     color-scheme: dark;
   }
+}
+
+/* Explicit choices follow the same tokens and override the device setting. */
+:root[data-theme='light'] {
+  --c-bg: #ffffff;
+  --c-bg-subtle: #f5f7fa;
+  --c-bg-inset: #eef2f7;
+  --c-border: #dde4ed;
+  --c-border-strong: #c3cedd;
+  --c-text: #16202e;
+  --c-text-muted: #5a6a7f;
+  --c-text-faint: #66758a;
+  --c-navy: #051766;
+  --c-navy-deep: #030d3d;
+  --c-sky: #53aae2;
+  --c-accent: #051766;
+  --c-accent-hover: #030d3d;
+  --c-accent-soft: #eaf4fc;
+  --c-on-accent: #ffffff;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --c-bg: #0d1520;
+  --c-bg-subtle: #131e2c;
+  --c-bg-inset: #182435;
+  --c-border: #24354a;
+  --c-border-strong: #33475f;
+  --c-text: #e6edf5;
+  --c-text-muted: #a3b2c4;
+  --c-text-faint: #7b8b9f;
+  --c-navy: #050b1e;
+  --c-navy-deep: #02060f;
+  --c-sky: #53aae2;
+  --c-accent: #53aae2;
+  --c-accent-hover: #86c6ec;
+  --c-accent-soft: #0d1b33;
+  --c-on-accent: #030d3d;
+  color-scheme: dark;
 }
 
 /* --------------------------------------------------------------------------
@@ -240,7 +281,7 @@ code {
   left: -9999px;
   top: 0;
   background: var(--c-accent);
-  color: #fff;
+  color: var(--c-on-accent);
   padding: 0.7rem 1.1rem;
   z-index: 100;
 }
@@ -301,7 +342,7 @@ code {
 .btn {
   display: inline-block;
   background: var(--c-accent);
-  color: #fff;
+  color: var(--c-on-accent);
   padding: 0.62rem 1.25rem;
   border-radius: var(--radius);
   text-decoration: none;
@@ -311,7 +352,7 @@ code {
 
 .btn:hover {
   background: var(--c-accent-hover);
-  color: #fff;
+  color: var(--c-on-accent);
 }
 
 .btn--ghost {
@@ -323,24 +364,4 @@ code {
 .btn--ghost:hover {
   background: var(--c-accent-soft);
   color: var(--c-accent-hover);
-}
-
-
-@media (prefers-color-scheme: dark) {
-  .skip-link,
-  .btn {
-    color: var(--c-navy-deep);
-  }
-
-  .btn:hover {
-    color: var(--c-navy-deep);
-  }
-
-  .btn--ghost {
-    color: var(--c-accent);
-  }
-
-  .btn--ghost:hover {
-    color: var(--c-accent-hover);
-  }
 }
