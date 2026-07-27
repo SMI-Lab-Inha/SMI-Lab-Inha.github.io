@@ -3,9 +3,9 @@
     "name": "Jun Soo Lim",
     "nameKo": "임준수",
     "group": "Undergraduate researchers",
-    "year": "Admitted 2021",
-    "topic": "Joined September 2025 as the lab's first member.",
-    "photo": "",
+    "year": "Admitted 2021 · joined September 2025",
+    "topic": "The lab's first member.",
+    "photo": "/images/members/jun-soo-lim.webp",
     "email": "",
     "role": ""
   },
@@ -13,9 +13,9 @@
     "name": "Kyusung Shim",
     "nameKo": "심규성",
     "group": "Undergraduate researchers",
-    "year": "Admitted 2021",
+    "year": "Admitted 2021 · joined September 2025",
     "topic": "Naval ship structures.",
-    "photo": "",
+    "photo": "/images/members/kyusung-shim.webp",
     "email": "",
     "role": "Lab manager"
   },
@@ -25,7 +25,7 @@
     "group": "Undergraduate researchers",
     "year": "Admitted 2023",
     "topic": "Offshore structural mechanics.",
-    "photo": "",
+    "photo": "/images/members/jinwoo-song.webp",
     "email": "",
     "role": ""
   },
@@ -35,7 +35,7 @@
     "group": "Undergraduate researchers",
     "year": "Admitted 2022",
     "topic": "Alternative fuel storage systems.",
-    "photo": "",
+    "photo": "/images/members/woojin-lee.webp",
     "email": "",
     "role": ""
   },
@@ -45,7 +45,7 @@
     "group": "Undergraduate researchers",
     "year": "Admitted 2022",
     "topic": "Ship and offshore structural mechanics.",
-    "photo": "",
+    "photo": "/images/members/jun-hyeok-hwang.webp",
     "email": "",
     "role": ""
   },
@@ -55,7 +55,7 @@
     "group": "Undergraduate researchers",
     "year": "Admitted 2022",
     "topic": "Structural design.",
-    "photo": "",
+    "photo": "/images/members/hui-won-lee.webp",
     "email": "",
     "role": ""
   }

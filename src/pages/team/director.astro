@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Pending from '../../components/Pending.astro';
 import d from '../../data/director.json';
 
 const profiles = d.profiles.filter((p) => p.url);
@@ -13,44 +12,38 @@ const profiles = d.profiles.filter((p) => p.url);
   <section class="section">
     <div class="wrap director">
       <div class="portrait">
-        {
-          d.photo ? (
-            <img src={d.photo} alt={d.photoAlt} />
-          ) : (
-            <div class="portrait-empty">
-              <span class="todo">TODO(user): portrait</span>
-            </div>
-          )
-        }
+        <img src={d.photo} alt={d.photoAlt} width="600" height="800" />
+
+        <div class="contact-card">
+          <p class="name">{d.name}</p>
+          <p class="native">{d.nameKo} · {d.nameHanja}</p>
+          <p class="role">{d.title}</p>
+          <hr />
+          <p><a href={`mailto:${d.email}`}>{d.email}</a></p>
+          <p class="muted">{d.phone}</p>
+          <p class="muted">{d.office}</p>
+          {
+            profiles.length > 0 && (
+              <p class="profiles">
+                {profiles.map((p) => (
+                  <a href={p.url}>{p.label}</a>
+                ))}
+              </p>
+            )
+          }
+        </div>
       </div>
 
       <div class="bio">
-        <h2 class="name">{d.name}</h2>
-        <p class="native">{d.nameKo} · {d.nameHanja}</p>
-        <p class="role">{d.title}</p>
-        <p class="contact">
-          <a href={`mailto:${d.email}`}>{d.email}</a>
-        </p>
-
-        <p>{d.bio}</p>
+        <p class="lead">{d.bio}</p>
 
         <p class="former">
-          Earlier publications appear under the name <strong>{d.formerName}</strong>. Both
-          names refer to the same author, and the profile links below cover the complete
-          record.
+          Papers up to 2025 are published under the name <strong>{d.formerName}</strong>; from
+          2026 they appear under <strong>{d.name}</strong>. Both names refer to the same
+          author, and the profile links cover the complete record.
         </p>
 
-        {
-          profiles.length > 0 && (
-            <p class="profiles">
-              {profiles.map((p) => (
-                <a href={p.url}>{p.label}</a>
-              ))}
-            </p>
-          )
-        }
-
-        <h3>Education</h3>
+        <h2>Education</h2>
         <ul class="timeline list-plain">
           {
             d.education.map((e) => (
@@ -58,6 +51,7 @@ const profiles = d.profiles.filter((p) => p.url);
                 <span class="when">{e.year}</span>
                 <span>
                   <strong>{e.degree}</strong>
+                  {e.note && <span class="badge">{e.note}</span>}
                   <br />
                   <span class="muted">{e.institution}</span>
                 </span>
@@ -66,14 +60,12 @@ const profiles = d.profiles.filter((p) => p.url);
           }
         </ul>
 
-        <h3>Appointments</h3>
+        <h2>Appointments</h2>
         <ul class="timeline list-plain">
           {
             d.appointments.map((a) => (
               <li>
-                <span class="when">
-                  {a.period.startsWith('TODO') ? <span class="todo">{a.period}</span> : a.period}
-                </span>
+                <span class="when">{a.period}</span>
                 <span>
                   <strong>{a.role}</strong>
                   <br />
@@ -85,21 +77,20 @@ const profiles = d.profiles.filter((p) => p.url);
           }
         </ul>
 
-        <h3>Professional service and awards</h3>
-        {
-          d.service.length === 0 && d.awards.length === 0 ? (
-            <Pending
-              what="Editorial board roles, chartered status, and teaching awards are not yet listed."
-              how="Add them to src/data/director.json under `service` and `awards`."
-            />
-          ) : (
-            <ul>
-              {[...d.service, ...d.awards].map((item: any) => (
-                <li>{item.startsWith('TODO') ? <span class="todo">{item}</span> : item}</li>
-              ))}
-            </ul>
-          )
-        }
+        <h2>Professional qualifications</h2>
+        <ul>
+          {d.qualifications.map((q) => <li>{q}</li>)}
+        </ul>
+
+        <h2>Professional service</h2>
+        <ul>
+          {d.service.map((s) => <li>{s}</li>)}
+        </ul>
+
+        <h2>Awards</h2>
+        <ul>
+          {d.awards.map((a) => <li>{a}</li>)}
+        </ul>
       </div>
     </div>
   </section>
@@ -108,13 +99,17 @@ const profiles = d.profiles.filter((p) => p.url);
 <style>
   .director {
     display: grid;
-    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
     gap: clamp(1.8rem, 4vw, 3.2rem);
     align-items: start;
   }
 
-  .portrait img,
-  .portrait-empty {
+  .portrait {
+    position: sticky;
+    top: 1.5rem;
+  }
+
+  .portrait img {
     width: 100%;
     aspect-ratio: 3 / 4;
     border-radius: var(--radius);
@@ -122,32 +117,54 @@ const profiles = d.profiles.filter((p) => p.url);
     border: 1px solid var(--c-border);
   }
 
-  .portrait-empty {
-    display: grid;
-    place-items: center;
+  .contact-card {
+    margin-top: 1rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
     background: var(--c-bg-subtle);
-    text-align: center;
-    padding: 1rem;
+    padding: 1.1rem;
+    font-size: 0.93rem;
+  }
+
+  .contact-card p {
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-card hr {
+    margin: 0.8rem 0;
   }
 
   .name {
-    margin-top: 0;
-    margin-bottom: 0.15em;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 
   .native {
     font-family: var(--font-serif);
     color: var(--c-text-muted);
-    margin-bottom: 0.3em;
   }
 
   .role {
     font-weight: 600;
-    margin-bottom: 0.3em;
   }
 
-  .contact {
-    margin-bottom: 1.6em;
+  .profiles {
+    margin-top: 0.7rem;
+    margin-bottom: 0;
+  }
+
+  .profiles a {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .bio h2 {
+    font-size: 1.2rem;
+  }
+
+  .bio h2:first-of-type {
+    margin-top: 2em;
   }
 
   .former {
@@ -158,13 +175,9 @@ const profiles = d.profiles.filter((p) => p.url);
     font-size: 0.94rem;
   }
 
-  .profiles a {
-    margin-right: 1.1rem;
-  }
-
   .timeline li {
     display: grid;
-    grid-template-columns: 7.5rem 1fr;
+    grid-template-columns: 9.5rem 1fr;
     gap: 1rem;
     padding-block: 0.7rem;
     border-top: 1px solid var(--c-border);
@@ -174,6 +187,7 @@ const profiles = d.profiles.filter((p) => p.url);
   .when {
     color: var(--c-text-muted);
     font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
   }
 
   .note {
@@ -181,13 +195,28 @@ const profiles = d.profiles.filter((p) => p.url);
     margin-top: 0.15rem;
   }
 
-  @media (max-width: 720px) {
+  .badge {
+    display: inline-block;
+    margin-left: 0.5em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--c-accent-hover);
+    background: var(--c-accent-soft);
+    border-radius: 999px;
+    padding: 0.15em 0.6em;
+    vertical-align: 0.15em;
+  }
+
+  @media (max-width: 820px) {
     .director {
       grid-template-columns: 1fr;
     }
 
     .portrait {
-      max-width: 13rem;
+      position: static;
+      max-width: 15rem;
     }
 
     .timeline li {

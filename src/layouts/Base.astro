@@ -28,10 +28,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
-    <meta property="og:image" content={new URL('/images/banner.png', canonical).href} />
+    <meta property="og:image" content={new URL('/images/og-banner.png', canonical).href} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" href="/images/icon.png" type="image/png" />
+    <link rel="icon" href="/images/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/images/favicon-180.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
 
