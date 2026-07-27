@@ -2,15 +2,15 @@
   {
     "name": "VANE",
     "expansion": "Visualisation and Automated Natural-frequency Extraction",
-    "description": "Post-processing of OpenFAST linearisation output for floating offshore wind turbines: automated modal identification, natural frequency extraction, and mode visualisation.",
-    "status": "public",
+    "description": "Automated OpenFAST linearisation post-processing, physics-aware mode identification, and state-space export for digital twin development of fixed-bottom and floating offshore wind turbines.",
+    "status": "pending-publication",
     "repo": "",
     "docs": ""
   },
   {
     "name": "CableDyn",
     "expansion": "",
-    "description": "Dynamic analysis of subsea power cables, including lazy-wave configurations, verified against OrcaFlex static and dynamic response at the sag, hog, and touchdown regions.",
+    "description": "Cable and mooring dynamics solver for floating offshore wind turbines, including lazy-wave configurations, verified against OrcaFlex static and dynamic response at the sag, hog, and touchdown regions. Also integrated into a fork of OpenFAST v5.0.0 as a first-class mooring module.",
     "status": "pending-publication",
     "repo": "",
     "docs": ""
@@ -24,17 +24,17 @@
     "docs": ""
   },
   {
-    "name": "fowt-moor-dt",
-    "expansion": "",
-    "description": "A digital twin framework for FOWT mooring systems: Kalman-filter-based tension estimation from platform motion, virtual sensing along the line, and probabilistic fatigue assessment.",
+    "name": "FOWCON",
+    "expansion": "Floating Offshore Wind CONtroller",
+    "description": "A gain-scheduled, damage-aware LQR DISCON runtime for floating offshore wind turbines.",
     "status": "pending-publication",
     "repo": "",
     "docs": ""
   },
   {
-    "name": "FOWCON",
+    "name": "fowt-moor-dt",
     "expansion": "",
-    "description": "TODO(user): one-line scope description needed.",
+    "description": "A digital twin framework for FOWT mooring systems: Kalman-filter-based tension estimation from platform motion, virtual sensing along the line, and probabilistic fatigue assessment.",
     "status": "pending-publication",
     "repo": "",
     "docs": ""
@@ -48,11 +48,27 @@
     "docs": ""
   },
   {
-    "name": "OpenFAST syntax highlighting for VS Code",
+    "name": "pyBModes",
     "expansion": "",
-    "description": "Syntax highlighting for OpenFAST input files, published on the VS Code Marketplace.",
+    "description": "A Python finite-element library for wind turbine blade and tower modal analysis, targeting OpenFAST and ElastoDyn. Also distributed through conda-forge.",
     "status": "public",
-    "repo": "",
+    "repo": "https://github.com/SMI-Lab-Inha/pyBModes",
+    "docs": ""
+  },
+  {
+    "name": "pyIECWind",
+    "expansion": "",
+    "description": "A Python package for IECWind-style IEC wind condition generation for OpenFAST InflowWind.",
+    "status": "public",
+    "repo": "https://github.com/SMI-Lab-Inha/pyIECWind",
+    "docs": ""
+  },
+  {
+    "name": "OpenFAST, ROSCO and TurbSim syntax highlighting for VS Code",
+    "expansion": "",
+    "description": "Syntax highlighting for OpenFAST input files and ROSCO controller input files in Visual Studio Code.",
+    "status": "public",
+    "repo": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting",
     "docs": ""
   }
 ]

@@ -21,3 +21,6 @@ pnpm-debug.log*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Internal planning docs — kept local, never published
+smi-lab-website-full-revision.md
