@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import ResearchSchematic from '../components/ResearchSchematic.astro';
 import AssetImage from '../components/AssetImage.astro';
 import site from '../data/site.json';
 import d from '../data/director.json';
@@ -50,10 +49,13 @@ const glance = [
           <a class="btn btn--ghost" href="/join-us">Join the lab</a>
         </p>
       </div>
-      <ResearchSchematic
-        variant="hero"
-        title="Mechanics-informed virtual sensing"
-        description="Programme schematic: platform motion informs estimates of mooring tension, dynamic cable curvature, and fatigue state."
+      <AssetImage
+        class="hero-logo"
+        src="/images/logo.webp"
+        alt="SMI Lab logo: a ship, an offshore wind turbine, and a circuit-brain motif above stylised waves"
+        loading="eager"
+        sizes="(min-width: 860px) 288px, 176px"
+        widths={[176, 288, 400, 560]}
       />
     </div>
   </section>
@@ -283,9 +285,18 @@ const glance = [
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 25rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
     gap: clamp(1.5rem, 5vw, 3.5rem);
     align-items: center;
+  }
+
+  .hero-logo {
+    width: 100%;
+    max-width: 18rem;
+    justify-self: end;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem;
   }
 
   .hero h1 {
@@ -670,6 +681,11 @@ const glance = [
     .hero-inner,
     .intro {
       grid-template-columns: 1fr;
+    }
+
+    .hero-logo {
+      justify-self: start;
+      max-width: 11rem;
     }
 
     .proof-grid {
