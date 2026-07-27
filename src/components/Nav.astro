@@ -73,6 +73,13 @@ function isSectionActive(item: any) {
             </li>
           ))
         }
+        <li class="theme-item">
+          <select id="theme-select" class="theme-select" aria-label="Colour theme">
+            <option value="system">System theme</option>
+            <option value="light">Light theme</option>
+            <option value="dark">Dark theme</option>
+          </select>
+        </li>
       </ul>
     </nav>
   </div>
@@ -82,8 +89,40 @@ function isSectionActive(item: any) {
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('primary-nav');
   const header = document.querySelector('.site-header');
+  const themeSelect = document.querySelector<HTMLSelectElement>('#theme-select');
+  const themeStorageKey = 'smi-theme';
 
   header?.classList.add('nav-enhanced');
+
+  if (themeSelect) {
+    let savedTheme = 'system';
+    try {
+      const storedTheme = localStorage.getItem(themeStorageKey);
+      if (storedTheme === 'light' || storedTheme === 'dark') savedTheme = storedTheme;
+    } catch {
+      // Keep the system setting when storage is unavailable.
+    }
+    themeSelect.value = savedTheme;
+
+    themeSelect.addEventListener('change', () => {
+      const theme = themeSelect.value;
+      if (theme === 'light' || theme === 'dark') {
+        document.documentElement.dataset.theme = theme;
+        try {
+          localStorage.setItem(themeStorageKey, theme);
+        } catch {
+          // The selected theme still applies for the current page.
+        }
+      } else {
+        delete document.documentElement.dataset.theme;
+        try {
+          localStorage.removeItem(themeStorageKey);
+        } catch {
+          // The system theme still applies for the current page.
+        }
+      }
+    });
+  }
 
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') === 'true';
@@ -207,6 +246,30 @@ function isSectionActive(item: any) {
     color: #fff;
   }
 
+  .theme-item {
+    display: flex;
+    align-items: center;
+    margin-left: 0.35rem;
+  }
+
+  .theme-select {
+    max-width: 8.2rem;
+    padding: 0.43rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    background: var(--c-navy);
+    color: #fff;
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color-scheme: dark;
+  }
+
+  .theme-select:hover,
+  .theme-select:focus-visible {
+    border-color: #fff;
+  }
+
   .submenu {
     list-style: none;
     margin: 0;
@@ -310,6 +373,17 @@ function isSectionActive(item: any) {
     .nav-list > li > a {
       padding-block: 0.7rem;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .theme-item {
+      margin-left: 0;
+      padding: 0.8rem 0.75rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .theme-select {
+      width: 100%;
+      max-width: none;
     }
 
     .nav-list > li.has-children {

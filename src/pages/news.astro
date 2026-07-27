@@ -120,16 +120,10 @@ const items = [...pinned, ...dated, ...undated];
     margin-bottom: 0.3rem;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .date.pin {
-      color: var(--c-navy-deep);
-    }
-  }
-
   .date.pin {
     display: inline-block;
     background: var(--c-accent);
-    color: #fff;
+    color: var(--c-on-accent);
     border-radius: 3px;
     padding: 0.15em 0.55em;
   }
