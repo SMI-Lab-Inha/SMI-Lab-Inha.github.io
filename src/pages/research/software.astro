@@ -1,0 +1,147 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import software from '../../data/software.json';
+
+const statusLabel: Record<string, string> = {
+  public: 'Public',
+  'pending-publication': 'Public release planned with the accompanying journal publication',
+};
+---
+
+<Base
+  title="Software & facilities"
+  description="Open-source research software from the SMI Lab — VANE, CableDyn, CableXsec, fowt-moor-dt, pyULSAN — plus the commercial stack and computing facilities."
+>
+  <PageHeader
+    eyebrow="Research"
+    title="Software & facilities"
+    lead="We build the analysis tools our research needs and release them openly."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <h2 id="in-house">In-house open-source software</h2>
+      <p>
+        Each package is developed with version control, automated testing, and documentation,
+        and papers using these tools cite the release version used, so results are
+        reproducible. Repositories are opened to the public as the accompanying journal papers
+        are published.
+      </p>
+
+      <div class="stack">
+        {
+          software.map((s) => (
+            <article class="card pkg">
+              <h3>
+                {s.name}
+                {s.expansion && <span class="expansion"> — {s.expansion}</span>}
+              </h3>
+              <p class={s.description.startsWith('TODO') ? '' : 'muted'}>
+                {s.description.startsWith('TODO') ? (
+                  <span class="todo">{s.description}</span>
+                ) : (
+                  s.description
+                )}
+              </p>
+              <p class="status">
+                <span class={`pill ${s.status === 'public' ? 'pill--live' : ''}`}>
+                  {statusLabel[s.status]}
+                </span>
+              </p>
+              {(s.repo || s.docs) && (
+                <p class="pkg-links">
+                  {s.repo && <a href={s.repo}>Repository</a>}
+                  {s.docs && <a href={s.docs}>Documentation</a>}
+                </p>
+              )}
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="muted">
+        Bug reports and contributions are welcome on the public repositories, in the
+        <a href="https://github.com/SMI-Lab-Inha"> SMI-Lab-Inha GitHub organisation</a>.
+      </p>
+
+      <h2 id="commercial">Commercial and community software</h2>
+      <p>
+        Our simulations run on a stack of industry-standard tools alongside the in-house
+        packages. Abaqus is the platform for nonlinear finite element analysis, including user
+        material subroutines (VUMAT/UMAT) for fracture modelling and explicit dynamics for
+        impact problems. OrcaFlex and OrcaWave handle mooring, cable, and hydrodynamic
+        analysis, and OpenFAST provides coupled aero-hydro-servo-elastic simulation of wind
+        turbines, including batch design load case processing. Altair HyperWorks covers
+        meshing and post-processing. Development is done primarily in Python (NumPy, SciPy,
+        JAX, scikit-learn, PyTorch), with MATLAB used for selected signal processing and
+        control work.
+      </p>
+
+      <h2 id="computing">Computing</h2>
+      <p>
+        The lab's primary system is a Lenovo ThinkStation P8 workstation: AMD Ryzen
+        Threadripper PRO 7965WX (24 cores / 48 threads), 128 GB DDR5 ECC memory, NVIDIA RTX
+        2000 Ada, and dual PCIe Gen5 NVMe storage, configured for sustained nonlinear FE
+        simulation, OpenFAST design load case batches, and parametric studies.
+      </p>
+      <p>
+        <span class="todo">TODO(user)</span> Confirm whether the Threadripper PRO 7945WX / NVIDIA
+        T1000 machine also exists. If it does, it should be listed here as a second system for
+        pre/post-processing and additional batch capacity; if the old page simply predated the
+        P8, this note can be deleted.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .stack {
+    display: grid;
+    gap: 1.1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .pkg h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+
+  .expansion {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.88rem;
+    color: var(--c-text-muted);
+  }
+
+  .status {
+    margin-bottom: 0;
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 0.78rem;
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    background: var(--c-bg-inset);
+    color: var(--c-text-muted);
+    border: 1px solid var(--c-border);
+  }
+
+  .pill--live {
+    background: var(--c-accent-soft);
+    color: var(--c-accent-hover);
+    border-color: var(--c-accent);
+    font-weight: 600;
+  }
+
+  .pkg-links {
+    margin-top: 0.7rem;
+    margin-bottom: 0;
+  }
+
+  .pkg-links a {
+    margin-right: 1.1rem;
+    font-size: 0.92rem;
+  }
+</style>

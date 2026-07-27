@@ -1,7 +1,7 @@
 {
   "name": "SMI Lab",
   "fullName": "Marine Structural Mechanics and Integrity Lab",
-  "shortDescription": "Structural integrity and life-cycle performance of ships and offshore structures, through physics-based modelling and data-enhanced methods.",
+  "shortDescription": "Structural integrity of ships and offshore wind structures. Mechanics, monitoring, and open research software.",
   "department": "Department of Naval Architecture and Ocean Engineering",
   "university": "Inha University",
   "address": "100 Inha-ro, 2N481, Michuhol-gu, Incheon 22212, Republic of Korea",
@@ -24,7 +24,7 @@
       "href": "/research",
       "children": [
         { "label": "Research areas", "href": "/research/research-areas" },
-        { "label": "Research tools", "href": "/research/research-tools" },
+        { "label": "Software & facilities", "href": "/research/software" },
         { "label": "Projects", "href": "/research/projects" }
       ]
     },

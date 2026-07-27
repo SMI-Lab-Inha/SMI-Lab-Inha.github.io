@@ -6,7 +6,8 @@
   "title": "Assistant Professor in Marine Structures",
   "email": "jaehoon.seo@inha.ac.kr",
   "photo": "",
-  "intro": "My research addresses marine structural integrity, fatigue and fracture mechanics, and digital life-cycle assessment of ships and offshore renewable energy systems, with an emphasis on safety, reliability, and sustainability under harsh ocean environments.",
+  "photoAlt": "Professor Jae Hoon Seo, Director of the SMI Lab at Inha University",
+  "bio": "Professor Jae Hoon Seo directs the Marine Structural Mechanics and Integrity Lab at Inha University. He works on the structural integrity of ships and offshore wind structures, spanning ductile fracture and impact mechanics, ultimate strength, and, in the lab's current programme, virtual sensing and digital twin methods for floating offshore wind turbine moorings and dynamic power cables. Before March 2025 he held faculty positions at Cranfield University and Newcastle University in Singapore, and a principal researcher position at Inha University.",
   "education": [
     {
       "degree": "PhD in Naval Architecture",
@@ -28,24 +29,36 @@
     {
       "role": "Assistant Professor in Marine Structures",
       "institution": "Inha University",
-      "period": "2025 – present"
+      "period": "2025 – present",
+      "note": ""
     },
     {
-      "role": "TODO(user): exact role and dates",
-      "institution": "Cranfield University",
-      "period": "TODO(user)"
+      "role": "Faculty",
+      "institution": "Cranfield University, United Kingdom",
+      "period": "TODO(user): dates",
+      "note": "Ductile fracture mechanics, ship collision analysis, and structural crashworthiness research"
     },
     {
-      "role": "TODO(user): exact role and dates",
-      "institution": "Newcastle University",
-      "period": "TODO(user)"
+      "role": "Faculty",
+      "institution": "Newcastle University in Singapore",
+      "period": "TODO(user): dates",
+      "note": "Ductile fracture mechanics, ship collision analysis, and structural crashworthiness research"
+    },
+    {
+      "role": "Principal Researcher",
+      "institution": "Inha University",
+      "period": "TODO(user): dates",
+      "note": ""
     }
   ],
   "profiles": [
     { "label": "Google Scholar", "url": "" },
     { "label": "ORCID", "url": "" },
-    { "label": "ResearchGate", "url": "" }
+    { "label": "ResearchGate", "url": "" },
+    { "label": "GitHub (SMI-Lab-Inha)", "url": "https://github.com/SMI-Lab-Inha" }
   ],
-  "service": [],
+  "service": [
+    "Member, ISSC Specialist Committee V.4 — Offshore Renewable Energy, 2025–2028, representing the Republic of Korea"
+  ],
   "awards": []
 }

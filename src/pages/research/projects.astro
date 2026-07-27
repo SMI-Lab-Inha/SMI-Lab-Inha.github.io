@@ -5,64 +5,50 @@ import Pending from '../../components/Pending.astro';
 import projects from '../../data/projects.json';
 
 const list = projects as any[];
-const current = list.filter((p) => p.status === 'current');
-const past = list.filter((p) => p.status !== 'current');
+const groups = [
+  { label: 'Principal Investigator', labelKo: '연구책임자', role: 'Principal Investigator' },
+  { label: 'Co-Investigator', labelKo: '참여연구자', role: 'Co-Investigator' },
+]
+  .map((g) => ({ ...g, items: list.filter((p) => p.role === g.role) }))
+  .filter((g) => g.items.length > 0);
 ---
 
 <Base title="Projects" description="Funded research projects of the SMI Lab.">
   <PageHeader
     eyebrow="Research"
     title="Projects"
-    lead="Funded research undertaken with national agencies, classification societies, and industry partners."
+    lead="Funded research with national agencies and the university."
   />
 
   <section class="section">
     <div class="wrap">
       {
-        list.length === 0 ? (
+        groups.length === 0 ? (
           <Pending
             what="No projects are listed yet."
-            how="Add entries to src/data/projects.json with title, funder, period, status ('current' or 'past'), role, and a short summary."
+            how="Add entries to src/data/projects.json."
           />
         ) : (
-          <>
-            {current.length > 0 && (
-              <>
-                <h2>Current</h2>
-                <div class="stack">
-                  {current.map((p) => (
-                    <article class="card">
-                      <h3>{p.title}</h3>
-                      <p class="meta muted">
-                        {p.funder}
-                        {p.period && ` · ${p.period}`}
-                        {p.role && ` · ${p.role}`}
-                      </p>
-                      {p.summary && <p>{p.summary}</p>}
-                    </article>
-                  ))}
-                </div>
-              </>
-            )}
-            {past.length > 0 && (
-              <>
-                <h2>Past</h2>
-                <div class="stack">
-                  {past.map((p) => (
-                    <article class="card">
-                      <h3>{p.title}</h3>
-                      <p class="meta muted">
-                        {p.funder}
-                        {p.period && ` · ${p.period}`}
-                        {p.role && ` · ${p.role}`}
-                      </p>
-                      {p.summary && <p>{p.summary}</p>}
-                    </article>
-                  ))}
-                </div>
-              </>
-            )}
-          </>
+          groups.map((g) => (
+            <div class="group">
+              <h2>
+                {g.label} <span class="ko">— {g.labelKo}</span>
+              </h2>
+              <div class="stack">
+                {g.items.map((p) => (
+                  <article class="card">
+                    <h3>{p.title}</h3>
+                    {p.titleKo && <p class="ko-title">{p.titleKo}</p>}
+                    <p class="meta">
+                      {p.funder}
+                      {p.period && <span> · {p.period}</span>}
+                    </p>
+                    {p.summary && <p>{p.summary}</p>}
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))
         )
       }
     </div>
@@ -70,14 +56,46 @@ const past = list.filter((p) => p.status !== 'current');
 </Base>
 
 <style>
+  .group + .group {
+    margin-top: 3rem;
+  }
+
+  .group h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .ko {
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--c-text-muted);
+  }
+
   .stack {
     display: grid;
     gap: 1.2rem;
-    margin-bottom: 2rem;
+  }
+
+  .card h3 {
+    font-size: 1.08rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .ko-title {
+    color: var(--c-text-muted);
+    font-size: 0.93rem;
+    margin-bottom: 0.5rem;
   }
 
   .meta {
     font-size: 0.92rem;
+    color: var(--c-text-muted);
     margin-bottom: 0.7rem;
+  }
+
+  .card p:last-child {
+    margin-bottom: 0;
   }
 </style>

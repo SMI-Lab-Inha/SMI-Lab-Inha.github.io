@@ -2,33 +2,45 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import site from '../data/site.json';
+
+const interests = [
+  'Floating offshore wind structures: moorings, dynamic power cables, virtual sensing, and digital twins',
+  'Structural integrity and fracture mechanics: ultimate strength, engineering critical assessment, impact and crashworthiness',
+  'Scientific software development for marine structures: state estimation, surrogate modelling, differentiable simulation',
+  'Green marine infrastructure: fracture assessment of hydrogen and ammonia containment systems (emerging direction)',
+];
 ---
 
 <Base
   title="Join us"
-  description="Opportunities for graduate students, visiting researchers, and industry partners at the SMI Lab."
+  description="Graduate positions in the SMI Lab: research on floating offshore wind structural integrity, built into open-source software."
 >
   <PageHeader
     eyebrow="Opportunities"
-    title="Join us"
-    lead="We are looking for people who want to understand how marine structures behave — and who care about getting the answer right."
+    title="Build the tools the offshore wind industry doesn't have yet"
   />
 
   <section class="section">
     <div class="wrap wrap--narrow">
-      <h2>Graduate students</h2>
-      <p>
-        We supervise MSc and PhD students in the Department of Naval Architecture and Ocean
-        Engineering. A background in naval architecture, ocean, civil, mechanical, or
-        aerospace engineering is a natural fit, as is any strong grounding in solid mechanics
-        and numerical methods.
+      <p class="ko">
+        함께 연구할 대학원생을 모집하고 있습니다. 관심 있는 인하대 조선해양공학과 학부생은
+        메일로 연락한 후 면담 바랍니다: <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
+
       <p>
-        Students in the lab work across mechanics-based structural assessment, offshore
-        renewable energy structures, and the digital methods that connect them. Prior
-        experience with finite element analysis or programming is useful, but curiosity and
-        rigour matter more.
+        Graduate students in this lab do two things at once. They carry out research on the
+        structural integrity of floating offshore wind systems, and they build that research
+        into software with the practices used in professional engineering teams: Git,
+        automated testing, continuous integration, documentation, and AI-assisted development
+        with tools such as Claude Code. By graduation, a student here has journal publications
+        and a public software portfolio, a combination few graduate programmes in this field
+        offer.
       </p>
+
+      <h2>Areas we are recruiting in</h2>
+      <ul>
+        {interests.map((i) => <li>{i}</li>)}
+      </ul>
 
       <h2>Visiting researchers</h2>
       <p>
@@ -39,10 +51,10 @@ import site from '../data/site.json';
 
       <h2>Industry collaboration</h2>
       <p>
-        We work with shipyards, operators, classification societies, and technology developers
-        on structural integrity, fatigue and fracture assessment, offshore wind structures, and
-        alternative fuel containment. Collaboration ranges from focused technical studies to
-        multi-year funded projects.
+        We work with classification societies, offshore wind developers, shipyards, and
+        technology developers on mooring and cable integrity, structural assessment, fatigue
+        and fracture, and alternative fuel containment. Collaboration ranges from focused
+        technical studies to multi-year funded projects.
       </p>
 
       <h2>How to get in touch</h2>
@@ -55,21 +67,37 @@ import site from '../data/site.json';
         <li>A brief statement of the research problems that interest you and why</li>
         <li>Your intended start date and funding situation, if known</li>
       </ul>
-      <p class="note">
-        Applications to the graduate programme are handled through Inha University's central
-        admissions process. Contacting us beforehand is welcome and helps us tell you whether
-        there is a good match.
-      </p>
+
+      <div class="pending-block">
+        <p><span class="todo">TODO(user)</span></p>
+        <p>
+          The previous Join us page carried sections on expectations, the GPA requirement,
+          independence, and funding, which were worth keeping verbatim. Paste that text and it
+          will be restored here.
+        </p>
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .note {
+  .ko {
     border-left: 3px solid var(--c-accent);
     background: var(--c-bg-subtle);
     padding: 0.9rem 1.1rem;
     border-radius: 0 var(--radius) var(--radius) 0;
-    font-size: 0.94rem;
+    margin-bottom: 2rem;
+  }
+
+  .pending-block {
+    margin-top: 2.5rem;
+    border: 1px dashed var(--c-border-strong);
+    border-radius: var(--radius);
+    background: var(--c-bg-subtle);
+    padding: 1.5rem;
+  }
+
+  .pending-block p:last-child {
+    margin-bottom: 0;
   }
 </style>

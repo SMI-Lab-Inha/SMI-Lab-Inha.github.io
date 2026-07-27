@@ -15,7 +15,7 @@ const profiles = d.profiles.filter((p) => p.url);
       <div class="portrait">
         {
           d.photo ? (
-            <img src={d.photo} alt={`Portrait of ${d.name}`} />
+            <img src={d.photo} alt={d.photoAlt} />
           ) : (
             <div class="portrait-empty">
               <span class="todo">TODO(user): portrait</span>
@@ -32,11 +32,12 @@ const profiles = d.profiles.filter((p) => p.url);
           <a href={`mailto:${d.email}`}>{d.email}</a>
         </p>
 
-        <p>{d.intro}</p>
+        <p>{d.bio}</p>
 
         <p class="former">
-          Work published before 2019 appears under the name <strong>{d.formerName}</strong>.
-          Both names refer to the same author.
+          Earlier publications appear under the name <strong>{d.formerName}</strong>. Both
+          names refer to the same author, and the profile links below cover the complete
+          record.
         </p>
 
         {
@@ -74,11 +75,10 @@ const profiles = d.profiles.filter((p) => p.url);
                   {a.period.startsWith('TODO') ? <span class="todo">{a.period}</span> : a.period}
                 </span>
                 <span>
-                  <strong>
-                    {a.role.startsWith('TODO') ? <span class="todo">{a.role}</span> : a.role}
-                  </strong>
+                  <strong>{a.role}</strong>
                   <br />
                   <span class="muted">{a.institution}</span>
+                  {a.note && <div class="muted note">{a.note}</div>}
                 </span>
               </li>
             ))
@@ -174,6 +174,11 @@ const profiles = d.profiles.filter((p) => p.url);
   .when {
     color: var(--c-text-muted);
     font-size: 0.92rem;
+  }
+
+  .note {
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
   }
 
   @media (max-width: 720px) {

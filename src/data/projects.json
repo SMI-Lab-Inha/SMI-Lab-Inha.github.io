@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "title": "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines",
+    "titleKo": "부유식 해상풍력 터빈 계류 시스템 장력 추정을 위한 물리 기반 가상 센싱 방법론 연구",
+    "funder": "Inha University New Faculty Research Grant, 2nd round",
+    "period": "2026/3 – 2027/2",
+    "role": "Principal Investigator",
+    "status": "current",
+    "summary": "Develops Kalman-filter-based tension estimation from platform motion, implemented in the lab's fowt-moor-dt framework."
+  },
+  {
+    "title": "Machine Learning-Based Tension Prediction for FOWT Mooring Lines",
+    "titleKo": "기계학습 기반 부유식 풍력터빈 계류선 인장력 예측",
+    "funder": "Inha University New Faculty Research Grant, 1st round",
+    "period": "2025/3 – 2026/2",
+    "role": "Principal Investigator",
+    "status": "current",
+    "summary": "Surrogate models mapping platform response to mooring tension, providing the baseline against which the physics-based estimators are compared."
+  },
+  {
+    "title": "BEACON for Future Marine Workforce: Integrating Spatial and Resource Utilization",
+    "titleKo": "해양수산부: 해양블루테크 미래리더 양성 프로젝트",
+    "funder": "Ministry of Oceans and Fisheries",
+    "period": "2025/4 – 2029/12",
+    "role": "Co-Investigator",
+    "status": "current",
+    "summary": ""
+  },
+  {
+    "title": "Professional Human Resources Training for Digital Shipyard",
+    "titleKo": "산업통상자원부: 산업혁신인재성장지원 — 디지털조선소 전문인력 양성",
+    "funder": "Ministry of Trade, Industry and Energy (R&D)",
+    "period": "2026/3 – 2031/3",
+    "role": "Co-Investigator",
+    "status": "current",
+    "summary": ""
+  }
+]

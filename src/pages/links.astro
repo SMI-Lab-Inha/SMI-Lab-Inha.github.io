@@ -25,11 +25,16 @@ const groups = (links as any[]).filter((g) => g.items.length > 0);
               <ul class="list-plain">
                 {g.items.map((item: any) => (
                   <li>
-                    <a href={item.url}>{item.label}</a>
+                    {item.url ? <a href={item.url}>{item.label}</a> : <span>{item.label}</span>}
                     {item.note && (
                       <span class="muted">
                         {' '}
-                        — {item.note.startsWith('TODO') ? <span class="todo">{item.note}</span> : item.note}
+                        —{' '}
+                        {item.note.startsWith('TODO') ? (
+                          <span class="todo">{item.note}</span>
+                        ) : (
+                          item.note
+                        )}
                       </span>
                     )}
                   </li>

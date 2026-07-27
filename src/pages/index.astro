@@ -1,7 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
-import areas from '../data/research-areas.json';
+
+const glance = [
+  'Mooring and dynamic power cable integrity for floating offshore wind: virtual sensing, tension estimation, fatigue assessment',
+  'Digital twins of offshore structures: state estimation combining simulation models with monitoring data',
+  'Ultimate strength and progressive collapse of ship and offshore structures',
+  'Ductile fracture, collision, and impact mechanics of marine structures',
+  'Open-source research software for the floating offshore wind ecosystem',
+];
 ---
 
 <Base title={site.fullName} description={site.shortDescription}>
@@ -11,81 +18,108 @@ import areas from '../data/research-areas.json';
         {site.department} · {site.university}
       </p>
       <h1>Marine Structural Mechanics<br />and Integrity Lab</h1>
-      <p class="hero-lead">
-        We study the structural integrity and life-cycle performance of ships and offshore
-        structures, combining physics-based modelling with data-enhanced methods to keep
-        marine structures safe across their service life.
+      <p class="hero-tagline">
+        Structural integrity of ships and offshore wind structures.<br />
+        Mechanics, monitoring, and open research software.
       </p>
       <p class="hero-actions">
         <a class="btn" href="/research/research-areas">Our research</a>
-        <a class="btn btn--ghost" href="/join-us">Join the lab</a>
+        <a class="btn btn--ghost" href="/research/software">Software</a>
       </p>
     </div>
   </section>
 
   <section class="section">
-    <div class="wrap">
-      <h2>Research areas</h2>
-      <p class="lead">
-        Four connected strands, from the mechanics of fatigue and fracture through to the
-        digital methods that put those mechanics to work in service.
-      </p>
+    <div class="wrap intro">
+      <div>
+        <h2 class="intro-title">
+          Marine Structural Mechanics and Integrity Lab (SMI Lab)
+          <span class="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
+        </h2>
 
-      <div class="grid area-grid">
-        {
-          areas.map((area) => (
-            <article class="card">
-              <h3>{area.title}</h3>
-              <p class="muted">{area.summary}</p>
-              <p>
-                <a href={`/research/research-areas#${area.slug}`}>Read more</a>
-              </p>
-            </article>
-          ))
-        }
+        <p>
+          The Marine Structural Mechanics and Integrity Lab (SMI Lab) in the Department of
+          Naval Architecture and Ocean Engineering at Inha University studies how ships and
+          offshore structures carry load, accumulate damage, and fail, and how that knowledge
+          can be turned into assessment methods engineers can trust. The lab is led by
+          Professor Jae Hoon Seo, who also publishes as Burak Can Cerik.
+        </p>
+
+        <p>
+          Our current focus is the structural integrity of floating offshore wind turbine
+          (FOWT) systems, in particular mooring lines and subsea dynamic power cables. We
+          develop physics-based virtual sensing and digital twin methods that estimate
+          tension, curvature, and fatigue damage in components that are difficult or expensive
+          to instrument directly, using Kalman filtering, state estimation, and surrogate
+          models built on nonlinear structural mechanics.
+        </p>
+
+        <p>
+          This work rests on a longer research foundation in ductile fracture mechanics, ship
+          collision and impact analysis, and the ultimate strength of hull structures,
+          developed over fifteen years at the University of Ulsan, Newcastle University in
+          Singapore, Inha University, and Cranfield University.
+        </p>
+
+        <p>
+          The lab treats research software as a primary output alongside journal papers. We
+          build our analysis tools in-house to professional engineering standards, with
+          version control, automated testing, and documentation, and we release them openly
+          through the <a href="https://github.com/SMI-Lab-Inha">SMI-Lab-Inha GitHub
+          organisation</a> as the accompanying papers are published.
+        </p>
       </div>
+
+      <aside class="glance">
+        <h3>Research at a glance</h3>
+        <ul>
+          {glance.map((g) => <li>{g}</li>)}
+        </ul>
+      </aside>
     </div>
   </section>
 
   <section class="section section--subtle">
     <div class="wrap values">
       <div>
-        <h2>How we work</h2>
+        <h2>Our values</h2>
         <p>
           Marine structures fail in ways that are expensive to discover in service. Our work
           is aimed at understanding those mechanisms well enough to predict them — and at
           making the predictions trustworthy enough to act on.
         </p>
-        <p>
-          That means mechanics first, data second: models whose assumptions can be stated,
-          tested, and defended in a safety-critical setting.
-        </p>
       </div>
       <ul class="value-list list-plain">
-        {
-          site.values.map((value) => (
-            <li>
-              <span>{value}</span>
-            </li>
-          ))
-        }
+        {site.values.map((value) => <li>{value}</li>)}
       </ul>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap cta">
-      <div>
-        <h2>Work with us</h2>
-        <p>
-          We welcome enquiries from prospective graduate students, visiting researchers, and
-          industry partners working on ship, offshore, and marine renewable energy structures.
-        </p>
-        <p>
-          <a class="btn" href="/join-us">Opportunities</a>
-          <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
-        </p>
-      </div>
+      <h2>Work with us</h2>
+      <p>
+        We welcome enquiries from prospective graduate students, visiting researchers, and
+        industry partners working on floating wind and marine structural integrity.
+      </p>
+      <p>
+        <a class="btn" href="/join-us">Join the lab</a>
+        <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
+    <div class="wrap">
+      <h2 class="address-title">Find us</h2>
+      <address>
+        {site.department}<br />
+        {site.university}<br />
+        {site.address}
+      </address>
+      <p>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
     </div>
   </section>
 </Base>
@@ -111,10 +145,12 @@ import areas from '../data/research-areas.json';
     margin-bottom: 1.1rem;
   }
 
-  .hero-lead {
-    font-size: 1.14rem;
-    color: rgba(255, 255, 255, 0.88);
-    max-width: 58ch;
+  .hero-tagline {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.35rem);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    max-width: 46ch;
   }
 
   .hero-actions {
@@ -135,8 +171,52 @@ import areas from '../data/research-areas.json';
     color: #fff;
   }
 
-  .area-grid {
-    margin-top: 2rem;
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+
+  .intro-title {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+
+  .ko {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--c-text-muted);
+    margin-top: 0.25em;
+  }
+
+  .glance {
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    position: sticky;
+    top: 1.5rem;
+  }
+
+  .glance h3 {
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+
+  .glance ul {
+    padding-left: 1.05rem;
+    margin-bottom: 0;
+  }
+
+  .glance li {
+    margin-bottom: 0.7rem;
+    font-size: 0.93rem;
+  }
+
+  .glance li:last-child {
+    margin-bottom: 0;
   }
 
   .values {
@@ -144,6 +224,10 @@ import areas from '../data/research-areas.json';
     gap: 2.5rem;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
     align-items: start;
+  }
+
+  .values h2 {
+    margin-top: 0;
   }
 
   .value-list {
@@ -174,5 +258,25 @@ import areas from '../data/research-areas.json';
 
   .cta .btn {
     margin-right: 0.6rem;
+  }
+
+  .address-title {
+    margin-top: 0;
+  }
+
+  address {
+    font-style: normal;
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+  }
+
+  @media (max-width: 860px) {
+    .intro {
+      grid-template-columns: 1fr;
+    }
+
+    .glance {
+      position: static;
+    }
   }
 </style>

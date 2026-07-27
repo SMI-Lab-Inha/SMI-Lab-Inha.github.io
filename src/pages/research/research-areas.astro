@@ -6,37 +6,109 @@ import areas from '../../data/research-areas.json';
 
 <Base
   title="Research areas"
-  description="Marine structural integrity, offshore infrastructure, advanced marine engineering, and intelligent digital marine structures."
+  description="Mooring and dynamic power cable integrity for floating offshore wind, ultimate strength and progressive collapse, and ductile fracture and impact mechanics of marine structures."
 >
   <PageHeader
     eyebrow="Research"
-    title="Research areas"
-    lead="Our work spans the mechanics of marine structural failure and the digital methods used to anticipate it in service."
+    title="Research"
+    lead="Three research thrusts, and one cross-cutting capability that runs through all of them."
   />
 
   <section class="section">
     <div class="wrap">
+      <div class="how">
+        <h2>How we work</h2>
+        <p>
+          We start from structural mechanics. Every monitoring method, learning model, or
+          software tool the lab produces is built on a physics-based description of how the
+          structure carries load, so that its predictions remain interpretable and defensible
+          in safety-critical use. Where data-driven methods appear in our work, they estimate
+          states and parameters of a mechanical model; they do not replace it.
+        </p>
+      </div>
+
       {
         areas.map((area, i) => (
           <article class="area" id={area.slug}>
             <p class="area-index">{String(i + 1).padStart(2, '0')}</p>
             <div>
               <h2>{area.title}</h2>
-              <p class="lead">{area.summary}</p>
+              <p>{area.summary}</p>
+
+              <h3>Current work includes</h3>
               <ul class="topics">
                 {area.topics.map((topic) => (
                   <li>{topic}</li>
                 ))}
               </ul>
+
+              {'emerging' in area && area.emerging && (
+                <p class="aside">
+                  <strong>Emerging direction.</strong> {area.emerging}
+                </p>
+              )}
+
+              {'methods' in area && area.methods && (
+                <p class="methods">
+                  <strong>Methods and tools.</strong> {area.methods}{' '}
+                  <a href="/research/software">See the software portfolio</a>.
+                </p>
+              )}
             </div>
           </article>
         ))
       }
+
+      <article class="area cross">
+        <p class="area-index">+</p>
+        <div>
+          <h2>Cross-cutting capability: research software engineering</h2>
+          <p>
+            Every thrust above produces software, and the lab treats that software as a
+            research output in its own right. Packages are developed under version control
+            with automated test suites, continuous integration, and documentation, and are
+            released publicly as the accompanying papers appear. Graduate students in the lab
+            learn this workflow from their first semester, including AI-assisted development
+            practice.
+          </p>
+          <p>
+            <a class="btn btn--ghost" href="/research/software">Software &amp; facilities</a>
+          </p>
+        </div>
+      </article>
+
+      <div class="partners">
+        <h2>Partnerships and roles</h2>
+        <ul>
+          <li>
+            Professor Seo is a member of the ISSC Specialist Committee V.4 — Offshore
+            Renewable Energy for 2025–2028, representing the Republic of Korea.
+          </li>
+          <li>
+            The lab participates as co-investigator in the MOF-funded BEACON marine workforce
+            project (2025–2029) and the MOTIE-funded Digital Shipyard professional training
+            programme (2026–2031).
+          </li>
+          <li>
+            We welcome collaboration with classification societies, offshore wind developers,
+            and research groups working on floating wind structural integrity. Contact:
+            <a href="mailto:jaehoon.seo@inha.ac.kr">jaehoon.seo@inha.ac.kr</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
+  .how {
+    padding-bottom: 2.2rem;
+  }
+
+  .how h2 {
+    margin-top: 0;
+  }
+
   .area {
     display: grid;
     grid-template-columns: 4rem 1fr;
@@ -46,13 +118,17 @@ import areas from '../../data/research-areas.json';
     scroll-margin-top: 2rem;
   }
 
-  .area:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-
   .area h2 {
     margin-top: 0;
+  }
+
+  .area h3 {
+    font-size: 0.82rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--c-text-muted);
+    margin-top: 1.6em;
   }
 
   .area-index {
@@ -64,12 +140,40 @@ import areas from '../../data/research-areas.json';
   }
 
   .topics {
-    margin-bottom: 0;
     padding-left: 1.1rem;
   }
 
   .topics li {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .aside,
+  .methods {
+    font-size: 0.94rem;
+    color: var(--c-text-muted);
+    border-left: 3px solid var(--c-border-strong);
+    padding: 0.7rem 1rem;
+    background: var(--c-bg-subtle);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    max-width: 72ch;
+  }
+
+  .cross .area-index {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .partners {
+    border-top: 1px solid var(--c-border);
+    padding-top: 2.5rem;
+  }
+
+  .partners h2 {
+    margin-top: 0;
+  }
+
+  .partners li {
+    margin-bottom: 0.6rem;
   }
 
   @media (max-width: 640px) {
