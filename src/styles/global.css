@@ -1,0 +1,324 @@
+/* ==========================================================================
+   SMI Lab design system
+   Palette is deep-sea navy with a cold accent, chosen to sit naturally with
+   marine/offshore subject matter without reading as corporate marketing.
+   All colours are defined as custom properties so light and dark themes
+   share one set of rules.
+   ========================================================================== */
+
+:root {
+  /* Neutrals */
+  --c-bg: #ffffff;
+  --c-bg-subtle: #f5f7fa;
+  --c-bg-inset: #eef2f7;
+  --c-border: #dde4ed;
+  --c-border-strong: #c3cedd;
+
+  /* Text */
+  --c-text: #16202e;
+  --c-text-muted: #5a6a7f;
+  --c-text-faint: #8593a6;
+
+  /* Brand */
+  --c-navy: #0e2a47;
+  --c-navy-deep: #071a2e;
+  --c-accent: #0f6f8f;
+  --c-accent-hover: #0b566f;
+  --c-accent-soft: #e3f1f6;
+
+  /* Type */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Rhythm */
+  --measure: 68ch;
+  --wrap: 1140px;
+  --wrap-narrow: 820px;
+  --radius: 6px;
+  --space: 1rem;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #0d1520;
+    --c-bg-subtle: #131e2c;
+    --c-bg-inset: #182435;
+    --c-border: #24354a;
+    --c-border-strong: #33475f;
+
+    --c-text: #e6edf5;
+    --c-text-muted: #a3b2c4;
+    --c-text-faint: #7b8b9f;
+
+    --c-navy: #0d1520;
+    --c-navy-deep: #070d15;
+    --c-accent: #4bb8d8;
+    --c-accent-hover: #74cbe6;
+    --c-accent-soft: #14293a;
+
+    color-scheme: dark;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  color: var(--c-text);
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.7rem);
+}
+h2 {
+  font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.85rem);
+  margin-top: 2.2em;
+}
+h3 {
+  font-size: 1.18rem;
+  margin-top: 1.8em;
+}
+h4 {
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-text-muted);
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1.1em;
+}
+
+p,
+li {
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--c-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--c-accent-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--c-border);
+  margin: 2.5rem 0;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--c-bg-inset);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Layout helpers
+   -------------------------------------------------------------------------- */
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 4vw, 2.5rem);
+}
+
+.wrap--narrow {
+  max-width: var(--wrap-narrow);
+}
+
+.section {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.section--subtle {
+  background: var(--c-bg-subtle);
+  border-block: 1px solid var(--c-border);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--c-accent);
+  color: #fff;
+  padding: 0.7rem 1.1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* Cards ------------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+
+.card {
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Utility ----------------------------------------------------------------- */
+
+.lead {
+  font-size: 1.12rem;
+  color: var(--c-text-muted);
+  max-width: 60ch;
+}
+
+.muted {
+  color: var(--c-text-muted);
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 0.7rem;
+}
+
+.list-plain {
+  list-style: none;
+  padding: 0;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--c-accent);
+  color: #fff;
+  padding: 0.62rem 1.25rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  background: var(--c-accent-hover);
+  color: #fff;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--c-accent);
+  border-color: var(--c-border-strong);
+}
+
+.btn--ghost:hover {
+  background: var(--c-accent-soft);
+  color: var(--c-accent-hover);
+}
+
+/* A visible marker for content the lab still has to supply. Deliberately
+   loud so placeholders cannot be published by accident. */
+.todo {
+  display: inline-block;
+  background: #fff4d6;
+  color: #6b4c00;
+  border: 1px dashed #d9ac3c;
+  border-radius: 3px;
+  padding: 0.1em 0.5em;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .todo {
+    background: #3a2f11;
+    color: #f2d98a;
+    border-color: #7a6524;
+  }
+}

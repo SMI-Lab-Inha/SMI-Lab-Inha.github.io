@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import areas from '../data/research-areas.json';
+---
+
+<Base title={site.fullName} description={site.shortDescription}>
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-eyebrow">
+        {site.department} · {site.university}
+      </p>
+      <h1>Marine Structural Mechanics<br />and Integrity Lab</h1>
+      <p class="hero-lead">
+        We study the structural integrity and life-cycle performance of ships and offshore
+        structures, combining physics-based modelling with data-enhanced methods to keep
+        marine structures safe across their service life.
+      </p>
+      <p class="hero-actions">
+        <a class="btn" href="/research/research-areas">Our research</a>
+        <a class="btn btn--ghost" href="/join-us">Join the lab</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Research areas</h2>
+      <p class="lead">
+        Four connected strands, from the mechanics of fatigue and fracture through to the
+        digital methods that put those mechanics to work in service.
+      </p>
+
+      <div class="grid area-grid">
+        {
+          areas.map((area) => (
+            <article class="card">
+              <h3>{area.title}</h3>
+              <p class="muted">{area.summary}</p>
+              <p>
+                <a href={`/research/research-areas#${area.slug}`}>Read more</a>
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
+    <div class="wrap values">
+      <div>
+        <h2>How we work</h2>
+        <p>
+          Marine structures fail in ways that are expensive to discover in service. Our work
+          is aimed at understanding those mechanisms well enough to predict them — and at
+          making the predictions trustworthy enough to act on.
+        </p>
+        <p>
+          That means mechanics first, data second: models whose assumptions can be stated,
+          tested, and defended in a safety-critical setting.
+        </p>
+      </div>
+      <ul class="value-list list-plain">
+        {
+          site.values.map((value) => (
+            <li>
+              <span>{value}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap cta">
+      <div>
+        <h2>Work with us</h2>
+        <p>
+          We welcome enquiries from prospective graduate students, visiting researchers, and
+          industry partners working on ship, offshore, and marine renewable energy structures.
+        </p>
+        <p>
+          <a class="btn" href="/join-us">Opportunities</a>
+          <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background: linear-gradient(160deg, var(--c-navy) 0%, var(--c-navy-deep) 100%);
+    color: #fff;
+    padding-block: clamp(3.2rem, 9vw, 6.5rem);
+  }
+
+  .hero h1 {
+    color: #fff;
+    margin-bottom: 0.5em;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.1rem;
+  }
+
+  .hero-lead {
+    font-size: 1.14rem;
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 58ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+
+  .hero .btn--ghost {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .hero .btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  .area-grid {
+    margin-top: 2rem;
+  }
+
+  .values {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    align-items: start;
+  }
+
+  .value-list {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0;
+  }
+
+  .value-list li {
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-left: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+  }
+
+  .cta {
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 4vw, 2.6rem);
+  }
+
+  .cta h2 {
+    margin-top: 0;
+  }
+
+  .cta .btn {
+    margin-right: 0.6rem;
+  }
+</style>

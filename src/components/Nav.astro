@@ -1,0 +1,296 @@
+---
+import site from '../data/site.json';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+function isActive(href: string) {
+  if (href === '/') return path === '/';
+  return path === href || path.startsWith(href + '/');
+}
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">SMI</span>
+      <span class="brand-text">
+        <strong>{site.fullName}</strong>
+        <small>{site.university}</small>
+      </span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Toggle navigation"
+    >
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav id="primary-nav" class="nav" aria-label="Primary">
+      <ul class="nav-list">
+        {
+          site.nav.map((item: any) => (
+            <li class={item.children ? 'has-children' : ''}>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+              {item.children && (
+                <ul class="submenu">
+                  {item.children.map((child: any) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        aria-current={isActive(child.href) ? 'page' : undefined}
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('primary-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    nav?.classList.toggle('is-open', !open);
+  });
+
+  // On touch/narrow viewports a parent link should reveal its submenu on the
+  // first tap rather than navigating straight past it.
+  nav?.querySelectorAll('.has-children > a').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (!window.matchMedia('(max-width: 860px)').matches) return;
+      const li = link.parentElement;
+      if (li && !li.classList.contains('is-expanded')) {
+        event.preventDefault();
+        li.classList.add('is-expanded');
+      }
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    background: var(--c-navy);
+    color: #fff;
+    border-bottom: 1px solid var(--c-border);
+    position: relative;
+    z-index: 50;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 4.6rem;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #fff;
+    text-decoration: none;
+    padding-block: 0.8rem;
+  }
+
+  .brand-mark {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    border-radius: 4px;
+    padding: 0.28em 0.5em;
+    line-height: 1;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+
+  .brand-text strong {
+    font-family: var(--font-serif);
+    font-size: 1.02rem;
+    font-weight: 600;
+  }
+
+  .brand-text small {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-list li {
+    position: relative;
+    margin: 0;
+    max-width: none;
+  }
+
+  .nav-list a {
+    display: block;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-size: 0.92rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .nav-list a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-list a[aria-current='page'] {
+    color: #fff;
+    box-shadow: inset 0 -2px 0 var(--c-accent);
+  }
+
+  .submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 13rem;
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 28px rgba(7, 26, 46, 0.18);
+    display: none;
+  }
+
+  .has-children:hover > .submenu,
+  .has-children:focus-within > .submenu {
+    display: block;
+  }
+
+  .submenu a {
+    color: var(--c-text);
+    font-size: 0.9rem;
+  }
+
+  .submenu a:hover {
+    background: var(--c-accent-soft);
+    color: var(--c-accent-hover);
+  }
+
+  .submenu a[aria-current='page'] {
+    color: var(--c-accent);
+    box-shadow: none;
+    font-weight: 600;
+  }
+
+  /* Mobile ---------------------------------------------------------------- */
+
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    width: 2.7rem;
+    height: 2.4rem;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav-toggle-bar,
+  .nav-toggle-bar::before,
+  .nav-toggle-bar::after {
+    position: absolute;
+    left: 50%;
+    width: 1.15rem;
+    height: 2px;
+    background: #fff;
+    transform: translateX(-50%);
+    content: '';
+  }
+
+  .nav-toggle-bar {
+    top: 50%;
+    margin-top: -1px;
+  }
+  .nav-toggle-bar::before {
+    top: -6px;
+  }
+  .nav-toggle-bar::after {
+    top: 6px;
+  }
+
+  @media (max-width: 860px) {
+    .nav-toggle {
+      display: block;
+    }
+
+    .nav {
+      display: none;
+      width: 100%;
+      padding-bottom: 1rem;
+    }
+
+    .nav.is-open {
+      display: block;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .nav-list > li > a {
+      padding-block: 0.7rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .submenu {
+      position: static;
+      display: none;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0 0 0.4rem 1rem;
+    }
+
+    .has-children.is-expanded > .submenu {
+      display: block;
+    }
+
+    .submenu a {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .submenu a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+  }
+</style>

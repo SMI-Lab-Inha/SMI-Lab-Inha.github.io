@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Pending from '../components/Pending.astro';
+import { getCollection, render } from 'astro:content';
+
+const posts = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const rendered = await Promise.all(
+  posts.map(async (post) => ({ post, Content: (await render(post)).Content }))
+);
+
+const fmt = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Base title="News" description="Announcements and updates from the SMI Lab.">
+  <PageHeader eyebrow="Lab" title="News" />
+
+  <section class="section">
+    <div class="wrap wrap--narrow">
+      {
+        rendered.length === 0 ? (
+          <Pending
+            what="No news items have been posted yet."
+            how="Add a Markdown file to src/content/news/ — see the template in that folder."
+          />
+        ) : (
+          rendered.map(({ post, Content }) => (
+            <article class="item">
+              <p class="date">
+                <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time>
+              </p>
+              <h2>{post.data.title}</h2>
+              <div class="body">
+                <Content />
+              </div>
+            </article>
+          ))
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .item {
+    padding-block: 2rem;
+    border-top: 1px solid var(--c-border);
+  }
+
+  .item:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .item h2 {
+    margin-top: 0;
+    font-size: 1.35rem;
+  }
+
+  .date {
+    color: var(--c-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+</style>

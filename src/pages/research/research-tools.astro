@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Pending from '../../components/Pending.astro';
+import tools from '../../data/tools.json';
+
+const list = tools as any[];
+---
+
+<Base
+  title="Research tools"
+  description="Software, computational methods, and experimental facilities used by the SMI Lab."
+>
+  <PageHeader
+    eyebrow="Research"
+    title="Research tools"
+    lead="The computational and experimental toolset behind our work."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        list.length === 0 ? (
+          <Pending
+            what="No research tools are listed yet."
+            how="Add entries to src/data/tools.json with name, category (for example 'Finite element analysis', 'In-house code', 'Facility'), and a short description."
+          />
+        ) : (
+          <div class="grid">
+            {list.map((t) => (
+              <article class="card">
+                {t.category && <p class="eyebrow">{t.category}</p>}
+                <h3>{t.name}</h3>
+                {t.description && <p class="muted">{t.description}</p>}
+                {t.url && (
+                  <p>
+                    <a href={t.url}>More</a>
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</Base>

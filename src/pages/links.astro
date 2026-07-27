@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Pending from '../components/Pending.astro';
+import links from '../data/links.json';
+
+const groups = (links as any[]).filter((g) => g.items.length > 0);
+---
+
+<Base title="Links" description="University, society, and resource links related to the SMI Lab.">
+  <PageHeader eyebrow="Reference" title="Links" />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        groups.length === 0 ? (
+          <Pending
+            what="No links are listed yet."
+            how="Add entries to src/data/links.json."
+          />
+        ) : (
+          groups.map((g) => (
+            <div class="group">
+              <h2>{g.group}</h2>
+              <ul class="list-plain">
+                {g.items.map((item: any) => (
+                  <li>
+                    <a href={item.url}>{item.label}</a>
+                    {item.note && (
+                      <span class="muted">
+                        {' '}
+                        — {item.note.startsWith('TODO') ? <span class="todo">{item.note}</span> : item.note}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .group + .group {
+    margin-top: 2.5rem;
+  }
+
+  .group h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .group li {
+    padding-block: 0.45rem;
+  }
+</style>

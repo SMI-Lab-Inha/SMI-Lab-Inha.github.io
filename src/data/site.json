@@ -1,0 +1,44 @@
+{
+  "name": "SMI Lab",
+  "fullName": "Marine Structural Mechanics and Integrity Lab",
+  "shortDescription": "Structural integrity and life-cycle performance of ships and offshore structures, through physics-based modelling and data-enhanced methods.",
+  "department": "Department of Naval Architecture and Ocean Engineering",
+  "university": "Inha University",
+  "address": "100 Inha-ro, 2N481, Michuhol-gu, Incheon 22212, Republic of Korea",
+  "email": "jaehoon.seo@inha.ac.kr",
+  "values": ["Creativity", "Openness", "Responsibility", "Excellence"],
+  "legacySiteUrl": "https://sites.google.com/inha.ac.kr/smi-lab",
+  "nav": [
+    { "label": "Home", "href": "/" },
+    {
+      "label": "Team",
+      "href": "/team",
+      "children": [
+        { "label": "Director", "href": "/team/director" },
+        { "label": "Current members", "href": "/team/current-members" },
+        { "label": "Alumni", "href": "/team/alumni" }
+      ]
+    },
+    {
+      "label": "Research",
+      "href": "/research",
+      "children": [
+        { "label": "Research areas", "href": "/research/research-areas" },
+        { "label": "Research tools", "href": "/research/research-tools" },
+        { "label": "Projects", "href": "/research/projects" }
+      ]
+    },
+    {
+      "label": "Publications",
+      "href": "/publications",
+      "children": [
+        { "label": "Journal papers", "href": "/publications/journal-papers" },
+        { "label": "Conference proceedings", "href": "/publications/conference-proceedings" }
+      ]
+    },
+    { "label": "Teaching", "href": "/teaching" },
+    { "label": "News", "href": "/news" },
+    { "label": "Join us", "href": "/join-us" },
+    { "label": "Links", "href": "/links" }
+  ]
+}

@@ -1,0 +1,11 @@
+# News posts go here, one Markdown file per item.
+#
+# Filename: YYYY-MM-DD-short-slug.md
+#
+# ---
+# title: Paper accepted in Marine Structures
+# date: 2026-03-01
+# summary: One-line summary shown on the news list.
+# ---
+#
+# Body text in Markdown.

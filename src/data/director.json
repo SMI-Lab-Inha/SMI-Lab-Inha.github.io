@@ -1,0 +1,51 @@
+{
+  "name": "Jae Hoon Seo",
+  "nameKo": "서재훈",
+  "nameHanja": "徐在勳",
+  "formerName": "Burak Can Cerik",
+  "title": "Assistant Professor in Marine Structures",
+  "email": "jaehoon.seo@inha.ac.kr",
+  "photo": "",
+  "intro": "My research addresses marine structural integrity, fatigue and fracture mechanics, and digital life-cycle assessment of ships and offshore renewable energy systems, with an emphasis on safety, reliability, and sustainability under harsh ocean environments.",
+  "education": [
+    {
+      "degree": "PhD in Naval Architecture",
+      "institution": "University of Ulsan, Republic of Korea",
+      "year": "2014"
+    },
+    {
+      "degree": "MSc in Mechanical Engineering",
+      "institution": "Gebze Institute of Technology, Türkiye",
+      "year": "2011"
+    },
+    {
+      "degree": "BSc in Naval Architecture and Marine Engineering",
+      "institution": "Istanbul Technical University, Türkiye",
+      "year": "2009"
+    }
+  ],
+  "appointments": [
+    {
+      "role": "Assistant Professor in Marine Structures",
+      "institution": "Inha University",
+      "period": "2025 – present"
+    },
+    {
+      "role": "TODO(user): exact role and dates",
+      "institution": "Cranfield University",
+      "period": "TODO(user)"
+    },
+    {
+      "role": "TODO(user): exact role and dates",
+      "institution": "Newcastle University",
+      "period": "TODO(user)"
+    }
+  ],
+  "profiles": [
+    { "label": "Google Scholar", "url": "" },
+    { "label": "ORCID", "url": "" },
+    { "label": "ResearchGate", "url": "" }
+  ],
+  "service": [],
+  "awards": []
+}

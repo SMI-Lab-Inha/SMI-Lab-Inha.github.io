@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Pending from '../components/Pending.astro';
+import courses from '../data/teaching.json';
+
+const list = courses as any[];
+---
+
+<Base title="Teaching" description="Courses taught by the SMI Lab at Inha University.">
+  <PageHeader
+    eyebrow="Education"
+    title="Teaching"
+    lead="Undergraduate and graduate courses in the Department of Naval Architecture and Ocean Engineering."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        list.length === 0 ? (
+          <Pending
+            what="No courses are listed yet."
+            how="Add entries to src/data/teaching.json with code, title, level ('Undergraduate' or 'Graduate'), semester, and a short description."
+          />
+        ) : (
+          <div class="stack">
+            {list.map((c) => (
+              <article class="card">
+                <p class="eyebrow">
+                  {c.level}
+                  {c.semester && ` · ${c.semester}`}
+                </p>
+                <h3>
+                  {c.code && <span class="code">{c.code}</span>}
+                  {c.title}
+                </h3>
+                {c.description && <p class="muted">{c.description}</p>}
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .stack {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--c-text-muted);
+    margin-right: 0.6em;
+  }
+</style>

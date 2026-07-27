@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Pending from '../../components/Pending.astro';
+import projects from '../../data/projects.json';
+
+const list = projects as any[];
+const current = list.filter((p) => p.status === 'current');
+const past = list.filter((p) => p.status !== 'current');
+---
+
+<Base title="Projects" description="Funded research projects of the SMI Lab.">
+  <PageHeader
+    eyebrow="Research"
+    title="Projects"
+    lead="Funded research undertaken with national agencies, classification societies, and industry partners."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        list.length === 0 ? (
+          <Pending
+            what="No projects are listed yet."
+            how="Add entries to src/data/projects.json with title, funder, period, status ('current' or 'past'), role, and a short summary."
+          />
+        ) : (
+          <>
+            {current.length > 0 && (
+              <>
+                <h2>Current</h2>
+                <div class="stack">
+                  {current.map((p) => (
+                    <article class="card">
+                      <h3>{p.title}</h3>
+                      <p class="meta muted">
+                        {p.funder}
+                        {p.period && ` · ${p.period}`}
+                        {p.role && ` · ${p.role}`}
+                      </p>
+                      {p.summary && <p>{p.summary}</p>}
+                    </article>
+                  ))}
+                </div>
+              </>
+            )}
+            {past.length > 0 && (
+              <>
+                <h2>Past</h2>
+                <div class="stack">
+                  {past.map((p) => (
+                    <article class="card">
+                      <h3>{p.title}</h3>
+                      <p class="meta muted">
+                        {p.funder}
+                        {p.period && ` · ${p.period}`}
+                        {p.role && ` · ${p.role}`}
+                      </p>
+                      {p.summary && <p>{p.summary}</p>}
+                    </article>
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .stack {
+    display: grid;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .meta {
+    font-size: 0.92rem;
+    margin-bottom: 0.7rem;
+  }
+</style>

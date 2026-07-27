@@ -1,0 +1,95 @@
+---
+import Pending from './Pending.astro';
+
+interface Props {
+  items: any[];
+  emptyWhat: string;
+  emptyHow: string;
+}
+
+const { items, emptyWhat, emptyHow } = Astro.props;
+
+const years = [...new Set(items.map((p) => p.year))].sort((a, b) => Number(b) - Number(a));
+---
+
+{
+  items.length === 0 ? (
+    <Pending what={emptyWhat} how={emptyHow} />
+  ) : (
+    years.map((year) => (
+      <section class="year-block">
+        <h2>{year}</h2>
+        <ol class="list-plain pubs">
+          {items
+            .filter((p) => p.year === year)
+            .map((p) => (
+              <li>
+                <p class="pub-authors">{p.authors}</p>
+                <p class="pub-title">
+                  {p.url || p.doi ? (
+                    <a href={p.url || `https://doi.org/${p.doi}`}>{p.title}</a>
+                  ) : (
+                    p.title
+                  )}
+                </p>
+                <p class="pub-venue">
+                  <em>{p.venue}</em>
+                  {p.volume && <span>, {p.volume}</span>}
+                  {p.pages && <span>, {p.pages}</span>}
+                  {p.doi && (
+                    <span class="doi">
+                      {' '}
+                      · <a href={`https://doi.org/${p.doi}`}>doi:{p.doi}</a>
+                    </span>
+                  )}
+                </p>
+              </li>
+            ))}
+        </ol>
+      </section>
+    ))
+  )
+}
+
+<style>
+  .year-block h2 {
+    font-size: 1.3rem;
+    margin-top: 2.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .year-block:first-of-type h2 {
+    margin-top: 0;
+  }
+
+  .pubs li {
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--c-border);
+    max-width: none;
+  }
+
+  .pubs p {
+    margin: 0;
+    max-width: 78ch;
+  }
+
+  .pub-authors {
+    font-size: 0.92rem;
+    color: var(--c-text-muted);
+  }
+
+  .pub-title {
+    font-weight: 600;
+    margin-block: 0.15rem;
+  }
+
+  .pub-venue {
+    font-size: 0.92rem;
+    color: var(--c-text-muted);
+  }
+
+  .doi {
+    word-break: break-all;
+  }
+</style>

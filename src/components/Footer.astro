@@ -1,0 +1,97 @@
+---
+import site from '../data/site.json';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-name">{site.fullName}</p>
+      <p class="footer-meta">
+        {site.department}<br />
+        {site.university}<br />
+        {site.address}
+      </p>
+      <p class="footer-meta">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <ul class="list-plain">
+        {
+          site.nav.map((item: any) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="wrap footer-base">
+    <p>© {year} {site.fullName}, {site.university}.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--c-navy-deep);
+    color: rgba(255, 255, 255, 0.78);
+    margin-top: 4rem;
+    padding-top: 3rem;
+    font-size: 0.9rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: space-between;
+    padding-bottom: 2.5rem;
+  }
+
+  .footer-name {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+
+  .footer-meta {
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+    max-width: 34ch;
+  }
+
+  .site-footer a {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .site-footer a:hover {
+    color: #fff;
+  }
+
+  .footer-nav ul {
+    columns: 2;
+    gap: 2rem;
+    margin: 0;
+  }
+
+  .footer-nav li {
+    margin-bottom: 0.35rem;
+  }
+
+  .footer-base {
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    padding-block: 1.2rem;
+  }
+
+  .footer-base p {
+    margin: 0;
+    font-size: 0.83rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+</style>

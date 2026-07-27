@@ -1,0 +1,25 @@
+[
+  {
+    "group": "University",
+    "items": [
+      {
+        "label": "Inha University",
+        "url": "https://www.inha.ac.kr/",
+        "note": ""
+      },
+      {
+        "label": "Department of Naval Architecture and Ocean Engineering",
+        "url": "https://eng.inha.ac.kr/",
+        "note": "TODO(user): confirm the exact departmental URL"
+      }
+    ]
+  },
+  {
+    "group": "Societies",
+    "items": []
+  },
+  {
+    "group": "Resources",
+    "items": []
+  }
+]

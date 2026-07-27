@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "structural-integrity-safety",
+    "title": "Marine Structural Integrity and Safety",
+    "summary": "The core of the SMI Lab: mechanics-based assessment of safety, damage tolerance, and life-cycle performance of marine and offshore structures.",
+    "topics": [
+      "Fatigue and fracture mechanics of welded marine structures",
+      "Ultimate strength and collapse under extreme loading",
+      "Damage tolerance and residual strength assessment",
+      "Corrosion and ageing effects on life-cycle performance"
+    ]
+  },
+  {
+    "slug": "offshore-infrastructure",
+    "title": "Offshore Infrastructure Design and Analysis",
+    "summary": "Design, reliability, and monitoring of next-generation offshore renewable energy platforms, including floating offshore wind turbines (FOWTs).",
+    "topics": [
+      "Structural design of floating offshore wind turbine (FOWT) platforms",
+      "Mooring and station-keeping reliability",
+      "Coupled environmental loading and long-term response",
+      "Reliability-based design and certification support"
+    ]
+  },
+  {
+    "slug": "advanced-marine-engineering",
+    "title": "Advanced Marine Engineering Solutions",
+    "summary": "Safe and efficient fuel containment systems analysis, supporting maritime decarbonisation and the green shipping transition.",
+    "topics": [
+      "Containment systems for alternative marine fuels",
+      "Cryogenic and thermal-structural analysis",
+      "Risk and safety assessment for novel fuel systems",
+      "Retrofit and conversion feasibility"
+    ]
+  },
+  {
+    "slug": "intelligent-digital-structures",
+    "title": "Intelligent and Digital Marine Structures",
+    "summary": "Digital methods grounded in physics-based structural mechanics, so that data-driven models remain interpretable, reliable, and suitable for safety-critical marine applications.",
+    "topics": [
+      "Structural health monitoring (SHM) and sensor-informed assessment",
+      "Digital twins for in-service structural condition",
+      "Physics-informed and hybrid machine learning",
+      "Uncertainty quantification for safety-critical decisions"
+    ]
+  }
+]

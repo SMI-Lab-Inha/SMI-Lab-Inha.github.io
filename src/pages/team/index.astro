@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import d from '../../data/director.json';
+
+const sections = [
+  { href: '/team/director', title: 'Director', text: `${d.name} — ${d.title}.` },
+  {
+    href: '/team/current-members',
+    title: 'Current members',
+    text: 'Postdoctoral researchers and graduate students working in the lab.',
+  },
+  {
+    href: '/team/alumni',
+    title: 'Alumni',
+    text: 'Former members, their theses, and where they went next.',
+  },
+];
+---
+
+<Base title="Team" description="The people of the SMI Lab.">
+  <PageHeader eyebrow="People" title="Team" />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid">
+        {
+          sections.map((s) => (
+            <a class="card link-card" href={s.href}>
+              <h3>{s.title}</h3>
+              <p class="muted">{s.text}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .link-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .link-card:hover {
+    border-color: var(--c-accent);
+    color: inherit;
+  }
+
+  .link-card h3 {
+    color: var(--c-accent);
+  }
+</style>

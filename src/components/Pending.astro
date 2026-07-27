@@ -1,0 +1,29 @@
+---
+// Rendered wherever the lab has not yet supplied real content. Deliberately
+// explicit: an empty page is better than invented members or citations.
+interface Props {
+  what: string;
+  how?: string;
+}
+
+const { what, how } = Astro.props;
+---
+
+<div class="pending">
+  <p><span class="todo">TODO(user)</span></p>
+  <p><strong>{what}</strong></p>
+  {how && <p class="muted">{how}</p>}
+</div>
+
+<style>
+  .pending {
+    border: 1px dashed var(--c-border-strong);
+    border-radius: var(--radius);
+    background: var(--c-bg-subtle);
+    padding: 1.8rem;
+  }
+
+  .pending p:last-child {
+    margin-bottom: 0;
+  }
+</style>

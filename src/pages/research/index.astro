@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+
+const sections = [
+  {
+    href: '/research/research-areas',
+    title: 'Research areas',
+    text: 'The four strands of work that define the lab, from fracture mechanics to digital twins.',
+  },
+  {
+    href: '/research/research-tools',
+    title: 'Research tools',
+    text: 'Computational methods, in-house codes, and experimental facilities.',
+  },
+  {
+    href: '/research/projects',
+    title: 'Projects',
+    text: 'Funded research with national agencies, classification societies, and industry.',
+  },
+];
+---
+
+<Base title="Research" description="Research areas, tools, and projects of the SMI Lab.">
+  <PageHeader eyebrow="Research" title="Research" />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid">
+        {
+          sections.map((s) => (
+            <a class="card link-card" href={s.href}>
+              <h3>{s.title}</h3>
+              <p class="muted">{s.text}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .link-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .link-card:hover {
+    border-color: var(--c-accent);
+    color: inherit;
+  }
+
+  .link-card h3 {
+    color: var(--c-accent);
+  }
+</style>

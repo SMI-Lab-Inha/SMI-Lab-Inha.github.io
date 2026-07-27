@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PublicationList from '../../components/PublicationList.astro';
+import publications from '../../data/publications.json';
+
+const items = (publications as any[]).filter((p) => p.type === 'journal');
+---
+
+<Base title="Journal papers" description="Peer-reviewed journal papers from the SMI Lab.">
+  <PageHeader
+    eyebrow="Publications"
+    title="Journal papers"
+    lead="Peer-reviewed journal articles. Work published before 2019 appears under the name Burak Can Cerik."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <PublicationList
+        items={items}
+        emptyWhat="No journal papers are listed yet."
+        emptyHow="Add entries to src/data/publications.json with type: 'journal'. Import them from a Google Scholar or BibTeX export rather than retyping."
+      />
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,193 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Pending from '../../components/Pending.astro';
+import d from '../../data/director.json';
+
+const profiles = d.profiles.filter((p) => p.url);
+---
+
+<Base title="Director" description={`${d.name} — ${d.title}, Inha University.`}>
+  <PageHeader eyebrow="Team" title="Director" />
+
+  <section class="section">
+    <div class="wrap director">
+      <div class="portrait">
+        {
+          d.photo ? (
+            <img src={d.photo} alt={`Portrait of ${d.name}`} />
+          ) : (
+            <div class="portrait-empty">
+              <span class="todo">TODO(user): portrait</span>
+            </div>
+          )
+        }
+      </div>
+
+      <div class="bio">
+        <h2 class="name">{d.name}</h2>
+        <p class="native">{d.nameKo} · {d.nameHanja}</p>
+        <p class="role">{d.title}</p>
+        <p class="contact">
+          <a href={`mailto:${d.email}`}>{d.email}</a>
+        </p>
+
+        <p>{d.intro}</p>
+
+        <p class="former">
+          Work published before 2019 appears under the name <strong>{d.formerName}</strong>.
+          Both names refer to the same author.
+        </p>
+
+        {
+          profiles.length > 0 && (
+            <p class="profiles">
+              {profiles.map((p) => (
+                <a href={p.url}>{p.label}</a>
+              ))}
+            </p>
+          )
+        }
+
+        <h3>Education</h3>
+        <ul class="timeline list-plain">
+          {
+            d.education.map((e) => (
+              <li>
+                <span class="when">{e.year}</span>
+                <span>
+                  <strong>{e.degree}</strong>
+                  <br />
+                  <span class="muted">{e.institution}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <h3>Appointments</h3>
+        <ul class="timeline list-plain">
+          {
+            d.appointments.map((a) => (
+              <li>
+                <span class="when">
+                  {a.period.startsWith('TODO') ? <span class="todo">{a.period}</span> : a.period}
+                </span>
+                <span>
+                  <strong>
+                    {a.role.startsWith('TODO') ? <span class="todo">{a.role}</span> : a.role}
+                  </strong>
+                  <br />
+                  <span class="muted">{a.institution}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <h3>Professional service and awards</h3>
+        {
+          d.service.length === 0 && d.awards.length === 0 ? (
+            <Pending
+              what="Editorial board roles, chartered status, and teaching awards are not yet listed."
+              how="Add them to src/data/director.json under `service` and `awards`."
+            />
+          ) : (
+            <ul>
+              {[...d.service, ...d.awards].map((item: any) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .director {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: clamp(1.8rem, 4vw, 3.2rem);
+    align-items: start;
+  }
+
+  .portrait img,
+  .portrait-empty {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius);
+    object-fit: cover;
+    border: 1px solid var(--c-border);
+  }
+
+  .portrait-empty {
+    display: grid;
+    place-items: center;
+    background: var(--c-bg-subtle);
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .name {
+    margin-top: 0;
+    margin-bottom: 0.15em;
+  }
+
+  .native {
+    font-family: var(--font-serif);
+    color: var(--c-text-muted);
+    margin-bottom: 0.3em;
+  }
+
+  .role {
+    font-weight: 600;
+    margin-bottom: 0.3em;
+  }
+
+  .contact {
+    margin-bottom: 1.6em;
+  }
+
+  .former {
+    border-left: 3px solid var(--c-accent);
+    background: var(--c-bg-subtle);
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.94rem;
+  }
+
+  .profiles a {
+    margin-right: 1.1rem;
+  }
+
+  .timeline li {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1rem;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--c-border);
+    max-width: none;
+  }
+
+  .when {
+    color: var(--c-text-muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 720px) {
+    .director {
+      grid-template-columns: 1fr;
+    }
+
+    .portrait {
+      max-width: 13rem;
+    }
+
+    .timeline li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>

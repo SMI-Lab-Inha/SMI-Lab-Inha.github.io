@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Pending from '../../components/Pending.astro';
+import alumni from '../../data/alumni.json';
+
+const list = alumni as any[];
+---
+
+<Base title="Alumni" description="Former members of the SMI Lab and where they went next.">
+  <PageHeader eyebrow="Team" title="Alumni" />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        list.length === 0 ? (
+          <Pending
+            what="No alumni are listed yet."
+            how="Add entries to src/data/alumni.json with name, degree, year, thesis, and current position."
+          />
+        ) : (
+          <ul class="list-plain alumni">
+            {list.map((a) => (
+              <li>
+                <span class="year">{a.year}</span>
+                <span>
+                  <strong>{a.name}</strong>
+                  {a.degree && <span class="muted"> · {a.degree}</span>}
+                  {a.thesis && <div class="thesis">{a.thesis}</div>}
+                  {a.now && <div class="muted">Now: {a.now}</div>}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .alumni li {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--c-border);
+    max-width: none;
+  }
+
+  .year {
+    color: var(--c-text-muted);
+  }
+
+  .thesis {
+    font-style: italic;
+    color: var(--c-text-muted);
+    margin-top: 0.2rem;
+  }
+
+  @media (max-width: 620px) {
+    .alumni li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Pending from '../../components/Pending.astro';
+import members from '../../data/members.json';
+
+const groups = ['Postdoctoral researchers', 'PhD students', "Master's students", 'Undergraduate researchers'];
+const byGroup = groups
+  .map((g) => ({ group: g, people: (members as any[]).filter((m) => m.group === g) }))
+  .filter((g) => g.people.length > 0);
+---
+
+<Base title="Current members" description="Researchers and students of the SMI Lab.">
+  <PageHeader eyebrow="Team" title="Current members" />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        byGroup.length === 0 ? (
+          <Pending
+            what="No lab members are listed yet."
+            how="Add entries to src/data/members.json with name, group, topic, and optional photo and email. Groups: Postdoctoral researchers, PhD students, Master's students, Undergraduate researchers."
+          />
+        ) : (
+          byGroup.map((g) => (
+            <div class="group">
+              <h2>{g.group}</h2>
+              <div class="grid">
+                {g.people.map((m: any) => (
+                  <article class="card person">
+                    {m.photo && <img src={m.photo} alt={`Portrait of ${m.name}`} />}
+                    <h3>{m.name}</h3>
+                    {m.topic && <p class="muted">{m.topic}</p>}
+                    {m.email && (
+                      <p>
+                        <a href={`mailto:${m.email}`}>{m.email}</a>
+                      </p>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .group + .group {
+    margin-top: 3rem;
+  }
+
+  .group h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .person img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+
+  .person h3 {
+    font-size: 1.08rem;
+  }
+</style>

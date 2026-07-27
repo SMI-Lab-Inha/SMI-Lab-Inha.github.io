@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PublicationList from '../../components/PublicationList.astro';
+import publications from '../../data/publications.json';
+
+const items = (publications as any[]).filter((p) => p.type === 'conference');
+---
+
+<Base
+  title="Conference proceedings"
+  description="Conference papers and proceedings from the SMI Lab."
+>
+  <PageHeader
+    eyebrow="Publications"
+    title="Conference proceedings"
+    lead="Papers presented at international conferences and symposia."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <PublicationList
+        items={items}
+        emptyWhat="No conference papers are listed yet."
+        emptyHow="Add entries to src/data/publications.json with type: 'conference'."
+      />
+    </div>
+  </section>
+</Base>

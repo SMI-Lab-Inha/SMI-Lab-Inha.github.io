@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import areas from '../../data/research-areas.json';
+---
+
+<Base
+  title="Research areas"
+  description="Marine structural integrity, offshore infrastructure, advanced marine engineering, and intelligent digital marine structures."
+>
+  <PageHeader
+    eyebrow="Research"
+    title="Research areas"
+    lead="Our work spans the mechanics of marine structural failure and the digital methods used to anticipate it in service."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        areas.map((area, i) => (
+          <article class="area" id={area.slug}>
+            <p class="area-index">{String(i + 1).padStart(2, '0')}</p>
+            <div>
+              <h2>{area.title}</h2>
+              <p class="lead">{area.summary}</p>
+              <ul class="topics">
+                {area.topics.map((topic) => (
+                  <li>{topic}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .area {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1.5rem;
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--c-border);
+    scroll-margin-top: 2rem;
+  }
+
+  .area:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .area h2 {
+    margin-top: 0;
+  }
+
+  .area-index {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--c-accent);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .topics {
+    margin-bottom: 0;
+    padding-left: 1.1rem;
+  }
+
+  .topics li {
+    margin-bottom: 0.35rem;
+  }
+
+  @media (max-width: 640px) {
+    .area {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>
