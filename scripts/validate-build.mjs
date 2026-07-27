@@ -43,11 +43,78 @@ function decodeHtmlAttribute(value) {
     .replaceAll('&amp;', '&');
 }
 
+function parseCssVariables(block) {
+  return new Map(
+    [...block.matchAll(/--([\w-]+):\s*(#[\da-f]{6})\s*;/gi)].map((match) => [
+      match[1],
+      match[2],
+    ]),
+  );
+}
+
+function relativeLuminance(hex) {
+  const channels = hex
+    .slice(1)
+    .match(/../g)
+    .map((value) => Number.parseInt(value, 16) / 255)
+    .map((value) =>
+      value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4,
+    );
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function contrastRatio(foreground, background) {
+  const luminances = [relativeLuminance(foreground), relativeLuminance(background)].sort(
+    (a, b) => b - a,
+  );
+  return (luminances[0] + 0.05) / (luminances[1] + 0.05);
+}
+
+const globalCssFile = path.resolve('src/styles/global.css');
+const globalCss = fs.readFileSync(globalCssFile, 'utf8');
+const themeBlocks = [...globalCss.matchAll(/:root\s*{([^}]+)}/g)].map((match) =>
+  parseCssVariables(match[1]),
+);
+if (themeBlocks.length !== 2) {
+  fail(globalCssFile, `expected light and dark theme variable blocks, found ${themeBlocks.length}`);
+} else {
+  const [lightTheme, darkTheme] = themeBlocks;
+  const contrastChecks = [
+    ['light faint text', lightTheme.get('c-text-faint'), lightTheme.get('c-bg')],
+    ['dark faint text', darkTheme.get('c-text-faint'), darkTheme.get('c-bg')],
+    ['dark primary controls', darkTheme.get('c-navy-deep'), darkTheme.get('c-accent')],
+    ['dark hovered controls', darkTheme.get('c-navy-deep'), darkTheme.get('c-accent-hover')],
+  ];
+  for (const [label, foreground, background] of contrastChecks) {
+    if (!foreground || !background) {
+      fail(globalCssFile, `could not resolve colours for ${label}`);
+      continue;
+    }
+    const ratio = contrastRatio(foreground, background);
+    if (ratio < 4.5) {
+      fail(globalCssFile, `${label} contrast is ${ratio.toFixed(2)}:1; expected at least 4.5:1`);
+    }
+  }
+}
+
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const noindex = /<meta name="robots" content="noindex, nofollow">/.test(html);
   const h1Count = (html.match(/<h1\b/g) ?? []).length;
   if (h1Count !== 1) fail(file, `expected one h1, found ${h1Count}`);
+  const headingLevels = [...html.matchAll(/<h([1-6])\b/g)].map((match) => Number(match[1]));
+  for (let index = 1; index < headingLevels.length; index += 1) {
+    if (headingLevels[index] > headingLevels[index - 1] + 1) {
+      fail(
+        file,
+        `heading level skips from h${headingLevels[index - 1]} to h${headingLevels[index]}`,
+      );
+    }
+  }
+  if (!/<html lang="en-GB">/.test(html)) fail(file, 'document language must be British English');
+  if (!/<meta property="og:locale" content="en_GB">/.test(html)) {
+    fail(file, 'Open Graph locale must be British English');
+  }
   if (/TODO\(user\)|TODO:|TODO\b/.test(html)) fail(file, 'contains a public TODO marker');
 
   const rawDescription = html.match(/<meta name="description" content="([^"]*)">/)?.[1];
@@ -76,6 +143,13 @@ for (const file of htmlFiles) {
   const currentCount = (html.match(/aria-current="page"/g) ?? []).length;
   if (currentCount > 1) fail(file, `multiple links claim aria-current=page (${currentCount})`);
 
+  if (/(?:[A-Za-z\p{Script=Hangul}]|:)<a\b[^>]*href="mailto:/u.test(html)) {
+    fail(file, 'email link is missing whitespace before it');
+  }
+  if (/<a\b[^>]*href="mailto:[^"]*"[^>]*>[^<]*<\/a>[A-Za-z\p{Script=Hangul}]/u.test(html)) {
+    fail(file, 'email link is missing whitespace after it');
+  }
+
   for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     try {
       JSON.parse(match[1]);
@@ -101,4 +175,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Validated ${htmlFiles.length} HTML pages: metadata, headings, images, JSON-LD, TODOs, and internal links.`);
+console.log(`Validated ${htmlFiles.length} HTML pages: British English metadata, colour contrast, heading order, email spacing, images, JSON-LD, TODOs, and internal links.`);

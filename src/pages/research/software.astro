@@ -25,9 +25,8 @@ const statusLabel: Record<string, string> = {
     <div class="wrap">
       <h2 id="in-house">In-house open-source software</h2>
       <p>
-        Each package is developed with version control, automated testing, and documentation,
-        and papers using these tools cite the release version used, so results are
-        reproducible.
+        Each package is developed with version control, automated testing, and documentation.
+        Papers based on these tools cite the specific release so that results are reproducible.
       </p>
       <p class="policy">
         Packages are opened to the public when the paper introducing them is submitted. This
@@ -72,8 +71,8 @@ const statusLabel: Record<string, string> = {
       </div>
 
       <p class="muted">
-        Bug reports and contributions are welcome on the public repositories, in the
-        <a href="https://github.com/SMI-Lab-Inha"> SMI-Lab-Inha GitHub organisation</a>.
+        Bug reports and contributions are welcome in the public repositories of the{' '}
+        <a href="https://github.com/SMI-Lab-Inha">SMI-Lab-Inha GitHub organisation</a>.
       </p>
 
       <h2 id="commercial">Commercial and community software</h2>
@@ -101,35 +100,38 @@ const statusLabel: Record<string, string> = {
           <p class="eyebrow">Primary simulation workstation</p>
           <h3>SMIL2</h3>
           <p class="muted">
-            Optimised for CPU-intensive workloads, high memory use, and long simulation
-            campaigns.
+            Configured for sustained, CPU-intensive simulations, large in-memory models, and
+            extended computational campaigns.
           </p>
           <dl>
             <div>
               <dt>Processor</dt>
               <dd>
-                AMD Ryzen Threadripper PRO 7965WX, 24 cores / 48 threads, 4.20 GHz base, up to
-                5.30 GHz boost
+                AMD Ryzen Threadripper PRO 7965WX; 24 cores and 48 threads; 4.20 GHz base clock,
+                with boost frequencies up to 5.30 GHz
               </dd>
             </div>
             <div>
               <dt>Memory</dt>
-              <dd>128 GB DDR5-5200 ECC RDIMM, eight-channel, fully populated</dd>
+              <dd>128 GB DDR5-5200 ECC RDIMM across eight fully populated memory channels</dd>
             </div>
             <div>
               <dt>Graphics</dt>
-              <dd>NVIDIA RTX 2000 Ada Generation, 16 GB GDDR6</dd>
+              <dd>NVIDIA RTX 2000 Ada Generation with 16 GB GDDR6 memory</dd>
             </div>
             <div>
               <dt>Storage</dt>
               <dd>
-                2 TB NVMe PCIe Gen5 for system and active projects; 4 TB NVMe PCIe Gen5 for
-                simulation data and datasets
+                2 TB PCIe 5.0 NVMe SSD for the operating system and active projects; dedicated
+                4 TB PCIe 5.0 NVMe SSD for simulation outputs and research datasets
               </dd>
             </div>
             <div>
-              <dt>Power and cooling</dt>
-              <dd>1400 W 92%-efficiency supply; dual front intake fans for sustained load</dd>
+              <dt>Power and thermal management</dt>
+              <dd>
+                1,400 W, 92%-efficient power supply; dual front-intake fans configured for
+                sustained computational loads
+              </dd>
             </div>
           </dl>
         </article>
@@ -138,32 +140,32 @@ const statusLabel: Record<string, string> = {
           <p class="eyebrow">Secondary workstation</p>
           <h3>SMIL</h3>
           <p class="muted">
-            Supports Abaqus Explicit ice–structure interaction studies and additional parallel
-            simulation capacity.
+            Provides dedicated capacity for Abaqus/Explicit ice–structure interaction analyses
+            and expands the lab's parallel simulation capability.
           </p>
           <dl>
             <div>
               <dt>Processor</dt>
               <dd>
-                AMD Ryzen Threadripper PRO 7945WX, 12 cores / 24 threads, 4.70 GHz base, up to
-                5.30 GHz boost
+                AMD Ryzen Threadripper PRO 7945WX; 12 cores and 24 threads; 4.70 GHz base clock,
+                with boost frequencies up to 5.30 GHz
               </dd>
             </div>
             <div>
               <dt>Memory</dt>
-              <dd>128 GB DDR5-5200 ECC RDIMM, eight-channel</dd>
+              <dd>128 GB DDR5-5200 ECC RDIMM across eight memory channels</dd>
             </div>
             <div>
               <dt>Graphics</dt>
-              <dd>NVIDIA RTX A1000, 8 GB GDDR6</dd>
+              <dd>NVIDIA RTX A1000 with 8 GB GDDR6 memory</dd>
             </div>
             <div>
               <dt>Storage</dt>
-              <dd>2 TB and 1 TB NVMe SSD, with a 2 TB HDD for archive</dd>
+              <dd>2 TB and 1 TB NVMe SSDs, supplemented by a 2 TB HDD for archival storage</dd>
             </div>
             <div>
               <dt>Power</dt>
-              <dd>1400 W high-efficiency supply</dd>
+              <dd>1,400 W high-efficiency power supply</dd>
             </div>
           </dl>
         </article>

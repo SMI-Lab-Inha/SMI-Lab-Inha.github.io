@@ -31,7 +31,7 @@ const sections = [
         {
           sections.map((s) => (
             <a class="card link-card" href={s.href}>
-              <h3>{s.title}</h3>
+              <h2>{s.title}</h2>
               <p class="muted">{s.text}</p>
             </a>
           ))
@@ -53,8 +53,8 @@ const sections = [
         </div>
       </dl>
       <p class="stats-note muted">
-        {d.stats.source}, as of {d.stats.asOf}. Full record on
-        <a href={`https://orcid.org/${d.orcid}`}> ORCID {d.orcid}</a>.
+        {d.stats.source}, as of {d.stats.asOf}. The full record is available on{' '}
+        <a href={`https://orcid.org/${d.orcid}`}>ORCID {d.orcid}</a>.
       </p>
 
       <p class="note">
@@ -77,8 +77,11 @@ const sections = [
     color: inherit;
   }
 
-  .link-card h3 {
+  .link-card h2 {
     color: var(--c-accent);
+    font-size: 1.1rem;
+    letter-spacing: -0.011em;
+    margin-top: 0;
   }
 
   .stats {

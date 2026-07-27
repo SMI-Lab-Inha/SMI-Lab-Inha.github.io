@@ -17,7 +17,8 @@
   /* Text */
   --c-text: #16202e;
   --c-text-muted: #5a6a7f;
-  --c-text-faint: #8593a6;
+  /* Small secondary text must retain at least 4.5:1 contrast against white. */
+  --c-text-faint: #66758a;
 
   /* Brand — Inha University's Modern Metallic livery (2025/26):
      Dark Blue #051766, Metallic Sky Blue #53AAE2, White #FFFFFF.
@@ -326,12 +327,13 @@ code {
 
 
 @media (prefers-color-scheme: dark) {
+  .skip-link,
   .btn {
     color: var(--c-navy-deep);
   }
 
   .btn:hover {
-    color: #fff;
+    color: var(--c-navy-deep);
   }
 
   .btn--ghost {

@@ -1,14 +1,14 @@
 {
   "active": true,
-  "intake": "2026 intake",
+  "intake": "2027 intake",
   "positions": [
     {
       "degree": "MSc",
-      "count": 2
+      "count": 3
     },
     {
       "degree": "PhD",
-      "count": 1
+      "count": 2
     }
   ],
   "openUntil": "",

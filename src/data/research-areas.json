@@ -2,7 +2,7 @@
   {
     "slug": "mooring-and-cable-integrity",
     "title": "Mooring and dynamic power cable integrity for floating offshore wind",
-    "summary": "Mooring lines and subsea dynamic power cables are the least monitored and statistically least reliable subsystems of a floating wind turbine. Direct load measurement is costly, failure-prone, and rarely available along the full length of the component. Our central question is how much of the load and fatigue state of these components can be reconstructed from measurements we can realistically obtain, such as platform motions and line-end responses.",
+    "summary": "Mooring lines and subsea dynamic power cables are among the least monitored and, statistically, the least reliable subsystems of a floating wind turbine. Direct load measurement is costly, failure-prone, and rarely available along the full length of the component. Our central question is the extent to which the load and fatigue states of these components can be reconstructed from measurements we can realistically obtain, such as platform motions and line-end responses.",
     "topics": [
       "Physics-based virtual sensing of mooring line tension from platform motion, using Kalman filtering and related state estimators built on lumped-mass line dynamics (funded by Inha University new-faculty research grants, 2025–2027)",
       "Shape and curvature estimation of lazy-wave dynamic power cables, where fatigue damage concentrates at the sag and hog bends and the touchdown zone",
@@ -25,7 +25,7 @@
     "slug": "ultimate-strength",
     "title": "Ultimate strength and progressive collapse of ship and offshore structures",
     "summary": "The ultimate limit state of a hull girder or a stiffened panel is still computed today with methods whose numerical form has barely changed since the 1980s. We work on the collapse behaviour itself — buckling, load shedding, and interaction between failure modes — and on reformulating classical strength methods in modern differentiable computing frameworks, so that gradient-based design optimisation and sensitivity analysis become natural rather than bolted on.",
-    "lineage": "This thrust continues the incremental–iterative tradition of simplified progressive collapse analysis developed at Newcastle University, whose methods for the elasto-plastic collapse of plates and stiffened panels were taken into the UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
+    "lineage": "This thrust continues the incremental–iterative tradition of simplified progressive collapse analysis developed at Newcastle University, whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
     "topics": [
       "Progressive collapse of hull girders under combined and unsymmetrical loading",
       "Ultimate strength of stiffened panels including welding residual stress and deformation effects",
@@ -49,7 +49,7 @@
       "Simulation of ship collision, dropped objects, and underwater explosion response, up to accidental limit state assessment",
       "Engineering critical assessment (ECA) and fitness-for-service evaluation of flawed structures"
     ],
-    "emerging": "Fracture and defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels and hydrogen effects on structural materials. This is an opening research direction rather than an established programme.",
+    "emerging": "Fracture and defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels and hydrogen effects on structural materials. This is an emerging research direction rather than an established programme.",
     "selected": [
       "10.1016/j.marstruc.2019.01.004",
       "10.1080/17445302.2019.1565300",

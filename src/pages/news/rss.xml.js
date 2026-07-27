@@ -16,6 +16,6 @@ export function GET(context) {
         pubDate: new Date(`${item.date}T00:00:00Z`),
         link: `/news/${newsSlug(item)}/`,
       })),
-    customData: '<language>en</language>',
+    customData: '<language>en-gb</language>',
   });
 }

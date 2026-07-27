@@ -8,8 +8,8 @@
   "phone": "+82 32 860 7341",
   "office": "Room 2N481, Building 2",
   "photo": "/images/director.webp",
-  "photoAlt": "Professor Jae Hoon Seo, Director of the SMI Lab at Inha University",
-  "bio": "Professor Jae Hoon Seo directs the Marine Structural Mechanics and Integrity Lab at Inha University. He works on the structural integrity of ships and offshore wind structures, spanning ductile fracture and impact mechanics, ultimate strength, and, in the lab's current programme, virtual sensing and digital twin methods for floating offshore wind turbine moorings and dynamic power cables. Before March 2025 he held faculty positions at Cranfield University and Newcastle University in Singapore, and a principal researcher position at Inha University.",
+  "photoAlt": "Professor Jae Hoon Seo, director of the SMI Lab at Inha University",
+  "bio": "Professor Jae Hoon Seo directs the Marine Structural Mechanics and Integrity Lab at Inha University. His research on the structural integrity of ships and offshore wind structures spans ductile fracture and impact mechanics, ultimate strength, virtual sensing, and digital twin methods. The lab's current programme focuses on floating offshore wind turbine moorings and dynamic power cables. Before March 2025, he held faculty positions at Cranfield University and Newcastle University in Singapore, as well as a position as principal researcher at Inha University.",
   "education": [
     {
       "degree": "PhD in Naval Architecture",
@@ -98,7 +98,7 @@
     }
   ],
   "service": [
-    "Editorial Board Member, International Journal of Naval Architecture and Ocean Engineering, July 2026 – July 2028",
+    "Editorial board member, International Journal of Naval Architecture and Ocean Engineering, July 2026 – July 2028",
     "Member, ISSC Specialist Committee V.4 — Offshore Renewable Energy, 2025–2028, representing the Republic of Korea",
     "Observer representing the Republic of Korea, 22nd International Ship and Offshore Structures Congress, Wuxi, September 2025",
     "Session chair, Naval Vessel Integrated Survivability / Damage Control / Special Performance, MADEX 2025, Busan"

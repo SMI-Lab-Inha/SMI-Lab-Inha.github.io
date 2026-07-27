@@ -2,7 +2,7 @@
   {
     "name": "CableDyn",
     "expansion": "",
-    "description": "An Apache-2.0 cable and mooring dynamics solver for floating offshore wind turbines and substations, written in modern Fortran 2018. It targets dynamic power cables in the lazy-wave configuration and taut, semi-taut, and catenary moorings, and integrates with OpenFAST as a gated CompMooring = 5 module. Every accuracy and stability claim is gated behind a passing benchmark.",
+    "description": "CableDyn is an Apache-2.0 cable and mooring dynamics solver for floating offshore wind turbines and substations, written in modern Fortran 2018. It targets dynamic power cables in the lazy-wave configuration and taut, semi-taut, and catenary moorings, and integrates with OpenFAST as a gated CompMooring = 5 module. Every accuracy and stability claim is gated behind a passing benchmark.",
     "language": "Fortran 2018",
     "licence": "Apache-2.0",
     "version": "v0.2.3",
@@ -13,7 +13,7 @@
   {
     "name": "CableXsec",
     "expansion": "",
-    "description": "An Apache-2.0 Python library for thermo-mechanical cross-section fatigue analysis of dynamic power cables and SURF — subsea umbilicals, risers, and flowlines. It implements seven physical-model levels, from Love and Costello helix kinematics through Mindlin contact and Witz–Tan constitutive modelling to fatigue assessment against DNVGL-RP-0005.",
+    "description": "CableXsec is an Apache-2.0 Python library for thermo-mechanical cross-section fatigue analysis of dynamic power cables and SURF — subsea umbilicals, risers, and flowlines. It implements seven levels of physical modelling, from Love and Costello helix kinematics through Mindlin contact and Witz–Tan constitutive modelling to fatigue assessment against DNVGL-RP-0005.",
     "language": "Python",
     "licence": "Apache-2.0",
     "version": "",
@@ -23,8 +23,8 @@
   },
   {
     "name": "VANE",
-    "expansion": "Visualization and Automated Natural-frequency Extraction",
-    "description": "A Python library that both drives and post-processes OpenFAST linearisations: an auto-parallelised operating-point sweep, physics-aware mode identification, Campbell diagrams with damping trends and resonance crossings, and state-space export for digital twin development. The system identification layer runs the model it builds, with a Kalman estimator, replay validation, and an operating-point scheduler. Exercised end to end against the four OpenFAST r-test reference turbines.",
+    "expansion": "Visualisation and Automated Natural-frequency Extraction",
+    "description": "VANE is a Python library that both drives and post-processes OpenFAST linearisations: an auto-parallelised operating-point sweep, physics-aware mode identification, Campbell diagrams with damping trends and resonance crossings, and state-space export for digital twin development. The system identification layer runs the model it builds, with a Kalman estimator, replay validation, and an operating-point scheduler. It is tested end to end against the four OpenFAST r-test reference turbines.",
     "language": "Python",
     "licence": "Apache-2.0",
     "version": "",
@@ -35,7 +35,7 @@
   {
     "name": "FOWCON",
     "expansion": "Floating Offshore Wind CONtroller",
-    "description": "A gain-scheduled, damage-aware LQR DISCON runtime for floating offshore wind turbines.",
+    "description": "FOWCON is a gain-scheduled, damage-aware LQR DISCON runtime for floating offshore wind turbines.",
     "language": "",
     "licence": "",
     "version": "",
@@ -46,7 +46,7 @@
   {
     "name": "pyBModes",
     "expansion": "",
-    "description": "A pure-Python finite element library for wind turbine blade and tower modal analysis. It reads OpenFAST (ElastoDyn, SubDyn, HydroDyn, MoorDyn), BModes .bmi, and WISDEM/WindIO ontology inputs, solves the coupled flap–lag–torsion–axial modes with a 15-degree-of-freedom Bernoulli–Euler beam element, and emits ElastoDyn-compatible mode-shape polynomials and MAC-tracked Campbell diagrams. Validated against the BModes Fortran reference solver on six benchmark cases to better than 0.01% on every comparison.",
+    "description": "pyBModes is a pure-Python finite element library for wind turbine blade and tower modal analysis. It reads OpenFAST (ElastoDyn, SubDyn, HydroDyn, MoorDyn), BModes .bmi files, and WISDEM/WindIO ontology inputs, solves the coupled flap–lag–torsion–axial modes with a 15-degree-of-freedom Bernoulli–Euler beam element, and emits ElastoDyn-compatible mode-shape polynomials and MAC-tracked Campbell diagrams. It has been validated against the BModes Fortran reference solver on six benchmark cases, with differences below 0.01% in every comparison.",
     "language": "Python",
     "licence": "Apache-2.0",
     "version": "",
@@ -57,7 +57,7 @@
   {
     "name": "pyIECWind",
     "expansion": "",
-    "description": "Generates IEC 61400-1 wind-condition files for the OpenFAST InflowWind module, implementing the wind-condition models historically provided by NREL's IECWind tool behind a typed, validated, and regression-locked Python API and command-line interface.",
+    "description": "pyIECWind generates IEC 61400-1 wind-condition files for the OpenFAST InflowWind module, implementing the wind-condition models historically provided by NREL's IECWind tool behind a typed, validated, and regression-locked Python API and command-line interface.",
     "language": "Python",
     "licence": "MIT",
     "version": "",
@@ -68,7 +68,7 @@
   {
     "name": "OpenFAST, ROSCO and TurbSim syntax highlighting for VS Code",
     "expansion": "",
-    "description": "Syntax highlighting for OpenFAST input files and ROSCO controller input files in Visual Studio Code.",
+    "description": "This extension provides syntax highlighting for OpenFAST input files and ROSCO controller input files in Visual Studio Code.",
     "language": "JavaScript",
     "licence": "",
     "version": "",

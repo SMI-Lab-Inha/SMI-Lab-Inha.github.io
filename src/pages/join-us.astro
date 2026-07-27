@@ -26,17 +26,18 @@ const interests = [
     <div class="wrap wrap--narrow">
       <p class="ko">
         함께 연구할 대학원생을 모집하고 있습니다. 관심 있는 인하대 조선해양공학과 학부생은
-        메일로 연락한 후 면담 바랍니다: <a href={`mailto:${site.email}`}>{site.email}</a>
+        메일로 연락한 후 면담 바랍니다:{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
 
       <p>
         Graduate students in this lab do two things at once. They carry out research on the
         structural integrity of floating offshore wind systems, and they build that research
-        into software with the practices used in professional engineering teams: Git,
+        into software using the practices of professional engineering teams: Git,
         automated testing, continuous integration, documentation, and AI-assisted development
-        with tools such as Claude Code. By graduation, a student here has journal publications
-        and a public software portfolio, a combination few graduate programmes in this field
-        offer.
+        with tools such as Claude Code. By the time they graduate, students here will have
+        journal publications and a public software portfolio—a combination that few graduate
+        programmes in this field offer.
       </p>
 
       <h2>Areas we are recruiting in</h2>
@@ -61,8 +62,8 @@ const interests = [
 
       <h2>How to get in touch</h2>
       <p>
-        Email <a href={`mailto:${site.email}`}>{site.email}</a> with a short description of
-        your interests. For graduate applications, please include:
+        Email{' '}<a href={`mailto:${site.email}`}>{site.email}</a> with a short description
+        of your interests. For graduate applications, please include:
       </p>
       <ul>
         <li>A CV, including your academic record</li>
@@ -81,6 +82,12 @@ const interests = [
                 ? 'also available.'
                 : 'currently full.'}
             </p>
+            {!recruitment.openUntil && (
+              <p class="muted">
+                No closing date has been published. Please contact us for the current
+                application timetable.
+              </p>
+            )}
           </div>
         ) : (
           <p>There are no open graduate positions at present.</p>
@@ -107,18 +114,19 @@ const interests = [
       <h2>What we expect</h2>
       <ul>
         <li>
-          Independent investigation using computational tools including Abaqus and OrcaFlex.
+          Independent investigation using computational tools such as Abaqus and OrcaFlex.
         </li>
         <li>Completion of the thesis within two years.</li>
         <li>
-          At least one journal or conference publication, domestic or international.
+          At least one publication in a domestic or international journal or conference
+          proceedings.
         </li>
       </ul>
 
       <p class="evidence">
-        The training is not a claim: the lab's packages are on the
-        <a href="https://github.com/SMI-Lab-Inha"> SMI-Lab-Inha GitHub organisation</a>, and
-        the ones already public show the standard students are expected to work to.
+        This training is demonstrated in practice: the lab's packages are available through the{' '}
+        <a href="https://github.com/SMI-Lab-Inha">SMI-Lab-Inha GitHub organisation</a>, and
+        the public packages show the standard of work expected from students.
       </p>
 
       <h2>What we provide</h2>

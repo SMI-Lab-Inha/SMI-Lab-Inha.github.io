@@ -6,7 +6,7 @@
     "period": "2026/3 – 2027/2",
     "role": "Principal Investigator",
     "status": "current",
-    "summary": "Develops Kalman-filter-based tension estimation from platform motion in a physics-based estimator framework."
+    "summary": "This project develops Kalman-filter-based tension estimation from platform motion within a physics-based estimator framework."
   },
   {
     "title": "Machine Learning-Based Tension Prediction for FOWT Mooring Lines",
@@ -15,7 +15,7 @@
     "period": "2025/3 – 2026/2",
     "role": "Principal Investigator",
     "status": "completed",
-    "summary": "Surrogate models mapping platform response to mooring tension, providing the baseline against which the physics-based estimators are compared."
+    "summary": "This project develops surrogate models that map platform response to mooring tension, providing a baseline against which to compare the physics-based estimators."
   },
   {
     "title": "BEACON for Future Marine Workforce: Integrating Spatial and Resource Utilization",

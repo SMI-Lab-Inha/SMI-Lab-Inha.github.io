@@ -39,7 +39,7 @@ const glance = [
         <p class="hero-eyebrow">
           {site.department} · {site.university}
         </p>
-        <h1>Marine Structural Mechanics<br />and Integrity Lab</h1>
+        <h1>Marine Structural Mechanics<br />{' '}and Integrity Lab</h1>
         <p class="hero-tagline">
           Structural integrity of ships and floating offshore wind structures: mechanics,
           virtual sensing, and open research software.
@@ -75,7 +75,7 @@ const glance = [
     <div class="wrap intro">
       <div>
         <h2 class="intro-title">
-          Marine Structural Mechanics and Integrity Lab
+          Marine Structural Mechanics and Integrity Lab{' '}
           <span class="ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
         </h2>
 
@@ -94,10 +94,10 @@ const glance = [
         </p>
 
         <p>
-          This work rests on a longer foundation in ductile fracture mechanics, ship collision
-          and impact analysis, and the ultimate strength of hull structures, developed over
-          fifteen years at the University of Ulsan, Newcastle University in Singapore, Inha
-          University, and Cranfield University.
+          This work rests on a long-standing foundation in ductile fracture mechanics, ship
+          collision and impact analysis, and the ultimate strength of hull structures, developed
+          over fifteen years at the University of Ulsan, Newcastle University in Singapore,
+          Inha University, and Cranfield University.
         </p>
       </div>
 
@@ -230,7 +230,8 @@ const glance = [
       <h2>Work with us</h2>
       <p>{recruitment.summary}</p>
       <p class="muted">
-        <strong>{recruitmentStatusLabel()}:</strong> {positionsLabel()} for the {recruitment.intake}.
+        <strong>{recruitmentStatusLabel()}:</strong> {positionsLabel()} are available for the{' '}
+        {recruitment.intake}.
         Undergraduate research slots are {recruitment.undergraduateSlotsAvailable ? 'available' : 'currently full'}.
       </p>
       <p>

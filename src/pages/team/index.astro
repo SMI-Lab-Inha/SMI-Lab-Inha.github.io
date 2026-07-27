@@ -28,7 +28,7 @@ const sections = [
         {
           sections.map((s) => (
             <a class="card link-card" href={s.href}>
-              <h3>{s.title}</h3>
+              <h2>{s.title}</h2>
               <p class="muted">{s.text}</p>
             </a>
           ))
@@ -50,7 +50,10 @@ const sections = [
     color: inherit;
   }
 
-  .link-card h3 {
+  .link-card h2 {
     color: var(--c-accent);
+    font-size: 1.1rem;
+    letter-spacing: -0.011em;
+    margin-top: 0;
   }
 </style>
