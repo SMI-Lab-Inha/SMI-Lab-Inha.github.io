@@ -1,0 +1,18 @@
+{
+  "active": true,
+  "intake": "2026 intake",
+  "positions": [
+    {
+      "degree": "MSc",
+      "count": 2
+    },
+    {
+      "degree": "PhD",
+      "count": 1
+    }
+  ],
+  "openUntil": "",
+  "undergraduateSlotsAvailable": false,
+  "summary": "Graduate students are recruited to work on floating offshore wind and marine structural integrity, combining structural mechanics with virtual sensing and research software.",
+  "contact": "jaehoon.seo@inha.ac.kr"
+}

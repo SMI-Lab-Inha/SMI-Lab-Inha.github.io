@@ -2,9 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Pending from '../../components/Pending.astro';
-import projects from '../../data/projects.json';
+import { projects } from '../../data/content';
 
-const list = projects as any[];
+const list = [...projects].sort((a, b) => {
+  const order = { current: 0, planned: 1, completed: 2 };
+  return order[a.status] - order[b.status];
+});
 const groups = [
   { label: 'Principal Investigator', labelKo: '연구책임자', role: 'Principal Investigator' },
   { label: 'Co-Investigator', labelKo: '참여연구자', role: 'Co-Investigator' },
@@ -13,7 +16,7 @@ const groups = [
   .filter((g) => g.items.length > 0);
 ---
 
-<Base title="Projects" description="Funded research projects of the SMI Lab.">
+<Base title="Projects" description="Funded SMI Lab research on floating offshore wind mooring tension, marine workforce development, and digital shipyard engineering.">
   <PageHeader
     eyebrow="Research"
     title="Projects"
@@ -26,7 +29,6 @@ const groups = [
         groups.length === 0 ? (
           <Pending
             what="No projects are listed yet."
-            how="Add entries to src/data/projects.json."
           />
         ) : (
           groups.map((g) => (
@@ -37,13 +39,23 @@ const groups = [
               <div class="stack">
                 {g.items.map((p) => (
                   <article class="card">
+                    <p class={`status status--${p.status}`}>{p.status}</p>
                     <h3>{p.title}</h3>
-                    {p.titleKo && <p class="ko-title">{p.titleKo}</p>}
+                    {p.titleKo && <p class="ko-title" lang="ko">{p.titleKo}</p>}
                     <p class="meta">
                       {p.funder}
                       {p.period && <span> · {p.period}</span>}
+                      {p.awardNumber && <span> · Award {p.awardNumber}</span>}
                     </p>
                     {p.summary && <p>{p.summary}</p>}
+                    {(p.url || p.relatedDois.length > 0) && (
+                      <p class="project-links">
+                        {p.url && <a href={p.url}>Project source</a>}
+                        {p.relatedDois.map((doi) => (
+                          <a href={`https://doi.org/${doi}`}>Related publication</a>
+                        ))}
+                      </p>
+                    )}
                   </article>
                 ))}
               </div>
@@ -81,6 +93,32 @@ const groups = [
   .card h3 {
     font-size: 1.08rem;
     margin-bottom: 0.2rem;
+  }
+
+  .status {
+    display: inline-block;
+    margin: 0 0 0.55rem;
+    padding: 0.12em 0.6em;
+    border: 1px solid var(--c-border-strong);
+    border-radius: 999px;
+    color: var(--c-text-muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .status--current {
+    color: var(--c-accent-hover);
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.88rem;
   }
 
   .ko-title {

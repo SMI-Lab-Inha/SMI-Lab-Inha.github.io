@@ -6,7 +6,7 @@
     "period": "2026/3 – 2027/2",
     "role": "Principal Investigator",
     "status": "current",
-    "summary": "Develops Kalman-filter-based tension estimation from platform motion, implemented in the lab's fowt-moor-dt framework."
+    "summary": "Develops Kalman-filter-based tension estimation from platform motion in a physics-based estimator framework."
   },
   {
     "title": "Machine Learning-Based Tension Prediction for FOWT Mooring Lines",
@@ -14,7 +14,7 @@
     "funder": "Inha University New Faculty Research Grant, 1st round",
     "period": "2025/3 – 2026/2",
     "role": "Principal Investigator",
-    "status": "current",
+    "status": "completed",
     "summary": "Surrogate models mapping platform response to mooring tension, providing the baseline against which the physics-based estimators are compared."
   },
   {

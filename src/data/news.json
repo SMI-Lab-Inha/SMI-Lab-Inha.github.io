@@ -1,24 +1,15 @@
 [
   {
+    "kind": "recruitment",
     "date": "",
     "display": "",
     "title": "We are recruiting",
-    "body": "The lab is recruiting graduate students for the 2026 intake: two MSc places and one PhD place. Undergraduate research slots are currently full.",
+    "body": "",
     "link": "/join-us",
     "linkText": "Read the details",
     "image": "",
     "imageAlt": "",
     "pinned": true
-  },
-  {
-    "date": "2026-07-17",
-    "display": "17 July 2026",
-    "title": "Website brought up to date",
-    "body": "As of 17 July 2026, the SMI Lab homepage is up to date, fully operational, and filled with all necessary information.",
-    "link": "",
-    "linkText": "",
-    "image": "",
-    "imageAlt": ""
   },
   {
     "date": "2026-07-01",
@@ -53,28 +44,8 @@
   {
     "date": "2025-12-01",
     "display": "December 2025",
-    "title": "Hui Won Lee joins the lab",
-    "body": "Hui Won Lee joins as the lab's sixth member, working on engineering critical assessment of IMO independent Type B and Type C tanks.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team",
-    "image": "",
-    "imageAlt": ""
-  },
-  {
-    "date": "2025-12-01",
-    "display": "December 2025",
-    "title": "Jun Hyeok Hwang joins the lab",
-    "body": "Jun Hyeok Hwang joins as the lab's fifth member, working on out-of-plane and in-plane bending induced fatigue of fairlead mooring chain.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team",
-    "image": "",
-    "imageAlt": ""
-  },
-  {
-    "date": "2025-12-01",
-    "display": "December 2025",
-    "title": "Woojin Lee joins the lab",
-    "body": "Woojin Lee joins as the lab's fourth member, working on the ultimate strength of ship structures.",
+    "title": "Founding student cohort joins the lab",
+    "body": "Six undergraduate researchers joined the SMI Lab during 2025: Jun Soo Lim, Kyusung Shim, Jinwoo Song, Woojin Lee, Jun Hyeok Hwang, and Hui Won Lee. Their work spans propeller–ice interaction, fracture mechanics, dynamic power cables, ultimate strength, mooring-chain fatigue, and engineering critical assessment.",
     "link": "/team/current-members",
     "linkText": "Meet the team",
     "image": "",
@@ -91,16 +62,6 @@
     "imageAlt": ""
   },
   {
-    "date": "2025-09-01",
-    "display": "September 2025",
-    "title": "Jinwoo Song joins the lab",
-    "body": "Jinwoo Song joins as the lab's third member, working on the structural integrity of dynamic power cables.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team",
-    "image": "",
-    "imageAlt": ""
-  },
-  {
     "date": "2025-09-22",
     "display": "22–26 September 2025",
     "title": "ISSC 2025, Wuxi",
@@ -109,26 +70,6 @@
     "linkText": "ISSC 2025",
     "image": "/images/news/issc-2025.webp",
     "imageAlt": "Professor Seo at the 22nd International Ship and Offshore Structures Congress in Wuxi"
-  },
-  {
-    "date": "2025-09-01",
-    "display": "September 2025",
-    "title": "Kyusung Shim joins the lab",
-    "body": "Kyusung Shim joins as the lab's second member, working on fracture mechanics and naval ship structures.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team",
-    "image": "",
-    "imageAlt": ""
-  },
-  {
-    "date": "2025-09-01",
-    "display": "September 2025",
-    "title": "Jun Soo Lim joins the lab",
-    "body": "Jun Soo Lim joins as the lab's first member, working on propeller–ice interaction and ice milling.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team",
-    "image": "",
-    "imageAlt": ""
   },
   {
     "date": "2025-05-29",

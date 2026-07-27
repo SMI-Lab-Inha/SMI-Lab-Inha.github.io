@@ -2,11 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Pending from '../../components/Pending.astro';
-import members from '../../data/members.json';
+import AssetImage from '../../components/AssetImage.astro';
+import { members } from '../../data/content';
 
 const groups = ['Postdoctoral researchers', 'PhD students', "Master's students", 'Undergraduate researchers'];
 const byGroup = groups
-  .map((g) => ({ group: g, people: (members as any[]).filter((m) => m.group === g) }))
+  .map((g) => ({ group: g, people: members.filter((m) => m.group === g) }))
   .filter((g) => g.people.length > 0);
 ---
 
@@ -22,18 +23,24 @@ const byGroup = groups
         byGroup.length === 0 ? (
           <Pending
             what="No lab members are listed yet."
-            how="Add entries to src/data/members.json with name, group, topic, and optional photo and email. Groups: Postdoctoral researchers, PhD students, Master's students, Undergraduate researchers."
           />
         ) : (
           byGroup.map((g) => (
             <div class="group">
               <h2>{g.group}</h2>
               <div class="grid">
-                {g.people.map((m: any) => (
+                {g.people.map((m) => (
                   <article class="card person">
-                    {m.photo && <img src={m.photo} alt={`Portrait of ${m.name}`} />}
+                    {m.photo && (
+                      <AssetImage
+                        src={m.photo}
+                        alt={`Portrait of ${m.name}`}
+                        sizes="(min-width: 1000px) 250px, (min-width: 600px) 40vw, 100vw"
+                        widths={[240, 360, 480, 640]}
+                      />
+                    )}
                     <h3>{m.name}</h3>
-                    {m.nameKo && <p class="name-ko">{m.nameKo}</p>}
+                    {m.nameKo && <p class="name-ko" lang="ko">{m.nameKo}</p>}
                     {m.role && <p class="role">{m.role}</p>}
                     {m.year && <p class="muted year">{m.year}</p>}
                     {m.topic && <p class="muted">{m.topic}</p>}

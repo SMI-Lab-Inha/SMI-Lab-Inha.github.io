@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import site from '../data/site.json';
+import { recruitment } from '../data/content';
+import { positionsLabel, recruitmentStatusLabel } from '../lib/content';
 
 const interests = [
   'Floating offshore wind structures: moorings, dynamic power cables, virtual sensing, and digital twins',
@@ -69,7 +71,21 @@ const interests = [
       </ul>
 
       <h2>Open positions</h2>
-      <p>Two MSc positions and one PhD position are currently available.</p>
+      {
+        recruitment.active ? (
+          <div class="open-positions">
+            <p class="eyebrow">{recruitmentStatusLabel()}</p>
+            <p><strong>{positionsLabel()}</strong> are available for the {recruitment.intake}.</p>
+            <p class="muted">
+              Undergraduate research slots are {recruitment.undergraduateSlotsAvailable
+                ? 'also available.'
+                : 'currently full.'}
+            </p>
+          </div>
+        ) : (
+          <p>There are no open graduate positions at present.</p>
+        )
+      }
 
       <h2>What we look for</h2>
       <ul>
@@ -130,6 +146,18 @@ const interests = [
     padding: 0.85rem 1.1rem;
     border-radius: 0 var(--radius) var(--radius) 0;
     font-size: 0.94rem;
+  }
+
+  .open-positions {
+    border: 1px solid var(--c-border);
+    border-left: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    background: var(--c-bg-subtle);
+  }
+
+  .open-positions p:last-child {
+    margin-bottom: 0;
   }
 
   .pending-block {

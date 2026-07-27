@@ -1,25 +1,51 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import AssetImage from '../../components/AssetImage.astro';
 import d from '../../data/director.json';
 
 const profiles = d.profiles.filter((p) => p.url);
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+const personSchema = {
+  '@type': 'Person',
+  '@id': `${origin}/team/director/#person`,
+  name: d.name,
+  alternateName: [d.formerName, d.nameKo, d.nameHanja],
+  description: d.bio,
+  image: `${origin}${d.photo}`,
+  jobTitle: d.title,
+  email: d.email,
+  telephone: d.phone,
+  identifier: `https://orcid.org/${d.orcid}`,
+  url: `${origin}/team/director/`,
+  affiliation: { '@id': `${origin}/#lab` },
+  worksFor: { '@id': `${origin}/#lab` },
+  sameAs: profiles.map((profile) => profile.url),
+};
 ---
 
 <Base
   title="Director"
   description={`${d.name} — ${d.title}, Department of Naval Architecture and Ocean Engineering, Inha University (published as ${d.formerName} until 2025).`}
+  ogType="profile"
+  structuredData={personSchema}
 >
   <PageHeader eyebrow="Team" title="Director" />
 
   <section class="section">
     <div class="wrap director">
       <div class="portrait">
-        <img src={d.photo} alt={d.photoAlt} width="600" height="800" />
+        <AssetImage
+          src={d.photo}
+          alt={d.photoAlt}
+          loading="eager"
+          sizes="(min-width: 820px) 272px, 240px"
+          widths={[240, 360, 480, 600]}
+        />
 
         <div class="contact-card">
           <p class="name">{d.name}</p>
-          <p class="native">{d.nameKo} · {d.nameHanja}</p>
+          <p class="native"><span lang="ko">{d.nameKo}</span> · <span lang="ko-Hani">{d.nameHanja}</span></p>
           <p class="role">{d.title}</p>
           <hr />
           <p><a href={`mailto:${d.email}`}>{d.email}</a></p>

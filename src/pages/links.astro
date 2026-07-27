@@ -2,15 +2,15 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Pending from '../components/Pending.astro';
-import links from '../data/links.json';
+import { links } from '../data/content';
 
-const groups = (links as any[]).filter((g) => g.items.length > 0);
+const groups = links.filter((g) => g.items.length > 0);
 const count = groups.reduce((a, g) => a + g.items.length, 0);
 ---
 
 <Base
   title="Links"
-  description="External resources for marine structural integrity and offshore renewable energy: universities, learned societies, classification societies, research institutes, funding agencies, and the field's principal journals."
+  description="External organisations, research institutes, funding agencies, classification societies, and journals relevant to marine structures and offshore wind."
 >
   <PageHeader
     eyebrow="Reference"
@@ -28,7 +28,7 @@ const count = groups.reduce((a, g) => a + g.items.length, 0);
 
       {
         groups.length === 0 ? (
-          <Pending what="No links are listed yet." how="Add entries to src/data/links.json." />
+          <Pending what="No links are listed yet." />
         ) : (
           <>
             <p class="count">{count} links across {groups.length} categories</p>
@@ -37,7 +37,7 @@ const count = groups.reduce((a, g) => a + g.items.length, 0);
                 <section class="group">
                   <h2>{g.group}</h2>
                   <ul class="list-plain">
-                    {g.items.map((item: any) => (
+                    {g.items.map((item) => (
                       <li>
                         {item.url ? (
                           <a href={item.url} rel="external noopener">
@@ -46,17 +46,7 @@ const count = groups.reduce((a, g) => a + g.items.length, 0);
                         ) : (
                           <span>{item.label}</span>
                         )}
-                        {item.note && (
-                          <span class="muted">
-                            {' '}
-                            —{' '}
-                            {item.note.startsWith('TODO') ? (
-                              <span class="todo">{item.note}</span>
-                            ) : (
-                              item.note
-                            )}
-                          </span>
-                        )}
+                        {item.note && <span class="muted"> — {item.note}</span>}
                       </li>
                     ))}
                   </ul>

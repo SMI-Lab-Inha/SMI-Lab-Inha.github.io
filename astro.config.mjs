@@ -8,7 +8,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://smi-lab-inha.github.io',
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.endsWith('/team/alumni/') &&
+        !page.endsWith('/publications/conference-proceedings/'),
+    }),
+  ],
   build: {
     format: 'directory',
   },

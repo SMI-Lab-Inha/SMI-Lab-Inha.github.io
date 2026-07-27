@@ -1,23 +1,26 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Pending from '../../components/Pending.astro';
-import alumni from '../../data/alumni.json';
+import { alumni } from '../../data/content';
 
-const list = alumni as any[];
+const list = alumni;
 ---
 
-<Base title="Alumni" description="Former members of the SMI Lab and where they went next.">
+<Base title="Alumni" description="Former members of the SMI Lab and where they went next." noindex>
   <PageHeader eyebrow="Team" title="Alumni" />
 
   <section class="section">
     <div class="wrap">
       {
         list.length === 0 ? (
-          <Pending
-            what="No alumni are listed yet."
-            how="Add entries to src/data/alumni.json with name, degree, year, thesis, and current position."
-          />
+          <div class="empty-state">
+            <p class="eyebrow">Lab established in 2025</p>
+            <h2>The first alumni will be listed here</h2>
+            <p class="muted">
+              The SMI Lab is a young group and does not yet have alumni. Future graduates will
+              be listed with their degree, thesis, and next destination.
+            </p>
+          </div>
         ) : (
           <ul class="list-plain alumni">
             {list.map((a) => (
@@ -39,6 +42,16 @@ const list = alumni as any[];
 </Base>
 
 <style>
+  .empty-state {
+    max-width: 42rem;
+    border-left: 3px solid var(--c-accent);
+    padding: 0.25rem 0 0.25rem 1.2rem;
+  }
+
+  .empty-state h2 {
+    margin-top: 0;
+  }
+
   .alumni li {
     display: grid;
     grid-template-columns: 5rem 1fr;

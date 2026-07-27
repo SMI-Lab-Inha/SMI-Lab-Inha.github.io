@@ -2,9 +2,10 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Pending from '../components/Pending.astro';
-import courses from '../data/teaching.json';
+import AssetImage from '../components/AssetImage.astro';
+import { teaching as courses } from '../data/content';
 
-const list = courses as any[];
+const list = courses;
 const levels = ['Undergraduate', 'Graduate'];
 const byLevel = levels
   .map((l) => ({ level: l, items: list.filter((c) => c.level === l) }))
@@ -27,7 +28,6 @@ const byLevel = levels
         byLevel.length === 0 ? (
           <Pending
             what="No courses are listed yet."
-            how="Add entries to src/data/teaching.json."
           />
         ) : (
           <div class="layout">
@@ -36,18 +36,18 @@ const byLevel = levels
                 <div class="group">
                   <h2>
                     {g.level}
-                    <span class="ko">{g.level === 'Undergraduate' ? '학부 교과목' : '대학원 교과목'}</span>
+                    <span class="ko" lang="ko">{g.level === 'Undergraduate' ? '학부 교과목' : '대학원 교과목'}</span>
                   </h2>
                   <ul class="list-plain courses">
                     {g.items.map((c) => (
                       <li>
                         <span class="code">{c.code}</span>
-                        <span>
+                        <div class="course-content">
                           <strong>{c.title}</strong>
-                          {c.titleKo && <span class="title-ko"> · {c.titleKo}</span>}
+                          {c.titleKo && <span class="title-ko" lang="ko"> · {c.titleKo}</span>}
                           {c.semester && <div class="muted sem">{c.semester}</div>}
                           {c.description && <div class="muted">{c.description}</div>}
-                        </span>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -56,7 +56,12 @@ const byLevel = levels
             </div>
 
             <aside class="outcomes">
-              <img src="/images/teaching.jpg" alt="Sketch of a lecturer deriving added-mass relations at a blackboard" />
+              <AssetImage
+                src="/images/teaching.jpg"
+                alt="Sketch of a lecturer deriving added-mass relations at a blackboard"
+                sizes="(min-width: 860px) 360px, 100vw"
+                widths={[360, 540, 720]}
+              />
               <h3>Undergraduate outcomes</h3>
               <ul>
                 <li>Master the fundamental principles of engineering mechanics: statics, dynamics, and structural mechanics</li>

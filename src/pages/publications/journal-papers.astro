@@ -2,12 +2,31 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PublicationList from '../../components/PublicationList.astro';
-import publications from '../../data/publications.json';
+import { publications } from '../../data/content';
 
-const items = (publications as any[]).filter((p) => p.type === 'journal');
+const items = publications.filter((p) => p.type === 'journal');
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+const articleSchema = items.map((paper) => ({
+  '@type': 'ScholarlyArticle',
+  headline: paper.title,
+  name: paper.title,
+  datePublished: paper.year,
+  isPartOf: { '@type': 'Periodical', name: paper.venue },
+  author: paper.authors.split(', ').map((author) =>
+    author === 'Seo JH' || author === 'Cerik BC'
+      ? { '@id': `${origin}/team/director/#person` }
+      : { '@type': 'Person', name: author },
+  ),
+  sameAs: paper.doi ? `https://doi.org/${paper.doi}` : undefined,
+  identifier: paper.doi ? `https://doi.org/${paper.doi}` : undefined,
+}));
 ---
 
-<Base title="Journal papers" description="Peer-reviewed journal papers from the SMI Lab.">
+<Base
+  title="Journal papers"
+  description="Peer-reviewed work on floating offshore wind, dynamic power cables, ship ultimate strength, ductile fracture, collision, and impact mechanics."
+  structuredData={articleSchema}
+>
   <PageHeader
     eyebrow="Publications"
     title="Journal papers"
@@ -19,7 +38,6 @@ const items = (publications as any[]).filter((p) => p.type === 'journal');
       <PublicationList
         items={items}
         emptyWhat="No journal papers are listed yet."
-        emptyHow="Add entries to src/data/publications.json with type: 'journal'. Import them from a Google Scholar or BibTeX export rather than retyping."
       />
     </div>
   </section>

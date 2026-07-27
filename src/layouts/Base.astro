@@ -5,28 +5,49 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 import d from '../data/director.json';
+import directorPhoto from '../assets/images/director.webp';
 
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
+  ogType?: 'website' | 'article' | 'profile';
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description = site.shortDescription } = Astro.props;
-const pageTitle = title === site.fullName ? title : `${title} · ${site.name}`;
+const {
+  title,
+  description = site.shortDescription,
+  noindex = false,
+  ogType = 'website',
+  structuredData,
+} = Astro.props;
+const fullPageTitle = title === site.fullName ? title : `${title} · ${site.name}`;
+const pageTitle =
+  fullPageTitle.length <= 70
+    ? fullPageTitle
+    : title.length <= 70
+      ? title
+      : `${title.slice(0, 67).replace(/\s+\S*$/, '')}…`;
+const metaDescription =
+  description.length > 160
+    ? `${description.slice(0, 157).replace(/\s+\S*$/, '')}…`
+    : description;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+const isHome = Astro.url.pathname === '/';
 
 // Structured data: search engines and Google Scholar use this to connect the
 // lab, the director, and his two published author names to one identity.
-const schema = {
-  '@context': 'https://schema.org',
-  '@graph': [
+const identityGraph = isHome
+  ? [
     {
       '@type': 'ResearchOrganization',
       '@id': `${origin}/#lab`,
       name: site.fullName,
       alternateName: ['SMI Lab', '선박해양 구조역학 및 구조건전성평가 연구실'],
       url: origin,
+      logo: `${origin}/images/og-banner.png`,
       email: site.email,
       description: site.shortDescription,
       parentOrganization: {
@@ -54,14 +75,15 @@ const schema = {
     },
     {
       '@type': 'Person',
-      '@id': `${origin}/team/director#person`,
+      '@id': `${origin}/team/director/#person`,
       name: d.name,
       alternateName: [d.formerName, d.nameKo],
       jobTitle: d.title,
       email: d.email,
       telephone: d.phone,
       identifier: `https://orcid.org/${d.orcid}`,
-      url: `${origin}/team/director`,
+      image: new URL(directorPhoto.src, `${origin}/`).href,
+      url: `${origin}/team/director/`,
       affiliation: { '@id': `${origin}/#lab` },
       worksFor: { '@id': `${origin}/#lab` },
       sameAs: d.profiles.filter((p) => p.url).map((p) => p.url),
@@ -69,12 +91,62 @@ const schema = {
     {
       '@type': 'WebSite',
       '@id': `${origin}/#website`,
-      url: origin,
+      url: `${origin}/`,
       name: site.fullName,
       publisher: { '@id': `${origin}/#lab` },
       inLanguage: 'en',
     },
-  ],
+  ]
+  : [];
+
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbItems = [
+  { name: 'Home', item: `${origin}/` },
+  ...pathSegments.map((segment, index) => ({
+    name:
+      index === pathSegments.length - 1
+        ? title
+        : segment.replace(/-/g, ' ').replace(/^\w/, (letter) => letter.toUpperCase()),
+    item: `${origin}/${pathSegments.slice(0, index + 1).join('/')}/`,
+  })),
+];
+
+const pageGraph = !isHome && !noindex
+  ? [
+      {
+        '@type': ogType === 'profile' ? 'ProfilePage' : 'WebPage',
+        '@id': `${canonical.href}#webpage`,
+        url: canonical.href,
+        name: pageTitle,
+        description: metaDescription,
+        isPartOf: { '@id': `${origin}/#website` },
+        ...(ogType === 'profile' ? { mainEntity: { '@id': `${origin}/team/director/#person` } } : {}),
+      },
+      ...(breadcrumbItems.length > 1
+        ? [
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: breadcrumbItems.map((item, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                ...item,
+              })),
+            },
+          ]
+        : []),
+    ]
+  : [];
+
+const suppliedGraph = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map((entry) => {
+      const { '@context': _context, ...withoutContext } = entry;
+      return withoutContext;
+    })
+  : [];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [...identityGraph, ...pageGraph, ...suppliedGraph],
 };
 ---
 
@@ -84,22 +156,29 @@ const schema = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical.href} />
+    <meta name="description" content={metaDescription} />
+    {!noindex && <link rel="canonical" href={canonical.href} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType === 'profile' ? 'profile' : ogType} />
     <meta property="og:site_name" content={site.fullName} />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:image" content={new URL('/images/og-banner.png', canonical).href} />
+    <meta property="og:image:alt" content="SMI Lab — Marine Structural Mechanics and Integrity Lab at Inha University" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#051766" />
 
     <link rel="icon" href="/images/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/images/favicon-180.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="SMI Lab news" href="/news/rss.xml" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    {schema['@graph'].length > 0 && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
   </head>
 
   <body>

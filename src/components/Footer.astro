@@ -4,6 +4,7 @@ import d from '../data/director.json';
 
 const year = new Date().getFullYear();
 const profiles = d.profiles.filter((p) => p.url);
+const footerLinks = [...site.nav, ...site.secondaryNav];
 ---
 
 <footer class="site-footer">
@@ -35,7 +36,7 @@ const profiles = d.profiles.filter((p) => p.url);
     <nav class="footer-nav" aria-label="Footer">
       <ul class="list-plain">
         {
-          site.nav.map((item: any) => (
+          footerLinks.map((item: any) => (
             <li>
               <a href={item.href}>{item.label}</a>
             </li>

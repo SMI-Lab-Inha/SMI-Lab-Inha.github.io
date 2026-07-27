@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import software from '../../data/software.json';
+import { software } from '../../data/content';
 
 const statusLabel: Record<string, string> = {
   public: 'Public',
@@ -12,7 +12,7 @@ const statusLabel: Record<string, string> = {
 
 <Base
   title="Software & facilities"
-  description="Open-source research software from the SMI Lab — VANE, CableDyn, CableXsec, fowt-moor-dt, pyULSAN — plus the commercial stack and computing facilities."
+  description="Research software from the SMI Lab for floating offshore wind simulation, cable mechanics, modal analysis, and reproducible structural engineering."
 >
   <PageHeader
     eyebrow="Research"
@@ -42,13 +42,7 @@ const statusLabel: Record<string, string> = {
                 {s.name}
                 {s.expansion && <span class="expansion"> — {s.expansion}</span>}
               </h3>
-              <p class={s.description.startsWith('TODO') ? '' : 'muted'}>
-                {s.description.startsWith('TODO') ? (
-                  <span class="todo">{s.description}</span>
-                ) : (
-                  s.description
-                )}
-              </p>
+              <p class="muted">{s.description}</p>
               <p class="status">
                 <span class={`pill ${s.status === 'public' ? 'pill--live' : ''}`}>
                   {statusLabel[s.status]}

@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import d from '../../data/director.json';
+import { publications } from '../../data/content';
 
 const sections = [
   {
@@ -14,10 +15,14 @@ const sections = [
     title: 'Conference proceedings',
     text: 'Papers presented at international conferences and symposia.',
   },
-];
+].filter((section) =>
+  section.href.includes('conference')
+    ? publications.some((publication) => publication.type === 'conference')
+    : true,
+);
 ---
 
-<Base title="Publications" description="Journal papers and conference proceedings from the SMI Lab.">
+<Base title="Publications" description="The verified SMI Lab publication record in marine structures, offshore wind, ultimate strength, fracture, collision, and impact mechanics.">
   <PageHeader eyebrow="Output" title="Publications" />
 
   <section class="section">

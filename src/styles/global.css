@@ -156,7 +156,6 @@ h4 {
    is reserved for reading matter. */
 .btn,
 .eyebrow,
-.todo,
 input,
 button,
 select {
@@ -325,23 +324,21 @@ code {
   color: var(--c-accent-hover);
 }
 
-/* A visible marker for content the lab still has to supply. Deliberately
-   loud so placeholders cannot be published by accident. */
-.todo {
-  display: inline-block;
-  background: #fff4d6;
-  color: #6b4c00;
-  border: 1px dashed #d9ac3c;
-  border-radius: 3px;
-  padding: 0.1em 0.5em;
-  font-family: var(--font-mono);
-  font-size: 0.82em;
-}
 
 @media (prefers-color-scheme: dark) {
-  .todo {
-    background: #3a2f11;
-    color: #f2d98a;
-    border-color: #7a6524;
+  .btn {
+    color: var(--c-navy-deep);
+  }
+
+  .btn:hover {
+    color: #fff;
+  }
+
+  .btn--ghost {
+    color: var(--c-accent);
+  }
+
+  .btn--ghost:hover {
+    color: var(--c-accent-hover);
   }
 }

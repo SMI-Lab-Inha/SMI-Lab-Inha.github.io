@@ -9,7 +9,7 @@
       "Cross-section mechanics of layered power cable constructions, linking manufacturer-level cable design to the stiffness properties used in global dynamic analysis",
       "Long-term fatigue assessment of moorings and cables under site-specific metocean conditions, connecting design load case simulation to damage accumulation"
     ],
-    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn, CableXsec, VANE, and fowt-moor-dt; Bayesian filtering and surrogate modelling in Python.",
+    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn, CableXsec, and VANE; Bayesian filtering and surrogate modelling in Python.",
     "selected": [
       "10.1016/j.oceaneng.2026.126528",
       "10.1016/j.oceaneng.2024.118810",
@@ -31,7 +31,7 @@
       "Ultimate strength of stiffened panels including welding residual stress and deformation effects",
       "Differentiable reimplementation of incremental collapse methods in JAX, enabling automatic sensitivities of ultimate strength with respect to scantlings and material parameters"
     ],
-    "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; our in-house package pyULSAN.",
+    "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; differentiable numerical implementation in Python and JAX.",
     "selected": [
       "10.1016/j.oceaneng.2025.123159",
       "10.3390/jmse8120988",

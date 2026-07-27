@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import AssetImage from '../../components/AssetImage.astro';
+import { news, recruitment, type NewsItem } from '../../data/content';
+import { newsBody, newsSlug, recruitmentStatusLabel } from '../../lib/content';
+
+export function getStaticPaths() {
+  return news.map((item) => ({
+    params: { slug: newsSlug(item) },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: NewsItem;
+}
+
+const { item } = Astro.props;
+const body = newsBody(item);
+const displayDate = item.pinned ? recruitmentStatusLabel() : item.display;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: item.title,
+  description: body,
+  datePublished: item.date || undefined,
+  dateModified: item.date || undefined,
+  mainEntityOfPage: Astro.url.href,
+  image: new URL('/images/og-banner.png', Astro.site ?? Astro.url.origin).href,
+  author: { '@id': `${(Astro.site ?? new URL(Astro.url.origin)).origin}/#lab` },
+  publisher: { '@id': `${(Astro.site ?? new URL(Astro.url.origin)).origin}/#lab` },
+};
+---
+
+<Base
+  title={item.title}
+  description={body}
+  ogType="article"
+  structuredData={articleSchema}
+>
+  <PageHeader eyebrow="News" title={item.title} lead={displayDate} />
+
+  <article class="section">
+    <div class="wrap wrap--narrow article-body">
+      {item.image && (
+        <AssetImage
+          src={item.image}
+          alt={item.imageAlt}
+          sizes="(min-width: 820px) 820px, 100vw"
+          widths={[480, 720, 960, 1280]}
+        />
+      )}
+      <p class="lead">{body}</p>
+
+      {
+        item.kind === 'recruitment' && recruitment.active && (
+          <p><a class="btn" href="/join-us">View open positions</a></p>
+        )
+      }
+
+      {
+        item.link && item.kind !== 'recruitment' && (
+          <p class="source">
+            <a href={item.link} rel={item.link.startsWith('http') ? 'external' : undefined}>
+              {item.linkText || 'Related source'} →
+            </a>
+          </p>
+        )
+      }
+
+      <p class="back"><a href="/news">← All news</a></p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .article-body img {
+    width: 100%;
+    max-height: 34rem;
+    object-fit: contain;
+    object-position: left center;
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+  }
+
+  .source {
+    margin-top: 2rem;
+  }
+
+  .back {
+    border-top: 1px solid var(--c-border);
+    margin-top: 3rem;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+  }
+</style>

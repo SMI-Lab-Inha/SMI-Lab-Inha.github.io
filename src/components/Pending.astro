@@ -1,18 +1,14 @@
 ---
-// Rendered wherever the lab has not yet supplied real content. Deliberately
-// explicit: an empty page is better than invented members or citations.
 interface Props {
   what: string;
-  how?: string;
 }
 
-const { what, how } = Astro.props;
+const { what } = Astro.props;
 ---
 
 <div class="pending">
-  <p><span class="todo">TODO(user)</span></p>
   <p><strong>{what}</strong></p>
-  {how && <p class="muted">{how}</p>}
+  <p class="muted">This page will be updated when a verified record is available.</p>
 </div>
 
 <style>

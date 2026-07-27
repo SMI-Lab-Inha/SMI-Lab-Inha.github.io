@@ -2,9 +2,11 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Pending from '../components/Pending.astro';
-import news from '../data/news.json';
+import AssetImage from '../components/AssetImage.astro';
+import { news } from '../data/content';
+import { newsBody, newsSlug, recruitmentStatusLabel } from '../lib/content';
 
-const all = news as any[];
+const all = news;
 
 // Pinned items sit at the top; the rest run newest first. Items whose date the
 // lab has not yet supplied keep their relative order at the foot of the list
@@ -27,22 +29,28 @@ const items = [...pinned, ...dated, ...undated];
         items.length === 0 ? (
           <Pending
             what="No news items have been posted yet."
-            how="Add entries to src/data/news.json, newest first."
           />
         ) : (
           items.map((item) => (
-            <article class={`item${item.image ? ' has-image' : ''}`}>
+            <article class={`item${item.image ? ' has-image' : ''}`} aria-labelledby={`news-${newsSlug(item)}`}>
               {item.image && (
-                <img src={item.image} alt={item.imageAlt} loading="lazy" />
+                <AssetImage
+                  src={item.image}
+                  alt={item.imageAlt}
+                  sizes="(min-width: 720px) 240px, 100vw"
+                  widths={[320, 480, 640]}
+                />
               )}
               <div>
                 {item.pinned ? (
-                  <p class="date pin">Now open</p>
+                  <p class="date pin">{recruitmentStatusLabel()}</p>
                 ) : (
-                  item.display && <p class="date">{item.display}</p>
+                  item.display && <time class="date" datetime={item.date}>{item.display}</time>
                 )}
-                <h2>{item.title}</h2>
-                <p>{item.body}</p>
+                <h2 id={`news-${newsSlug(item)}`}>
+                  <a href={`/news/${newsSlug(item)}/`}>{item.title}</a>
+                </h2>
+                <p>{newsBody(item)}</p>
                 {item.link && (
                   <p class="more">
                     <a href={item.link}>{item.linkText || 'More'} →</a>
@@ -88,17 +96,34 @@ const items = [...pinned, ...dated, ...undated];
     font-size: 1.2rem;
   }
 
+  .item h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .item h2 a:hover {
+    color: var(--c-accent);
+    text-decoration: underline;
+  }
+
   .item p:last-child {
     margin-bottom: 0;
   }
 
   .date {
+    display: block;
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--c-accent);
     margin-bottom: 0.3rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .date.pin {
+      color: var(--c-navy-deep);
+    }
   }
 
   .date.pin {

@@ -1,13 +1,30 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import areas from '../../data/research-areas.json';
-import publications from '../../data/publications.json';
+import ResearchSchematic from '../../components/ResearchSchematic.astro';
+import { publications, researchAreas as areas } from '../../data/content';
 
 // Thrusts store DOIs only; the citation itself is resolved from the publication
 // record at build time, so the two can never drift apart.
-const byDoi = new Map((publications as any[]).map((p) => [p.doi, p]));
+const byDoi = new Map(publications.map((p) => [p.doi, p]));
 const cite = (doi: string) => byDoi.get(doi);
+const figures = {
+  'mooring-and-cable-integrity': {
+    variant: 'mooring' as const,
+    title: 'Virtual sensing chain',
+    description: 'Programme schematic showing the measurable platform response and the unmeasured mooring and cable states to be reconstructed.',
+  },
+  'ultimate-strength': {
+    variant: 'strength' as const,
+    title: 'Progressive collapse mechanics',
+    description: 'Method schematic connecting stiffened-section collapse to the moment–curvature response used in ultimate-strength assessment.',
+  },
+  'fracture-and-impact': {
+    variant: 'fracture' as const,
+    title: 'Fracture-process modelling',
+    description: 'Method schematic of a calibrated fracture zone within a finite-element impact model.',
+  },
+};
 ---
 
 <Base
@@ -41,6 +58,8 @@ const cite = (doi: string) => byDoi.get(doi);
               <h2>{area.title}</h2>
               <p>{area.summary}</p>
 
+              <ResearchSchematic {...figures[area.slug as keyof typeof figures]} />
+
               <h3>Current work includes</h3>
               <ul class="topics">
                 {area.topics.map((topic) => (
@@ -64,7 +83,7 @@ const cite = (doi: string) => byDoi.get(doi);
 
               {'selected' in area && area.selected && area.selected.length > 0 && (
                 <div class="selected">
-                  <h3>Selected publications</h3>
+                  <h3>Evidence from the publication record</h3>
                   <ol class="list-plain">
                     {area.selected.map((doi: string) => {
                       const p = cite(doi);

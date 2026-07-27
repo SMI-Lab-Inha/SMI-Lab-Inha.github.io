@@ -1,13 +1,14 @@
 ---
 import Pending from './Pending.astro';
+import { researchAreas, type Publication } from '../data/content';
+import { slugify } from '../lib/content';
 
 interface Props {
-  items: any[];
+  items: Publication[];
   emptyWhat: string;
-  emptyHow: string;
 }
 
-const { items, emptyWhat, emptyHow } = Astro.props;
+const { items, emptyWhat } = Astro.props;
 
 const years = [...new Set(items.map((p) => p.year))].sort((a, b) => Number(b) - Number(a));
 
@@ -21,19 +22,47 @@ function splitAuthors(authors: string) {
 
 // Number the whole list continuously, newest first, the way a CV does.
 let n = items.length;
-const numbered = new Map<any, number>();
+const numbered = new Map<Publication, number>();
 for (const year of years) {
   for (const p of items.filter((x) => x.year === year)) {
     numbered.set(p, n--);
   }
 }
+
+const topicLabels = new Map([
+  ['mooring-and-cable-integrity', 'Floating wind'],
+  ['ultimate-strength', 'Ultimate strength'],
+  ['fracture-and-impact', 'Fracture & impact'],
+]);
+const topicsByDoi = new Map<string, string[]>();
+for (const area of researchAreas) {
+  for (const doi of area.selected ?? []) {
+    topicsByDoi.set(doi, [...(topicsByDoi.get(doi) ?? []), topicLabels.get(area.slug) ?? area.title]);
+  }
+}
+
+function paperId(publication: Publication) {
+  return `paper-${publication.doi ? publication.doi.replace(/[^a-zA-Z0-9]+/g, '-') : slugify(publication.title)}`;
+}
 ---
 
 {
   items.length === 0 ? (
-    <Pending what={emptyWhat} how={emptyHow} />
+    <Pending what={emptyWhat} />
   ) : (
     <>
+      <div class="publication-tools" data-publication-tools>
+        <label>
+          <span>Search publications</span>
+          <input type="search" placeholder="Title, author, journal, or year" autocomplete="off" data-publication-search />
+        </label>
+        <p class="exports">
+          <a href="/publications/publications.bib" download>Download BibTeX</a>
+          <a href="/publications/publications.ris" download>Download RIS</a>
+        </p>
+        <p class="result-count" aria-live="polite" data-publication-count>{items.length} papers</p>
+      </div>
+
       <nav class="jump" aria-label="Jump to year">
         {years.map((y) => (
           <a href={`#y${y}`}>{y}</a>
@@ -43,7 +72,7 @@ for (const year of years) {
       {years.map((year) => {
         const inYear = items.filter((p) => p.year === year);
         return (
-          <section class="year-block">
+          <section class="year-block" data-year-section>
             <h2 id={`y${year}`}>
               {year}
               <span class="count">
@@ -52,7 +81,11 @@ for (const year of years) {
             </h2>
             <ol class="list-plain pubs">
               {inYear.map((p) => (
-                <li>
+                <li
+                  id={paperId(p)}
+                  data-publication
+                  data-search={`${p.authors} ${p.title} ${p.venue} ${p.year} ${(topicsByDoi.get(p.doi) ?? []).join(' ')}`.toLowerCase()}
+                >
                   <span class="num">{numbered.get(p)}.</span>
                   <div>
                     <p class="pub-authors">
@@ -71,12 +104,24 @@ for (const year of years) {
                       {p.volume && <span> {p.volume}</span>}
                       {p.pages && <span>: {p.pages}</span>}
                     </p>
+                    {(topicsByDoi.get(p.doi) ?? []).length > 0 && (
+                      <p class="pub-topics">
+                        {(topicsByDoi.get(p.doi) ?? []).map((topic) => <span>{topic}</span>)}
+                      </p>
+                    )}
                     {p.doi && (
                       <p class="pub-doi">
                         <a href={`https://doi.org/${p.doi}`}>
                           <span class="doi-tag">DOI</span>
                           {p.doi}
                         </a>
+                      </p>
+                    )}
+                    {(p.preprint || p.code || p.data) && (
+                      <p class="pub-links">
+                        {p.preprint && <a href={p.preprint}>Preprint</a>}
+                        {p.code && <a href={p.code}>Code</a>}
+                        {p.data && <a href={p.data}>Data</a>}
                       </p>
                     )}
                   </div>
@@ -90,7 +135,76 @@ for (const year of years) {
   )
 }
 
+<script>
+  const search = document.querySelector<HTMLInputElement>('[data-publication-search]');
+  const papers = [...document.querySelectorAll<HTMLElement>('[data-publication]')];
+  const years = [...document.querySelectorAll<HTMLElement>('[data-year-section]')];
+  const count = document.querySelector<HTMLElement>('[data-publication-count]');
+
+  search?.addEventListener('input', () => {
+    const query = search.value.trim().toLowerCase();
+    let visible = 0;
+    for (const paper of papers) {
+      const matches = !query || paper.dataset.search?.includes(query);
+      paper.hidden = !matches;
+      if (matches) visible += 1;
+    }
+    for (const year of years) {
+      year.hidden = !year.querySelector('[data-publication]:not([hidden])');
+    }
+    if (count) count.textContent = `${visible} ${visible === 1 ? 'paper' : 'papers'}`;
+  });
+</script>
+
 <style>
+  .publication-tools {
+    display: grid;
+    grid-template-columns: minmax(15rem, 1fr) auto;
+    gap: 0.7rem 1.5rem;
+    align-items: end;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+  }
+
+  .publication-tools label span {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+
+  .publication-tools input {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.7rem;
+    color: var(--c-text);
+    background: var(--c-bg);
+    border: 1px solid var(--c-border-strong);
+    border-radius: var(--radius);
+    font-size: 1rem;
+  }
+
+  .exports {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin: 0;
+    font-size: 0.86rem;
+  }
+
+  .result-count {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--c-text-muted);
+  }
+
   .jump {
     display: flex;
     flex-wrap: wrap;
@@ -197,6 +311,27 @@ for (const year of years) {
     margin-top: 0.35rem;
   }
 
+  .pub-topics,
+  .pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.7rem;
+    margin-top: 0.45rem !important;
+  }
+
+  .pub-topics span {
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    padding: 0.08em 0.55em;
+    color: var(--c-text-muted);
+    font-size: 0.74rem;
+  }
+
+  .pub-links a {
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
   .pub-doi a {
     font-family: var(--font-mono);
     font-size: 0.79rem;
@@ -222,6 +357,10 @@ for (const year of years) {
   }
 
   @media (max-width: 560px) {
+    .publication-tools {
+      grid-template-columns: 1fr;
+    }
+
     .pubs li {
       grid-template-columns: 1fr;
       gap: 0.1rem;

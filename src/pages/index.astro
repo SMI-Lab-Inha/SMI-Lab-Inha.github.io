@@ -1,21 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
+import ResearchSchematic from '../components/ResearchSchematic.astro';
+import AssetImage from '../components/AssetImage.astro';
 import site from '../data/site.json';
-import news from '../data/news.json';
-import areas from '../data/research-areas.json';
-import software from '../data/software.json';
-import members from '../data/members.json';
 import d from '../data/director.json';
+import {
+  members,
+  news,
+  projects,
+  recruitment,
+  researchAreas as areas,
+  software,
+} from '../data/content';
+import { newsSlug, positionsLabel, recruitmentStatusLabel } from '../lib/content';
 
 // Same ordering as the news page: pinned first, then newest first by date.
-const allNews = news as any[];
 const latest = [
-  ...allNews.filter((n) => n.pinned),
-  ...allNews.filter((n) => !n.pinned && n.date).sort((a, b) => b.date.localeCompare(a.date)),
+  ...news.filter((n) => n.pinned),
+  ...news.filter((n) => !n.pinned && n.date).sort((a, b) => b.date.localeCompare(a.date)),
 ].slice(0, 5);
-const publicPkgs = (software as any[]).filter((s) => s.status === 'public');
-const alphaPkgs = (software as any[]).filter((s) => s.status === 'alpha');
-const people = members as any[];
+const publicPkgs = software.filter((s) => s.status === 'public');
+const alphaPkgs = software.filter((s) => s.status === 'alpha');
+const currentProjects = projects.filter((project) => project.status === 'current');
+const people = members;
 
 const glance = [
   'Mooring and dynamic power cable integrity for floating offshore wind: virtual sensing, tension estimation, fatigue assessment',
@@ -43,14 +50,23 @@ const glance = [
           <a class="btn btn--ghost" href="/join-us">Join the lab</a>
         </p>
       </div>
-      <img
-        class="hero-logo"
-        src="/images/logo.webp"
-        alt="SMI Lab logo: a ship, an offshore wind turbine, and a circuit-brain motif above stylised waves"
-        width="560"
-        height="560"
+      <ResearchSchematic
+        variant="hero"
+        title="Mechanics-informed virtual sensing"
+        description="Programme schematic: platform motion informs estimates of mooring tension, dynamic cable curvature, and fatigue state."
       />
     </div>
+  </section>
+
+  {/* Citation count and h-index are deliberately kept off the front page; they
+      live on the publications page, where a reader has gone looking for them. */}
+  <section class="proof" aria-label="Lab record at a glance">
+    <dl class="wrap proof-grid">
+      <div><dt>Current projects</dt><dd>{currentProjects.length}</dd></div>
+      <div><dt>Research thrusts</dt><dd>{areas.length}</dd></div>
+      <div><dt>Public tools</dt><dd>{publicPkgs.length}</dd></div>
+      <div><dt>Student researchers</dt><dd>{people.length}</dd></div>
+    </dl>
   </section>
 
   <section class="section">
@@ -58,7 +74,7 @@ const glance = [
       <div>
         <h2 class="intro-title">
           Marine Structural Mechanics and Integrity Lab
-          <span class="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
+          <span class="ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
         </h2>
 
         <p class="intro-lead">
@@ -133,7 +149,7 @@ const glance = [
             <li>
               <span class="pkg-name">{s.repo ? <a href={s.repo}>{s.name}</a> : s.name}</span>
               <span class={`pkg-status ${s.status === 'public' ? 'is-public' : ''}`}>
-                {s.status === 'public' ? 'Public' : 'Alpha'}
+                {s.status === 'public' ? 'Public' : 'Private — release planned'}
               </span>
             </li>
           ))
@@ -173,7 +189,12 @@ const glance = [
         {
           people.map((m) => (
             <li>
-              <img src={m.photo} alt={`Portrait of ${m.name}`} loading="lazy" />
+              <AssetImage
+                src={m.photo}
+                alt={`Portrait of ${m.name}`}
+                sizes="(min-width: 1000px) 170px, (min-width: 600px) 25vw, 45vw"
+                widths={[180, 280, 360, 480]}
+              />
               <span class="p-name">{m.name}</span>
               <span class="p-topic">{m.topic}</span>
             </li>
@@ -194,7 +215,7 @@ const glance = [
           latest.map((n) => (
             <li>
               <span class="news-date">{n.pinned ? 'Now open' : n.display}</span>
-              <a href={n.link && n.link.startsWith('/') ? n.link : '/news'}>{n.title}</a>
+              <a href={`/news/${newsSlug(n)}/`}>{n.title}</a>
             </li>
           ))
         }
@@ -205,10 +226,10 @@ const glance = [
   <section class="section">
     <div class="wrap cta">
       <h2>Work with us</h2>
-      <p>
-        We are recruiting two MSc students and one PhD student for the 2026 intake, and welcome
-        enquiries from visiting researchers and industry partners working on floating wind and
-        marine structural integrity.
+      <p>{recruitment.summary}</p>
+      <p class="muted">
+        <strong>{recruitmentStatusLabel()}:</strong> {positionsLabel()} for the {recruitment.intake}.
+        Undergraduate research slots are {recruitment.undergraduateSlotsAvailable ? 'available' : 'currently full'}.
       </p>
       <p>
         <a class="btn" href="/join-us">Opportunities</a>
@@ -262,7 +283,7 @@ const glance = [
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 25rem);
     gap: clamp(1.5rem, 5vw, 3.5rem);
     align-items: center;
   }
@@ -307,14 +328,42 @@ const glance = [
     color: #fff;
   }
 
-  .hero-logo {
-    width: 100%;
-    max-width: 16rem;
-    justify-self: end;
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 1.1rem;
+  .proof {
+    background: var(--c-navy-deep);
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-block: 1.4rem 1.1rem;
   }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-block: 0;
+  }
+
+  .proof-grid div {
+    padding-inline: 1.1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .proof-grid div:first-child {
+    border-left: 0;
+  }
+
+  .proof-grid dt {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.64);
+  }
+
+  .proof-grid dd {
+    margin: 0.15rem 0 0;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
 
   /* Shared section head ----------------------------------------------- */
   .head {
@@ -623,9 +672,13 @@ const glance = [
       grid-template-columns: 1fr;
     }
 
-    .hero-logo {
-      justify-self: start;
-      max-width: 11rem;
+    .proof-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem 0;
+    }
+
+    .proof-grid div:nth-child(odd) {
+      border-left: 0;
     }
 
     .glance {

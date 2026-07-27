@@ -1,7 +1,7 @@
 {
   "name": "SMI Lab",
   "fullName": "Marine Structural Mechanics and Integrity Lab",
-  "shortDescription": "Marine structural integrity research at Inha University: virtual sensing of mooring line tension, dynamic power cable fatigue for floating offshore wind turbines, ultimate strength, and ductile fracture mechanics.",
+  "shortDescription": "SMI Lab at Inha University researches offshore wind moorings and dynamic power cables, ship ultimate strength, virtual sensing, and ductile fracture.",
   "department": "Department of Naval Architecture and Ocean Engineering",
   "university": "Inha University",
   "address": "100 Inha-ro, 2N481, Michuhol-gu, Incheon 22212, Republic of Korea",
@@ -9,36 +9,30 @@
   "values": ["Creativity", "Openness", "Responsibility", "Excellence"],
   "legacySiteUrl": "https://sites.google.com/inha.ac.kr/smi-lab",
   "nav": [
-    { "label": "Home", "href": "/" },
-    {
-      "label": "Team",
-      "href": "/team",
-      "children": [
-        { "label": "Director", "href": "/team/director" },
-        { "label": "Current members", "href": "/team/current-members" },
-        { "label": "Alumni", "href": "/team/alumni" }
-      ]
-    },
     {
       "label": "Research",
-      "href": "/research",
+      "href": "/research/",
       "children": [
         { "label": "Research areas", "href": "/research/research-areas" },
-        { "label": "Software & facilities", "href": "/research/software" },
-        { "label": "Projects", "href": "/research/projects" }
+        { "label": "Funded projects", "href": "/research/projects" }
       ]
     },
+    { "label": "Software", "href": "/research/software" },
     {
-      "label": "Publications",
-      "href": "/publications",
+      "label": "People",
+      "href": "/team/",
       "children": [
-        { "label": "Journal papers", "href": "/publications/journal-papers" },
-        { "label": "Conference proceedings", "href": "/publications/conference-proceedings" }
+        { "label": "Director", "href": "/team/director" },
+        { "label": "Current members", "href": "/team/current-members" }
       ]
     },
-    { "label": "Teaching", "href": "/teaching" },
+    { "label": "Publications", "href": "/publications/journal-papers" },
     { "label": "News", "href": "/news" },
-    { "label": "Join us", "href": "/join-us" },
-    { "label": "Links", "href": "/links" }
+    { "label": "Opportunities", "href": "/join-us" }
+  ],
+  "secondaryNav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Teaching", "href": "/teaching" },
+    { "label": "External links", "href": "/links" }
   ]
 }

@@ -2,23 +2,24 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import d from '../../data/director.json';
+import { alumni } from '../../data/content';
 
 const sections = [
   { href: '/team/director', title: 'Director', text: `${d.name} — ${d.title}.` },
   {
     href: '/team/current-members',
     title: 'Current members',
-    text: 'Postdoctoral researchers and graduate students working in the lab.',
+    text: 'The founding cohort of undergraduate researchers working across the lab’s research programme.',
   },
   {
     href: '/team/alumni',
     title: 'Alumni',
     text: 'Former members, their theses, and where they went next.',
   },
-];
+].filter((section) => section.href !== '/team/alumni' || alumni.length > 0);
 ---
 
-<Base title="Team" description="The people of the SMI Lab.">
+<Base title="Team" description="Professor Jae Hoon Seo and the founding student research cohort of the SMI Lab at Inha University.">
   <PageHeader eyebrow="People" title="Team" />
 
   <section class="section">

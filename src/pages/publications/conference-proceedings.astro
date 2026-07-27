@@ -1,15 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import PublicationList from '../../components/PublicationList.astro';
-import publications from '../../data/publications.json';
+import { publications } from '../../data/content';
 
-const items = (publications as any[]).filter((p) => p.type === 'conference');
+const items = publications.filter((p) => p.type === 'conference');
 ---
 
 <Base
   title="Conference proceedings"
   description="Conference papers and proceedings from the SMI Lab."
+  noindex
 >
   <PageHeader
     eyebrow="Publications"
@@ -19,11 +19,31 @@ const items = (publications as any[]).filter((p) => p.type === 'conference');
 
   <section class="section">
     <div class="wrap">
-      <PublicationList
-        items={items}
-        emptyWhat="No conference papers are listed yet."
-        emptyHow="Add entries to src/data/publications.json with type: 'conference'."
-      />
+      {
+        items.length === 0 ? (
+          <div class="empty-state">
+            <p class="eyebrow">Publication record</p>
+            <h2>No conference proceedings are listed</h2>
+            <p class="muted">
+              The current verified publication record contains journal articles only. Conference
+              proceedings will appear here when they enter the lab’s verified record.
+            </p>
+            <p><a href="/publications/journal-papers">Browse journal papers</a></p>
+          </div>
+        ) : null
+      }
     </div>
   </section>
 </Base>
+
+<style>
+  .empty-state {
+    max-width: 42rem;
+    border-left: 3px solid var(--c-accent);
+    padding: 0.25rem 0 0.25rem 1.2rem;
+  }
+
+  .empty-state h2 {
+    margin-top: 0;
+  }
+</style>

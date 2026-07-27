@@ -32,7 +32,7 @@ CV.pdf
 CLAUDE.md
 Bob - research statement.*
 
-# Source photographs — only the processed WebP under public/ is committed
+# Source photographs — only processed assets under src/assets/images are committed
 photos/
 
 # Planning documents kept local
