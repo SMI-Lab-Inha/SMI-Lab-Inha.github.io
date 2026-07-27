@@ -1,50 +1,5 @@
 [
   {
-    "group": "Lab",
-    "items": [
-      {
-        "label": "SMI-Lab-Inha on GitHub",
-        "url": "https://github.com/SMI-Lab-Inha",
-        "note": "Open-source research software"
-      },
-      {
-        "label": "OpenFAST syntax highlighting — VS Code Marketplace",
-        "url": "https://marketplace.visualstudio.com/items?itemName=SMI-Lab.openfast-rosco-syntax-highlighting",
-        "note": "VS Code extension"
-      }
-    ]
-  },
-  {
-    "group": "Director profiles",
-    "items": [
-      {
-        "label": "Google Scholar",
-        "url": "https://scholar.google.com/citations?user=Xg3d6y4AAAAJ",
-        "note": ""
-      },
-      {
-        "label": "ORCID 0000-0003-1047-2119",
-        "url": "https://orcid.org/0000-0003-1047-2119",
-        "note": ""
-      },
-      {
-        "label": "Scopus Author ID 55642087100",
-        "url": "https://www.scopus.com/authid/detail.uri?authorId=55642087100",
-        "note": ""
-      },
-      {
-        "label": "Web of Science ResearcherID M-2083-2016",
-        "url": "https://www.webofscience.com/wos/author/rid/M-2083-2016",
-        "note": ""
-      },
-      {
-        "label": "ResearchGate",
-        "url": "https://www.researchgate.net/profile/Jae-Hoon-Seo",
-        "note": ""
-      }
-    ]
-  },
-  {
     "group": "Inha University",
     "items": [
       {

@@ -5,43 +5,65 @@ import Pending from '../components/Pending.astro';
 import links from '../data/links.json';
 
 const groups = (links as any[]).filter((g) => g.items.length > 0);
+const count = groups.reduce((a, g) => a + g.items.length, 0);
 ---
 
-<Base title="Links" description="University, society, and resource links related to the SMI Lab.">
-  <PageHeader eyebrow="Reference" title="Links" />
+<Base
+  title="Links"
+  description="External resources for marine structural integrity and offshore renewable energy: universities, learned societies, classification societies, research institutes, funding agencies, and the field's principal journals."
+>
+  <PageHeader
+    eyebrow="Reference"
+    title="Links"
+    lead="External organisations, institutes and journals relevant to marine structures and offshore renewable energy."
+  />
 
   <section class="section">
     <div class="wrap">
+      <p class="note">
+        These are outside resources we refer to, not lab pages. Our own software is on the
+        <a href="/research/software">Software &amp; facilities</a> page, and Professor Seo's
+        author profiles are listed on the <a href="/team/director">Director</a> page.
+      </p>
+
       {
         groups.length === 0 ? (
-          <Pending
-            what="No links are listed yet."
-            how="Add entries to src/data/links.json."
-          />
+          <Pending what="No links are listed yet." how="Add entries to src/data/links.json." />
         ) : (
-          groups.map((g) => (
-            <div class="group">
-              <h2>{g.group}</h2>
-              <ul class="list-plain">
-                {g.items.map((item: any) => (
-                  <li>
-                    {item.url ? <a href={item.url}>{item.label}</a> : <span>{item.label}</span>}
-                    {item.note && (
-                      <span class="muted">
-                        {' '}
-                        —{' '}
-                        {item.note.startsWith('TODO') ? (
-                          <span class="todo">{item.note}</span>
+          <>
+            <p class="count">{count} links across {groups.length} categories</p>
+            <div class="cols">
+              {groups.map((g) => (
+                <section class="group">
+                  <h2>{g.group}</h2>
+                  <ul class="list-plain">
+                    {g.items.map((item: any) => (
+                      <li>
+                        {item.url ? (
+                          <a href={item.url} rel="external noopener">
+                            {item.label}
+                          </a>
                         ) : (
-                          item.note
+                          <span>{item.label}</span>
                         )}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
+                        {item.note && (
+                          <span class="muted">
+                            {' '}
+                            —{' '}
+                            {item.note.startsWith('TODO') ? (
+                              <span class="todo">{item.note}</span>
+                            ) : (
+                              item.note
+                            )}
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
             </div>
-          ))
+          </>
         )
       }
     </div>
@@ -49,18 +71,76 @@ const groups = (links as any[]).filter((g) => g.items.length > 0);
 </Base>
 
 <style>
-  .group + .group {
-    margin-top: 2.5rem;
+  .note {
+    border-left: 3px solid var(--c-accent);
+    background: var(--c-bg-subtle);
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.94rem;
+    max-width: 66ch;
+  }
+
+  .count {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    margin: 2rem 0 1rem;
+  }
+
+  /* Long lists read better in columns on a wide screen; groups are kept
+     whole so a heading never separates from its list. */
+  .cols {
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+
+  .group {
+    break-inside: avoid;
+    margin-bottom: 2rem;
   }
 
   .group h2 {
     margin-top: 0;
-    font-size: 1.2rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--c-border);
+    font-size: 1.05rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--c-accent);
   }
 
   .group li {
-    padding-block: 0.45rem;
+    padding-block: 0.32rem;
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  .group a {
+    text-decoration: none;
+  }
+
+  .group a:hover {
+    text-decoration: underline;
+  }
+
+  /* The journals group is long; let it run full width rather than
+     stranding twenty items in one narrow column. */
+  .group:last-child {
+    column-span: all;
+  }
+
+  .group:last-child ul {
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+
+  .group:last-child li {
+    break-inside: avoid;
+  }
+
+  @media (max-width: 720px) {
+    .cols,
+    .group:last-child ul {
+      columns: 1;
+    }
   }
 </style>
