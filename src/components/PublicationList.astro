@@ -10,86 +10,225 @@ interface Props {
 const { items, emptyWhat, emptyHow } = Astro.props;
 
 const years = [...new Set(items.map((p) => p.year))].sort((a, b) => Number(b) - Number(a));
+
+// Both of the director's author forms, so his name is emphasised in every
+// entry regardless of which name the paper was published under.
+const SELF = ['Seo JH', 'Cerik BC'];
+
+function splitAuthors(authors: string) {
+  return authors.split(', ').map((a) => ({ name: a, self: SELF.includes(a.trim()) }));
+}
+
+// Number the whole list continuously, newest first, the way a CV does.
+let n = items.length;
+const numbered = new Map<any, number>();
+for (const year of years) {
+  for (const p of items.filter((x) => x.year === year)) {
+    numbered.set(p, n--);
+  }
+}
 ---
 
 {
   items.length === 0 ? (
     <Pending what={emptyWhat} how={emptyHow} />
   ) : (
-    years.map((year) => (
-      <section class="year-block">
-        <h2>{year}</h2>
-        <ol class="list-plain pubs">
-          {items
-            .filter((p) => p.year === year)
-            .map((p) => (
-              <li>
-                <p class="pub-authors">{p.authors}</p>
-                <p class="pub-title">
-                  {p.url || p.doi ? (
-                    <a href={p.url || `https://doi.org/${p.doi}`}>{p.title}</a>
-                  ) : (
-                    p.title
-                  )}
-                </p>
-                <p class="pub-venue">
-                  <em>{p.venue}</em>
-                  {p.volume && <span>, {p.volume}</span>}
-                  {p.pages && <span>, {p.pages}</span>}
-                  {p.doi && (
-                    <span class="doi">
-                      {' '}
-                      · <a href={`https://doi.org/${p.doi}`}>doi:{p.doi}</a>
-                    </span>
-                  )}
-                </p>
-              </li>
-            ))}
-        </ol>
-      </section>
-    ))
+    <>
+      <nav class="jump" aria-label="Jump to year">
+        {years.map((y) => (
+          <a href={`#y${y}`}>{y}</a>
+        ))}
+      </nav>
+
+      {years.map((year) => {
+        const inYear = items.filter((p) => p.year === year);
+        return (
+          <section class="year-block">
+            <h2 id={`y${year}`}>
+              {year}
+              <span class="count">
+                {inYear.length} {inYear.length === 1 ? 'paper' : 'papers'}
+              </span>
+            </h2>
+            <ol class="list-plain pubs">
+              {inYear.map((p) => (
+                <li>
+                  <span class="num">{numbered.get(p)}.</span>
+                  <div>
+                    <p class="pub-authors">
+                      {splitAuthors(p.authors).map((a, i, arr) => (
+                        <>
+                          {a.self ? <strong>{a.name}</strong> : a.name}
+                          {i < arr.length - 1 ? ', ' : ''}
+                        </>
+                      ))}
+                    </p>
+                    <p class="pub-title">
+                      {p.doi ? <a href={`https://doi.org/${p.doi}`}>{p.title}</a> : p.title}
+                    </p>
+                    <p class="pub-venue">
+                      <em>{p.venue}</em>
+                      {p.volume && <span> {p.volume}</span>}
+                      {p.pages && <span>: {p.pages}</span>}
+                    </p>
+                    {p.doi && (
+                      <p class="pub-doi">
+                        <a href={`https://doi.org/${p.doi}`}>
+                          <span class="doi-tag">DOI</span>
+                          {p.doi}
+                        </a>
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        );
+      })}
+    </>
   )
 }
 
 <style>
-  .year-block h2 {
-    font-size: 1.3rem;
-    margin-top: 2.6rem;
-    padding-bottom: 0.4rem;
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.2rem;
     border-bottom: 1px solid var(--c-border);
+  }
+
+  .jump a {
+    font-family: var(--font-sans);
+    font-size: 0.83rem;
+    text-decoration: none;
+    padding: 0.2em 0.65em;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    color: var(--c-text-muted);
+  }
+
+  .jump a:hover {
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+    background: var(--c-accent-soft);
+  }
+
+  .year-block h2 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1.45rem;
+    margin-top: 2.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--c-accent);
+    scroll-margin-top: 1.5rem;
   }
 
   .year-block:first-of-type h2 {
     margin-top: 0;
   }
 
+  .count {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+
   .pubs li {
-    padding-block: 1rem;
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: 0.4rem;
+    padding-block: 1.1rem;
     border-bottom: 1px solid var(--c-border);
     max-width: none;
   }
 
+  .num {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    color: var(--c-text-faint);
+    padding-top: 0.15rem;
+  }
+
   .pubs p {
     margin: 0;
-    max-width: 78ch;
+    max-width: 76ch;
   }
 
   .pub-authors {
-    font-size: 0.92rem;
+    font-size: 0.94rem;
     color: var(--c-text-muted);
+  }
+
+  .pub-authors strong {
+    color: var(--c-text);
   }
 
   .pub-title {
+    font-size: 1.05rem;
     font-weight: 600;
-    margin-block: 0.15rem;
+    margin-block: 0.2rem;
+    line-height: 1.4;
+  }
+
+  .pub-title a {
+    text-decoration: none;
+    color: var(--c-text);
+  }
+
+  .pub-title a:hover {
+    color: var(--c-accent);
+    text-decoration: underline;
   }
 
   .pub-venue {
-    font-size: 0.92rem;
+    font-size: 0.94rem;
     color: var(--c-text-muted);
   }
 
-  .doi {
+  .pub-doi {
+    margin-top: 0.35rem;
+  }
+
+  .pub-doi a {
+    font-family: var(--font-mono);
+    font-size: 0.79rem;
+    text-decoration: none;
+    color: var(--c-text-muted);
     word-break: break-all;
+  }
+
+  .pub-doi a:hover {
+    color: var(--c-accent);
+  }
+
+  .doi-tag {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    background: var(--c-accent-soft);
+    color: var(--c-accent-hover);
+    border-radius: 3px;
+    padding: 0.1em 0.4em;
+    margin-right: 0.5em;
+  }
+
+  @media (max-width: 560px) {
+    .pubs li {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
+    }
+
+    .num {
+      display: none;
+    }
   }
 </style>

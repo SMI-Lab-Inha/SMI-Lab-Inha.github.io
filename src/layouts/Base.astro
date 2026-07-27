@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
+import d from '../data/director.json';
 
 interface Props {
   title: string;
@@ -12,6 +13,68 @@ interface Props {
 const { title, description = site.shortDescription } = Astro.props;
 const pageTitle = title === site.fullName ? title : `${title} · ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+
+// Structured data: search engines and Google Scholar use this to connect the
+// lab, the director, and his two published author names to one identity.
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ResearchOrganization',
+      '@id': `${origin}/#lab`,
+      name: site.fullName,
+      alternateName: ['SMI Lab', '선박해양 구조역학 및 구조건전성평가 연구실'],
+      url: origin,
+      email: site.email,
+      description: site.shortDescription,
+      parentOrganization: {
+        '@type': 'CollegeOrUniversity',
+        name: site.university,
+        url: 'https://www.inha.ac.kr/',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '100 Inha-ro, 2N481',
+        addressLocality: 'Michuhol-gu, Incheon',
+        postalCode: '22212',
+        addressCountry: 'KR',
+      },
+      knowsAbout: [
+        'marine structural integrity',
+        'mooring line tension estimation',
+        'dynamic power cable fatigue',
+        'floating offshore wind turbines',
+        'ductile fracture mechanics',
+        'ultimate strength of ship structures',
+        'structural digital twins',
+        'virtual sensing',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': `${origin}/team/director#person`,
+      name: d.name,
+      alternateName: [d.formerName, d.nameKo],
+      jobTitle: d.title,
+      email: d.email,
+      telephone: d.phone,
+      identifier: `https://orcid.org/${d.orcid}`,
+      url: `${origin}/team/director`,
+      affiliation: { '@id': `${origin}/#lab` },
+      worksFor: { '@id': `${origin}/#lab` },
+      sameAs: d.profiles.filter((p) => p.url).map((p) => p.url),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${origin}/#website`,
+      url: origin,
+      name: site.fullName,
+      publisher: { '@id': `${origin}/#lab` },
+      inLanguage: 'en',
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -34,6 +97,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
     <link rel="icon" href="/images/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/images/favicon-180.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
 
   <body>

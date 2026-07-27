@@ -28,10 +28,12 @@
   --c-accent-hover: #003f7d;
   --c-accent-soft: #e8f4fd;
 
-  /* Type */
+  /* Type — a transitional serif for prose, in the manner of a British
+     university department; sans reserved for navigation, labels and buttons. */
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+    Georgia, Cambria, "Times New Roman", "Noto Serif KR", serif;
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   /* Rhythm */
@@ -98,9 +100,9 @@ body {
   margin: 0;
   background: var(--c-bg);
   color: var(--c-text);
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.72;
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-direction: column;
@@ -136,11 +138,22 @@ h3 {
   margin-top: 1.8em;
 }
 h4 {
-  font-size: 1rem;
+  font-size: 0.82rem;
   font-family: var(--font-sans);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--c-text-muted);
+}
+
+/* Navigation, buttons and small labels stay in the sans face so the serif
+   is reserved for reading matter. */
+.btn,
+.eyebrow,
+.todo,
+input,
+button,
+select {
+  font-family: var(--font-sans);
 }
 
 p,
