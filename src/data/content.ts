@@ -69,7 +69,10 @@ export const softwareSchema = z.object({
   name: z.string().min(1),
   expansion: optionalText,
   description: z.string().min(1),
-  status: z.enum(['public', 'alpha', 'in-development']),
+  status: z.enum(['public', 'beta', 'alpha', 'in-development']),
+  language: z.string().optional().default(''),
+  licence: z.string().optional().default(''),
+  version: z.string().optional().default(''),
   repo: optionalUrl,
   docs: optionalUrl,
 });

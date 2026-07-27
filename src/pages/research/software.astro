@@ -5,7 +5,8 @@ import { software } from '../../data/content';
 
 const statusLabel: Record<string, string> = {
   public: 'Public',
-  alpha: 'Private — release planned with first publication',
+  beta: 'Private — beta, release planned with first publication',
+  alpha: 'Private — alpha, release planned with first publication',
   'in-development': 'In development',
 };
 ---
@@ -43,6 +44,11 @@ const statusLabel: Record<string, string> = {
                 {s.expansion && <span class="expansion"> — {s.expansion}</span>}
               </h3>
               <p class="muted">{s.description}</p>
+              {(s.language || s.licence || s.version) && (
+                <p class="facts">
+                  {[s.language, s.licence, s.version].filter(Boolean).join(' · ')}
+                </p>
+              )}
               <p class="status">
                 <span class={`pill ${s.status === 'public' ? 'pill--live' : ''}`}>
                   {statusLabel[s.status]}
@@ -183,6 +189,13 @@ const statusLabel: Record<string, string> = {
     font-weight: 400;
     font-size: 0.88rem;
     color: var(--c-text-muted);
+  }
+
+  .facts {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--c-text-faint);
+    margin-bottom: 0.6rem;
   }
 
   .status {
