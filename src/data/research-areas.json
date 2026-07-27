@@ -15,6 +15,7 @@
     "slug": "ultimate-strength",
     "title": "Ultimate strength and progressive collapse of ship and offshore structures",
     "summary": "The ultimate limit state of a hull girder or a stiffened panel is still computed today with methods whose numerical form has barely changed since the 1980s. We work on the collapse behaviour itself — buckling, load shedding, and interaction between failure modes — and on reformulating classical strength methods in modern differentiable computing frameworks, so that gradient-based design optimisation and sensitivity analysis become natural rather than bolted on.",
+    "lineage": "This thrust continues the incremental–iterative tradition of simplified progressive collapse analysis developed at Newcastle University, whose methods for the elasto-plastic collapse of plates and stiffened panels were taken into the UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
     "topics": [
       "Progressive collapse of hull girders under combined and unsymmetrical loading",
       "Ultimate strength of stiffened panels including welding residual stress and deformation effects",

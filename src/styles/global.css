@@ -19,14 +19,16 @@
   --c-text-muted: #5a6a7f;
   --c-text-faint: #8593a6;
 
-  /* Brand — the lab's official palette, as defined in the LaTeX templates:
-     smiblue #005BAC, smicyan #00AFEC, lightblue #E8F4FD, neutral #2C3E50. */
-  --c-navy: #005bac;
-  --c-navy-deep: #00417c;
-  --c-cyan: #00afec;
-  --c-accent: #005bac;
-  --c-accent-hover: #003f7d;
-  --c-accent-soft: #e8f4fd;
+  /* Brand — Inha University's Modern Metallic livery (2025/26):
+     Dark Blue #051766, Metallic Sky Blue #53AAE2, White #FFFFFF.
+     Sky blue carries only about 2.3:1 against white, so it is used for rules,
+     pills and dark-mode text rather than for links on a light background. */
+  --c-navy: #051766;
+  --c-navy-deep: #030d3d;
+  --c-sky: #53aae2;
+  --c-accent: #051766;
+  --c-accent-hover: #030d3d;
+  --c-accent-soft: #eaf4fc;
 
   /* Type — Helvetica throughout. macOS resolves the first two names to the real
      thing; elsewhere the self-hosted Arimo takes over, which is metrically
@@ -60,12 +62,12 @@
     --c-text-muted: #a3b2c4;
     --c-text-faint: #7b8b9f;
 
-    --c-navy: #0d1520;
-    --c-navy-deep: #070d15;
-    --c-cyan: #00afec;
-    --c-accent: #35b9ee;
-    --c-accent-hover: #6fcef4;
-    --c-accent-soft: #10293c;
+    --c-navy: #050b1e;
+    --c-navy-deep: #02060f;
+    --c-sky: #53aae2;
+    --c-accent: #53aae2;
+    --c-accent-hover: #86c6ec;
+    --c-accent-soft: #0d1b33;
 
     color-scheme: dark;
   }

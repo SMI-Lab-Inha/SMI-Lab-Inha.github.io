@@ -74,6 +74,12 @@ const FIGURES: Record<string, { src: string; alt: string; caption: string }> = {
                 </figure>
               )}
 
+              {'lineage' in area && area.lineage && (
+                <p class="lineage">
+                  <strong>Where this comes from.</strong> {area.lineage}
+                </p>
+              )}
+
               {'emerging' in area && area.emerging && (
                 <p class="aside">
                   <strong>Emerging direction.</strong> {area.emerging}
@@ -177,6 +183,15 @@ const FIGURES: Record<string, { src: string; alt: string; caption: string }> = {
 
   .topics li {
     margin-bottom: 0.5rem;
+  }
+
+  .lineage {
+    font-size: 0.94rem;
+    border-left: 3px solid var(--c-sky);
+    padding: 0.8rem 1.1rem;
+    background: var(--c-accent-soft);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    max-width: 72ch;
   }
 
   .aside,

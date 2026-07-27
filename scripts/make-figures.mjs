@@ -6,12 +6,14 @@ import fs from 'node:fs';
 const OUT = 'public/images/figures';
 fs.mkdirSync(OUT, { recursive: true });
 
-const NAVY = '#005BAC';
-const CYAN = '#00AFEC';
+const NAVY = '#051766';
+const CYAN = '#53AAE2';
 const INK = '#2C3E50';
 const MUTE = '#7b8b9f';
-const LIGHT = '#E8F4FD';
-const FONT = "Cabin, ui-sans-serif, system-ui, 'Segoe UI', Arial, sans-serif";
+const LIGHT = '#EAF4FC';
+// Matches the site's body face. SVG loaded via <img> cannot reach our webfonts,
+// so this resolves to the system Helvetica or Arial, which are metric twins.
+const FONT = "'Helvetica Neue', Helvetica, Arial, sans-serif";
 
 const head = (w, h, title, desc) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img" aria-labelledby="figTitle figDesc">
