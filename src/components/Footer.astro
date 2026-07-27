@@ -18,6 +18,9 @@ const profiles = d.profiles.filter((p) => p.url);
       <p class="footer-meta">
         <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
+      <p class="footer-meta">
+        Director: Professor {d.name}, publishing before 2026 as {d.formerName}.
+      </p>
       <ul class="footer-profiles list-plain">
         {
           profiles.map((p) => (

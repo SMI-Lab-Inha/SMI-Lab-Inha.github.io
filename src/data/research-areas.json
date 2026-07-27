@@ -9,7 +9,17 @@
       "Cross-section mechanics of layered power cable constructions, linking manufacturer-level cable design to the stiffness properties used in global dynamic analysis",
       "Long-term fatigue assessment of moorings and cables under site-specific metocean conditions, connecting design load case simulation to damage accumulation"
     ],
-    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn, CableXsec, VANE, and fowt-moor-dt; Bayesian filtering and surrogate modelling in Python."
+    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn, CableXsec, VANE, and fowt-moor-dt; Bayesian filtering and surrogate modelling in Python.",
+    "selected": [
+      "10.1016/j.oceaneng.2026.126528",
+      "10.1016/j.oceaneng.2024.118810",
+      "10.1016/j.oceaneng.2025.120970",
+      "10.1016/j.oceaneng.2025.120525"
+    ],
+    "funding": [
+      "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines — Inha University New Faculty Research Grant, 2026/3–2027/2",
+      "Machine Learning-Based Tension Prediction for FOWT Mooring Lines — Inha University New Faculty Research Grant, 2025/3–2026/2"
+    ]
   },
   {
     "slug": "ultimate-strength",
@@ -21,7 +31,14 @@
       "Ultimate strength of stiffened panels including welding residual stress and deformation effects",
       "Differentiable reimplementation of incremental collapse methods in JAX, enabling automatic sensitivities of ultimate strength with respect to scantlings and material parameters"
     ],
-    "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; our in-house package pyULSAN."
+    "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; our in-house package pyULSAN.",
+    "selected": [
+      "10.1016/j.oceaneng.2025.123159",
+      "10.3390/jmse8120988",
+      "10.1016/j.tws.2017.10.030",
+      "10.1016/j.tws.2015.07.004",
+      "10.2478/IJNAOE-2013-0120"
+    ]
   },
   {
     "slug": "fracture-and-impact",
@@ -32,6 +49,13 @@
       "Simulation of ship collision, dropped objects, and underwater explosion response, up to accidental limit state assessment",
       "Engineering critical assessment (ECA) and fitness-for-service evaluation of flawed structures"
     ],
-    "emerging": "Fracture and defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels and hydrogen effects on structural materials. This is an opening research direction rather than an established programme."
+    "emerging": "Fracture and defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels and hydrogen effects on structural materials. This is an opening research direction rather than an established programme.",
+    "selected": [
+      "10.1016/j.marstruc.2019.01.004",
+      "10.1080/17445302.2019.1565300",
+      "10.1016/j.ijimpeng.2020.103697",
+      "10.1016/j.marstruc.2020.102787",
+      "10.1016/j.oceaneng.2022.112930"
+    ]
   }
 ]

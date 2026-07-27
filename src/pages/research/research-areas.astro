@@ -2,6 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import areas from '../../data/research-areas.json';
+import publications from '../../data/publications.json';
+
+// Thrusts store DOIs only; the citation itself is resolved from the publication
+// record at build time, so the two can never drift apart.
+const byDoi = new Map((publications as any[]).map((p) => [p.doi, p]));
+const cite = (doi: string) => byDoi.get(doi);
 ---
 
 <Base
@@ -41,6 +47,43 @@ import areas from '../../data/research-areas.json';
                   <li>{topic}</li>
                 ))}
               </ul>
+
+              {'funding' in area && area.funding && (
+                <div class="funding">
+                  <h3>Funded by</h3>
+                  <ul>
+                    {area.funding.map((f: string) => (
+                      <li>{f}</li>
+                    ))}
+                  </ul>
+                  <p>
+                    <a href="/research/projects">All projects</a>
+                  </p>
+                </div>
+              )}
+
+              {'selected' in area && area.selected && area.selected.length > 0 && (
+                <div class="selected">
+                  <h3>Selected publications</h3>
+                  <ol class="list-plain">
+                    {area.selected.map((doi: string) => {
+                      const p = cite(doi);
+                      return p ? (
+                        <li>
+                          <span class="cite-authors">{p.authors}</span> ({p.year}).{' '}
+                          <a href={`https://doi.org/${p.doi}`}>{p.title}</a>.{' '}
+                          <em>{p.venue}</em>
+                          {p.volume && <span> {p.volume}</span>}
+                          {p.pages && <span>: {p.pages}</span>}.
+                        </li>
+                      ) : null;
+                    })}
+                  </ol>
+                  <p>
+                    <a href="/publications/journal-papers">The full list</a>
+                  </p>
+                </div>
+              )}
 
               {'lineage' in area && area.lineage && (
                 <p class="lineage">
@@ -151,6 +194,57 @@ import areas from '../../data/research-areas.json';
 
   .topics li {
     margin-bottom: 0.5rem;
+  }
+
+  .funding ul {
+    padding-left: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .funding li {
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .funding p,
+  .selected p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .selected ol {
+    counter-reset: cite;
+    margin-bottom: 0.7rem;
+  }
+
+  .selected li {
+    counter-increment: cite;
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.93rem;
+    line-height: 1.5;
+    max-width: 76ch;
+  }
+
+  .selected li::before {
+    content: counter(cite) '.';
+    position: absolute;
+    left: 0;
+    color: var(--c-text-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cite-authors {
+    color: var(--c-text-muted);
+  }
+
+  .selected a {
+    text-decoration: none;
+  }
+
+  .selected a:hover {
+    text-decoration: underline;
   }
 
   .lineage {

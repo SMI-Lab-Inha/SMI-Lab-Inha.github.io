@@ -34,3 +34,6 @@ Bob - research statement.*
 
 # Source photographs — only the processed WebP under public/ is committed
 photos/
+
+# Planning documents kept local
+smi-lab-site-update-plan.md

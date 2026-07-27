@@ -6,7 +6,10 @@ import d from '../../data/director.json';
 const profiles = d.profiles.filter((p) => p.url);
 ---
 
-<Base title="Director" description={`${d.name} — ${d.title}, Inha University.`}>
+<Base
+  title="Director"
+  description={`${d.name} — ${d.title}, Department of Naval Architecture and Ocean Engineering, Inha University (published as ${d.formerName} until 2025).`}
+>
   <PageHeader eyebrow="Team" title="Director" />
 
   <section class="section">
