@@ -80,24 +80,20 @@ const statusLabel: Record<string, string> = {
 
       <h2 id="computing">Computing</h2>
       <p>
-        The lab's primary system is a Lenovo ThinkStation P8 workstation with an AMD Ryzen
-        Threadripper PRO processor, 128 GB of DDR5-4800 ECC memory, and PCIe Gen4 NVMe
-        storage, configured for sustained nonlinear finite element simulation, OpenFAST design
-        load case batches, and parametric studies.
+        The lab runs two Lenovo ThinkStation P8 workstations, configured for sustained
+        nonlinear finite element simulation, OpenFAST design load case batches, and parametric
+        studies.
       </p>
-      <p>
-        <span class="todo">TODO(user)</span> The exact processor and GPU need confirming before
-        this is stated publicly: the Lenovo order in the lab records specifies a Threadripper
-        PRO 7945WX with an NVIDIA T1000, whereas the website revision notes assert the machine
-        in 2N481 is a 7965WX with an RTX 2000 Ada. The uncontested specifications are published
-        above; add the processor and GPU to this paragraph once resolved.
-      </p>
-
-      <p>
-        <span class="todo">TODO(user)</span> The pyULSAN and fowt-moor-dt repositories do not yet
-        exist under the GitHub organisation. Once created, add their URLs to
-        <code>src/data/software.json</code>.
-      </p>
+      <ul>
+        <li>
+          AMD Ryzen Threadripper PRO 7965WX (24 cores / 48 threads) with an NVIDIA RTX 2000
+          Ada 16 GB.
+        </li>
+        <li>
+          AMD Ryzen Threadripper PRO 7945WX (12 cores / 24 threads), 128 GB DDR5 ECC memory,
+          NVIDIA T1000 8 GB, and 2 TB + 1 TB NVMe with 2 TB HDD storage.
+        </li>
+      </ul>
     </div>
   </section>
 </Base>

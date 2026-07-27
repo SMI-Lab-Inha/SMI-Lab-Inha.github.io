@@ -12,14 +12,14 @@
   "bio": "Professor Jae Hoon Seo directs the Marine Structural Mechanics and Integrity Lab at Inha University. He works on the structural integrity of ships and offshore wind structures, spanning ductile fracture and impact mechanics, ultimate strength, and, in the lab's current programme, virtual sensing and digital twin methods for floating offshore wind turbine moorings and dynamic power cables. Before March 2025 he held faculty positions at Cranfield University and Newcastle University in Singapore, and a principal researcher position at Inha University.",
   "education": [
     {
-      "degree": "PhD in Naval Architecture and Ocean Engineering",
+      "degree": "PhD in Naval Architecture",
       "institution": "University of Ulsan, Republic of Korea",
       "year": "2014",
       "note": ""
     },
     {
       "degree": "MSc in Mechanical Engineering",
-      "institution": "Gebze Technical University, Türkiye",
+      "institution": "Gebze Institute of Technology, Türkiye",
       "year": "2011",
       "note": ""
     },
@@ -27,51 +27,67 @@
       "degree": "BSc in Naval Architecture and Marine Engineering",
       "institution": "Istanbul Technical University, Türkiye",
       "year": "2009",
-      "note": "First in class"
+      "note": "Ranked first in class"
     }
   ],
   "appointments": [
     {
       "role": "Assistant Professor",
-      "institution": "Inha University",
-      "period": "2025.03 – present",
-      "note": "Marine structural mechanics and structural integrity"
+      "institution": "Inha University, South Korea",
+      "period": "03/2025 – present",
+      "note": ""
     },
     {
-      "role": "Assistant Professor",
-      "institution": "Cranfield University, United Kingdom",
-      "period": "2023.06 – 2025.02",
-      "note": "Ductile fracture mechanics, ship collision analysis, and structural crashworthiness research"
+      "role": "Assistant Professor in Mechanical Engineering",
+      "institution": "Cranfield University, UK",
+      "period": "06/2023 – 02/2025",
+      "note": ""
     },
     {
       "role": "Principal Researcher",
-      "institution": "Inha University",
-      "period": "2017.09 – 2023.05",
+      "institution": "Inha University, South Korea",
+      "period": "09/2017 – 05/2023",
       "note": ""
     },
     {
-      "role": "Assistant Professor",
-      "institution": "Newcastle University in Singapore",
-      "period": "2014.08 – 2017.08",
+      "role": "Assistant Professor in Marine Structures",
+      "institution": "Newcastle University, Singapore",
+      "period": "08/2014 – 08/2017",
       "note": ""
     },
     {
-      "role": "System Engineer",
+      "role": "Naval Systems Engineer",
       "institution": "STM A.Ş., Türkiye",
-      "period": "2009.10 – 2010.08",
+      "period": "10/2009 – 08/2010",
       "note": ""
     }
   ],
   "qualifications": [
-    "Chartered Engineer (CEng) — Engineering Council, United Kingdom",
-    "Chartered Marine Engineer (CMarEng) — IMarEST, United Kingdom",
-    "Fellow of Advance HE (FHEA) — United Kingdom"
+    "Chartered Engineer (CEng) — Engineering Council, UK",
+    "Chartered Marine Engineer (CMarEng) — Institute of Marine Engineering, Science and Technology, UK",
+    "Member (MIMarEST) — Institute of Marine Engineering, Science and Technology, UK",
+    "Member (MRINA) — Royal Institution of Naval Architects, UK",
+    "Member (MSNAME) — Society of Naval Architects and Marine Engineers, USA",
+    "Member — Society of Naval Architects of Korea (SNAK)",
+    "Fellow (FHEA) — Advance HE, UK"
   ],
   "profiles": [
-    { "label": "Google Scholar", "url": "" },
-    { "label": "ORCID", "url": "" },
-    { "label": "ResearchGate", "url": "" },
-    { "label": "GitHub (SMI-Lab-Inha)", "url": "https://github.com/SMI-Lab-Inha" }
+    {
+      "label": "ORCID",
+      "url": "https://orcid.org/0000-0003-1047-2119"
+    },
+    {
+      "label": "GitHub (SMI-Lab-Inha)",
+      "url": "https://github.com/SMI-Lab-Inha"
+    },
+    {
+      "label": "Google Scholar",
+      "url": ""
+    },
+    {
+      "label": "ResearchGate",
+      "url": ""
+    }
   ],
   "service": [
     "Editorial Board Member, International Journal of Naval Architecture and Ocean Engineering, July 2026 – July 2028",
@@ -82,9 +98,17 @@
     "Session chair, Naval Vessel Integrated Survivability / Damage Control / Special Performance, MADEX 2025, Busan"
   ],
   "awards": [
-    "Special naturalisation as an outstanding talent in science and technology — Ministry of Justice, Republic of Korea, 2019",
-    "Best Paper Award — Society of Naval Architects of Korea, 2022",
-    "Brain Pool Fellow, outstanding overseas researcher — National Research Foundation of Korea, 2017",
-    "Teaching Excellence Award — Newcastle University, 2017"
-  ]
+    "Special Naturalization of Outstanding Talent — Ministry of Law, Republic of Korea, for exceptional ability in science and technology, 2019",
+    "Brain Pool Fellow, Excellent Overseas Researcher — National Research Foundation of Korea, 2017",
+    "Excellent Paper Award — Society of Naval Architects of Korea, for a distinguished co-authored paper, 2022",
+    "Newcastle University Teaching Excellence Award — shortlisted by the Student Union for \"Outstanding Contribution to Teaching on Global Campuses\", 2017"
+  ],
+  "orcid": "0000-0003-1047-2119",
+  "stats": {
+    "papers": 32,
+    "citations": 837,
+    "hIndex": 19,
+    "asOf": "June 2026",
+    "source": "Scopus"
+  }
 }

@@ -26,6 +26,11 @@ const items = news as any[];
               {item.date && <p class="date">{item.date}</p>}
               <h2>{item.title}</h2>
               <p>{item.body}</p>
+              {item.link && (
+                <p class="more">
+                  <a href={item.link}>{item.linkText || 'More'} →</a>
+                </p>
+              )}
             </article>
           ))
         )
@@ -53,6 +58,20 @@ const items = news as any[];
 
   .item p:last-child {
     margin-bottom: 0;
+  }
+
+  .more {
+    margin-top: 0.5rem;
+    font-size: 0.93rem;
+  }
+
+  .more a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .more a:hover {
+    text-decoration: underline;
   }
 
   .date {

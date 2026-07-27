@@ -33,6 +33,25 @@ const sections = [
         }
       </div>
 
+      <dl class="stats">
+        <div>
+          <dt>Journal papers</dt>
+          <dd>{d.stats.papers}</dd>
+        </div>
+        <div>
+          <dt>Citations</dt>
+          <dd>{d.stats.citations}</dd>
+        </div>
+        <div>
+          <dt>h-index</dt>
+          <dd>{d.stats.hIndex}</dd>
+        </div>
+      </dl>
+      <p class="stats-note muted">
+        {d.stats.source}, as of {d.stats.asOf}. Full record on
+        <a href={`https://orcid.org/${d.orcid}`}> ORCID {d.orcid}</a>.
+      </p>
+
       <p class="note">
         Papers up to 2025 are published under the name <strong>{d.formerName}</strong>; from
         2026 they appear under <strong>{d.name}</strong>. Both refer to the same author.
@@ -55,6 +74,41 @@ const sections = [
 
   .link-card h3 {
     color: var(--c-accent);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1rem;
+    margin: 2.5rem 0 0.7rem;
+  }
+
+  .stats div {
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+    background: var(--c-bg-subtle);
+  }
+
+  .stats dt {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+
+  .stats dd {
+    margin: 0.15rem 0 0;
+    font-family: var(--font-serif);
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--c-accent);
+    line-height: 1.1;
+  }
+
+  .stats-note {
+    font-size: 0.88rem;
   }
 
   .note {

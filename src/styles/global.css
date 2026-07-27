@@ -19,12 +19,14 @@
   --c-text-muted: #5a6a7f;
   --c-text-faint: #8593a6;
 
-  /* Brand — sampled from the lab logo: deep navy wordmark, cyan wave/turbine */
-  --c-navy: #123f6d;
-  --c-navy-deep: #0a2745;
-  --c-accent: #12628f;
-  --c-accent-hover: #0d4a6d;
-  --c-accent-soft: #e2f0f8;
+  /* Brand — the lab's official palette, as defined in the LaTeX templates:
+     smiblue #005BAC, smicyan #00AFEC, lightblue #E8F4FD, neutral #2C3E50. */
+  --c-navy: #005bac;
+  --c-navy-deep: #00417c;
+  --c-cyan: #00afec;
+  --c-accent: #005bac;
+  --c-accent-hover: #003f7d;
+  --c-accent-soft: #e8f4fd;
 
   /* Type */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -56,9 +58,10 @@
 
     --c-navy: #0d1520;
     --c-navy-deep: #070d15;
-    --c-accent: #4fb4e4;
-    --c-accent-hover: #78c9ef;
-    --c-accent-soft: #14293a;
+    --c-cyan: #00afec;
+    --c-accent: #35b9ee;
+    --c-accent-hover: #6fcef4;
+    --c-accent-soft: #10293c;
 
     color-scheme: dark;
   }

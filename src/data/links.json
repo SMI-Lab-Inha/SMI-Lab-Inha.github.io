@@ -9,8 +9,8 @@
   {
     "group": "Director profiles",
     "items": [
+      { "label": "ORCID 0000-0003-1047-2119", "url": "https://orcid.org/0000-0003-1047-2119", "note": "" },
       { "label": "Google Scholar", "url": "", "note": "TODO(user): URL" },
-      { "label": "ORCID", "url": "", "note": "TODO(user): URL" },
       { "label": "ResearchGate", "url": "", "note": "TODO(user): URL" }
     ]
   },

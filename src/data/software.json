@@ -1,25 +1,25 @@
 [
   {
-    "name": "VANE",
-    "expansion": "Visualisation and Automated Natural-frequency Extraction",
-    "description": "Automated OpenFAST linearisation post-processing, physics-aware mode identification, and state-space export for digital twin development of fixed-bottom and floating offshore wind turbines.",
-    "status": "pending-publication",
-    "repo": "",
-    "docs": ""
-  },
-  {
     "name": "CableDyn",
     "expansion": "",
-    "description": "Cable and mooring dynamics solver for floating offshore wind turbines, including lazy-wave configurations, verified against OrcaFlex static and dynamic response at the sag, hog, and touchdown regions. Also integrated into a fork of OpenFAST v5.0.0 as a first-class mooring module.",
-    "status": "pending-publication",
+    "description": "An open-source, geometrically exact cable and mooring dynamics solver: Cosserat-rod finite elements with generalised-α time integration, Morison loading, Facchinetti VIV, and a CableXsec interface. Benchmarked against MoorDyn-F, MoorDyn-C, and OrcaFlex. An OpenFAST interface is planned.",
+    "status": "alpha",
     "repo": "",
     "docs": ""
   },
   {
     "name": "CableXsec",
     "expansion": "",
-    "description": "Cross-section analysis of layered dynamic power cable constructions, computing the stiffness and mechanical properties required for global dynamic analysis.",
-    "status": "pending-publication",
+    "description": "An Apache-2.0 Python library for thermo-mechanical cross-section fatigue analysis of dynamic power cables and SURF. Seven model levels, from Love and Costello kinematics through Witz–Tan to DNVGL-RP-0005.",
+    "status": "alpha",
+    "repo": "",
+    "docs": ""
+  },
+  {
+    "name": "VANE",
+    "expansion": "Visualisation and Automated Natural-frequency Extraction",
+    "description": "Automated OpenFAST linearisation post-processing: MBC3 transformation, eigenanalysis, MAC and Hungarian mode tracking, Campbell diagrams, and clean state-space (A, B, C, D) export for digital twin development of fixed-bottom and floating offshore wind turbines.",
+    "status": "alpha",
     "repo": "",
     "docs": ""
   },
@@ -27,23 +27,23 @@
     "name": "FOWCON",
     "expansion": "Floating Offshore Wind CONtroller",
     "description": "A gain-scheduled, damage-aware LQR DISCON runtime for floating offshore wind turbines.",
-    "status": "pending-publication",
+    "status": "alpha",
     "repo": "",
     "docs": ""
   },
   {
-    "name": "fowt-moor-dt",
+    "name": "openfast-gui",
     "expansion": "",
-    "description": "A digital twin framework for FOWT mooring systems: Kalman-filter-based tension estimation from platform motion, virtual sensing along the line, and probabilistic fatigue assessment.",
-    "status": "pending-publication",
+    "description": "A PySide6 and Qt6 desktop application for building and editing OpenFAST input decks, with the MoorDyn module prioritised.",
+    "status": "in-development",
     "repo": "",
     "docs": ""
   },
   {
-    "name": "pyULSAN",
+    "name": "moordyn-io",
     "expansion": "",
-    "description": "Differentiable ultimate strength analysis of stiffened panels built on JAX, enabling gradient-based optimisation and sensitivity analysis of hull structural elements.",
-    "status": "pending-publication",
+    "description": "Programmatic reading, writing, and validation of MoorDyn v2 input files.",
+    "status": "in-development",
     "repo": "",
     "docs": ""
   },
