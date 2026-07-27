@@ -69,6 +69,6 @@
     "description": "Syntax highlighting for OpenFAST input files and ROSCO controller input files in Visual Studio Code.",
     "status": "public",
     "repo": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting",
-    "docs": ""
+    "docs": "https://marketplace.visualstudio.com/items?itemName=SMI-Lab.openfast-rosco-syntax-highlighting"
   }
 ]

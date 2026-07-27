@@ -28,12 +28,15 @@
   --c-accent-hover: #003f7d;
   --c-accent-soft: #e8f4fd;
 
-  /* Type — a transitional serif for prose, in the manner of a British
-     university department; sans reserved for navigation, labels and buttons. */
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
-    Georgia, Cambria, "Times New Roman", "Noto Serif KR", serif;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
+  /* Type — self-hosted British typefaces. Caslon (London, 1720s) for reading
+     matter, Baskerville (Birmingham, 1750s) for display, and Cabin, a humanist
+     sans in the Johnston / Gill Sans lineage, for navigation and labels.
+     Korean falls through to Noto, which neither Latin face covers. */
+  --font-serif: "Libre Caslon Text", "Noto Serif KR", Georgia, Cambria,
+    "Times New Roman", serif;
+  --font-display: "Libre Baskerville", "Libre Caslon Text", Georgia, serif;
+  --font-sans: Cabin, "Noto Sans KR", ui-sans-serif, system-ui, "Segoe UI", Arial,
+    sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   /* Rhythm */
@@ -101,8 +104,9 @@ body {
   background: var(--c-bg);
   color: var(--c-text);
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  line-height: 1.72;
+  /* Caslon and Baskerville both run large per em, so the scale is pulled back. */
+  font-size: 1rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-direction: column;
@@ -117,24 +121,24 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   color: var(--c-text);
-  line-height: 1.25;
-  font-weight: 600;
+  line-height: 1.24;
+  font-weight: 700;
   margin: 0 0 0.5em;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.7rem);
+  font-size: clamp(1.7rem, 1.25rem + 1.8vw, 2.35rem);
 }
 h2 {
-  font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.85rem);
+  font-size: clamp(1.28rem, 1.08rem + 0.9vw, 1.6rem);
   margin-top: 2.2em;
 }
 h3 {
-  font-size: 1.18rem;
+  font-size: 1.08rem;
   margin-top: 1.8em;
 }
 h4 {

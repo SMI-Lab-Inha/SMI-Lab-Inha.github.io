@@ -52,7 +52,13 @@ const statusLabel: Record<string, string> = {
               {(s.repo || s.docs) && (
                 <p class="pkg-links">
                   {s.repo && <a href={s.repo}>Repository</a>}
-                  {s.docs && <a href={s.docs}>Documentation</a>}
+                  {s.docs && (
+                    <a href={s.docs}>
+                      {s.docs.includes('marketplace.visualstudio.com')
+                        ? 'VS Code Marketplace'
+                        : 'Documentation'}
+                    </a>
+                  )}
                 </p>
               )}
             </article>
@@ -80,20 +86,83 @@ const statusLabel: Record<string, string> = {
 
       <h2 id="computing">Computing</h2>
       <p>
-        The lab runs two Lenovo ThinkStation P8 workstations, configured for sustained
-        nonlinear finite element simulation, OpenFAST design load case batches, and parametric
-        studies.
+        The lab runs a dedicated computational environment for large-scale nonlinear
+        simulation, coupled offshore dynamics, and parametric integrity studies, built around
+        sustained engineering workloads rather than short interactive jobs.
       </p>
-      <ul>
-        <li>
-          AMD Ryzen Threadripper PRO 7965WX (24 cores / 48 threads) with an NVIDIA RTX 2000
-          Ada 16 GB.
-        </li>
-        <li>
-          AMD Ryzen Threadripper PRO 7945WX (12 cores / 24 threads), 128 GB DDR5 ECC memory,
-          NVIDIA T1000 8 GB, and 2 TB + 1 TB NVMe with 2 TB HDD storage.
-        </li>
-      </ul>
+
+      <div class="machines">
+        <article class="machine">
+          <p class="eyebrow">Primary simulation workstation</p>
+          <h3>SMIL2</h3>
+          <p class="muted">
+            Optimised for CPU-intensive workloads, high memory use, and long simulation
+            campaigns.
+          </p>
+          <dl>
+            <div>
+              <dt>Processor</dt>
+              <dd>
+                AMD Ryzen Threadripper PRO 7965WX, 24 cores / 48 threads, 4.20 GHz base, up to
+                5.30 GHz boost
+              </dd>
+            </div>
+            <div>
+              <dt>Memory</dt>
+              <dd>128 GB DDR5-5200 ECC RDIMM, eight-channel, fully populated</dd>
+            </div>
+            <div>
+              <dt>Graphics</dt>
+              <dd>NVIDIA RTX 2000 Ada Generation, 16 GB GDDR6</dd>
+            </div>
+            <div>
+              <dt>Storage</dt>
+              <dd>
+                2 TB NVMe PCIe Gen5 for system and active projects; 4 TB NVMe PCIe Gen5 for
+                simulation data and datasets
+              </dd>
+            </div>
+            <div>
+              <dt>Power and cooling</dt>
+              <dd>1400 W 92%-efficiency supply; dual front intake fans for sustained load</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="machine">
+          <p class="eyebrow">Secondary workstation</p>
+          <h3>SMIL</h3>
+          <p class="muted">
+            Supports Abaqus Explicit ice–structure interaction studies and additional parallel
+            simulation capacity.
+          </p>
+          <dl>
+            <div>
+              <dt>Processor</dt>
+              <dd>
+                AMD Ryzen Threadripper PRO 7945WX, 12 cores / 24 threads, 4.70 GHz base, up to
+                5.30 GHz boost
+              </dd>
+            </div>
+            <div>
+              <dt>Memory</dt>
+              <dd>128 GB DDR5-5200 ECC RDIMM, eight-channel</dd>
+            </div>
+            <div>
+              <dt>Graphics</dt>
+              <dd>NVIDIA RTX A1000, 8 GB GDDR6</dd>
+            </div>
+            <div>
+              <dt>Storage</dt>
+              <dd>2 TB and 1 TB NVMe SSD, with a 2 TB HDD for archive</dd>
+            </div>
+            <div>
+              <dt>Power</dt>
+              <dd>1400 W high-efficiency supply</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
     </div>
   </section>
 </Base>
@@ -146,5 +215,46 @@ const statusLabel: Record<string, string> = {
   .pkg-links a {
     margin-right: 1.1rem;
     font-size: 0.92rem;
+  }
+
+  .machines {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1.4rem;
+    margin-top: 1.6rem;
+  }
+
+  .machine {
+    border: 1px solid var(--c-border);
+    border-top: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+  }
+
+  .machine h3 {
+    margin: 0.2rem 0 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+  }
+
+  .machine dl {
+    margin: 1rem 0 0;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .machine dt {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+
+  .machine dd {
+    margin: 0.1rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
   }
 </style>

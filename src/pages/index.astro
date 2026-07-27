@@ -2,8 +2,15 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import news from '../data/news.json';
+import areas from '../data/research-areas.json';
+import software from '../data/software.json';
+import members from '../data/members.json';
+import d from '../data/director.json';
 
 const latest = (news as any[]).slice(0, 4);
+const publicPkgs = (software as any[]).filter((s) => s.status === 'public');
+const alphaPkgs = (software as any[]).filter((s) => s.status === 'alpha');
+const people = members as any[];
 
 const glance = [
   'Mooring and dynamic power cable integrity for floating offshore wind: virtual sensing, tension estimation, fatigue assessment',
@@ -28,7 +35,7 @@ const glance = [
         </p>
         <p class="hero-actions">
           <a class="btn" href="/research/research-areas">Our research</a>
-          <a class="btn btn--ghost" href="/research/software">Software</a>
+          <a class="btn btn--ghost" href="/join-us">Join the lab</a>
         </p>
       </div>
       <img
@@ -41,44 +48,42 @@ const glance = [
     </div>
   </section>
 
+  <section class="figures">
+    <div class="wrap figures-inner">
+      <div><span class="fig">{d.stats.papers}</span><span class="lab">Journal papers</span></div>
+      <div><span class="fig">{d.stats.citations}</span><span class="lab">Citations</span></div>
+      <div><span class="fig">{d.stats.hIndex}</span><span class="lab">h-index</span></div>
+      <div><span class="fig">2025</span><span class="lab">Lab founded</span></div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="wrap intro">
       <div>
         <h2 class="intro-title">
-          Marine Structural Mechanics and Integrity Lab (SMI Lab)
+          Marine Structural Mechanics and Integrity Lab
           <span class="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
         </h2>
 
-        <p>
-          The Marine Structural Mechanics and Integrity Lab (SMI Lab) in the Department of
-          Naval Architecture and Ocean Engineering at Inha University studies how ships and
-          offshore structures carry load, accumulate damage, and fail, and how that knowledge
-          can be turned into assessment methods engineers can trust. The lab is led by
-          Professor Jae Hoon Seo, who also publishes as Burak Can Cerik.
+        <p class="intro-lead">
+          We study how ships and offshore structures carry load, accumulate damage, and fail,
+          and how that knowledge can be turned into assessment methods engineers can trust.
         </p>
 
         <p>
           Our current focus is the structural integrity of floating offshore wind turbine
           (FOWT) systems, in particular mooring lines and subsea dynamic power cables. We
-          develop physics-based virtual sensing and digital twin methods that estimate
-          tension, curvature, and fatigue damage in components that are difficult or expensive
-          to instrument directly, using Kalman filtering, state estimation, and surrogate
-          models built on nonlinear structural mechanics.
+          develop physics-based virtual sensing and digital twin methods that estimate tension,
+          curvature, and fatigue damage in components that are difficult or expensive to
+          instrument directly, using Kalman filtering, state estimation, and surrogate models
+          built on nonlinear structural mechanics.
         </p>
 
         <p>
-          This work rests on a longer research foundation in ductile fracture mechanics, ship
-          collision and impact analysis, and the ultimate strength of hull structures,
-          developed over fifteen years at the University of Ulsan, Newcastle University in
-          Singapore, Inha University, and Cranfield University.
-        </p>
-
-        <p>
-          The lab treats research software as a primary output alongside journal papers. We
-          build our analysis tools in-house to professional engineering standards, with
-          version control, automated testing, and documentation, and we release them openly
-          through the <a href="https://github.com/SMI-Lab-Inha">SMI-Lab-Inha GitHub
-          organisation</a> as the accompanying papers are published.
+          This work rests on a longer foundation in ductile fracture mechanics, ship collision
+          and impact analysis, and the ultimate strength of hull structures, developed over
+          fifteen years at the University of Ulsan, Newcastle University in Singapore, Inha
+          University, and Cranfield University.
         </p>
       </div>
 
@@ -92,6 +97,56 @@ const glance = [
   </section>
 
   <section class="section section--subtle">
+    <div class="wrap">
+      <div class="head">
+        <h2>Research thrusts</h2>
+        <a href="/research/research-areas">All research →</a>
+      </div>
+      <div class="thrusts">
+        {
+          areas.map((a, i) => (
+            <a class="thrust" href={`/research/research-areas#${a.slug}`}>
+              <span class="thrust-n">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{a.title}</h3>
+              <ul>
+                {a.topics.slice(0, 3).map((t) => (
+                  <li>{t.split(',')[0].split('(')[0].trim()}</li>
+                ))}
+              </ul>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <h2>Research software</h2>
+        <a href="/research/software">Software &amp; facilities →</a>
+      </div>
+      <p class="lead">
+        We treat research software as an output in its own right, developed under version
+        control with automated tests and documentation, and released as the accompanying papers
+        appear.
+      </p>
+      <ul class="pkgs list-plain">
+        {
+          [...publicPkgs, ...alphaPkgs].slice(0, 6).map((s) => (
+            <li>
+              <span class="pkg-name">{s.repo ? <a href={s.repo}>{s.name}</a> : s.name}</span>
+              <span class={`pkg-status ${s.status === 'public' ? 'is-public' : ''}`}>
+                {s.status === 'public' ? 'Public' : 'Alpha'}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
     <div class="wrap values">
       <div>
         <h2>Mission and vision</h2>
@@ -101,9 +156,9 @@ const glance = [
           maritime and offshore technologies.
         </p>
         <p>
-          Marine structures fail in ways that are expensive to discover in service. Our work
-          is aimed at understanding those mechanisms well enough to predict them, and at
-          making the predictions trustworthy enough to act on.
+          Marine structures fail in ways that are expensive to discover in service. Our work is
+          aimed at understanding those mechanisms well enough to predict them, and at making the
+          predictions trustworthy enough to act on.
         </p>
       </div>
       <ul class="value-list list-plain">
@@ -114,7 +169,27 @@ const glance = [
 
   <section class="section">
     <div class="wrap">
-      <div class="news-head">
+      <div class="head">
+        <h2>The team</h2>
+        <a href="/team/current-members">All members →</a>
+      </div>
+      <ul class="people list-plain">
+        {
+          people.map((m) => (
+            <li>
+              <img src={m.photo} alt={`Portrait of ${m.name}`} loading="lazy" />
+              <span class="p-name">{m.name}</span>
+              <span class="p-topic">{m.topic}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
+    <div class="wrap">
+      <div class="head">
         <h2>What's happening</h2>
         <a href="/news">All news →</a>
       </div>
@@ -135,135 +210,94 @@ const glance = [
     <div class="wrap cta">
       <h2>Work with us</h2>
       <p>
-        We welcome enquiries from prospective graduate students, visiting researchers, and
-        industry partners working on floating wind and marine structural integrity.
+        We are recruiting two MSc students and one PhD student for the 2026 intake, and welcome
+        enquiries from visiting researchers and industry partners working on floating wind and
+        marine structural integrity.
       </p>
       <p>
-        <a class="btn" href="/join-us">Join the lab</a>
+        <a class="btn" href="/join-us">Opportunities</a>
         <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
       </p>
     </div>
   </section>
 
   <section class="section section--subtle">
-    <div class="wrap">
-      <h2 class="address-title">Find us</h2>
-      <address>
-        {site.department}<br />
-        {site.university}<br />
-        {site.address}
-      </address>
-      <p>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
+    <div class="wrap contact">
+      <div>
+        <h2 class="address-title">Find us</h2>
+        <address>
+          {site.department}<br />
+          {site.university}<br />
+          {site.address}
+        </address>
+      </div>
+      <div>
+        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p class="muted">{d.phone}</p>
+        <p class="muted">{d.office}</p>
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
+  /* Hero -------------------------------------------------------------- */
   .hero {
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(160deg, var(--c-navy) 0%, var(--c-navy-deep) 100%);
     color: #fff;
-    padding-block: clamp(3.2rem, 9vw, 6.5rem);
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+  }
+
+  /* A faint swell across the base of the hero, echoing the logo's waves. */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -1px 0;
+    height: 90px;
+    background-repeat: repeat-x;
+    background-size: 1200px 90px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 90'%3E%3Cpath d='M0 60c150-30 300-30 450 0s300 30 450 0 150-15 300 0v30H0z' fill='%23ffffff' fill-opacity='.05'/%3E%3Cpath d='M0 74c150-26 300-26 450 0s300 26 450 0 150-13 300 0v16H0z' fill='%23ffffff' fill-opacity='.05'/%3E%3C/svg%3E");
+    pointer-events: none;
   }
 
   .hero-inner {
+    position: relative;
+    z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
     gap: clamp(1.5rem, 5vw, 3.5rem);
     align-items: center;
   }
 
   .hero h1 {
     color: #fff;
-    margin-bottom: 0.5em;
-  }
-
-  /* The logo artwork is navy-on-white, so it needs a light panel behind it. */
-  .hero-logo {
-    width: 100%;
-    max-width: 18rem;
-    justify-self: end;
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 1.2rem;
-  }
-
-  .news-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    border-bottom: 1px solid var(--c-border);
-    padding-bottom: 0.5rem;
-  }
-
-  .news-head h2 {
-    margin: 0;
-  }
-
-  .news-head a {
-    text-decoration: none;
-    font-size: 0.92rem;
-    white-space: nowrap;
-  }
-
-  .news-list {
-    margin-top: 1.2rem;
-  }
-
-  .news-list li {
-    display: grid;
-    grid-template-columns: 11rem 1fr;
-    gap: 1rem;
-    padding-block: 0.7rem;
-    border-bottom: 1px solid var(--c-border);
-    max-width: none;
-  }
-
-  .news-date {
-    color: var(--c-text-muted);
-    font-size: 0.88rem;
-  }
-
-  @media (max-width: 860px) {
-    .hero-inner {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-logo {
-      justify-self: start;
-      max-width: 12rem;
-    }
-
-    .news-list li {
-      grid-template-columns: 1fr;
-      gap: 0.15rem;
-    }
+    margin-bottom: 0.45em;
   }
 
   .hero-eyebrow {
-    font-size: 0.82rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1.1rem;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 1rem;
   }
 
   .hero-tagline {
-    font-family: var(--font-serif);
-    font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.35rem);
+    font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.2rem);
     color: rgba(255, 255, 255, 0.9);
-    line-height: 1.5;
-    max-width: 46ch;
+    max-width: 44ch;
+    line-height: 1.55;
   }
 
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;
-    margin-top: 2rem;
+    margin-top: 1.9rem;
     margin-bottom: 0;
   }
 
@@ -277,6 +311,77 @@ const glance = [
     color: #fff;
   }
 
+  .hero-logo {
+    width: 100%;
+    max-width: 16rem;
+    justify-self: end;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem;
+  }
+
+  /* Key figures ------------------------------------------------------- */
+  .figures {
+    background: var(--c-bg);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .figures-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1px;
+    background: var(--c-border);
+    border-inline: 1px solid var(--c-border);
+  }
+
+  .figures-inner > div {
+    background: var(--c-bg);
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+  }
+
+  .fig {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.1rem);
+    font-weight: 700;
+    color: var(--c-accent);
+    line-height: 1.1;
+  }
+
+  .lab {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    margin-top: 0.35rem;
+  }
+
+  /* Shared section head ----------------------------------------------- */
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 2px solid var(--c-accent);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .head h2 {
+    margin: 0;
+  }
+
+  .head a {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* Intro -------------------------------------------------------------- */
   .intro {
     display: grid;
     grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
@@ -286,29 +391,36 @@ const glance = [
 
   .intro-title {
     margin-top: 0;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
 
   .ko {
     display: block;
-    font-size: 1.05rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
     font-weight: 400;
     color: var(--c-text-muted);
-    margin-top: 0.25em;
+    margin-top: 0.35em;
+  }
+
+  .intro-lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
   }
 
   .glance {
     background: var(--c-bg-subtle);
     border: 1px solid var(--c-border);
+    border-top: 3px solid var(--c-accent);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.4rem;
     position: sticky;
     top: 1.5rem;
   }
 
   .glance h3 {
     margin-top: 0;
-    font-size: 1.05rem;
+    font-size: 0.98rem;
   }
 
   .glance ul {
@@ -317,14 +429,111 @@ const glance = [
   }
 
   .glance li {
-    margin-bottom: 0.7rem;
-    font-size: 0.93rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .glance li:last-child {
     margin-bottom: 0;
   }
 
+  /* Thrust cards ------------------------------------------------------- */
+  .thrusts {
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+
+  .thrust {
+    display: block;
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-top: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .thrust:hover {
+    border-color: var(--c-accent);
+    color: inherit;
+  }
+
+  .thrust-n {
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--c-accent);
+  }
+
+  .thrust h3 {
+    margin: 0.4rem 0 0.7rem;
+    font-size: 1.02rem;
+    line-height: 1.35;
+  }
+
+  .thrust ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+
+  .thrust li {
+    font-size: 0.88rem;
+    color: var(--c-text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  /* Software ----------------------------------------------------------- */
+  .pkgs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.7rem;
+    margin-top: 1.4rem;
+  }
+
+  .pkgs li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.7rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 0.8rem 1rem;
+    max-width: none;
+  }
+
+  .pkg-name {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  .pkg-name a {
+    text-decoration: none;
+  }
+
+  .pkg-status {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    border: 1px solid var(--c-border-strong);
+    border-radius: 999px;
+    padding: 0.1em 0.6em;
+    white-space: nowrap;
+  }
+
+  .pkg-status.is-public {
+    color: var(--c-accent-hover);
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+  }
+
+  /* Mission / values --------------------------------------------------- */
   .values {
     display: grid;
     gap: 2.5rem;
@@ -337,9 +546,8 @@ const glance = [
   }
 
   .statement {
-    font-size: 1.14rem;
+    font-size: 1.08rem;
     font-style: italic;
-    color: var(--c-text);
     border-left: 3px solid var(--c-accent);
     padding-left: 1.1rem;
     margin-bottom: 1.4rem;
@@ -356,15 +564,76 @@ const glance = [
     border: 1px solid var(--c-border);
     border-left: 3px solid var(--c-accent);
     border-radius: var(--radius);
-    padding: 0.85rem 1.1rem;
-    font-family: var(--font-serif);
-    font-size: 1.05rem;
+    padding: 0.8rem 1.1rem;
+    font-family: var(--font-display);
+    font-size: 0.98rem;
   }
 
+  /* People ------------------------------------------------------------- */
+  .people {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 1.2rem;
+    margin: 0;
+  }
+
+  .people li {
+    max-width: none;
+  }
+
+  .people img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--c-border);
+    margin-bottom: 0.6rem;
+  }
+
+  .p-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.94rem;
+  }
+
+  .p-topic {
+    display: block;
+    font-size: 0.83rem;
+    color: var(--c-text-muted);
+    line-height: 1.45;
+    margin-top: 0.15rem;
+  }
+
+  /* News --------------------------------------------------------------- */
+  .news-list li {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1rem;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--c-border);
+    max-width: none;
+  }
+
+  .news-list a {
+    text-decoration: none;
+  }
+
+  .news-list a:hover {
+    text-decoration: underline;
+  }
+
+  .news-date {
+    font-family: var(--font-sans);
+    color: var(--c-text-muted);
+    font-size: 0.84rem;
+  }
+
+  /* CTA + contact ------------------------------------------------------ */
   .cta {
     border: 1px solid var(--c-border);
+    border-left: 3px solid var(--c-accent);
     border-radius: var(--radius);
-    padding: clamp(1.6rem, 4vw, 2.6rem);
+    padding: clamp(1.5rem, 4vw, 2.4rem);
   }
 
   .cta h2 {
@@ -375,6 +644,12 @@ const glance = [
     margin-right: 0.6rem;
   }
 
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1.5rem;
+  }
+
   .address-title {
     margin-top: 0;
   }
@@ -382,16 +657,27 @@ const glance = [
   address {
     font-style: normal;
     line-height: 1.8;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0;
   }
 
   @media (max-width: 860px) {
+    .hero-inner,
     .intro {
       grid-template-columns: 1fr;
     }
 
+    .hero-logo {
+      justify-self: start;
+      max-width: 11rem;
+    }
+
     .glance {
       position: static;
+    }
+
+    .news-list li {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
     }
   }
 </style>

@@ -9,14 +9,19 @@
       },
       {
         "label": "OpenFAST syntax highlighting — VS Code Marketplace",
-        "url": "",
-        "note": "TODO(user): Marketplace URL"
+        "url": "https://marketplace.visualstudio.com/items?itemName=SMI-Lab.openfast-rosco-syntax-highlighting",
+        "note": "VS Code extension"
       }
     ]
   },
   {
     "group": "Director profiles",
     "items": [
+      {
+        "label": "Google Scholar",
+        "url": "https://scholar.google.com/citations?user=Xg3d6y4AAAAJ",
+        "note": ""
+      },
       {
         "label": "ORCID 0000-0003-1047-2119",
         "url": "https://orcid.org/0000-0003-1047-2119",
@@ -36,11 +41,6 @@
         "label": "ResearchGate",
         "url": "https://www.researchgate.net/profile/Jae-Hoon-Seo",
         "note": ""
-      },
-      {
-        "label": "Google Scholar",
-        "url": "",
-        "note": "TODO(user): URL"
       }
     ]
   },

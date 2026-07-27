@@ -2,6 +2,27 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import areas from '../../data/research-areas.json';
+
+const FIGURES: Record<string, { src: string; alt: string; caption: string }> = {
+  'mooring-and-cable-integrity': {
+    src: '/images/figures/lazy-wave-cable.svg',
+    alt: 'Lazy-wave dynamic power cable running from a floating platform hang-off, down to the sag bend, up over the buoyancy section to the hog bend, and down to touchdown on the seabed.',
+    caption:
+      'A lazy-wave dynamic power cable. Curvature, and with it fatigue damage, concentrates at the sag and hog bends and in the touchdown zone — the regions our virtual sensing work aims to reconstruct without instrumenting the cable directly.',
+  },
+  'ultimate-strength': {
+    src: '/images/figures/moment-curvature.svg',
+    alt: 'Moment–curvature curve for a hull girder, showing the elastic range, first yield, the ultimate moment, and post-collapse softening.',
+    caption:
+      'Progressive collapse of a hull girder. Beyond first yield the section softens as compressed stiffened panels buckle and shed load, and the peak of the curve defines the ultimate bending moment.',
+  },
+  'fracture-and-impact': {
+    src: '/images/figures/fracture-locus.svg',
+    alt: 'Ductile fracture locus: equivalent plastic strain to fracture falling as stress triaxiality increases, marked at pure shear, uniaxial tension, plane strain and equibiaxial states.',
+    caption:
+      'A ductile fracture locus for shipbuilding steel. The strain a plate can sustain before fracture depends strongly on the stress state, which is why collision and grounding analyses need a triaxiality-dependent criterion rather than a single limiting strain.',
+  },
+};
 ---
 
 <Base
@@ -42,15 +63,14 @@ import areas from '../../data/research-areas.json';
                 ))}
               </ul>
 
-              {area.slug === 'fracture-and-impact' && (
+              {FIGURES[area.slug] && (
                 <figure class="diagram">
                   <img
-                    src="/images/structural-integrity-diagram.webp"
-                    alt="Diagram: advanced structural integrity, linking fracture mechanics, engineering critical assessment and life extension, impact and collapse, and material modelling"
-                    width="720"
-                    height="1080"
+                    src={FIGURES[area.slug].src}
+                    alt={FIGURES[area.slug].alt}
                     loading="lazy"
                   />
+                  <figcaption>{FIGURES[area.slug].caption}</figcaption>
                 </figure>
               )}
 
@@ -171,15 +191,24 @@ import areas from '../../data/research-areas.json';
   }
 
   .diagram {
-    margin: 1.6rem 0 0;
-    max-width: 26rem;
+    margin: 1.8rem 0 0;
+    max-width: 42rem;
   }
 
   .diagram img {
     width: 100%;
+    height: auto;
     border: 1px solid var(--c-border);
     border-radius: var(--radius);
     background: #fff;
+  }
+
+  .diagram figcaption {
+    font-size: 0.88rem;
+    color: var(--c-text-muted);
+    line-height: 1.55;
+    margin-top: 0.6rem;
+    max-width: 62ch;
   }
 
   .cross .area-index {
