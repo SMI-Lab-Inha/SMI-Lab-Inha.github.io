@@ -18,21 +18,39 @@
     "summary": "This project develops surrogate models that map platform response to mooring tension, providing a baseline against which to compare the physics-based estimators."
   },
   {
+    "title": "High-Efficiency Propeller Design for Operation in Both Polar and General Waters",
+    "titleKo": "극지/일반해역에서 겸용 가능한 고효율 프로펠러 설계기술 개발",
+    "funder": "Korea Evaluation Institute of Industrial Technology",
+    "period": "2026/4 – 2026/12",
+    "role": "Co-Investigator",
+    "status": "current",
+    "summary": "This project develops high-efficiency propeller design technology suitable for operation across both polar and general-water conditions."
+  },
+  {
+    "title": "Analysis Model for Underwater Oxygen Supply in Marine Cages",
+    "titleKo": "해상가두리 수중산소 공급 분석 모델 개발",
+    "funder": "National Institute of Fisheries Science",
+    "period": "2026/4 – 2026/11",
+    "role": "Co-Investigator",
+    "status": "current",
+    "summary": "This project develops an analysis model for underwater oxygen supply in marine aquaculture cages, with classification-society application in view."
+  },
+  {
     "title": "BEACON for Future Marine Workforce: Integrating Spatial and Resource Utilization",
-    "titleKo": "해양수산부: 해양블루테크 미래리더 양성 프로젝트",
+    "titleKo": "지속가능한 해양 신산업 인재 양성을 위한 해양공간·자원 활용 연구",
     "funder": "Ministry of Oceans and Fisheries",
     "period": "2025/4 – 2029/12",
     "role": "Co-Investigator",
     "status": "current",
-    "summary": ""
+    "summary": "This multi-year project integrates research and education in marine spatial and resource utilization to develop talent for sustainable emerging ocean industries."
   },
   {
     "title": "Professional Human Resources Training for Digital Shipyard",
-    "titleKo": "산업통상자원부: 산업혁신인재성장지원 — 디지털조선소 전문인력 양성",
+    "titleKo": "디지털조선소(DigitalShipYard)전문인력양성",
     "funder": "Ministry of Trade, Industry and Energy (R&D)",
     "period": "2026/3 – 2031/3",
     "role": "Co-Investigator",
     "status": "current",
-    "summary": ""
+    "summary": "This multi-year programme develops specialist engineering talent for the digital transformation of shipyards."
   }
 ]
