@@ -22,12 +22,12 @@ enhancements cannot be completed responsibly from repository evidence alone.
 
 ## Launch actions requiring external access
 
-- Coordinate the custom-domain change with Inha IT by following
+- Coordinate the institutional URL-forwarding change with Inha IT by following
   `docs/domain-cutover.md`.
-- Verify the old and new properties in Google Search Console, submit the new
-  sitemap, and monitor the migration after the domain cutover.
+- Verify the GitHub Pages origin in Google Search Console, submit its sitemap,
+  and monitor indexing after the forwarding destination changes.
 - Update ORCID, author profiles, the Inha directory, and the GitHub organisation
-  profile only after the custom domain is serving the new site over HTTPS.
+  profile to the canonical GitHub Pages origin.
 
 No analytics script is included. This is intentional: the site has no consent
 or privacy burden and sends no visitor data to a third party. If usage metrics

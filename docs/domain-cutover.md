@@ -1,50 +1,66 @@
-# `smil.inha.ac.kr` cutover runbook
+# `smil.inha.ac.kr` forwarding runbook
 
-The custom domain must be changed as one coordinated operation. Do not add the
-repository `CNAME` file before Inha IT is ready to update DNS: GitHub Pages would
-start redirecting visitors to a hostname that does not yet serve this site.
+Inha University policy permits URL forwarding, not a direct DNS CNAME to
+GitHub Pages. Therefore `smi-lab-inha.github.io` remains the site's public and
+canonical origin. `smil.inha.ac.kr` is an institutional shortcut and must not
+be configured as the GitHub Pages custom domain.
 
 ## Current state (verified 27 July 2026)
 
 - `smi-lab-inha.github.io` serves the Astro site over HTTPS.
-- `smil.inha.ac.kr` is a CNAME for `cicadmin.inha.ac.kr`.
-- HTTP and HTTPS return a small Inha page that refreshes to the legacy Google
-  Site; neither serves the new Astro site.
+- `smil.inha.ac.kr` resolves through `cicadmin.inha.ac.kr`.
+- HTTP and HTTPS return a small Inha page using an HTML refresh to send visitors
+  to the legacy Google Site.
 
-Run `npm run domain:check` to recheck DNS and HTTPS. Failure is expected until
-the cutover is complete.
+Run `npm run domain:check` to inspect the forwarding behaviour. Failure is
+expected until Inha IT replaces the legacy destination.
 
-## Coordinated cutover
+## Forwarding request
 
-1. Ask Inha IT to schedule the `smil.inha.ac.kr` DNS change to the GitHub Pages
-   target `smi-lab-inha.github.io`. Preserve the current 600-second TTL until
-   the migration is stable.
-2. Immediately before that DNS change, add `public/CNAME` containing exactly
-   `smil.inha.ac.kr` and change Astro's `site` setting to
-   `https://smil.inha.ac.kr`.
-3. Change the sitemap URL in `public/robots.txt` to
-   `https://smil.inha.ac.kr/sitemap-index.xml`.
-4. Run `npm run validate`, merge, deploy, and enable “Enforce HTTPS” in the
-   GitHub Pages settings once the certificate is issued.
-5. Run `npm run domain:check`. Confirm the home page, representative nested
-   routes, assets, canonical links, sitemap, RSS feed, and the 404 response.
+Ask Inha IT to forward `https://smil.inha.ac.kr` to
+`https://smi-lab-inha.github.io` with these properties, in priority order:
 
-## Search migration
+1. Use an HTTP `301 Moved Permanently` or `308 Permanent Redirect`, not an HTML
+   meta refresh, frame, or masked redirect.
+2. Preserve the path and query string. For example,
+   `https://smil.inha.ac.kr/research/research-areas/?source=inha` should become
+   `https://smi-lab-inha.github.io/research/research-areas/?source=inha`.
+3. Serve the forwarding endpoint over HTTPS with a valid certificate.
+4. Forward HTTP requests to the HTTPS destination as well.
 
-1. Verify both the old Google Sites property and `smil.inha.ac.kr` in Google
-   Search Console.
-2. Submit `https://smil.inha.ac.kr/sitemap-index.xml`.
-3. Replace the legacy Google Site with a short moved notice. Configure permanent
-   redirects for old paths if the platform permits; otherwise link each important
-   old page to its closest new destination.
-4. Update ORCID, Google Scholar, Scopus, Web of Science, ResearchGate, the Inha
-   faculty directory, GitHub organisation profile, email signatures, and software
-   listings to the custom domain.
-5. Monitor indexing, canonical selection, crawl errors, and branded queries for
-   at least eight weeks before removing any remaining legacy content.
+If the institutional system can only forward the home page, use a permanent
+redirect to `https://smi-lab-inha.github.io/`. This is less capable but remains
+preferable to an HTML refresh.
+
+## Repository configuration
+
+Do not add `public/CNAME`, change Astro's `site`, or change the sitemap address
+in `public/robots.txt`. The repository already correctly emits GitHub Pages
+canonical URLs. A `CNAME` file is also unnecessary for the custom GitHub
+Actions deployment used by this repository.
+
+After IT updates the destination:
+
+1. Run `npm run domain:check`.
+2. Test the home page and at least one nested path with a query string.
+3. Confirm that the address bar changes to `smi-lab-inha.github.io` and that the
+   target page loads over HTTPS.
+4. Remove or replace links to the legacy Google Site in university-controlled
+   pages and directories.
+
+## Search and profile updates
+
+1. Use `https://smi-lab-inha.github.io` as the canonical property and submit
+   `https://smi-lab-inha.github.io/sitemap-index.xml` in Google Search Console.
+2. Keep `smil.inha.ac.kr` only as a memorable institutional entry point.
+3. Update ORCID, Google Scholar, Scopus, Web of Science, ResearchGate, the Inha
+   faculty directory, the GitHub organisation profile, email signatures, and
+   software listings to the canonical GitHub Pages origin.
+4. Monitor indexing, crawl errors, and branded queries for at least eight weeks
+   after the forwarding destination changes.
 
 ## Rollback
 
-If GitHub Pages cannot issue the certificate or serve the domain, revert DNS to
-the previous CNAME and remove `public/CNAME` in the same maintenance window.
-Restore Astro's `site` and the robots sitemap URL to the GitHub Pages hostname.
+If forwarding fails, Inha IT can restore the previous destination. No GitHub
+Pages or repository rollback is required because the canonical site remains at
+the unchanged GitHub Pages origin.
