@@ -1,6 +1,6 @@
 ---
 import Pending from './Pending.astro';
-import { researchAreas, type Publication } from '../data/content';
+import { type Publication } from '../data/content';
 import { slugify } from '../lib/content';
 
 interface Props {
@@ -29,17 +29,17 @@ for (const year of years) {
   }
 }
 
-const topicLabels = new Map([
-  ['mooring-and-cable-integrity', 'Mooring & cable fatigue'],
-  ['ultimate-strength', 'Ultimate strength'],
-  ['fracture-and-impact', 'Fracture & impact'],
-]);
-const topicsByDoi = new Map<string, string[]>();
-for (const area of researchAreas) {
-  for (const doi of area.selected ?? []) {
-    topicsByDoi.set(doi, [...(topicsByDoi.get(doi) ?? []), topicLabels.get(area.slug) ?? area.title]);
+// Subject tags, ordered by how many papers carry them, so the busiest
+// subjects lead the filter row.
+const tagCounts = new Map<string, number>();
+for (const publication of items) {
+  for (const tag of publication.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
   }
 }
+const tags = [...tagCounts.entries()].sort(
+  (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+);
 
 function paperId(publication: Publication) {
   return `paper-${publication.doi ? publication.doi.replace(/[^a-zA-Z0-9]+/g, '-') : slugify(publication.title)}`;
@@ -63,6 +63,20 @@ function paperId(publication: Publication) {
         <p class="result-count" aria-live="polite" data-publication-count>{items.length} papers</p>
       </div>
 
+      {tags.length > 0 && (
+        <div class="filters">
+          <h2 class="filters-title" id="subject-filters">Filter by subject</h2>
+          <div class="tag-row" role="group" aria-labelledby="subject-filters">
+            {tags.map(([tag, count]) => (
+              <button type="button" class="tag" data-tag-filter={tag} aria-pressed="false">
+                {tag}
+                <span class="tag-count">{count}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <nav class="jump" aria-label="Jump to year">
         {years.map((y) => (
           <a href={`#y${y}`}>{y}</a>
@@ -84,7 +98,8 @@ function paperId(publication: Publication) {
                 <li
                   id={paperId(p)}
                   data-publication
-                  data-search={`${p.authors} ${p.title} ${p.venue} ${p.year} ${(topicsByDoi.get(p.doi) ?? []).join(' ')}`.toLowerCase()}
+                  data-search={`${p.authors} ${p.title} ${p.venue} ${p.year} ${p.tags.join(' ')}`.toLowerCase()}
+                  data-tags={p.tags.join('|')}
                 >
                   <span class="num">{numbered.get(p)}.</span>
                   <div>
@@ -104,9 +119,13 @@ function paperId(publication: Publication) {
                       {p.volume && <span> {p.volume}</span>}
                       {p.pages && <span>: {p.pages}</span>}
                     </p>
-                    {(topicsByDoi.get(p.doi) ?? []).length > 0 && (
+                    {p.tags.length > 0 && (
                       <p class="pub-topics">
-                        {(topicsByDoi.get(p.doi) ?? []).map((topic) => <span>{topic}</span>)}
+                        {p.tags.map((tag) => (
+                          <button type="button" class="tag" data-tag-filter={tag} aria-pressed="false">
+                            {tag}
+                          </button>
+                        ))}
                       </p>
                     )}
                     {p.doi && (
@@ -141,19 +160,48 @@ function paperId(publication: Publication) {
   const years = [...document.querySelectorAll<HTMLElement>('[data-year-section]')];
   const count = document.querySelector<HTMLElement>('[data-publication-count]');
 
-  search?.addEventListener('input', () => {
-    const query = search.value.trim().toLowerCase();
+  const tagButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-tag-filter]')];
+
+  let activeTag: string | null = null;
+
+  function apply() {
+    const query = search?.value.trim().toLowerCase() ?? '';
     let visible = 0;
     for (const paper of papers) {
-      const matches = !query || paper.dataset.search?.includes(query);
+      const matchesText = !query || Boolean(paper.dataset.search?.includes(query));
+      const matchesTag = !activeTag || (paper.dataset.tags?.split('|') ?? []).includes(activeTag);
+      const matches = matchesText && matchesTag;
       paper.hidden = !matches;
       if (matches) visible += 1;
     }
     for (const year of years) {
       year.hidden = !year.querySelector('[data-publication]:not([hidden])');
     }
-    if (count) count.textContent = `${visible} ${visible === 1 ? 'paper' : 'papers'}`;
-  });
+    for (const button of tagButtons) {
+      button.setAttribute('aria-pressed', String(button.dataset.tagFilter === activeTag));
+    }
+    if (count) {
+      const noun = visible === 1 ? 'paper' : 'papers';
+      count.textContent = activeTag
+        ? `${visible} ${noun} tagged ${activeTag}`
+        : `${visible} ${noun}`;
+    }
+  }
+
+  search?.addEventListener('input', apply);
+
+  for (const button of tagButtons) {
+    button.addEventListener('click', () => {
+      const tag = button.dataset.tagFilter ?? null;
+      activeTag = activeTag === tag ? null : tag;
+      apply();
+      // A pill inside an entry is usually below the fold; bring the
+      // filtered list back into view rather than leaving the reader adrift.
+      if (!button.closest('.tag-row')) {
+        document.querySelector('.filters')?.scrollIntoView({ block: 'start' });
+      }
+    });
+  }
 </script>
 
 <style>
@@ -203,6 +251,61 @@ function paperId(publication: Publication) {
     margin: 0;
     font-size: 0.78rem;
     color: var(--c-text-muted);
+  }
+
+  .filters {
+    margin-bottom: 1.5rem;
+  }
+
+  .filters-title {
+    margin: 0 0 0.55rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  /* One pill style, used both in the filter row and under each entry. */
+  .tag {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    line-height: 1.5;
+    color: var(--c-text-muted);
+    background: transparent;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    padding: 0.18em 0.7em;
+    cursor: pointer;
+  }
+
+  .tag:hover {
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+    background: var(--c-accent-soft);
+  }
+
+  .tag[aria-pressed='true'] {
+    background: var(--c-accent);
+    border-color: var(--c-accent);
+    color: var(--c-on-accent);
+  }
+
+  .tag-count {
+    margin-left: 0.45em;
+    color: var(--c-text-faint);
+  }
+
+  .tag[aria-pressed='true'] .tag-count,
+  .tag:hover .tag-count {
+    color: inherit;
   }
 
   .jump {
@@ -317,14 +420,6 @@ function paperId(publication: Publication) {
     flex-wrap: wrap;
     gap: 0.35rem 0.7rem;
     margin-top: 0.45rem !important;
-  }
-
-  .pub-topics span {
-    border: 1px solid var(--c-border);
-    border-radius: 999px;
-    padding: 0.08em 0.55em;
-    color: var(--c-text-muted);
-    font-size: 0.74rem;
   }
 
   .pub-links a {

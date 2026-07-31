@@ -5,6 +5,7 @@ import linksRaw from './links.json';
 import membersRaw from './members.json';
 import newsRaw from './news.json';
 import projectsRaw from './projects.json';
+import publicationTagsRaw from './publication-tags.json';
 import publicationsRaw from './publications.json';
 import recruitmentRaw from './recruitment.json';
 import researchAreasRaw from './research-areas.json';
@@ -50,6 +51,7 @@ export const publicationSchema = z.object({
   code: optionalUrl.optional().default(''),
   data: optionalUrl.optional().default(''),
   preprint: optionalUrl.optional().default(''),
+  tags: z.array(z.string().min(1)).optional().default([]),
 });
 
 export const projectSchema = z.object({
@@ -140,6 +142,7 @@ export const linkGroupSchema = z.object({
 export const members = z.array(memberSchema).parse(membersRaw);
 export const alumni = z.array(alumniSchema).parse(alumniRaw);
 export const publications = z.array(publicationSchema).parse(publicationsRaw);
+export const publicationTags = z.array(z.string().min(1)).parse(publicationTagsRaw);
 export const projects = z.array(projectSchema).parse(projectsRaw);
 export const software = z.array(softwareSchema).parse(softwareRaw);
 export const news = z.array(newsSchema).parse(newsRaw);
@@ -147,6 +150,30 @@ export const recruitment = recruitmentSchema.parse(recruitmentRaw);
 export const researchAreas = z.array(researchAreaSchema).parse(researchAreasRaw);
 export const teaching = z.array(teachingSchema).parse(teachingRaw);
 export const links = z.array(linkGroupSchema).parse(linksRaw);
+
+// Tags are a controlled vocabulary so a typo fails the build rather than
+// creating a one-off pill that looks like a real category.
+const allowedTags = new Set(publicationTags);
+const usedTags = new Set<string>();
+for (const publication of publications) {
+  if (publication.tags.length === 0) {
+    throw new Error(`Publication "${publication.title}" has no tags. Add at least one.`);
+  }
+  for (const tag of publication.tags) {
+    if (!allowedTags.has(tag)) {
+      throw new Error(
+        `Publication "${publication.title}" uses an unknown tag: "${tag}". ` +
+          'Add it to publication-tags.json or correct the spelling.',
+      );
+    }
+    usedTags.add(tag);
+  }
+}
+for (const tag of publicationTags) {
+  if (!usedTags.has(tag)) {
+    throw new Error(`Tag "${tag}" is declared in publication-tags.json but no publication uses it.`);
+  }
+}
 
 const dois = new Set(publications.map((publication) => publication.doi).filter(Boolean));
 for (const area of researchAreas) {
