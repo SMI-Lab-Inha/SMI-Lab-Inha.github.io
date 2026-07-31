@@ -14,6 +14,7 @@ export function GET() {
         publication.pages && `SP  - ${publication.pages}`,
         publication.doi && `DO  - ${publication.doi}`,
         publication.doi && `UR  - https://doi.org/${publication.doi}`,
+        ...publication.tags.map((tag) => `KW  - ${tag}`),
         'ER  -',
       ]
         .filter(Boolean)

@@ -22,6 +22,7 @@ export function GET() {
         ['volume', publication.volume],
         ['pages', publication.pages],
         ['doi', publication.doi],
+        ['keywords', publication.tags.join(', ')],
       ].filter(([, value]) => value);
       return `@${type}{${bibKey(publication)},\n${fields
         .map(([key, value]) => `  ${key} = {${escapeBib(value)}}`)
