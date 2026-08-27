@@ -10,7 +10,6 @@ fs.mkdirSync(path.join(OUT, 'members'), { recursive: true });
 const members = [
   ['4_Members/임준수.jpg', 'jun-soo-lim'],
   ['4_Members/심규성.jpg', 'kyusung-shim'],
-  ['4_Members/송진우.jpg', 'jinwoo-song'],
   ['4_Members/이우진.jpg', 'woojin-lee'],
   ['4_Members/황준혁.jpg', 'jun-hyeok-hwang'],
   ['4_Members/이희원.jpg', 'hui-won-lee'],
