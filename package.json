@@ -15,7 +15,7 @@
     "validate:build": "node scripts/validate-build.mjs",
     "validate:html": "html-validate \"dist/**/*.html\"",
     "validate": "npm run check && npm run build && npm run validate:build && npm run validate:html",
-    "audit": "npm audit --audit-level=high",
+    "audit": "node scripts/audit.mjs",
     "domain:check": "node scripts/check-domain.mjs",
     "check:links": "node scripts/check-links.mjs"
   },
