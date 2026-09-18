@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Pending from '../components/Pending.astro';
 import { links } from '../data/content';
+import { splitScript } from '../lib/content';
 
 const groups = links.filter((g) => g.items.length > 0);
 const count = groups.reduce((a, g) => a + g.items.length, 0);
@@ -41,10 +42,12 @@ const count = groups.reduce((a, g) => a + g.items.length, 0);
                       <li>
                         {item.url ? (
                           <a href={item.url} rel="external noopener">
-                            {item.label}
+                            {splitScript(item.label).map((part) =>
+                              part.korean ? <span lang="ko">{part.text}</span> : part.text,
+                            )}
                           </a>
                         ) : (
-                          <span>{item.label}</span>
+                          <span>{splitScript(item.label).map((part) => (part.korean ? <span lang="ko">{part.text}</span> : part.text))}</span>
                         )}
                         {item.note && <span class="muted"> — {item.note}</span>}
                       </li>
