@@ -49,13 +49,15 @@ const glance = [
           <a class="btn btn--ghost" href="/join-us">Join the lab</a>
         </p>
       </div>
-      <AssetImage
+      {/* Vector, so it stays crisp at any density and needs no srcset. */}
+      <img
         class="hero-logo"
-        src="/images/logo.webp"
+        src="/images/logo.svg"
         alt="SMI Lab logo: a ship, an offshore wind turbine, and a circuit-brain motif above stylised waves"
+        width="1024"
+        height="1024"
         loading="eager"
-        sizes="(min-width: 860px) 288px, 176px"
-        widths={[176, 288, 400, 560]}
+        decoding="async"
       />
     </div>
   </section>
