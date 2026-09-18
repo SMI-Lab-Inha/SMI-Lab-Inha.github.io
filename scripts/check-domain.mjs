@@ -1,51 +1,80 @@
+/**
+ * Checks that smil.inha.ac.kr still forwards to the site.
+ *
+ * Inha's IT infrastructure team only supports redirect or frameset forwarding
+ * for external sites, as a matter of information-security policy; a CNAME
+ * straight to GitHub Pages was requested and declined. So the arrangement is a
+ * meta-refresh page served from cicadmin.inha.ac.kr, and this script verifies
+ * that arrangement rather than the 301 it would ideally be.
+ *
+ * Two consequences of the forward are permanent and not faults to report:
+ *
+ *  - the GitHub address appears in the browser's address bar, because a
+ *    meta-refresh genuinely navigates there;
+ *  - the institutional domain passes no search authority to the site, because
+ *    a delayed meta-refresh is not a permanent redirect.
+ *
+ * Run with `npm run domain:check`.
+ *
+ * Note on tooling: curl built against Windows schannel fails to handshake with
+ * this host even though the certificate is valid and every other client
+ * succeeds. Node's fetch is used here for that reason — a false alarm from the
+ * checker is worse than no checker.
+ */
+
 import { resolveCname } from 'node:dns/promises';
 
-const domain = 'smil.inha.ac.kr';
-const destinationOrigin = 'https://smi-lab-inha.github.io';
-const probes = [
-  { path: '/', required: true },
-  { path: '/research/research-areas/?smil_forward_check=1', required: false },
-];
+const DOMAIN = 'smil.inha.ac.kr';
+const EXPECTED_TARGET = 'https://smi-lab-inha.github.io';
+const REFRESH = /<meta[^>]*http-equiv=["']?refresh["']?[^>]*content=["'][^"']*url=([^"'\s]+)/i;
+
 let failed = false;
 
-try {
-  const records = (await resolveCname(domain)).map((record) => record.replace(/\.$/, '').toLowerCase());
-  console.log(`CNAME: ${records.join(', ')}`);
-} catch (error) {
-  console.error(`Could not resolve ${domain}: ${error.message}`);
-  failed = true;
+function report(ok, message) {
+  console.log(`${ok ? '  ok  ' : '  !!  '}${message}`);
+  if (!ok) failed = true;
 }
 
-for (const probe of probes) {
-  const source = new URL(probe.path, `https://${domain}`);
-  try {
-    const response = await fetch(source, { redirect: 'manual' });
-    const location = response.headers.get('location');
-    console.log(`${source.pathname}${source.search}: ${response.status}${location ? ` -> ${location}` : ''}`);
+try {
+  const records = (await resolveCname(DOMAIN)).map((r) => r.replace(/\.$/, '').toLowerCase());
+  console.log(`${DOMAIN} is a CNAME to ${records.join(', ')}`);
+} catch (error) {
+  report(false, `could not resolve ${DOMAIN}: ${error.message}`);
+}
 
-    if (![301, 308].includes(response.status) || !location) {
-      const message = 'Expected a permanent HTTP redirect (301 or 308).';
-      probe.required ? console.error(message) : console.warn(`Optional path forwarding: ${message}`);
-      if (probe.required) failed = true;
+for (const scheme of ['https', 'http']) {
+  const url = `${scheme}://${DOMAIN}/`;
+  try {
+    const response = await fetch(url, { redirect: 'manual', signal: AbortSignal.timeout(30_000) });
+    const body = await response.text();
+
+    if (response.status >= 300 && response.status < 400) {
+      const location = response.headers.get('location') ?? '';
+      report(
+        location.startsWith(EXPECTED_TARGET),
+        `${scheme}: ${response.status} redirect to ${location || '(no Location header)'}`,
+      );
       continue;
     }
 
-    const target = new URL(location, source);
-    if (target.origin !== destinationOrigin) {
-      const message = `Expected redirect origin ${destinationOrigin}, received ${target.origin}.`;
-      probe.required ? console.error(message) : console.warn(`Optional path forwarding: ${message}`);
-      if (probe.required) failed = true;
+    const target = body.match(REFRESH)?.[1];
+    if (!target) {
+      report(false, `${scheme}: ${response.status}, but no redirect and no meta refresh — the forward is gone`);
+      continue;
     }
-    if (target.pathname !== source.pathname || target.search !== source.search) {
-      const message = 'The redirect does not preserve the path and query string.';
-      probe.required ? console.error(message) : console.warn(`Optional path forwarding: ${message}`);
-      if (probe.required) failed = true;
-    }
+    report(
+      target.startsWith(EXPECTED_TARGET),
+      `${scheme}: ${response.status} with a meta refresh to ${target}`,
+    );
   } catch (error) {
-    const message = `HTTPS forwarding check failed for ${source}: ${error.message}`;
-    probe.required ? console.error(message) : console.warn(`Optional path forwarding: ${message}`);
-    if (probe.required) failed = true;
+    report(false, `${scheme}: request failed (${error.name})`);
   }
 }
 
-process.exitCode = failed ? 1 : 0;
+if (failed) {
+  console.error('\nThe forward is not behaving as expected. Ask IT infrastructure to check it.');
+  process.exit(1);
+}
+
+console.log('\nThe forward is working. It remains a meta refresh, so the GitHub address');
+console.log('shows in the address bar and the domain passes no search authority.');
