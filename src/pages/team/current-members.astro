@@ -5,6 +5,22 @@ import Pending from '../../components/Pending.astro';
 import AssetImage from '../../components/AssetImage.astro';
 import { members } from '../../data/content';
 
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+
+// Each researcher as a Person affiliated with the lab. Students are named on
+// this page already; giving them machine-readable affiliation and subject
+// means a search for their name and topic can find them here.
+const peopleSchema = members.map((member) => ({
+  '@type': 'Person',
+  name: member.name,
+  alternateName: member.nameKo || undefined,
+  affiliation: { '@id': `${origin}/#lab` },
+  memberOf: { '@id': `${origin}/#lab` },
+  jobTitle: member.role || member.group.replace(/s$/, ''),
+  knowsAbout: member.topic || undefined,
+  email: member.email || undefined,
+}));
+
 const groups = ['Postdoctoral researchers', 'PhD students', "Master's students", 'Undergraduate researchers'];
 const byGroup = groups
   .map((g) => ({ group: g, people: members.filter((m) => m.group === g) }))
@@ -14,6 +30,7 @@ const byGroup = groups
 <Base
   title="Current members"
   description="SMI Lab researchers working on fracture, fatigue, dynamic power cables, mooring chains, ultimate strength, and propeller–ice interaction."
+  structuredData={peopleSchema}
 >
   <PageHeader eyebrow="Team" title="Current members" />
 

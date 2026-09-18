@@ -8,6 +8,22 @@ const list = [...projects].sort((a, b) => {
   const order = { current: 0, planned: 1, completed: 2 };
   return order[a.status] - order[b.status];
 });
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+
+// A funded project is an award, so MonetaryGrant is the accurate type: the
+// funding body is the funder, and the lab is what was funded. The Korean
+// title is carried too, because the award is recorded under it domestically.
+const grantSchema = projects.map((project) => ({
+  '@type': 'MonetaryGrant',
+  name: project.title,
+  alternateName: project.titleKo || undefined,
+  description: project.summary || undefined,
+  identifier: project.awardNumber || undefined,
+  funder: { '@type': 'Organization', name: project.funder },
+  fundedItem: { '@id': `${origin}/#lab` },
+  url: project.url || undefined,
+}));
+
 const groups = [
   { label: 'Principal Investigator', labelKo: '연구책임자', role: 'Principal Investigator' },
   { label: 'Co-Investigator', labelKo: '참여연구자', role: 'Co-Investigator' },
@@ -16,7 +32,11 @@ const groups = [
   .filter((g) => g.items.length > 0);
 ---
 
-<Base title="Projects" description="Funded SMI Lab projects in structural integrity, offshore renewable energy, marine workforce development, and digital shipyard engineering.">
+<Base
+  title="Projects"
+  description="Funded SMI Lab projects in structural integrity, offshore renewable energy, marine workforce development, and digital shipyard engineering."
+  structuredData={grantSchema}
+>
   <PageHeader
     eyebrow="Research"
     title="Projects"
