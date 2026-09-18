@@ -59,3 +59,17 @@ export function publicationSchema(items: Publication[], origin: string) {
     identifier: paper.doi ? `https://doi.org/${paper.doi}` : undefined,
   }));
 }
+
+/**
+ * Splits a string into Latin and Hangul runs, so mixed labels such as
+ * "Inha University — 인하대학교 홈페이지" can mark only their Korean part
+ * with lang="ko". A screen reader then switches voice for that run instead
+ * of reading Hangul with an English synthesiser, and search engines see the
+ * Korean as Korean.
+ */
+export function splitScript(value: string) {
+  return value
+    .split(/([\uAC00-\uD7AF][\uAC00-\uD7AF\s]*)/)
+    .filter(Boolean)
+    .map((part) => ({ text: part, korean: /[\uAC00-\uD7AF]/.test(part) }));
+}
