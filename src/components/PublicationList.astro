@@ -134,6 +134,11 @@ function paperId(publication: Publication) {
                           <span class="doi-tag">DOI</span>
                           {p.doi}
                         </a>
+                        {p.openAccess && (
+                          <span class="oa" title="A free full-text copy is available">
+                            Open access
+                          </span>
+                        )}
                       </p>
                     )}
                     {(p.preprint || p.code || p.data) && (
@@ -437,6 +442,32 @@ function paperId(publication: Publication) {
 
   .pub-doi a:hover {
     color: var(--c-accent);
+  }
+
+  .oa {
+    display: inline-block;
+    margin-left: 0.6em;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1d6b3f;
+    background: #e6f4ec;
+    border-radius: 3px;
+    padding: 0.1em 0.45em;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .oa {
+      color: #8fd6ab;
+      background: #10291c;
+    }
+  }
+
+  :root[data-theme='dark'] .oa {
+    color: #8fd6ab;
+    background: #10291c;
   }
 
   .doi-tag {

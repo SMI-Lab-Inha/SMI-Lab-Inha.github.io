@@ -52,6 +52,7 @@ export const publicationSchema = z.object({
   data: optionalUrl.optional().default(''),
   preprint: optionalUrl.optional().default(''),
   tags: z.array(z.string().min(1)).optional().default([]),
+  openAccess: z.boolean().optional().default(false),
 });
 
 export const projectSchema = z.object({
