@@ -75,22 +75,42 @@ for (const size of [32, 180]) {
   );
 }
 
-// Open Graph card: 1200x630 on white, logo centred
+/**
+ * Open Graph card, 1200x630.
+ *
+ * Composed as SVG and rasterised once, rather than centring a wordmark on
+ * white: a card is a thumbnail in someone's feed, so it needs to say whose lab
+ * it is and hold its own against the surrounding white. Navy ground from the
+ * Inha livery, the mark on a white panel, the name set beside it.
+ *
+ * It builds from the committed public/images/logo.svg rather than from the
+ * lab materials, so this block runs anywhere the repository is checked out.
+ */
 {
   const out = path.join(OUT, 'og-banner.png');
-  const logo = await sharp(path.join(SRC, '3_Logo/Banner.png'))
-    .resize(1000, 500, { fit: 'inside' })
-    .toBuffer();
-  await emit(
-    'og-banner.png',
-    out,
-    sharp({
-      create: { width: 1200, height: 630, channels: 4, background: '#ffffff' },
-    })
-      .composite([{ input: logo, gravity: 'centre' }])
-      .png({ compressionLevel: 9 })
-      .toFile(out)
-  );
+  const mark = fs.readFileSync(path.join(OUT, 'logo.svg'), 'utf8');
+  const inner = mark.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+  const card = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#051766"/>
+      <stop offset="100%" stop-color="#030d3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="0" y="622" width="1200" height="8" fill="#53AAE2"/>
+  <g transform="translate(96,172)">
+    <rect x="-24" y="-24" width="300" height="300" rx="10" fill="#ffffff"/>
+    <g transform="scale(0.246)">${inner}</g>
+  </g>
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" fill="#ffffff">
+    <text x="456" y="262" font-size="60" font-weight="700" letter-spacing="-1.4">Marine Structural</text>
+    <text x="456" y="334" font-size="60" font-weight="700" letter-spacing="-1.4">Mechanics and</text>
+    <text x="456" y="406" font-size="60" font-weight="700" letter-spacing="-1.4">Integrity Lab</text>
+    <text x="456" y="478" font-size="30" fill="#53AAE2" letter-spacing="2.4">INHA UNIVERSITY</text>
+  </g>
+</svg>`;
+  await emit('og-banner.png', out, sharp(Buffer.from(card)).png({ compressionLevel: 9 }).toFile(out));
 }
 
 console.log(results.join('\n'));
