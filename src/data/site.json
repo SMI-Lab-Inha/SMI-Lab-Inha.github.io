@@ -6,33 +6,81 @@
   "university": "Inha University",
   "address": "100 Inha-ro, 2N481, Michuhol-gu, Incheon 22212, Republic of Korea",
   "email": "jaehoon.seo@inha.ac.kr",
-  "values": ["Creativity", "Openness", "Responsibility", "Excellence"],
+  "values": [
+    "Creativity",
+    "Openness",
+    "Responsibility",
+    "Excellence"
+  ],
   "legacySiteUrl": "https://sites.google.com/inha.ac.kr/smi-lab",
   "nav": [
     {
       "label": "Research",
       "href": "/research/",
       "children": [
-        { "label": "Research areas", "href": "/research/research-areas" },
-        { "label": "Funded projects", "href": "/research/projects" }
+        {
+          "label": "Research areas",
+          "href": "/research/research-areas"
+        },
+        {
+          "label": "Funded projects",
+          "href": "/research/projects"
+        }
       ]
     },
-    { "label": "Software", "href": "/research/software" },
+    {
+      "label": "Software",
+      "href": "/research/software"
+    },
     {
       "label": "People",
       "href": "/team/",
       "children": [
-        { "label": "Director", "href": "/team/director" },
-        { "label": "Current members", "href": "/team/current-members" }
+        {
+          "label": "Director",
+          "href": "/team/director"
+        },
+        {
+          "label": "Current members",
+          "href": "/team/current-members"
+        }
       ]
     },
-    { "label": "Publications", "href": "/publications/journal-papers" },
-    { "label": "News", "href": "/news" },
-    { "label": "Opportunities", "href": "/join-us" }
+    {
+      "label": "Publications",
+      "href": "/publications/",
+      "children": [
+        {
+          "label": "Journal papers",
+          "href": "/publications/journal-papers"
+        },
+        {
+          "label": "Conference proceedings",
+          "href": "/publications/conference-proceedings"
+        }
+      ]
+    },
+    {
+      "label": "News",
+      "href": "/news"
+    },
+    {
+      "label": "Opportunities",
+      "href": "/join-us"
+    }
   ],
   "secondaryNav": [
-    { "label": "Home", "href": "/" },
-    { "label": "Teaching", "href": "/teaching" },
-    { "label": "External links", "href": "/links" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Teaching",
+      "href": "/teaching"
+    },
+    {
+      "label": "External links",
+      "href": "/links"
+    }
   ]
 }
