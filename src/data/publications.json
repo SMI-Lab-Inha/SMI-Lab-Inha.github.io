@@ -99,6 +99,17 @@
     "tags": ["Underwater explosion", "Naval structures", "Hull girder"]
   },
   {
+    "type": "conference",
+    "authors": "Chang W, Cerik BC, Choung J",
+    "title": "Prediction of damage extents due to in-compartment explosions in warships",
+    "venue": "Advances in the Analysis and Design of Marine Structures",
+    "year": "2023",
+    "volume": "",
+    "pages": "651–657",
+    "doi": "10.1201/9781003399759-72",
+    "tags": ["Blast loading", "Naval structures"]
+  },
+  {
     "type": "journal",
     "authors": "Kim H, Cerik BC, Choung J",
     "title": "Effects of fracture models on structural damage and acceleration in naval ships due to underwater explosions",
@@ -108,6 +119,28 @@
     "pages": "112930",
     "doi": "10.1016/j.oceaneng.2022.112930",
     "tags": ["Underwater explosion", "Naval structures", "Ductile fracture"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Choung J",
+    "title": "Dynamic Analysis of Collision Between Two Floating Bodies Considering Hydrodynamic Loads",
+    "venue": "ASME 2022 41st International Conference on Ocean, Offshore and Arctic Engineering, Hamburg",
+    "year": "2022",
+    "volume": "",
+    "pages": "V002T02A016",
+    "doi": "10.1115/omae2022-81221",
+    "tags": ["Collision and grounding", "Hydrodynamics"]
+  },
+  {
+    "type": "conference",
+    "authors": "Kim H, Cerik BC, Choung J",
+    "title": "Prediction of Structural Damages and Armament Accelerations of a Surface Naval Ship due to Underwater Explosions",
+    "venue": "ASME 2022 41st International Conference on Ocean, Offshore and Arctic Engineering, Hamburg",
+    "year": "2022",
+    "volume": "",
+    "pages": "V002T02A028",
+    "doi": "10.1115/omae2022-80686",
+    "tags": ["Underwater explosion", "Naval structures"]
   },
   {
     "type": "journal",
@@ -195,7 +228,8 @@
     "volume": "8(10)",
     "pages": "756",
     "doi": "10.3390/jmse8100756",
-    "tags": ["Manufacturing"]
+    "tags": ["Manufacturing"],
+    "preprint": "https://doi.org/10.20944/preprints202009.0582.v1"
   },
   {
     "type": "journal",
@@ -229,6 +263,17 @@
     "pages": "106944",
     "doi": "10.1016/j.oceaneng.2020.106944",
     "tags": ["Structural health monitoring", "Cylindrical shells", "Impact damage"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Park SJ, Choung J",
+    "title": "Predicting Ductile Fracture in Maritime Crash with a Modified Implementation of BWH Criterion",
+    "venue": "Practical Design of Ships and Other Floating Structures, Lecture Notes in Civil Engineering",
+    "year": "2020",
+    "volume": "",
+    "pages": "701–714",
+    "doi": "10.1007/978-981-15-4672-3_43",
+    "tags": ["Ductile fracture", "Localised necking", "Collision and grounding"]
   },
   {
     "type": "journal",
@@ -287,6 +332,17 @@
   },
   {
     "type": "journal",
+    "authors": "Park SJ, Lee K, Cerik BC, Kim Y, Choung J",
+    "title": "Ductile Fracture of a Marine Structural Steel based on HC-DSSE Combined Fracture Strain Formulation",
+    "venue": "Journal of the Society of Naval Architects of Korea",
+    "year": "2019",
+    "volume": "56(1)",
+    "pages": "82–93",
+    "doi": "10.3744/snak.2019.56.1.082",
+    "tags": ["Ductile fracture", "Material testing"]
+  },
+  {
+    "type": "journal",
     "authors": "Noh MH, Cerik BC, Han D, Choung J",
     "title": "Lateral impact tests on FH32 grade steel stiffened plates at room and sub-zero temperatures",
     "venue": "International Journal of Impact Engineering",
@@ -306,6 +362,17 @@
     "pages": "416–424",
     "doi": "10.1016/j.tws.2017.10.030",
     "tags": ["Ultimate strength", "Impact damage"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Park SJ, Choung J",
+    "title": "Ductile Fracture Modeling of DH36 Grade Steels",
+    "venue": "ASME 2018 37th International Conference on Ocean, Offshore and Arctic Engineering, Madrid",
+    "year": "2018",
+    "volume": "",
+    "pages": "V11AT12A008",
+    "doi": "10.1115/omae2018-78681",
+    "tags": ["Ductile fracture", "Material testing"]
   },
   {
     "type": "journal",

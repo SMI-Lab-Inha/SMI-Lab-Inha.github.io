@@ -10,9 +10,7 @@ export default defineConfig({
   trailingSlash: 'ignore',
   integrations: [
     sitemap({
-      filter: (page) =>
-        !page.endsWith('/team/alumni/') &&
-        !page.endsWith('/publications/conference-proceedings/'),
+      filter: (page) => !page.endsWith('/team/alumni/'),
     }),
   ],
   build: {
