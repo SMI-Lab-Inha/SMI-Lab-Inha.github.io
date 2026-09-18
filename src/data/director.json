@@ -6,7 +6,7 @@
   "title": "Assistant Professor in Marine Structures",
   "email": "jaehoon.seo@inha.ac.kr",
   "phone": "+82 32 860 7341",
-  "office": "Room 2N481, Building 2",
+  "office": "Room 2N481",
   "photo": "/images/director.webp",
   "photoAlt": "Professor Jae Hoon Seo, director of the SMI Lab at Inha University",
   "bio": "Professor Jae Hoon Seo directs the Marine Structural Mechanics and Integrity Lab at Inha University. His core research addresses fracture and fatigue in ships and offshore structures, including ductile fracture, impact mechanics, engineering critical assessment, and fatigue monitoring. His broader structural mechanics work covers ultimate strength and progressive collapse, while current offshore energy applications include mooring and dynamic power cable integrity for floating offshore wind. Before March 2025, he held faculty positions at Cranfield University and Newcastle University in Singapore, as well as a position as principal researcher at Inha University.",
@@ -99,9 +99,7 @@
   ],
   "service": [
     "Editorial board member, International Journal of Naval Architecture and Ocean Engineering, July 2026 – July 2028",
-    "Member, ISSC Specialist Committee V.4 — Offshore Renewable Energy, 2025–2028, representing the Republic of Korea",
-    "Observer representing the Republic of Korea, 22nd International Ship and Offshore Structures Congress, Wuxi, September 2025",
-    "Session chair, Naval Vessel Integrated Survivability / Damage Control / Special Performance, MADEX 2025, Busan"
+    "Member, ISSC Specialist Committee V.4 — Offshore Renewable Energy, 2025–2028, representing the Republic of Korea"
   ],
   "awards": [
     "Special Naturalization of Outstanding Talent — Ministry of Law, Republic of Korea, for exceptional ability in science and technology, 2019",

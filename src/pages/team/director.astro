@@ -67,8 +67,11 @@ const personSchema = {
         <p class="lead">{d.bio}</p>
 
         <p class="former">
-          International papers up to 2025 appear under the name
-          <strong>{d.formerName}</strong>; Korean-language journals and papers from 2026 use
+          {/* The explicit spaces matter: Astro drops a newline before an inline
+              element rather than collapsing it to one, so breaking the line
+              here ran the words into the names. */}
+          International papers up to 2025 appear under the name{' '}
+          <strong>{d.formerName}</strong>; Korean-language journals and papers from 2026 use{' '}
           <strong>{d.name}</strong>. Both names refer to the same author, and the profile links
           cover the complete record.
         </p>
