@@ -8,7 +8,8 @@
     "version": "v0.2.3",
     "status": "alpha",
     "repo": "",
-    "docs": ""
+    "docs": "",
+    "featured": true
   },
   {
     "name": "CableXsec",
@@ -19,7 +20,8 @@
     "version": "",
     "status": "alpha",
     "repo": "",
-    "docs": ""
+    "docs": "",
+    "featured": true
   },
   {
     "name": "VANE",
@@ -30,7 +32,8 @@
     "version": "",
     "status": "beta",
     "repo": "",
-    "docs": ""
+    "docs": "",
+    "featured": true
   },
   {
     "name": "FOWCON",
@@ -41,7 +44,8 @@
     "version": "",
     "status": "alpha",
     "repo": "",
-    "docs": ""
+    "docs": "",
+    "featured": true
   },
   {
     "name": "pyBModes",
@@ -52,7 +56,8 @@
     "version": "",
     "status": "public",
     "repo": "https://github.com/SMI-Lab-Inha/pyBModes",
-    "docs": "https://pybmodes.readthedocs.io/en/latest/"
+    "docs": "https://pybmodes.readthedocs.io/en/latest/",
+    "featured": true
   },
   {
     "name": "pyIECWind",
@@ -63,7 +68,8 @@
     "version": "",
     "status": "public",
     "repo": "https://github.com/SMI-Lab-Inha/pyIECWind",
-    "docs": "https://pyiecwind.readthedocs.io/en/latest/"
+    "docs": "https://pyiecwind.readthedocs.io/en/latest/",
+    "featured": true
   },
   {
     "name": "OpenFAST, ROSCO and TurbSim syntax highlighting for VS Code",
@@ -74,6 +80,7 @@
     "version": "",
     "status": "public",
     "repo": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting",
-    "docs": "https://marketplace.visualstudio.com/items?itemName=SMI-Lab.openfast-rosco-syntax-highlighting"
+    "docs": "https://marketplace.visualstudio.com/items?itemName=SMI-Lab.openfast-rosco-syntax-highlighting",
+    "featured": false
   }
 ]
