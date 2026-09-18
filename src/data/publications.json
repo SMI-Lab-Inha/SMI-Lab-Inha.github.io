@@ -117,6 +117,17 @@
   },
   {
     "type": "journal",
+    "authors": "Seo JH, Park KS, Cha I, Choung J",
+    "title": "Engineering Critical Assessement for an Independent Type-B LNG Cargo Tank",
+    "venue": "Journal of the Society of Naval Architects of Korea",
+    "year": "2023",
+    "volume": "60(4)",
+    "pages": "213–221",
+    "doi": "10.3744/snak.2023.60.4.213",
+    "tags": ["Ductile fracture", "Low temperature"]
+  },
+  {
+    "type": "journal",
     "authors": "Kim H, Cerik BC, Choung J",
     "title": "Effects of fracture models on structural damage and acceleration in naval ships due to underwater explosions",
     "venue": "Ocean Engineering",
@@ -182,6 +193,17 @@
     "doi": "10.3390/jmse9020117",
     "tags": ["Localised necking", "Ductile fracture", "Material testing"],
     "openAccess": true
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Choung J",
+    "title": "Estimation of damage extents and evaluation of survivability of surface ships subjected to near-field explosion",
+    "venue": "Developments in the Analysis and Design of Marine Structures",
+    "year": "2021",
+    "volume": "",
+    "pages": "57–64",
+    "doi": "10.1201/9781003230373-7",
+    "tags": ["Underwater explosion", "Naval structures"]
   },
   {
     "type": "journal",
@@ -356,6 +378,17 @@
     "tags": ["Ductile fracture", "Material testing"]
   },
   {
+    "type": "conference",
+    "authors": "Li MY, Kefal A, Cerik BC, Oterkus E",
+    "title": "Structural health monitoring of submarine pressure hull using inverse finite element method",
+    "venue": "Trends in the Analysis and Design of Marine Structures",
+    "year": "2019",
+    "volume": "",
+    "pages": "293–302",
+    "doi": "10.1201/9780429298875-34",
+    "tags": ["Structural health monitoring", "Cylindrical shells", "Naval structures"]
+  },
+  {
     "type": "journal",
     "authors": "Noh MH, Cerik BC, Han D, Choung J",
     "title": "Lateral impact tests on FH32 grade steel stiffened plates at room and sub-zero temperatures",
@@ -408,6 +441,28 @@
     "volume": "110",
     "pages": "123–132",
     "doi": "10.1016/j.tws.2016.10.021",
+    "tags": ["Blast loading", "Aluminium structures"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Villavicencio R",
+    "title": "Plate tearing mechanics of high-speed vessels’ aluminium plates during grounding incidents",
+    "venue": "Progress in the Analysis and Design of Marine Structures",
+    "year": "2017",
+    "volume": "",
+    "pages": "415–422",
+    "doi": "10.1201/9781315157368-54",
+    "tags": ["Collision and grounding", "Aluminium structures"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC",
+    "title": "Effects of HAZ on the response of impulsively loaded aluminium plates",
+    "venue": "Progress in the Analysis and Design of Marine Structures",
+    "year": "2017",
+    "volume": "",
+    "pages": "565–572",
+    "doi": "10.1201/9781315157368-72",
     "tags": ["Blast loading", "Aluminium structures"]
   },
   {
@@ -465,5 +520,16 @@
     "doi": "10.2478/IJNAOE-2013-0120",
     "tags": ["Ultimate strength", "Structural reliability", "Naval structures"],
     "openAccess": true
+  },
+  {
+    "type": "conference",
+    "authors": "Cho S-R, Seo BS, Cerik BC, Shin HK",
+    "title": "Experimental and numerical investigations on the collision between offshore wind turbine support structures and service vessels",
+    "venue": "Collision and Grounding of Ships and Offshore Structures",
+    "year": "2013",
+    "volume": "",
+    "pages": "281–287",
+    "doi": "10.1201/b14915-34",
+    "tags": ["Collision and grounding", "Impact damage"]
   }
 ]
