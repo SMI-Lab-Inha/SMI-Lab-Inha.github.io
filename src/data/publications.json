@@ -111,6 +111,17 @@
   },
   {
     "type": "journal",
+    "authors": "Kim H, Seo JH, Choung J",
+    "title": "A Study on Inelastic Whipping Responses in a Navy Ship by Underwater Explosion",
+    "venue": "Journal of the Society of Naval Architects of Korea",
+    "year": "2021",
+    "volume": "58(6)",
+    "pages": "400–406",
+    "doi": "10.3744/snak.2021.58.6.400",
+    "tags": ["Underwater explosion", "Naval structures", "Hull girder"]
+  },
+  {
+    "type": "journal",
     "authors": "Cerik BC, Choung J",
     "title": "Fracture estimation in ship collision analysis—strain rate and thermal softening effects",
     "venue": "Metals",
@@ -240,6 +251,17 @@
     "pages": "106173",
     "doi": "10.1016/j.oceaneng.2019.106173",
     "tags": ["Collision and grounding", "Localised necking", "Ductile fracture"]
+  },
+  {
+    "type": "journal",
+    "authors": "Park SJ, Lee K, Cerik BC, Choung J",
+    "title": "Comparative Study on Various Ductile Fracture Models for Marine Structural Steel EH36",
+    "venue": "Journal of Ocean Engineering and Technology",
+    "year": "2019",
+    "volume": "33(3)",
+    "pages": "259–271",
+    "doi": "10.26748/ksoe.2019.038",
+    "tags": ["Ductile fracture", "Material testing"]
   },
   {
     "type": "journal",
