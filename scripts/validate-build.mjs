@@ -208,9 +208,81 @@ for (const file of htmlFiles) {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Lab-authored prose: British spelling and the banned phrases.
+
+   CLAUDE.md documents both as greps to run by hand, which means they run only
+   when someone remembers. They are checked here instead.
+
+   Scope is deliberately narrow. Only fields the lab actually writes are read;
+   publication titles, official project titles and award names are transcribed
+   verbatim and keep their original spelling, because altering a citation
+   falsifies it. Listing the prose fields explicitly is what keeps "localized
+   necking" in a paper title from failing the build.
+   -------------------------------------------------------------------------- */
+
+const PROSE_FIELDS = {
+  'site.json': ['shortDescription'],
+  'director.json': ['bio'],
+  'research-areas.json': ['title', 'summary', 'topics', 'methods', 'lineage', 'emerging'],
+  'software.json': ['description'],
+  'projects.json': ['summary'],
+  'news.json': ['body'],
+  'teaching.json': ['description'],
+  'recruitment.json': ['summary'],
+  'links.json': ['note'],
+};
+
+// -ise/-isation and the handful of spellings that differ without a suffix.
+// The {3,} bound matters: a shorter one matches "size" inside "font-size".
+const AMERICAN = /\b\w{3,}(iz|yz)(e|ed|es|ing|ation|ations)\b|\bbehavior\b|\bmodeling\b|\bdefense\b|\baluminum\b|\bcenter\b/i;
+
+const BANNED = [
+  'cutting-edge', 'cutting edge', 'next-generation', 'next generation',
+  'state-of-the-art', 'AI-driven', 'real-world impact', 'seamless workflow',
+  'comprehensive toolset', 'game-chang', 'revolutionar', 'leverage',
+];
+
+function proseStrings(value, keys) {
+  const out = [];
+  const visit = (node) => {
+    if (Array.isArray(node)) return node.forEach(visit);
+    if (node && typeof node === 'object') {
+      for (const [key, child] of Object.entries(node)) {
+        if (keys.includes(key)) {
+          if (typeof child === 'string') out.push(child);
+          else if (Array.isArray(child)) out.push(...child.filter((c) => typeof c === 'string'));
+        } else visit(child);
+      }
+    }
+  };
+  visit(value);
+  return out;
+}
+
+const dataDir = path.resolve('src/data');
+for (const [fileName, keys] of Object.entries(PROSE_FIELDS)) {
+  const file = path.join(dataDir, fileName);
+  if (!fs.existsSync(file)) continue;
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (error) {
+    fail(file, `is not valid JSON: ${error.message}`);
+    continue;
+  }
+  for (const text of proseStrings(parsed, keys)) {
+    const american = text.match(AMERICAN);
+    if (american) fail(file, `American spelling "${american[0]}" in lab-authored prose`);
+    for (const phrase of BANNED) {
+      if (text.toLowerCase().includes(phrase)) fail(file, `banned phrase "${phrase}" in lab-authored prose`);
+    }
+  }
+}
+
 if (failures.length > 0) {
   console.error(`Build validation failed with ${failures.length} issue(s):\n${failures.join('\n')}`);
   process.exit(1);
 }
 
-console.log(`Validated ${htmlFiles.length} HTML pages: British English metadata, colour themes, contrast, heading order, email spacing, images, JSON-LD, TODOs, and internal links.`);
+console.log(`Validated ${htmlFiles.length} HTML pages: British English metadata and prose, banned phrases, colour themes, contrast, heading order, email spacing, images, JSON-LD, TODOs, and internal links.`);
