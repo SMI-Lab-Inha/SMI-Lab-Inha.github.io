@@ -1,6 +1,17 @@
 [
   {
     "type": "journal",
+    "authors": "Ou B, Seo JH, Qin Q, Huang L",
+    "title": "Wave-structure interaction of offshore floating solar array: Uniform and hybrid floaters",
+    "venue": "Journal of Energy Infrastructure",
+    "year": "2026",
+    "volume": "",
+    "pages": "100025",
+    "doi": "10.1016/j.jei.2026.100025",
+    "tags": ["Floating solar", "Hydrodynamics"]
+  },
+  {
+    "type": "journal",
     "authors": "Seo JH",
     "title": "Floating offshore substations for offshore wind energy: A review of design challenges, structural integrity, and standardisation gaps",
     "venue": "Ocean Engineering",
