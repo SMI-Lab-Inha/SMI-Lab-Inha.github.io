@@ -78,6 +78,9 @@ export const softwareSchema = z.object({
   version: z.string().optional().default(''),
   repo: optionalUrl,
   docs: optionalUrl,
+  // Shown on the home page. Set explicitly rather than inferred from status:
+  // release state says nothing about whether a package represents the lab.
+  featured: z.boolean().optional().default(false),
 });
 
 export const newsSchema = z.object({

@@ -19,7 +19,18 @@ const latest = [
   ...news.filter((n) => !n.pinned && n.date).sort((a, b) => b.date.localeCompare(a.date)),
 ].slice(0, 5);
 const publicPkgs = software.filter((s) => s.status === 'public');
-const alphaPkgs = software.filter((s) => s.status === 'alpha');
+
+// Kept in data order, so software.json controls what leads.
+const featuredPkgs = software.filter((s) => s.featured).slice(0, 6);
+
+// Short enough to sit on a card. The full wording, and why a package is not
+// yet released, is on the software page this section links to.
+const pkgStatus: Record<string, string> = {
+  public: 'Public',
+  beta: 'Private · beta',
+  alpha: 'Private · alpha',
+  'in-development': 'In development',
+};
 const currentProjects = projects.filter((project) => project.status === 'current');
 const people = members;
 
@@ -148,11 +159,11 @@ const glance = [
       </p>
       <ul class="pkgs list-plain">
         {
-          [...publicPkgs, ...alphaPkgs].slice(0, 6).map((s) => (
+          featuredPkgs.map((s) => (
             <li>
               <span class="pkg-name">{s.repo ? <a href={s.repo}>{s.name}</a> : s.name}</span>
               <span class={`pkg-status ${s.status === 'public' ? 'is-public' : ''}`}>
-                {s.status === 'public' ? 'Public' : 'Private — release planned'}
+                {pkgStatus[s.status]}
               </span>
             </li>
           ))
@@ -513,11 +524,15 @@ const glance = [
     margin-top: 1.4rem;
   }
 
+  /* Stacked, not a baseline row. Side by side, the status is a flex item that
+     will not shrink below its own text, so a long label pushed out of the card
+     and overlapped the next one. */
   .pkgs li {
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 0.7rem;
+    gap: 0.55rem;
     border: 1px solid var(--c-border);
     border-radius: var(--radius);
     padding: 0.8rem 1rem;
@@ -527,6 +542,8 @@ const glance = [
   .pkg-name {
     font-family: var(--font-mono);
     font-size: 0.9rem;
+    /* Package names are single words; a long one breaks rather than overflows. */
+    overflow-wrap: anywhere;
   }
 
   .pkg-name a {
