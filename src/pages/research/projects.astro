@@ -52,7 +52,7 @@ const groups = [
           />
         ) : (
           groups.map((g) => (
-            <div class="group">
+            <div class={`group${g.role === 'Principal Investigator' ? ' group--lead' : ''}`}>
               <h2>
                 {g.label} <span class="ko">— <span lang="ko">{g.labelKo}</span></span>
               </h2>
@@ -97,6 +97,15 @@ const groups = [
     font-size: 1.25rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--c-border);
+  }
+
+  /* Work the lab leads reads first. The consortium and training programmes the
+     lab contributes to are real and funded, but they are not its own research
+     agenda, and giving both the same weight flattened that distinction. */
+  .group--lead h2 {
+    font-size: 1.45rem;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--c-accent);
   }
 
   .ko {
