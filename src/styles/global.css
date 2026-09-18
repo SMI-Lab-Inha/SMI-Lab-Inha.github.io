@@ -365,3 +365,111 @@ code {
   background: var(--c-accent-soft);
   color: var(--c-accent-hover);
 }
+
+/* --------------------------------------------------------------------------
+   Print
+   A publication list is something people actually print — for a tenure file,
+   a grant annex, a departmental report. The screen furniture is useless on
+   paper and the dark hero wastes a cartridge, so print gets plain black on
+   white with the navigation, controls and decoration removed.
+   -------------------------------------------------------------------------- */
+
+@media print {
+  :root {
+    --c-bg: #fff;
+    --c-bg-subtle: #fff;
+    --c-bg-inset: #fff;
+    --c-text: #000;
+    --c-text-muted: #333;
+    --c-text-faint: #444;
+    --c-accent: #000;
+    --c-accent-hover: #000;
+    --c-accent-soft: #fff;
+    --c-border: #bbb;
+    --c-border-strong: #888;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  /* Navigation, the theme control, the search and filter row, and the skip
+     link are all interactive furniture with no meaning on paper. */
+  header nav,
+  .site-footer,
+  .skip-link,
+  .publication-tools,
+  .filters,
+  .jump,
+  .theme-item,
+  .hero::after {
+    display: none !important;
+  }
+
+  main {
+    padding: 0;
+  }
+
+  .section {
+    padding-block: 0.6rem;
+  }
+
+  .wrap,
+  .wrap--narrow {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  /* The hero is white-on-navy on screen; invert it rather than flooding the
+     page with ink. */
+  .hero {
+    background: none !important;
+    color: #000;
+  }
+
+  .hero h1,
+  .hero p {
+    color: #000;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* Keep a citation, a person or a card whole across a page break. */
+  .pubs li,
+  .card,
+  .person,
+  .item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .year-block h2 {
+    border-bottom: 1px solid #000;
+  }
+
+  /* Subject pills are filter controls, not content. */
+  .pub-topics {
+    display: none;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 18mm 16mm;
+  }
+}

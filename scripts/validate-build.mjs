@@ -77,7 +77,27 @@ for (const explicitTheme of ['light', 'dark']) {
     fail(globalCssFile, `missing explicit ${explicitTheme} theme override`);
   }
 }
-const themeBlocks = [...globalCss.matchAll(/:root\s*{([^}]+)}/g)].map((match) =>
+/**
+ * Print redefines the same custom properties for paper, which is a third
+ * `:root` block but not a third colour theme. It is removed before the
+ * light/dark pair is checked, so that check stays exactly as strict.
+ */
+function stripAtRule(css, prelude) {
+  const start = css.indexOf(prelude);
+  if (start === -1) return css;
+  let depth = 0;
+  for (let i = css.indexOf('{', start); i < css.length; i += 1) {
+    if (css[i] === '{') depth += 1;
+    else if (css[i] === '}') {
+      depth -= 1;
+      if (depth === 0) return css.slice(0, start) + css.slice(i + 1);
+    }
+  }
+  return css.slice(0, start);
+}
+
+const themeCss = stripAtRule(globalCss, '@media print');
+const themeBlocks = [...themeCss.matchAll(/:root\s*{([^}]+)}/g)].map((match) =>
   parseCssVariables(match[1]),
 );
 if (themeBlocks.length !== 2) {
