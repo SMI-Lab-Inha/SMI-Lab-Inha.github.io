@@ -64,7 +64,7 @@
     "items": [
       {
         "label": "The Royal Institution of Naval Architects — RINA",
-        "url": "https://rina.org.uk/",
+        "url": "https://www.rina.org.uk/",
         "note": ""
       },
       {
@@ -129,7 +129,7 @@
     "items": [
       {
         "label": "HD Hyundai Heavy Industries — HHI",
-        "url": "https://www.hhi.co.kr/kr/main",
+        "url": "https://hd-hhi.com/kr/main",
         "note": ""
       },
       {
@@ -144,12 +144,12 @@
       },
       {
         "label": "HD Samho Heavy Industries",
-        "url": "https://www.hshi.co.kr/",
+        "url": "https://www.hd-samho.com/",
         "note": ""
       },
       {
         "label": "HD Korea Shipbuilding & Offshore Engineering",
-        "url": "https://www.hdksoe.co.kr/kr/main",
+        "url": "https://www.hd-ksoe.com/kr/main",
         "note": ""
       },
       {
@@ -228,8 +228,8 @@
     "group": "Government and funding agencies",
     "items": [
       {
-        "label": "Ministry of Trade, Industry and Energy — MOTIE",
-        "url": "https://www.motie.go.kr/",
+        "label": "Ministry of Trade, Industry and Resources — MOTIR",
+        "url": "https://www.motir.go.kr/",
         "note": ""
       },
       {
@@ -254,7 +254,7 @@
       },
       {
         "label": "Horizon Europe",
-        "url": "https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en",
+        "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/horizon",
         "note": ""
       },
       {
@@ -364,7 +364,7 @@
       },
       {
         "label": "International Journal of Maritime Engineering — RINA",
-        "url": "https://rina.org.uk/publications/rina-transactions/",
+        "url": "https://www.rina.org.uk/International-Journal-of-Maritime-Engineering",
         "note": ""
       },
       {

@@ -16,7 +16,8 @@
     "validate:html": "html-validate \"dist/**/*.html\"",
     "validate": "npm run check && npm run build && npm run validate:build && npm run validate:html",
     "audit": "npm audit --audit-level=high",
-    "domain:check": "node scripts/check-domain.mjs"
+    "domain:check": "node scripts/check-domain.mjs",
+    "check:links": "node scripts/check-links.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
