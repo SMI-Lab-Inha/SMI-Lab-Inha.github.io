@@ -1,4 +1,4 @@
-import { recruitment, type NewsItem } from '../data/content';
+import { recruitment, type NewsItem, type Publication } from '../data/content';
 
 export function slugify(value: string) {
   return value
@@ -34,4 +34,28 @@ export function recruitmentStatusLabel() {
     return `Open until ${date}`;
   }
   return 'Now open';
+}
+
+/**
+ * schema.org describing a list of papers. Shared by the journal and
+ * conference pages so both carry structured data, and so the director
+ * resolves to his existing Person node rather than a duplicate name.
+ */
+export function publicationSchema(items: Publication[], origin: string) {
+  return items.map((paper) => ({
+    '@type': 'ScholarlyArticle',
+    headline: paper.title,
+    name: paper.title,
+    datePublished: paper.year,
+    isPartOf: { '@type': 'Periodical', name: paper.venue },
+    author: paper.authors.split(', ').map((author) =>
+      author === 'Seo JH' || author === 'Cerik BC'
+        ? { '@id': `${origin}/team/director/#person` }
+        : { '@type': 'Person', name: author },
+    ),
+    about: paper.tags.length > 0 ? paper.tags : undefined,
+    isAccessibleForFree: paper.openAccess || undefined,
+    sameAs: paper.doi ? `https://doi.org/${paper.doi}` : undefined,
+    identifier: paper.doi ? `https://doi.org/${paper.doi}` : undefined,
+  }));
 }

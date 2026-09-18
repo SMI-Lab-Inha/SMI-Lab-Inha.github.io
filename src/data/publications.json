@@ -8,7 +8,8 @@
     "volume": "",
     "pages": "100025",
     "doi": "10.1016/j.jei.2026.100025",
-    "tags": ["Floating solar", "Hydrodynamics"]
+    "tags": ["Floating solar", "Hydrodynamics"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -41,7 +42,8 @@
     "volume": "326",
     "pages": "120970",
     "doi": "10.1016/j.oceaneng.2025.120970",
-    "tags": ["Floating solar", "Hydrodynamics"]
+    "tags": ["Floating solar", "Hydrodynamics"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -52,7 +54,8 @@
     "volume": "322",
     "pages": "120525",
     "doi": "10.1016/j.oceaneng.2025.120525",
-    "tags": ["Floating solar", "Review"]
+    "tags": ["Floating solar", "Review"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -63,7 +66,8 @@
     "volume": "311, Part 1",
     "pages": "118810",
     "doi": "10.1016/j.oceaneng.2024.118810",
-    "tags": ["Dynamic power cables", "Floating offshore wind", "Review"]
+    "tags": ["Dynamic power cables", "Floating offshore wind", "Review"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -74,7 +78,8 @@
     "volume": "10(7)",
     "pages": "236",
     "doi": "10.3390/batteries10070236",
-    "tags": ["Battery safety"]
+    "tags": ["Battery safety"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -85,7 +90,8 @@
     "volume": "11(4)",
     "pages": "699",
     "doi": "10.3390/jmse11040699",
-    "tags": ["Ductile fracture", "Impact damage"]
+    "tags": ["Ductile fracture", "Impact damage"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -162,7 +168,8 @@
     "volume": "11(9)",
     "pages": "1402",
     "doi": "10.3390/met11091402",
-    "tags": ["Ductile fracture", "Collision and grounding"]
+    "tags": ["Ductile fracture", "Collision and grounding"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -173,7 +180,8 @@
     "volume": "9(2)",
     "pages": "117",
     "doi": "10.3390/jmse9020117",
-    "tags": ["Localised necking", "Ductile fracture", "Material testing"]
+    "tags": ["Localised necking", "Ductile fracture", "Material testing"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -184,7 +192,8 @@
     "volume": "8(12)",
     "pages": "988",
     "doi": "10.3390/jmse8120988",
-    "tags": ["Ultimate strength", "Hull girder"]
+    "tags": ["Ultimate strength", "Hull girder"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -217,7 +226,8 @@
     "volume": "10(20)",
     "pages": "7034",
     "doi": "10.3390/app10207034",
-    "tags": ["Ductile fracture", "Material testing"]
+    "tags": ["Ductile fracture", "Material testing"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -229,7 +239,8 @@
     "pages": "756",
     "doi": "10.3390/jmse8100756",
     "tags": ["Manufacturing"],
-    "preprint": "https://doi.org/10.20944/preprints202009.0582.v1"
+    "preprint": "https://doi.org/10.20944/preprints202009.0582.v1",
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -262,7 +273,9 @@
     "volume": "198",
     "pages": "106944",
     "doi": "10.1016/j.oceaneng.2020.106944",
-    "tags": ["Structural health monitoring", "Cylindrical shells", "Impact damage"]
+    "tags": ["Structural health monitoring", "Cylindrical shells", "Impact damage"],
+    "openAccess": true,
+    "preprint": "https://strathprints.strath.ac.uk/71195/1/Li_etal_OE_2020_Dent_damage_identification_in_stiffened_cylindrical_structures.pdf"
   },
   {
     "type": "conference",
@@ -306,7 +319,8 @@
     "volume": "33(3)",
     "pages": "259–271",
     "doi": "10.26748/ksoe.2019.038",
-    "tags": ["Ductile fracture", "Material testing"]
+    "tags": ["Ductile fracture", "Material testing"],
+    "openAccess": true
   },
   {
     "type": "journal",
@@ -449,6 +463,7 @@
     "volume": "5(1)",
     "pages": "101–115",
     "doi": "10.2478/IJNAOE-2013-0120",
-    "tags": ["Ultimate strength", "Structural reliability", "Naval structures"]
+    "tags": ["Ultimate strength", "Structural reliability", "Naval structures"],
+    "openAccess": true
   }
 ]

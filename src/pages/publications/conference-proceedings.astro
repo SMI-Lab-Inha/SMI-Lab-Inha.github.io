@@ -3,13 +3,17 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PublicationList from '../../components/PublicationList.astro';
 import { publications } from '../../data/content';
+import { publicationSchema } from '../../lib/content';
 
 const items = publications.filter((p) => p.type === 'conference');
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+const articleSchema = publicationSchema(items, origin);
 ---
 
 <Base
   title="Conference proceedings"
   description="Conference papers on ship collision, ductile fracture, underwater explosion and naval structural damage, presented at OMAE, PRADS and MARSTRUCT."
+  structuredData={articleSchema}
 >
   <PageHeader
     eyebrow="Publications"
