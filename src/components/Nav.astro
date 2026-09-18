@@ -177,6 +177,9 @@ function isSectionActive(item: any) {
     color: #fff;
     text-decoration: none;
     padding-block: 0.8rem;
+    /* A flex item will not shrink below its content unless told it may, and
+       the lab's full name is long. */
+    min-width: 0;
   }
 
   /* The logo mark is navy-on-white, so it needs a light disc behind it to sit
@@ -211,6 +214,11 @@ function isSectionActive(item: any) {
     list-style: none;
     display: flex;
     align-items: center;
+    /* The links are nowrap and the column layout only takes over at 860px, so
+       without this the row has a hard minimum width and the header overflows
+       sideways in between. Wrapping to a second line is the lesser evil. */
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 0.2rem;
     margin: 0;
     padding: 0;
