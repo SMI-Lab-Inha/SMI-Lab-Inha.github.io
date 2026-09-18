@@ -5,6 +5,21 @@ import Pending from '../components/Pending.astro';
 import AssetImage from '../components/AssetImage.astro';
 import { teaching as courses } from '../data/content';
 
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+
+// Courses carry both the English and Korean titles, since prospective
+// students search for them under either.
+const courseSchema = courses.map((course) => ({
+  '@type': 'Course',
+  name: course.title,
+  alternateName: course.titleKo || undefined,
+  courseCode: course.code,
+  description: course.description || undefined,
+  educationalLevel: course.level,
+  inLanguage: ['en', 'ko'],
+  provider: { '@id': `${origin}/#lab` },
+}));
+
 const list = courses;
 const levels = ['Undergraduate', 'Graduate'];
 const byLevel = levels
@@ -15,6 +30,7 @@ const byLevel = levels
 <Base
   title="Teaching"
   description="Undergraduate and graduate courses taught by the SMI Lab in the Department of Naval Architecture and Ocean Engineering, Inha University."
+  structuredData={courseSchema}
 >
   <PageHeader
     eyebrow="Education"

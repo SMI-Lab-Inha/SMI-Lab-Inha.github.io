@@ -3,6 +3,25 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { software } from '../../data/content';
 
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+
+// Each package as SoftwareSourceCode, so the tooling is discoverable in its
+// own right rather than only as prose on a page.
+const softwareSchema = software.map((pkg) => ({
+  '@type': 'SoftwareSourceCode',
+  name: pkg.name,
+  alternateName: pkg.expansion || undefined,
+  description: pkg.description,
+  programmingLanguage: pkg.language || undefined,
+  license: pkg.licence || undefined,
+  softwareVersion: pkg.version || undefined,
+  codeRepository: pkg.repo || undefined,
+  url: pkg.docs || pkg.repo || undefined,
+  author: { '@id': `${origin}/team/director/#person` },
+  maintainer: { '@id': `${origin}/#lab` },
+  isAccessibleForFree: pkg.status === 'public' || undefined,
+}));
+
 const statusLabel: Record<string, string> = {
   public: 'Public',
   beta: 'Private — beta, release planned with first publication',
@@ -14,6 +33,7 @@ const statusLabel: Record<string, string> = {
 <Base
   title="Software & facilities"
   description="Research software for fracture and fatigue assessment, marine structural analysis, offshore dynamics, cable mechanics, and reproducible engineering."
+  structuredData={softwareSchema}
 >
   <PageHeader
     eyebrow="Research"
