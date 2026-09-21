@@ -1,4 +1,5 @@
 ---
+import fs from 'node:fs';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { publications, researchAreas as areas } from '../../data/content';
@@ -7,11 +8,23 @@ import { publications, researchAreas as areas } from '../../data/content';
 // record at build time, so the two can never drift apart.
 const byDoi = new Map(publications.map((p) => [p.doi, p]));
 const cite = (doi: string) => byDoi.get(doi);
+
+// Intrinsic size comes from the file rather than the data, so a figure cannot
+// be redrawn at a new aspect ratio and leave a stale number behind. Width and
+// height reserve the space before the SVG loads, which is what stops the text
+// below it jumping on slow connections.
+const figureSize = (src: string) => {
+  const svg = fs.readFileSync(`public${src}`, 'utf8').slice(0, 800);
+  const w = svg.match(/\bwidth="([\d.]+)(?:px)?"/);
+  const h = svg.match(/\bheight="([\d.]+)(?:px)?"/);
+  if (!w || !h) throw new Error(`${src} has no intrinsic width and height`);
+  return { width: Math.round(Number(w[1])), height: Math.round(Number(h[1])) };
+};
 ---
 
 <Base
   title="Research areas"
-  description="Fracture and fatigue assessment for ships and offshore structures, supported by impact mechanics, ultimate strength, virtual sensing, and research software."
+  description="Ductile fracture, ship collision and grounding, underwater explosion, ultimate strength and progressive collapse, floating offshore wind moorings and dynamic power cable fatigue, virtual sensing, and peridynamic crack modelling."
 >
   <PageHeader
     eyebrow="Research"
@@ -31,6 +44,22 @@ const cite = (doi: string) => byDoi.get(doi);
           safety-critical use. Data-driven methods estimate states and parameters of mechanical
           models; they do not replace those models.
         </p>
+        {/* Nine thrusts make a long page. This lets a reader who arrived for
+            one of them get there without scrolling past the other eight. */}
+        <nav class="jump" aria-label="Research thrusts">
+          <ol>
+            {
+              areas.map((area, i) => (
+                <li>
+                  <a href={`#${area.slug}`}>
+                    <span class="jump-n">{String(i + 1).padStart(2, '0')}</span>
+                    {area.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </nav>
       </div>
 
       {
@@ -40,6 +69,20 @@ const cite = (doi: string) => byDoi.get(doi);
             <div>
               <h2>{area.title}</h2>
               <p>{area.summary}</p>
+
+              {area.figure && (
+                <figure class="area-figure">
+                  <img
+                    src={area.figure}
+                    alt={area.figureAlt}
+                    width={figureSize(area.figure).width}
+                    height={figureSize(area.figure).height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>{area.figureCaption}</figcaption>
+                </figure>
+              )}
 
               <h3>Current work includes</h3>
               <ul class="topics">
@@ -156,6 +199,39 @@ const cite = (doi: string) => byDoi.get(doi);
     padding-bottom: 2.2rem;
   }
 
+  .jump ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 0.3rem 1.4rem;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: jump;
+  }
+
+  .jump a {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.35rem 0;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+
+  .jump a:hover {
+    text-decoration: underline;
+  }
+
+  .jump-n {
+    flex: none;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--c-accent);
+    padding-top: 0.15em;
+  }
+
   .how h2 {
     margin-top: 0;
   }
@@ -171,6 +247,29 @@ const cite = (doi: string) => byDoi.get(doi);
 
   .area h2 {
     margin-top: 0;
+  }
+
+  /* Figures are drawn for paper white, so they keep a light panel in dark mode
+     rather than being inverted or left to float on a dark background. */
+  .area-figure {
+    margin: 1.6rem 0 0;
+    padding: 0.9rem 0.9rem 0.6rem;
+    background: #ffffff;
+    border: 1px solid var(--c-border);
+    border-radius: 3px;
+  }
+
+  .area-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .area-figure figcaption {
+    margin-top: 0.7rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #46484d;
   }
 
   .area h3 {

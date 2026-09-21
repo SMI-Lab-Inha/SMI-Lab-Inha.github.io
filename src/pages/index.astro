@@ -1,4 +1,5 @@
 ---
+import fs from 'node:fs';
 import Base from '../layouts/Base.astro';
 import AssetImage from '../components/AssetImage.astro';
 import site from '../data/site.json';
@@ -34,12 +35,35 @@ const pkgStatus: Record<string, string> = {
 const currentProjects = projects.filter((project) => project.status === 'current');
 const people = members;
 
-const glance = [
-  'Ductile fracture, engineering critical assessment, and fitness-for-service evaluation',
-  'Fatigue assessment of mooring lines and dynamic power cables',
-  'Collision, impact, and crashworthiness of marine structures',
-  'Ultimate strength and progressive collapse of ship and offshore structures',
-  'Virtual sensing, structural digital twins, and open research software',
+// Intrinsic size read from the file, as on the research areas page, so a card
+// reserves the right box before its figure loads.
+const figureSize = (src: string) => {
+  const svg = fs.readFileSync(`public${src}`, 'utf8').slice(0, 800);
+  const w = svg.match(/\bwidth="([\d.]+)(?:px)?"/);
+  const h = svg.match(/\bheight="([\d.]+)(?:px)?"/);
+  if (!w || !h) throw new Error(`${src} has no intrinsic width and height`);
+  return { width: Math.round(Number(w[1])), height: Math.round(Number(h[1])) };
+};
+
+// This used to list the thrusts, which now sit as cards directly below it. What
+// the cards do not say is how the work connects, so the aside says that instead.
+const chain = [
+  {
+    step: 'Measure',
+    text: 'Material testing establishes what a steel actually does across stress states, strain rates and temperatures.',
+  },
+  {
+    step: 'Calibrate',
+    text: 'Fracture and instability criteria are fitted to that data, then written as user material subroutines so they can be used in production analysis.',
+  },
+  {
+    step: 'Predict',
+    text: 'Structure-scale analysis carries those models through to tearing, collapse and shock response, and on to limit state assessment.',
+  },
+  {
+    step: 'Monitor',
+    text: 'For structures already in service, estimators reconstruct the load and fatigue state from the few measurements that can realistically be obtained.',
+  },
 ];
 ---
 
@@ -105,10 +129,16 @@ const glance = [
       </div>
 
       <aside class="glance">
-        <h3>Research at a glance</h3>
-        <ul>
-          {glance.map((g) => <li>{g}</li>)}
-        </ul>
+        <h3>How the work connects</h3>
+        <ol class="chain list-plain">
+          {
+            chain.map((c) => (
+              <li>
+                <strong>{c.step}.</strong> {c.text}
+              </li>
+            ))
+          }
+        </ol>
       </aside>
     </div>
   </section>
@@ -119,17 +149,29 @@ const glance = [
         <h2>Research thrusts</h2>
         <a href="/research/research-areas">All research →</a>
       </div>
+      <p class="lead thrusts-lead">
+        Nine lines of work, held together by one question: how marine structures fail, and how
+        far ahead of the failure we can see it coming. Follow any card for the methods, the
+        funding behind it, and the papers it rests on.
+      </p>
       <div class="thrusts">
         {
           areas.map((a, i) => (
             <a class="thrust" href={`/research/research-areas#${a.slug}`}>
-              <span class="thrust-n">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{a.title}</h3>
-              <ul>
-                {a.topics.slice(0, 3).map((t) => (
-                  <li>{t.split(',')[0].split('(')[0].trim()}</li>
-                ))}
-              </ul>
+              {/* Deliberately no figure here. Only some thrusts have one, and a
+                  grid where five cards carry an image and four do not reads as
+                  unfinished. `figure` stays in the data and is used on the
+                  research areas page; put it back here once all nine have one. */}
+              <div class="thrust-body">
+                <span class="thrust-n">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{a.title}</h3>
+                <p class="thrust-short">{a.short}</p>
+                <ul class="thrust-keys">
+                  {a.keywords.map((k) => (
+                    <li>{k}</li>
+                  ))}
+                </ul>
+              </div>
             </a>
           ))
         }
@@ -475,14 +517,68 @@ const glance = [
   }
 
   .thrust {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     background: var(--c-bg);
     border: 1px solid var(--c-border);
     border-top: 3px solid var(--c-accent);
     border-radius: var(--radius);
-    padding: 1.4rem;
     text-decoration: none;
     color: inherit;
+  }
+
+  .thrust-body {
+    display: block;
+    padding: 1.3rem 1.4rem 1.4rem;
+  }
+
+  .thrust-short {
+    margin: 0 0 0.9rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--c-text-muted, #46484d);
+  }
+
+  /* The keywords carry the visual weight the figure used to, and double as the
+     terms a visitor is likely to be scanning the page for. */
+  .thrust-keys {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .thrust-keys li {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    line-height: 1.3;
+    padding: 0.22em 0.6em;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    color: var(--c-accent);
+    white-space: nowrap;
+  }
+
+  .thrusts-lead {
+    margin: 0 0 1.6rem;
+    max-width: 54ch;
+  }
+
+  .chain {
+    counter-reset: chain;
+  }
+
+  .chain li {
+    margin-bottom: 0.7rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .chain strong {
+    color: var(--c-accent);
   }
 
   .thrust:hover {

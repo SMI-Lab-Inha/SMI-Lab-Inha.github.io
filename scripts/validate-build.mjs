@@ -224,7 +224,17 @@ for (const file of htmlFiles) {
 const PROSE_FIELDS = {
   'site.json': ['shortDescription'],
   'director.json': ['bio'],
-  'research-areas.json': ['title', 'summary', 'topics', 'methods', 'lineage', 'emerging'],
+  'research-areas.json': [
+    'title',
+    'summary',
+    'short',
+    'keywords',
+    'topics',
+    'methods',
+    'lineage',
+    'emerging',
+    'figureCaption',
+  ],
   'software.json': ['description'],
   'projects.json': ['summary'],
   'news.json': ['body'],

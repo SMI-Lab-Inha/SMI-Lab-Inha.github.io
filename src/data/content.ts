@@ -117,6 +117,16 @@ export const researchAreaSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   title: z.string().min(1),
   summary: z.string().min(1),
+  // One line for the card on the home page, where the full summary is too long
+  // to read at a glance, plus the terms a visitor might be scanning for.
+  short: z.string().min(1).max(120),
+  keywords: z.array(z.string().min(1)).min(2).max(4),
+  // One figure per thrust, drawn from the lab's own models and results. A
+  // figure without alt text and a caption is not publishable, so the three
+  // fields stand or fall together.
+  figure: optionalText.optional(),
+  figureAlt: optionalText.optional(),
+  figureCaption: optionalText.optional(),
   topics: z.array(z.string().min(1)).min(1),
   methods: optionalText.optional(),
   selected: z.array(z.string()).optional(),
@@ -187,6 +197,15 @@ for (const area of researchAreas) {
     if (!dois.has(doi)) {
       throw new Error(`Research area "${area.slug}" references an unknown DOI: ${doi}`);
     }
+  }
+  // A figure that arrives without alt text degrades the page for anyone using a
+  // screen reader, and one without a caption states nothing. Refuse a partial set.
+  const figureParts = [area.figure, area.figureAlt, area.figureCaption].filter(Boolean).length;
+  if (figureParts > 0 && figureParts < 3) {
+    throw new Error(
+      `Research area "${area.slug}" has an incomplete figure. ` +
+        'Set figure, figureAlt and figureCaption together, or none of them.',
+    );
   }
 }
 
