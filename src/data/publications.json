@@ -323,6 +323,17 @@
     "tags": ["Ductile fracture", "Localised necking", "Collision and grounding"]
   },
   {
+    "type": "conference",
+    "authors": "Cerik BC, Choung J",
+    "title": "On the modelling of strain-rate effects in nonlinear FE analysis of ship collisions",
+    "venue": "International Conference on Ships and Offshore Structures - ICSOS 2020",
+    "year": "2020",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Collision and grounding", "Ductile fracture"]
+  },
+  {
     "type": "journal",
     "authors": "Park SJ, Lee K, Cerik BC, Choung J",
     "title": "Ductile fracture prediction of EH36 grade steel based on Hosford–Coulomb model",
@@ -500,6 +511,28 @@
     "tags": ["Impact damage", "Cylindrical shells"]
   },
   {
+    "type": "conference",
+    "authors": "Cerik BC",
+    "title": "A study on modelling of rate-dependent material behaviour in simulation of collision damage",
+    "venue": "7th International Conference on Collision and Grounding of Ships and Offshore Structures (ICCGS2016)",
+    "year": "2016",
+    "volume": "",
+    "pages": "79–86",
+    "doi": "",
+    "tags": ["Collision and grounding", "Material testing"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC",
+    "title": "Simple formulae for predicting permanent damage of aluminium plates subjected to dynamic pressure loads",
+    "venue": "13th International Symposium on Practical Design of Ships and Other Floating Structures",
+    "year": "2016",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Aluminium structures", "Slamming"]
+  },
+  {
     "type": "journal",
     "authors": "Cerik BC",
     "title": "Ultimate strength of locally damaged steel stiffened cylinders under axial compression",
@@ -531,6 +564,28 @@
     "pages": "932–939",
     "doi": "",
     "tags": ["Impact damage", "Cylindrical shells", "Material testing"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "Prediction of tubular member deformation under dynamic mass impact",
+    "venue": "7th International Conference on Thin-Walled Structures (ICTWS 2014)",
+    "year": "2014",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Impact damage", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "Effect of strain-rate hardening definition in numerical simulations of impact problems for marine structures",
+    "venue": "Annual Spring Meeting of the Society of Naval Architects of Korea",
+    "year": "2014",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Impact damage", "Material testing"]
   },
   {
     "type": "journal",
@@ -565,5 +620,104 @@
     "pages": "281–287",
     "doi": "10.1201/b14915-34",
     "tags": ["Collision and grounding", "Impact damage"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Cho S-R",
+    "title": "Residual strength of damaged stiffened cylinders under combined axial compression and radial pressure",
+    "venue": "12th Symposium on Design of Ship and Other Floating Structures, PRADS 2013",
+    "year": "2013",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Ultimate strength", "Cylindrical shells", "Impact damage"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Cho S-R, Shin HK",
+    "title": "Numerical investigations on the response of stringer-stiffened cylinders subjected to lateral collisions",
+    "venue": "27th Asian-Pacific Technical Exchange and Advisory Meeting on Marine Structures, TEAM 2013",
+    "year": "2013",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Collision and grounding", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "Collision resistance of ring-stiffened cylindrical shell structures",
+    "venue": "Proceedings of the Annual Autumn Meeting of Society of Naval Architects of Korea, SNAK",
+    "year": "2013",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Impact damage", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "Prediction of extents of damage in offshore tubular structures subjected to collision",
+    "venue": "Proceedings of the Annual Autumn Meeting of Society of Naval Architects of Korea, SNAK",
+    "year": "2013",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Collision and grounding", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Cho S-R",
+    "title": "On buckling collapse behavior of damaged steel stiffened cylinders under axial compression",
+    "venue": "Proceedings of the Annual Spring Meeting of Society of Naval Architects of Korea, SNAK",
+    "year": "2013",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Ultimate strength", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Cho S-R",
+    "title": "Effects of Residual Stresses on the Ultimate Strength of Stiffened Cylindrical Shells Considering Shakedown",
+    "venue": "Proceedings of the 5th PAAMES and Advanced Maritime Engineering Conference, AMEC 2012",
+    "year": "2012",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Ultimate strength", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Cho S-R",
+    "title": "Structural reliability analysis of ring-stiffened cylindrical shells under external hydrostatic pressure",
+    "venue": "26th Asian-Pacific Technical Exchange and Advisory Meeting on Marine Structure, TEAM 2012",
+    "year": "2012",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Structural reliability", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Cho S-R",
+    "title": "Nonlinear Collapse Analysis of Stiffened Cylinders Considering the Effects of Residual Stresses",
+    "venue": "Proceedings of the Annual Autumn Meeting of Society of Naval Architects of Korea, SNAK",
+    "year": "2012",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Ultimate strength", "Cylindrical shells"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Bae SY, Cho S-R",
+    "title": "Structural Reliability Analysis of Submarine Ring-Stiffened Cylinders Based on Ultimate Strength",
+    "venue": "Proceedings of the Annual Spring Meeting of Society of Naval Architects of Korea, SNAK",
+    "year": "2012",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Structural reliability", "Cylindrical shells", "Naval structures"]
   }
 ]
