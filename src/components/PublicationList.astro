@@ -128,6 +128,11 @@ function paperId(publication: Publication) {
                         ))}
                       </p>
                     )}
+                    {!p.doi && p.inPress && (
+                      <p class="pub-doi">
+                        <span class="inpress">In press</span>
+                      </p>
+                    )}
                     {p.doi && (
                       <p class="pub-doi">
                         <a href={`https://doi.org/${p.doi}`}>
@@ -468,6 +473,20 @@ function paperId(publication: Publication) {
   :root[data-theme='dark'] .oa {
     color: #8fd6ab;
     background: #10291c;
+  }
+
+  /* Accepted but not yet paginated, so there is no DOI to link to yet. */
+  .inpress {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-accent-hover);
+    background: var(--c-accent-soft);
+    border-radius: 3px;
+    padding: 0.1em 0.45em;
   }
 
   .doi-tag {
