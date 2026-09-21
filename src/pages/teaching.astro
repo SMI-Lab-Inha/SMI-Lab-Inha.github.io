@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Pending from '../components/Pending.astro';
-import AssetImage from '../components/AssetImage.astro';
 import { teaching as courses } from '../data/content';
 
 const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
@@ -72,11 +71,16 @@ const byLevel = levels
             </div>
 
             <aside class="outcomes">
-              <AssetImage
-                src="/images/teaching.jpg"
+              {/* Vector, so it stays crisp at any density and needs no srcset.
+                  Traced from the original sketch; the SVG is now the master. */}
+              <img
+                class="outcomes-figure"
+                src="/images/teaching.svg"
                 alt="Sketch of a lecturer deriving added-mass relations at a blackboard"
-                sizes="(min-width: 860px) 360px, 100vw"
-                widths={[360, 540, 720]}
+                width="354"
+                height="251"
+                loading="lazy"
+                decoding="async"
               />
               <h3>Undergraduate outcomes</h3>
               <ul>
@@ -167,6 +171,10 @@ const byLevel = levels
 
   .outcomes img {
     width: 100%;
+    /* The width and height attributes reserve the box before the SVG loads;
+       without height:auto they would also fix the rendered height and squash
+       the drawing once the width scales. */
+    height: auto;
     border-radius: var(--radius);
     background: #fff;
     margin-bottom: 1.2rem;
