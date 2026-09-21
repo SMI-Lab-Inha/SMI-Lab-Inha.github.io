@@ -3,9 +3,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const SRC = 'D:/0_administrative/Lab_materials';
-const OUT = 'D:/repos/smil_homepage/public/images';
 
-fs.mkdirSync(path.join(OUT, 'members'), { recursive: true });
+// Two destinations, and the difference matters. Portraits go through Astro's
+// image pipeline, which needs them under src/assets so it can emit responsive
+// variants; favicons, the header mark and the Open Graph card are served
+// byte-for-byte and belong in public. This script previously wrote everything
+// to public, where nothing reads the portraits.
+const OUT = 'D:/repos/smil_homepage/public/images';
+const ASSETS = 'D:/repos/smil_homepage/src/assets/images';
+
+fs.mkdirSync(path.join(ASSETS, 'members'), { recursive: true });
 
 const members = [
   ['4_Members/임준수.jpg', 'jun-soo-lim'],
@@ -13,6 +20,7 @@ const members = [
   ['4_Members/이우진.jpg', 'woojin-lee'],
   ['4_Members/황준혁.jpg', 'jun-hyeok-hwang'],
   ['4_Members/이희원.jpg', 'hui-won-lee'],
+  ['4_Members/박진성.jpg', 'jin-seong-park'],
 ];
 
 const results = [];
@@ -24,13 +32,21 @@ async function emit(label, out, promise) {
 }
 
 // Member portraits: 3:4, cover, attention-weighted crop so faces survive.
+// withoutEnlargement keeps a small original at its native size rather than
+// upscaling it to 480x640: enlarging invents no detail, it only produces a
+// bigger, softer file. A short portrait therefore stays sharp and simply
+// offers fewer responsive widths.
 for (const [rel, slug] of members) {
-  const out = path.join(OUT, 'members', `${slug}.webp`);
+  const out = path.join(ASSETS, 'members', `${slug}.webp`);
   await emit(
     `members/${slug}.webp`,
     out,
     sharp(path.join(SRC, rel))
-      .resize(480, 640, { fit: 'cover', position: sharp.strategy.attention })
+      .resize(480, 640, {
+        fit: 'cover',
+        position: sharp.strategy.attention,
+        withoutEnlargement: true,
+      })
       .webp({ quality: 82 })
       .toFile(out)
   );
@@ -38,7 +54,7 @@ for (const [rel, slug] of members) {
 
 // Director portrait
 {
-  const out = path.join(OUT, 'director.webp');
+  const out = path.join(ASSETS, 'director.webp');
   await emit(
     'director.webp',
     out,
