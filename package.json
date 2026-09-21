@@ -27,6 +27,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "html-validate": "^11.16.0",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }
