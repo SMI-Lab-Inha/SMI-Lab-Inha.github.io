@@ -18,6 +18,26 @@
     "summary": "This project develops surrogate models that map platform response to mooring tension, providing a baseline against which to compare the physics-based estimators."
   },
   {
+    "title": "Development of Demonstration Technology for Key Mooring Components of 3MW-class Floating Offshore Wind Turbines",
+    "titleKo": "3MW급 부유식 해상풍력 계류핵심부품 실증기술 개발",
+    "funder": "Korea Institute of Energy Technology Evaluation and Planning",
+    "period": "2026/7 – 2029/6",
+    "role": "Co-Investigator",
+    "status": "current",
+    "summary": "This project develops and demonstrates key mooring components for 3 MW-class floating offshore wind turbines, in a consortium led by DHMC.",
+    "awardNumber": "RS-2026-25619907"
+  },
+  {
+    "title": "Development of Evaluation Technology for Reliability Enhancement of Dynamic Submarine Cables",
+    "titleKo": "다이나믹 해저케이블의 안정성 강화를 위한 평가기술 개발",
+    "funder": "Korea Institute of Energy Technology Evaluation and Planning",
+    "period": "2026/7 – 2029/12",
+    "role": "Co-Investigator",
+    "status": "current",
+    "summary": "This project develops evaluation technology for the reliability of dynamic submarine cables, in a consortium led by the Korea Electrotechnology Research Institute.",
+    "awardNumber": "RS-2026-25615521"
+  },
+  {
     "title": "High-Efficiency Propeller Design for Operation in Both Polar and General Waters",
     "titleKo": "극지/일반해역에서 겸용 가능한 고효율 프로펠러 설계기술 개발",
     "funder": "Korea Evaluation Institute of Industrial Technology",
