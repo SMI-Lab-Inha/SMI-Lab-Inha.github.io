@@ -67,10 +67,15 @@ const identityGraph = isHome
         'marine structural integrity',
         'ductile fracture mechanics',
         'fatigue assessment',
+        'fatigue crack growth in welded joints',
         'engineering critical assessment',
         'ship collision and crashworthiness',
+        'underwater explosion and blast response',
+        'naval ship survivability',
         'ultimate strength and progressive collapse',
+        'peridynamic fracture modelling',
         'offshore renewable energy structures',
+        'floating solar structures',
         'floating offshore wind moorings',
         'dynamic power cable fatigue',
         'virtual sensing',
@@ -203,7 +208,10 @@ const schema = {
     <link rel="icon" href="/images/favicon-32.png" type="image/png" sizes="32x32" />
     {/* Browsers that understand it prefer the vector, which stays crisp on
         high-density displays where the 32px raster is visibly soft. */}
-    <link rel="icon" href="/images/icon.svg" type="image/svg+xml" />
+    {/* favicon.svg, not icon.svg: the header mark is navy on transparent and
+        vanishes against a dark browser tab, so the favicon carries a white
+        plate behind the same artwork. */}
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/images/favicon-180.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="SMI Lab news" href="/news/rss.xml" />

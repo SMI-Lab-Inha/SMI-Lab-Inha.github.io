@@ -65,27 +65,23 @@ for (const [rel, slug] of members) {
   );
 }
 
-// Favicons from the dedicated favicon artwork
-for (const size of [32, 180]) {
-  const out = path.join(OUT, `favicon-${size}.png`);
+// Raster favicons, composed from the committed favicon.svg rather than from
+// the lab materials, so this step runs on any checkout — and so the white
+// plate that keeps the icon legible on a dark browser tab is never lost by a
+// re-run. The plate lives in favicon.svg; icon.svg stays plate-free because
+// the header supplies its own disc.
+const FAVICON_SVG = path.join(OUT, 'favicon.svg');
+for (const [size, name] of [
+  [32, 'favicon-32.png'],
+  [180, 'favicon-180.png'],
+  [88, 'icon-88.png'],
+]) {
+  const out = path.join(OUT, name);
   await emit(
-    `favicon-${size}.png`,
+    name,
     out,
-    sharp(path.join(SRC, '3_Logo/Favicon/SMI_Lab_favicon.png'))
+    sharp(FAVICON_SVG, { density: 600 })
       .resize(size, size, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } })
-      .png({ compressionLevel: 9 })
-      .toFile(out)
-  );
-}
-
-// Header mark (2x of the 44px slot)
-{
-  const out = path.join(OUT, 'icon-88.png');
-  await emit(
-    'icon-88.png',
-    out,
-    sharp(path.join(SRC, '3_Logo/Favicon/SMI_Lab_favicon.png'))
-      .resize(88, 88, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } })
       .png({ compressionLevel: 9 })
       .toFile(out)
   );

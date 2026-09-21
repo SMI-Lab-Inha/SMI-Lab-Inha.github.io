@@ -1,64 +1,232 @@
 [
   {
-    "slug": "fracture-and-impact",
-    "title": "Ductile fracture, impact, and crashworthiness of marine structures",
-    "summary": "This is the lab's longest-running research line. We model how marine structural steels deform, neck, and fracture under the large-strain, dynamic loading of collisions, groundings, and explosions, and we translate those models into engineering assessment procedures.",
+    "slug": "ductile-fracture",
+    "title": "Ductile fracture and failure of marine steels",
+    "summary": "The lab's longest-running line. We measure how shipbuilding and offshore steels deform, neck and fracture under large strain, calibrate fracture models against that data, and implement them as user material subroutines so the models can be used in the explicit finite element analyses that structural assessment actually relies on.",
     "topics": [
-      "Calibration and implementation of ductile fracture models (Hosford-Coulomb, GTN, BWH instability criteria) for shipbuilding steels, including user material subroutines (VUMAT) for explicit finite element analysis",
-      "Simulation of ship collision, dropped objects, and underwater explosion response, up to accidental limit state assessment",
-      "Engineering critical assessment (ECA) and fitness-for-service evaluation of flawed structures"
+      "Calibration of ductile fracture models (Hosford-Coulomb, GTN, BWH instability criteria) for shipbuilding and high-tensile steels",
+      "User material subroutines (VUMAT) for shell and solid elements, including the mesh-size regularisation that shell fracture prediction depends on",
+      "Localised necking as a separate failure mechanism from fracture, and the strain rate and thermal softening effects that govern it",
+      "Material testing across stress states and temperatures, down to sub-zero service conditions"
     ],
-    "emerging": "Fracture and defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels and hydrogen effects on structural materials. This is an emerging research direction rather than an established programme.",
     "selected": [
-      "10.1016/j.marstruc.2019.03.003",
-      "10.1080/17445302.2019.1565300",
       "10.1016/j.ijimpeng.2020.103697",
-      "10.1016/j.marstruc.2020.102787",
-      "10.1016/j.oceaneng.2022.112930"
+      "10.1016/j.tws.2020.106721",
+      "10.3390/jmse9020117",
+      "10.1080/17445302.2020.1743552",
+      "10.3390/app10207034"
+    ],
+    "figure": "/images/research/panel-damage.svg",
+    "figureAlt": "Isometric view of a stiffened steel panel deformed into a dome by an indenter, shaded from pale grey where undamaged to orange and red near the opening, with a torn hole at the crown.",
+    "figureCaption": "Hosford–Coulomb damage in a stiffened panel pushed 225 mm out of plane by a rigid indenter, computed with our own shell VUMAT. Nineteen elements have reached the fracture criterion and been removed, leaving the tear at the crown.",
+    "short": "How marine steels neck and tear, measured in tests and written into finite element subroutines.",
+    "keywords": [
+      "Hosford–Coulomb",
+      "VUMAT",
+      "material testing",
+      "localised necking"
     ]
   },
   {
-    "slug": "mooring-and-cable-integrity",
-    "title": "Fatigue and integrity of floating offshore wind moorings and dynamic power cables",
-    "summary": "Mooring lines and subsea dynamic power cables are among the least monitored and, statistically, the least reliable subsystems of a floating wind turbine. Direct load measurement is costly, failure-prone, and rarely available along the full length of the component. Our central question is the extent to which the load and fatigue states of these components can be reconstructed from measurements we can realistically obtain, such as platform motions and line-end responses.",
+    "slug": "fatigue-and-eca",
+    "title": "Fatigue, crack growth and engineering critical assessment",
+    "summary": "This is a separate question from how a plate tears in an accident. Here the structure already contains a defect, the loading is cyclic rather than extreme, and the decision is whether the structure is fit to remain in service. We assess flaws against fracture and fatigue criteria, and work on the wave climate assumptions that fatigue life estimates rest on.",
     "topics": [
-      "Physics-based virtual sensing of mooring line tension from platform motion, using Kalman filtering and related state estimators built on lumped-mass line dynamics (funded by Inha University new-faculty research grants, 2025–2027)",
-      "Shape and curvature estimation of lazy-wave dynamic power cables, where fatigue damage concentrates at the sag and hog bends and the touchdown zone",
-      "Cross-section mechanics of layered power cable constructions, linking manufacturer-level cable design to the stiffness properties used in global dynamic analysis",
-      "Long-term fatigue assessment of moorings and cables under site-specific metocean conditions, connecting design load case simulation to damage accumulation"
+      "Engineering critical assessment (ECA) and fitness-for-service evaluation of flawed welded structures",
+      "Fatigue crack growth in welded joints, and the influence of weld geometry and residual stress",
+      "Hull girder fatigue under revised wave scatter diagrams, and the sensitivity of damage ratios to that choice",
+      "Defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels"
     ],
-    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn, CableXsec, and VANE; Bayesian filtering and surrogate modelling in Python.",
     "selected": [
-      "10.1016/j.oceaneng.2026.126528",
-      "10.1016/j.oceaneng.2024.118810",
-      "10.1016/j.jei.2026.100025",
-      "10.1016/j.oceaneng.2025.120970",
-      "10.1016/j.oceaneng.2025.120525"
+      "10.3744/snak.2023.60.4.213"
     ],
-    "funding": [
-      "Development of Demonstration Technology for Key Mooring Components of 3MW-class Floating Offshore Wind Turbines — Korea Institute of Energy Technology Evaluation and Planning, 2026/7–2029/6",
-      "Development of Evaluation Technology for Reliability Enhancement of Dynamic Submarine Cables — Korea Institute of Energy Technology Evaluation and Planning, 2026/7–2029/12",
-      "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines — Inha University New Faculty Research Grant, 2026/3–2027/2",
-      "Machine Learning-Based Tension Prediction for FOWT Mooring Lines — Inha University New Faculty Research Grant, 2025/3–2026/2"
+    "short": "Whether a structure that already carries a defect is fit to stay in service.",
+    "keywords": [
+      "engineering critical assessment",
+      "fatigue crack growth",
+      "welded joints"
+    ]
+  },
+  {
+    "slug": "collision-and-crashworthiness",
+    "title": "Collision, grounding and crashworthiness of ship structures",
+    "summary": "What a hull does in the seconds after an accident decides whether it floods. We simulate collision, grounding and dropped object impact up to and past the point where plating tears, using fracture criteria calibrated on our own material tests rather than a fixed failure strain, and carry the result through to accidental limit state assessment.",
+    "topics": [
+      "Ship collision and grounding analysis with fracture-based failure criteria, up to accidental limit state assessment",
+      "Plate tearing and perforation, including the aluminium structures used in high-speed craft",
+      "Dropped object impact, and slamming loads on bow and bottom structures",
+      "Coupled analysis of collision between floating bodies, where hydrodynamic reaction changes the energy available to damage the structure"
+    ],
+    "figure": "/images/research/panel-force.svg",
+    "figureAlt": "Force against indenter displacement: the contact force rises smoothly to a peak of 562 kilonewtons at 189 millimetres, then falls abruptly to about 140 kilonewtons as the plate tears.",
+    "figureCaption": "Contact force through a full penetration event. The structure absorbs energy steadily until the plate tears at 562 kN, after which it sheds three quarters of its load — which is why a fixed failure strain, rather than a calibrated fracture criterion, gets crashworthiness wrong.",
+    "selected": [
+      "10.1016/j.marstruc.2020.102787",
+      "10.3390/met11091402",
+      "10.3390/jmse11040699",
+      "10.1016/j.marstruc.2019.03.003",
+      "10.1115/omae2022-81221"
+    ],
+    "short": "Collision, grounding and dropped objects, carried past the point where plating tears.",
+    "keywords": [
+      "ship collision",
+      "grounding",
+      "plate tearing",
+      "accidental limit state"
+    ]
+  },
+  {
+    "slug": "blast-and-explosion",
+    "title": "Blast, underwater explosion and naval survivability",
+    "summary": "Naval structures are designed against loads that are rarely measured and never repeated. We predict the damage extent and the whipping response of a hull subjected to underwater explosion and to in-compartment blast, and connect that damage to whether the ship and its systems remain able to fight.",
+    "topics": [
+      "Underwater explosion loading, hull girder whipping, and the effect of hull inelasticity on the whipping response",
+      "Damage extent prediction for in-compartment explosions in warships",
+      "Shock acceleration at equipment and armament mounts, and its sensitivity to the fracture model used",
+      "Air blast response of marine grade aluminium plated structures"
+    ],
+    "selected": [
+      "10.1016/j.oceaneng.2022.112930",
+      "10.1080/17445302.2022.2067415",
+      "10.1201/9781003399759-72",
+      "10.1201/9781003230373-7",
+      "10.1016/j.tws.2016.10.021"
+    ],
+    "short": "Damage extent and whipping response of naval hulls under explosion and internal blast.",
+    "keywords": [
+      "underwater explosion",
+      "hull whipping",
+      "in-compartment blast",
+      "survivability"
     ]
   },
   {
     "slug": "ultimate-strength",
-    "title": "Ultimate strength and progressive collapse of ship and offshore structures",
-    "summary": "The ultimate limit state of a hull girder or a stiffened panel is still computed today with methods whose numerical form has barely changed since the 1980s. We work on the collapse behaviour itself — buckling, load shedding, and interaction between failure modes — and on reformulating classical strength methods in modern differentiable computing frameworks, so that gradient-based design optimisation and sensitivity analysis become natural rather than bolted on.",
-    "lineage": "This thrust continues the incremental–iterative tradition of simplified progressive collapse analysis developed at Newcastle University, whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
+    "title": "Ultimate strength and progressive collapse",
+    "summary": "The ultimate limit state of a hull girder or a stiffened panel is still computed today with methods whose numerical form has barely changed since the 1980s. We work on the collapse behaviour itself - buckling, load shedding, and interaction between failure modes - and on reformulating classical strength methods in modern differentiable computing frameworks, so that gradient-based design optimisation and sensitivity analysis become natural rather than bolted on.",
     "topics": [
-      "Progressive collapse of hull girders under combined and unsymmetrical loading",
+      "Progressive collapse of hull girders under combined and unsymmetrical loading, intact and damaged",
       "Ultimate strength of stiffened panels including welding residual stress and deformation effects",
+      "Buckling and collapse of ring-stiffened cylindrical shells, including pressure hulls",
       "Differentiable reimplementation of incremental collapse methods in JAX, enabling automatic sensitivities of ultimate strength with respect to scantlings and material parameters"
     ],
+    "lineage": "This thrust continues the incremental-iterative tradition of simplified progressive collapse analysis developed at Newcastle University, whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
     "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; differentiable numerical implementation in Python and JAX.",
+    "figure": "/images/research/midship-collapse.svg",
+    "figureAlt": "Midship section of a double-hull tanker drawn as several hundred structural elements, coloured blue where in compression near the deck and red where in tension near the bottom shell.",
+    "figureCaption": "The midship section of a 315 m double-hull tanker at its sagging collapse moment, computed with our Smith-type progressive collapse code. The deck is shedding load in compression while the bottom shell is still in tension.",
     "selected": [
       "10.1016/j.oceaneng.2025.123159",
       "10.3390/jmse8120988",
       "10.1016/j.tws.2017.10.030",
       "10.1016/j.tws.2015.07.004",
       "10.2478/IJNAOE-2013-0120"
+    ],
+    "short": "Buckling, load shedding and final collapse of hull girders and stiffened panels.",
+    "keywords": [
+      "progressive collapse",
+      "hull girder",
+      "stiffened panels",
+      "differentiable methods"
+    ]
+  },
+  {
+    "slug": "mooring-and-cable-integrity",
+    "title": "Moorings and dynamic power cables for floating offshore wind",
+    "summary": "Mooring lines and subsea dynamic power cables are among the least monitored and, statistically, the least reliable subsystems of a floating wind turbine. We work on the mechanics that sets their fatigue life: the cross-section behaviour that fixes a cable's bending stiffness, the global dynamics that sets its curvature, and the long-term damage accumulation that follows from both.",
+    "topics": [
+      "Cross-section mechanics of layered power cable constructions, linking manufacturer-level cable design to the stiffness properties used in global dynamic analysis",
+      "Shape and curvature of lazy-wave dynamic cables, where fatigue damage concentrates at the sag and hog bends and the touchdown zone",
+      "Inter-wire slip and hysteresis in helical armour, measured in moment-curvature tests and resolved component by component",
+      "Long-term fatigue assessment of moorings and cables under site-specific metocean conditions, connecting design load case simulation to damage accumulation"
+    ],
+    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn and CableXsec; Bayesian filtering and surrogate modelling in Python.",
+    "funding": [
+      "Development of Demonstration Technology for Key Mooring Components of 3MW-class Floating Offshore Wind Turbines, Korea Institute of Energy Technology Evaluation and Planning, 2026-2029",
+      "Development of Evaluation Technology for Reliability Enhancement of Dynamic Submarine Cables, Korea Institute of Energy Technology Evaluation and Planning, 2026-2029"
+    ],
+    "figure": "/images/research/cable-cross-sections.svg",
+    "figureAlt": "Three dynamic power cable cross-sections drawn to scale, from 33 kilovolt to 220 kilovolt, with conductor, insulation, sheathing, bedding and steel armour layers shown in different colours.",
+    "figureCaption": "Dynamic power cable constructions from 33 kV to 220 kV, resolved layer by layer in CableXsec. Cross-section mechanics is what links a manufacturer's cable design to the stiffness properties a global dynamic analysis needs.",
+    "selected": [
+      "10.1016/j.oceaneng.2026.126528",
+      "10.1016/j.oceaneng.2024.118810"
+    ],
+    "short": "The mechanics that sets the fatigue life of floating wind moorings and power cables.",
+    "keywords": [
+      "dynamic power cables",
+      "mooring fatigue",
+      "CableDyn",
+      "CableXsec"
+    ]
+  },
+  {
+    "slug": "virtual-sensing",
+    "title": "Virtual sensing, monitoring and structural digital twins",
+    "summary": "Direct load measurement on a mooring line or a cable is costly, failure-prone, and rarely available along the full length of the component. Our central question is how far the load and fatigue state of a structure can be reconstructed from the measurements we can realistically obtain - platform motions, line-end responses, a handful of strain gauges - using estimators built on mechanical models rather than on correlation alone.",
+    "topics": [
+      "Physics-based virtual sensing of mooring line tension from platform motion, using Kalman filtering and related state estimators built on lumped-mass line dynamics",
+      "Inverse finite element method for reconstructing displacement and damage fields from sparse strain measurement",
+      "System identification of cable and mooring response, including uncertainty-aware neural models used as estimators rather than as predictors",
+      "Structural digital twins for floating wind, from OpenFAST linearisation and modal identification through to state-space export"
+    ],
+    "methods": "Kalman and particle filtering; inverse finite element method; NARX and neural system identification; our in-house packages VANE and FOWCON.",
+    "funding": [
+      "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines, Inha University New Faculty Research Grant, 2026-2027",
+      "Machine Learning-Based Tension Prediction for FOWT Mooring Lines, Inha University New Faculty Research Grant, 2025-2026"
+    ],
+    "figure": "/images/research/narx-response-maps.svg",
+    "figureAlt": "A grid of six contour maps over two frequency axes, coloured from blue through green to red, showing second-order response amplitudes for surge-heave, heave-heave and surge-pitch input pairs at sum and difference frequencies.",
+    "figureCaption": "Second-order response maps identified for a dynamic power cable. Maps like these are what let cable curvature be inferred from platform motion, without instrumenting the cable itself.",
+    "selected": [
+      "10.1016/j.oceaneng.2020.106944",
+      "10.1201/9780429298875-34"
+    ],
+    "short": "Reconstructing load and fatigue state from the few measurements that can realistically be taken.",
+    "keywords": [
+      "virtual sensing",
+      "Kalman filtering",
+      "inverse finite element method",
+      "digital twins"
+    ]
+  },
+  {
+    "slug": "floating-solar",
+    "title": "Floating solar and marine renewable energy structures",
+    "summary": "Offshore floating solar puts a large, shallow, highly connected array into a wave field that its freshwater predecessors never saw. We work on the hydrodynamic response of these arrays and on the structural consequences of the connector choices that hold them together.",
+    "topics": [
+      "Wave-structure interaction of offshore floating solar arrays, including uniform and hybrid connector arrangements",
+      "Seakeeping of catamaran and barge float configurations for floating solar",
+      "Design challenges and standardisation gaps for floating solar systems deployed at sea"
+    ],
+    "selected": [
+      "10.1016/j.jei.2026.100025",
+      "10.1016/j.oceaneng.2025.120970",
+      "10.1016/j.oceaneng.2025.120525"
+    ],
+    "short": "Wave response of large floating solar arrays, and the connectors holding them together.",
+    "keywords": [
+      "floating solar",
+      "wave-structure interaction",
+      "seakeeping",
+      "connectors"
+    ]
+  },
+  {
+    "slug": "peridynamics",
+    "title": "Peridynamic modelling of crack initiation and growth in welded steel",
+    "summary": "Classical finite element fracture mechanics needs the crack path to be anticipated by the mesh. Peridynamics is a nonlocal formulation in which cracks form and branch as a consequence of the material model rather than of the discretisation, which makes it suited to welded joints, where the crack starts at a defect nobody placed and runs through a heat-affected zone whose properties differ from the parent plate.",
+    "topics": [
+      "Crack initiation and growth in welded steel structures, including the heat-affected zone and weld toe geometry",
+      "Hydrogen effects on crack growth in structural steels, and the coupling between hydrogen transport and fracture"
+    ],
+    "emerging": "This is a new research direction rather than an established programme. It has no publication record in the lab yet; the first manuscripts are under review.",
+    "short": "Cracks that form and branch from the material model rather than from the mesh.",
+    "keywords": [
+      "peridynamics",
+      "welded steel",
+      "hydrogen effects",
+      "crack initiation"
     ]
   }
 ]
