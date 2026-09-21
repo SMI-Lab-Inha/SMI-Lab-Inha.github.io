@@ -4,7 +4,13 @@ import d from '../data/director.json';
 
 const year = new Date().getFullYear();
 const profiles = d.profiles.filter((p) => p.url);
-const footerLinks = [...site.nav, ...site.secondaryNav];
+// Home leads. Concatenating the two nav lists put it seventh of nine, which
+// landed it half way down the second column — the footer is where someone goes
+// when they are lost, so the way back should not be buried. Everything after it
+// follows the header's order, so the two navigations agree.
+const home = site.secondaryNav.find((item: any) => item.href === '/');
+const secondary = site.secondaryNav.filter((item: any) => item.href !== '/');
+const footerLinks = [...(home ? [home] : []), ...site.nav, ...secondary];
 ---
 
 <footer class="site-footer">
