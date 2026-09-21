@@ -434,6 +434,17 @@
     "tags": ["Ductile fracture", "Material testing"]
   },
   {
+    "type": "conference",
+    "authors": "Kumar V, Cerik BC",
+    "title": "Numerical investigation of double continuous welding and alternatives in bottom shell plates of aluminium high-speed, mono-hull craft",
+    "venue": "RINA Surveillance, Search and Rescue Craft (SURV 9)",
+    "year": "2018",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Aluminium structures", "Slamming", "Manufacturing"]
+  },
+  {
     "type": "journal",
     "authors": "Cerik BC",
     "title": "Large inelastic deformation of aluminium alloy plates in high-speed vessels subjected to slamming",
@@ -508,6 +519,17 @@
     "volume": "84",
     "pages": "108–123",
     "doi": "10.1016/j.ijimpeng.2015.04.011",
+    "tags": ["Impact damage", "Cylindrical shells", "Material testing"]
+  },
+  {
+    "type": "conference",
+    "authors": "Cerik BC, Shin HK, Cho S-R",
+    "title": "Experimental and numerical investigations on the impact response of ring-stiffened cylindrical shells",
+    "venue": "Proceedings of the International Offshore and Polar Engineering Conference",
+    "year": "2014",
+    "volume": "",
+    "pages": "932–939",
+    "doi": "",
     "tags": ["Impact damage", "Cylindrical shells", "Material testing"]
   },
   {
