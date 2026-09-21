@@ -1,6 +1,18 @@
 [
   {
     "type": "journal",
+    "authors": "Seo JH, Lim JS, Shim KS, Song JW",
+    "title": "CableDyn: curvature-resolving implicit finite-element analysis of mooring lines and dynamic power cables for floating offshore wind",
+    "venue": "Ocean Engineering",
+    "year": "2026",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": ["Mooring systems", "Dynamic power cables", "Floating offshore wind"],
+    "inPress": true
+  },
+  {
+    "type": "journal",
     "authors": "Ou B, Seo JH, Qin Q, Huang L",
     "title": "Wave-structure interaction of offshore floating solar array: Uniform and hybrid floaters",
     "venue": "Journal of Energy Infrastructure",

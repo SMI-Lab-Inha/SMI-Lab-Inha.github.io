@@ -15,9 +15,9 @@
     "date": "2026-09-21",
     "display": "September 2026",
     "title": "CableDyn paper accepted by Ocean Engineering",
-    "body": "A paper describing CableDyn, the lab's implicit finite-element solver for mooring lines and dynamic power cables, has been accepted for publication in Ocean Engineering. The paper covers curvature-resolving analysis of moorings and dynamic power cables for floating offshore wind. CableDyn is released with its first publication, so the code follows.",
-    "link": "/research/software",
-    "linkText": "The lab's software",
+    "body": "Ocean Engineering has accepted a paper describing CableDyn, the lab's implicit finite-element solver for mooring lines and dynamic power cables, for a special issue on mooring and cable systems. Three of the lab's undergraduate researchers — Jun Soo Lim, Kyusung Shim and Jinwoo Song — are co-authors. CableDyn is released with its first publication, so the code follows.",
+    "link": "/team/current-members",
+    "linkText": "Meet the team",
     "image": "",
     "imageAlt": ""
   },
