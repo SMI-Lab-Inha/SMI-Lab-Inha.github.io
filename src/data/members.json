@@ -48,5 +48,15 @@
     "photo": "/images/members/hui-won-lee.webp",
     "email": "",
     "role": ""
+  },
+  {
+    "name": "Jin Seong Park",
+    "nameKo": "박진성",
+    "group": "Undergraduate researchers",
+    "year": "Admitted 2022 · joined September 2026",
+    "topic": "Structural integrity of dynamic power cables",
+    "photo": "",
+    "email": "",
+    "role": ""
   }
 ]

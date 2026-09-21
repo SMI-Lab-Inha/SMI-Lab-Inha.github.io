@@ -12,6 +12,16 @@
     "pinned": true
   },
   {
+    "date": "2026-09-21",
+    "display": "September 2026",
+    "title": "CableDyn paper accepted by Ocean Engineering",
+    "body": "A paper describing CableDyn, the lab's implicit finite-element solver for mooring lines and dynamic power cables, has been accepted for publication in Ocean Engineering. The paper covers curvature-resolving analysis of moorings and dynamic power cables for floating offshore wind. CableDyn is released with its first publication, so the code follows.",
+    "link": "/research/software",
+    "linkText": "The lab's software",
+    "image": "",
+    "imageAlt": ""
+  },
+  {
     "date": "2026-07-01",
     "display": "1–3 July 2026",
     "title": "Students complete the 22nd IACS CSR-H practical training course",
