@@ -194,12 +194,20 @@ const glance = [
         {
           people.map((m) => (
             <li>
-              <AssetImage
-                src={m.photo}
-                alt={`Portrait of ${m.name}`}
-                sizes="(min-width: 1000px) 170px, (min-width: 600px) 25vw, 45vw"
-                widths={[180, 280, 360, 480]}
-              />
+              {/* A member without a photo yet is normal — someone joins before
+                  their portrait is taken. Passing an empty src to AssetImage
+                  failed the whole build, so the placeholder holds the row's
+                  alignment until the photograph arrives. */}
+              {m.photo ? (
+                <AssetImage
+                  src={m.photo}
+                  alt={`Portrait of ${m.name}`}
+                  sizes="(min-width: 1000px) 170px, (min-width: 600px) 25vw, 45vw"
+                  widths={[180, 280, 360, 480]}
+                />
+              ) : (
+                <span class="p-placeholder" aria-hidden="true" />
+              )}
               <span class="p-name">{m.name}</span>
               <span class="p-topic">{m.topic}</span>
             </li>
@@ -608,13 +616,19 @@ const glance = [
     max-width: none;
   }
 
-  .people img {
+  .people img,
+  .p-placeholder {
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: var(--radius);
     border: 1px solid var(--c-border);
     margin-bottom: 0.6rem;
+  }
+
+  .p-placeholder {
+    display: block;
+    background: var(--c-bg-inset);
   }
 
   .p-name {
