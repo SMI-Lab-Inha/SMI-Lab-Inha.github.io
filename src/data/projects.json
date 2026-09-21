@@ -1,14 +1,5 @@
 [
   {
-    "title": "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines",
-    "titleKo": "부유식 해상풍력 터빈 계류 시스템 장력 추정을 위한 물리 기반 가상 센싱 방법론 연구",
-    "funder": "Inha University New Faculty Research Grant, 2nd round",
-    "period": "2026/3 – 2027/2",
-    "role": "Principal Investigator",
-    "status": "current",
-    "summary": "This project develops Kalman-filter-based tension estimation from platform motion within a physics-based estimator framework."
-  },
-  {
     "title": "Machine Learning-Based Tension Prediction for FOWT Mooring Lines",
     "titleKo": "기계학습 기반 부유식 풍력터빈 계류선 인장력 예측",
     "funder": "Inha University New Faculty Research Grant, 1st round",
@@ -36,6 +27,15 @@
     "status": "current",
     "summary": "This project develops evaluation technology for the reliability of dynamic submarine cables, in a consortium led by the Korea Electrotechnology Research Institute.",
     "awardNumber": "RS-2026-25615521"
+  },
+  {
+    "title": "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines",
+    "titleKo": "부유식 해상풍력 터빈 계류 시스템 장력 추정을 위한 물리 기반 가상 센싱 방법론 연구",
+    "funder": "Inha University New Faculty Research Grant, 2nd round",
+    "period": "2026/3 – 2027/2",
+    "role": "Principal Investigator",
+    "status": "current",
+    "summary": "This project develops Kalman-filter-based tension estimation from platform motion within a physics-based estimator framework."
   },
   {
     "title": "High-Efficiency Propeller Design for Operation in Both Polar and General Waters",
