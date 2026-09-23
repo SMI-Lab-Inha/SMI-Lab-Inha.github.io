@@ -182,6 +182,37 @@ export function buildLastmodMap() {
   return map;
 }
 
+/**
+ * Which routes a set of changed files actually affects.
+ *
+ * Reuses the same dependency walk as the sitemap dates, so IndexNow submits a
+ * page when its content changed and stays quiet when only a layout or a
+ * stylesheet moved — the same distinction, for the same reason. Paths are
+ * repository-relative, as `git diff --name-only` reports them.
+ *
+ * Returns route strings, plus the `__news__` marker when the news template or
+ * news.json changed, which the caller expands to the individual items.
+ */
+export function routesAffectedBy(changedFiles) {
+  const changed = new Set(changedFiles.map((f) => path.resolve(f.split('/').join(path.sep))));
+  const routes = new Set();
+  let pages;
+  try {
+    pages = listPages(PAGES);
+  } catch {
+    return routes;
+  }
+
+  for (const page of pages) {
+    const deps = dependencies(page);
+    if (![...deps].some((dep) => changed.has(path.resolve(dep)))) continue;
+    const route = routeOf(page);
+    if (route) routes.add(route);
+    else if (page.includes('[slug]') && page.includes(`news${path.sep}`)) routes.add('__news__');
+  }
+  return routes;
+}
+
 export function lastmodFor(url, map) {
   const { pathname } = new URL(url);
   if (map.has(pathname)) return map.get(pathname);

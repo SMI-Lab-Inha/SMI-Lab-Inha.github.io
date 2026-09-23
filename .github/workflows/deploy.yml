@@ -52,3 +52,35 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+
+  # Tell IndexNow what changed, once the pages are actually live. Running this
+  # before the deploy would invite engines to fetch the previous build.
+  #
+  # Bing, Naver, Yandex and Seznam share the endpoint; Google does not take part,
+  # so this supplements the sitemap rather than replacing it. Naver is the slowest
+  # crawler of the three the site is verified with, and the one this helps most.
+  #
+  # Never allowed to fail the workflow: the deploy has already succeeded by this
+  # point, and the sitemap still advertises every page regardless.
+  index-now:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Full history for the same reason the build job needs it: the walk
+          # that decides which routes changed reads the repository, not the diff.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: Submit changed URLs to IndexNow
+        run: node scripts/indexnow.mjs --before "$BEFORE" --after "$AFTER"
+        env:
+          # Absent on workflow_dispatch, which the script reads as "no previous
+          # state" and submits the full list once.
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
