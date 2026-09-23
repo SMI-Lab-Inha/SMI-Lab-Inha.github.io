@@ -14,7 +14,13 @@ function walk(directory) {
 
 walk(root);
 
-const htmlFiles = files.filter((file) => file.endsWith('.html'));
+// Search-engine ownership tokens are named .html but are not pages: Google's is
+// a single line of text, and the file must be served verbatim or verification
+// breaks. Excluded from the page checks rather than made to satisfy them.
+const VERIFICATION = /(^google[0-9a-f]+\.html$|^naver[0-9a-f]+\.html$|^BingSiteAuth\.xml$)/i;
+const isVerificationToken = (file) => VERIFICATION.test(path.basename(file));
+
+const htmlFiles = files.filter((file) => file.endsWith('.html') && !isVerificationToken(file));
 const assets = new Set(files.map((file) => `/${path.relative(root, file).replaceAll('\\', '/')}`));
 const routes = new Set(
   htmlFiles.map((file) => {
