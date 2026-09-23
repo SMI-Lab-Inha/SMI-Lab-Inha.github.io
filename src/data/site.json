@@ -82,5 +82,12 @@
       "label": "External links",
       "href": "/links"
     }
-  ]
+  ],
+  "verification": {
+    "naver": "",
+    "bing": ""
+  },
+  "analytics": {
+    "cloudflareToken": ""
+  }
 }

@@ -213,10 +213,36 @@ const schema = {
         plate behind the same artwork. */}
     <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/images/favicon-180.png" />
+    {/* Ownership tokens. Google verifies by file (public/google*.html), so it
+        has no entry here; Naver and Bing verify by meta tag. Each is emitted
+        only when site.json carries a value, so an unconfigured site ships no
+        empty tags. */}
+    {site.verification?.naver && (
+      <meta name="naver-site-verification" content={site.verification.naver} />
+    )}
+    {site.verification?.bing && (
+      <meta name="msvalidate.01" content={site.verification.bing} />
+    )}
+
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="SMI Lab news" href="/news/rss.xml" />
 
     {schema['@graph'].length > 0 && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+    {/* Cloudflare Web Analytics: cookieless, stores no personal data, and so
+        needs no consent banner under PIPA or GDPR — which is why it is here
+        rather than Google Analytics. It does not require the site to sit
+        behind Cloudflare. `is:inline` keeps Astro from trying to bundle a
+        third-party URL. Emitted only when a token exists, so local builds and
+        previews send nothing. */}
+    {site.analytics?.cloudflareToken && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${site.analytics.cloudflareToken}"}`}
+      />
+    )}
   </head>
 
   <body>
