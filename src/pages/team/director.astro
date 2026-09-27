@@ -3,7 +3,6 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import AssetImage from '../../components/AssetImage.astro';
 import d from '../../data/director.json';
-import { resolveImage } from '../../lib/images';
 
 const profiles = d.profiles.filter((p) => p.url);
 const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
@@ -13,7 +12,7 @@ const personSchema = {
   name: d.name,
   alternateName: [d.formerName, d.nameKo, d.nameHanja],
   description: d.bio,
-  image: new URL(resolveImage(d.photo).src, origin).href,
+  image: `${origin}${d.photo}`,
   jobTitle: d.title,
   email: d.email,
   telephone: d.phone,
@@ -26,7 +25,7 @@ const personSchema = {
 ---
 
 <Base
-  title="Jae Hoon Seo (Burak Can Cerik) · Inha University"
+  title="Director"
   description={`${d.name} directs the SMI Lab at Inha University and researches fracture, fatigue, impact, and marine structural mechanics.`}
   ogType="profile"
   structuredData={personSchema}

@@ -7,19 +7,18 @@
    ========================================================================== */
 
 :root {
-  /* Cool paper background, white surfaces and restrained blue-grey rules. */
-  --c-bg: #f7f9fc;
-  --c-surface: #ffffff;
-  --c-bg-subtle: #edf2f8;
-  --c-bg-inset: #e3ebf5;
-  --c-border: #d6dfea;
-  --c-border-strong: #b8c7da;
+  /* Neutrals */
+  --c-bg: #ffffff;
+  --c-bg-subtle: #f5f7fa;
+  --c-bg-inset: #eef2f7;
+  --c-border: #dde4ed;
+  --c-border-strong: #c3cedd;
 
   /* Text */
-  --c-text: #17243b;
-  --c-text-muted: #4c5e76;
-  /* Secondary text retains contrast on both white and tinted surfaces. */
-  --c-text-faint: #5b6c83;
+  --c-text: #16202e;
+  --c-text-muted: #5a6a7f;
+  /* Small secondary text must retain at least 4.5:1 contrast against white. */
+  --c-text-faint: #66758a;
 
   /* Brand — Inha University's Modern Metallic livery (2025/26):
      Dark Blue #051766, Metallic Sky Blue #53AAE2, White #FFFFFF.
@@ -30,7 +29,7 @@
   --c-sky: #53aae2;
   --c-accent: #051766;
   --c-accent-hover: #030d3d;
-  --c-accent-soft: #e2edf8;
+  --c-accent-soft: #eaf4fc;
   --c-on-accent: #ffffff;
 
   /* Type — Helvetica throughout. macOS resolves the first two names to the real
@@ -42,14 +41,6 @@
   --font-display: var(--font-body);
   --font-sans: var(--font-body);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-
-  /* A restrained, consistent type scale; body copy remains 16px. */
-  --text-small: 0.875rem;
-  --text-body: 1rem;
-  --text-lead: 1.125rem;
-  --text-h1: clamp(1.875rem, 1.55rem + 1.3vw, 2.25rem);
-  --text-h2: clamp(1.375rem, 1.2rem + 0.65vw, 1.5rem);
-  --text-h3: 1.125rem;
 
   /* Rhythm */
   --measure: 68ch;
@@ -64,7 +55,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --c-bg: #0d1520;
-    --c-surface: #0d1520;
     --c-bg-subtle: #131e2c;
     --c-bg-inset: #182435;
     --c-border: #24354a;
@@ -88,28 +78,26 @@
 
 /* Explicit choices follow the same tokens and override the device setting. */
 :root[data-theme='light'] {
-  --c-bg: #f7f9fc;
-  --c-surface: #ffffff;
-  --c-bg-subtle: #edf2f8;
-  --c-bg-inset: #e3ebf5;
-  --c-border: #d6dfea;
-  --c-border-strong: #b8c7da;
-  --c-text: #17243b;
-  --c-text-muted: #4c5e76;
-  --c-text-faint: #5b6c83;
+  --c-bg: #ffffff;
+  --c-bg-subtle: #f5f7fa;
+  --c-bg-inset: #eef2f7;
+  --c-border: #dde4ed;
+  --c-border-strong: #c3cedd;
+  --c-text: #16202e;
+  --c-text-muted: #5a6a7f;
+  --c-text-faint: #66758a;
   --c-navy: #051766;
   --c-navy-deep: #030d3d;
   --c-sky: #53aae2;
   --c-accent: #051766;
   --c-accent-hover: #030d3d;
-  --c-accent-soft: #e2edf8;
+  --c-accent-soft: #eaf4fc;
   --c-on-accent: #ffffff;
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
   --c-bg: #0d1520;
-  --c-surface: #0d1520;
   --c-bg-subtle: #131e2c;
   --c-bg-inset: #182435;
   --c-border: #24354a;
@@ -186,15 +174,15 @@ h4 {
 }
 
 h1 {
-  font-size: var(--text-h1);
+  font-size: clamp(1.85rem, 1.35rem + 2vw, 2.6rem);
 }
 h2 {
-  font-size: var(--text-h2);
+  font-size: clamp(1.35rem, 1.12rem + 1vw, 1.7rem);
   margin-top: 2.2em;
   letter-spacing: -0.016em;
 }
 h3 {
-  font-size: var(--text-h3);
+  font-size: 1.1rem;
   margin-top: 1.8em;
   letter-spacing: -0.011em;
 }
@@ -206,7 +194,8 @@ h4 {
   color: var(--c-text-muted);
 }
 
-/* Controls share the same Helvetica-compatible family as the text. */
+/* Navigation, buttons and small labels stay in the sans face so the serif
+   is reserved for reading matter. */
 .btn,
 .eyebrow,
 input,
@@ -258,26 +247,10 @@ code {
 }
 
 :focus-visible {
-  outline: 2px solid var(--c-focus, var(--c-accent));
+  outline: 2px solid var(--c-accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
-
-.site-header,
-.hero,
-.site-footer {
-  --c-focus: #ffffff;
-}
-
-.site-header .submenu {
-  --c-focus: var(--c-accent);
-}
-
-@media (max-width: 860px) {
-  .site-header .submenu { --c-focus: #ffffff; }
-}
-
-[hidden] { display: none !important; }
 
 /* --------------------------------------------------------------------------
    Layout helpers
@@ -326,7 +299,7 @@ code {
 }
 
 .card {
-  background: var(--c-surface);
+  background: var(--c-bg);
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
   padding: 1.5rem;
@@ -343,7 +316,7 @@ code {
 /* Utility ----------------------------------------------------------------- */
 
 .lead {
-  font-size: var(--text-lead);
+  font-size: 1.12rem;
   color: var(--c-text-muted);
   max-width: 60ch;
 }
@@ -402,10 +375,8 @@ code {
    -------------------------------------------------------------------------- */
 
 @media print {
-  :root,
-  :root[data-theme] {
+  :root {
     --c-bg: #fff;
-    --c-surface: #fff;
     --c-bg-subtle: #fff;
     --c-bg-inset: #fff;
     --c-text: #000;
@@ -427,7 +398,7 @@ code {
 
   /* Navigation, the theme control, the search and filter row, and the skip
      link are all interactive furniture with no meaning on paper. */
-  .site-header,
+  header nav,
   .site-footer,
   .skip-link,
   .publication-tools,
@@ -461,16 +432,7 @@ code {
 
   .hero h1,
   .hero p {
-    color: #000 !important;
-  }
-
-  .hero a,
-  .proof,
-  .proof dt,
-  .proof dd,
-  .proof a {
-    color: #000 !important;
-    background: #fff !important;
+    color: #000;
   }
 
   a {

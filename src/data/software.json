@@ -9,8 +9,7 @@
     "status": "alpha",
     "repo": "",
     "docs": "",
-    "featured": true,
-    "short": "Implicit dynamics of mooring lines and power cables, standalone or coupled to OpenFAST."
+    "featured": true
   },
   {
     "name": "CableXsec",
@@ -22,8 +21,7 @@
     "status": "alpha",
     "repo": "",
     "docs": "",
-    "featured": true,
-    "short": "Cross-section mechanics and fatigue assessment for dynamic power cables."
+    "featured": true
   },
   {
     "name": "VANE",
@@ -35,8 +33,7 @@
     "status": "beta",
     "repo": "",
     "docs": "",
-    "featured": true,
-    "short": "OpenFAST modal analysis, Campbell diagrams, and state estimation."
+    "featured": true
   },
   {
     "name": "FOWCON",
@@ -48,8 +45,7 @@
     "status": "alpha",
     "repo": "",
     "docs": "",
-    "featured": true,
-    "short": "Damage-aware control for floating offshore wind turbines."
+    "featured": true
   },
   {
     "name": "pyBModes",
@@ -61,8 +57,7 @@
     "status": "public",
     "repo": "https://github.com/SMI-Lab-Inha/pyBModes",
     "docs": "https://pybmodes.readthedocs.io/en/latest/",
-    "featured": true,
-    "short": "Blade and tower modal analysis with OpenFAST-compatible mode shapes."
+    "featured": true
   },
   {
     "name": "pyIECWind",
@@ -74,8 +69,7 @@
     "status": "public",
     "repo": "https://github.com/SMI-Lab-Inha/pyIECWind",
     "docs": "https://pyiecwind.readthedocs.io/en/latest/",
-    "featured": true,
-    "short": "IEC wind-condition files for OpenFAST simulations."
+    "featured": true
   },
   {
     "name": "OpenFAST, ROSCO and TurbSim syntax highlighting for VS Code",
@@ -87,7 +81,6 @@
     "status": "public",
     "repo": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting",
     "docs": "https://marketplace.visualstudio.com/items?itemName=SMI-Lab.openfast-rosco-syntax-highlighting",
-    "featured": false,
-    "short": "Syntax highlighting for OpenFAST, ROSCO, and TurbSim input files."
+    "featured": false
   }
 ]

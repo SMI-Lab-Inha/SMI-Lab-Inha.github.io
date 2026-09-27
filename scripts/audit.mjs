@@ -17,7 +17,6 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { parse } from 'parse5';
 
 const DIST = path.resolve('dist');
 const DATA = path.resolve('src/data');
@@ -104,17 +103,12 @@ const HANGUL = /[가-힯]/;
 let marked = 0;
 const unmarked = [];
 for (const page of pages) {
-  const visit = (node, language = '', inBody = false) => {
-    if (node.tagName === 'script' || node.tagName === 'style') return;
-    const lang = node.attrs?.find((attribute) => attribute.name === 'lang')?.value || language;
-    const body = inBody || node.tagName === 'body';
-    if (body && node.nodeName === '#text' && HANGUL.test(node.value)) {
-      if (lang.startsWith('ko')) marked += 1;
-      else unmarked.push(`${route(page)} <${node.parentNode?.tagName}>`);
-    }
-    for (const child of node.childNodes ?? []) visit(child, lang, body);
-  };
-  visit(parse(read(page)));
+  const body = (read(page).match(/<body[\s\S]*<\/body>/) ?? [''])[0].replace(/<script[\s\S]*?<\/script>/g, '');
+  for (const match of body.matchAll(/<([a-z0-9]+)([^>]*)>([^<]*)/gi)) {
+    if (!HANGUL.test(match[3])) continue;
+    if (/lang=["']?ko/.test(match[2])) marked += 1;
+    else unmarked.push(`${route(page)} <${match[1]}>`);
+  }
 }
 row('Korean runs marked lang="ko"', marked);
 row('Korean runs unmarked', unmarked.length === 0 ? '0' : unmarked.join('; '));
@@ -126,19 +120,15 @@ const totalOf = (test) =>
   walk(DIST, test).reduce((sum, file) => sum + fs.statSync(file).size, 0);
 row('home page HTML', kb(fs.statSync(path.join(DIST, 'index.html')).size));
 row('CSS, whole site', kb(totalOf((n) => n.endsWith('.css'))));
-row('JS files, whole site', kb(totalOf((n) => n.endsWith('.js'))));
-const homeScripts = [...read(path.join(DIST, 'index.html')).matchAll(/<script(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/g)]
-  .reduce((sum, match) => sum + Buffer.byteLength(match[1]), 0);
-row('inline executable JS, home', kb(homeScripts));
+row('JS, whole site', kb(totalOf((n) => n.endsWith('.js'))));
 row('fonts', kb(totalOf((n) => /\.woff2?$/.test(n))));
 row('images', kb(totalOf((n) => /\.(webp|png|jpe?g|svg)$/.test(n))));
 
 /* Reminders -------------------------------------------------------------- */
 section('Needs a person, not a script');
-row('Google verification file', walk(DIST, (name) => /^google[0-9a-f]+\.html$/.test(name)).length ? 'present; account status requires Search Console' : 'absent');
-console.log('  Search visibility: inspect queries, indexing and Core Web Vitals in Search Console.');
-console.log('  Legacy site: check whether old university links still need updating.');
-console.log('  Korean applicant summary is live; longer technical translations remain editorial work.');
+console.log('  Search Console verification      not set up');
+console.log('  Old Google Site                  still live and competing for the same terms');
+console.log('  Korean body copy                 drafted in korean-copy-draft.md, awaiting review');
 console.log('\n  npm run check:links   external URLs');
 console.log('  npm run domain:check  smil.inha.ac.kr forwarding');
 console.log('');

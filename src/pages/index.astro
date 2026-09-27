@@ -1,213 +1,829 @@
 ---
+import fs from 'node:fs';
 import Base from '../layouts/Base.astro';
 import AssetImage from '../components/AssetImage.astro';
 import site from '../data/site.json';
 import d from '../data/director.json';
-import { members, news, projects, publications, recruitment, researchAreas, software } from '../data/content';
-import { newsSlug, positionsLabel, recruitmentOpen, recruitmentStatusLabel, slugify } from '../lib/content';
+import {
+  members,
+  news,
+  projects,
+  recruitment,
+  researchAreas as areas,
+  software,
+} from '../data/content';
+import { newsSlug, positionsLabel, recruitmentStatusLabel } from '../lib/content';
 
-const latestNews = news.filter((item) => item.kind !== 'recruitment' && item.date)
-  .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
-const latestPapers = publications.filter((paper) => paper.type === 'journal').slice(0, 2);
-const featuredSoftware = software.filter((pkg) => pkg.featured);
-const statusLabel: Record<string, string> = { public: 'Public', beta: 'Private · beta', alpha: 'Private · alpha', 'in-development': 'In development' };
+// Same ordering as the news page: pinned first, then newest first by date.
+const latest = [
+  ...news.filter((n) => n.pinned),
+  ...news.filter((n) => !n.pinned && n.date).sort((a, b) => b.date.localeCompare(a.date)),
+].slice(0, 5);
+const publicPkgs = software.filter((s) => s.status === 'public');
+
+// Kept in data order, so software.json controls what leads.
+const featuredPkgs = software.filter((s) => s.featured).slice(0, 6);
+
+// Short enough to sit on a card. The full wording, and why a package is not
+// yet released, is on the software page this section links to.
+const pkgStatus: Record<string, string> = {
+  public: 'Public',
+  beta: 'Private · beta',
+  alpha: 'Private · alpha',
+  'in-development': 'In development',
+};
+const currentProjects = projects.filter((project) => project.status === 'current');
+const people = members;
+
+// Intrinsic size read from the file, as on the research areas page, so a card
+// reserves the right box before its figure loads.
+const figureSize = (src: string) => {
+  const svg = fs.readFileSync(`public${src}`, 'utf8').slice(0, 800);
+  const w = svg.match(/\bwidth="([\d.]+)(?:px)?"/);
+  const h = svg.match(/\bheight="([\d.]+)(?:px)?"/);
+  if (!w || !h) throw new Error(`${src} has no intrinsic width and height`);
+  return { width: Math.round(Number(w[1])), height: Math.round(Number(h[1])) };
+};
+
+// This used to list the thrusts, which now sit as cards directly below it. What
+// the cards do not say is how the work connects, so the aside says that instead.
+const chain = [
+  {
+    step: 'Measure',
+    text: 'Material testing establishes what a steel actually does across stress states, strain rates and temperatures.',
+  },
+  {
+    step: 'Calibrate',
+    text: 'Fracture and instability criteria are fitted to that data, then written as user material subroutines so they can be used in production analysis.',
+  },
+  {
+    step: 'Predict',
+    text: 'Structure-scale analysis carries those models through to tearing, collapse and shock response, and on to limit state assessment.',
+  },
+  {
+    step: 'Monitor',
+    text: 'For structures already in service, estimators reconstruct the load and fatigue state from the few measurements that can realistically be obtained.',
+  },
+];
 ---
 
 <Base title={site.fullName} description={site.shortDescription}>
   <section class="hero">
     <div class="wrap hero-inner">
       <div>
-        <p class="hero-eyebrow">{site.university} · Naval Architecture and Ocean Engineering</p>
-        <h1>Marine Structural Mechanics and Integrity Lab</h1>
-        <p class="hero-ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</p>
-        <p class="hero-tagline">Fracture, fatigue and structural integrity of ships and floating offshore wind systems.</p>
+        <p class="hero-eyebrow">
+          {site.department} · {site.university}
+        </p>
+        <h1>Marine Structural Mechanics<br />{' '}and Integrity Lab</h1>
+        <p class="hero-tagline">
+          Fracture and fatigue assessment for ships and offshore structures, grounded in
+          structural mechanics and advanced through sensing, simulation, and software.
+        </p>
         <p class="hero-actions">
-          <a class="btn hero-primary" href="/research/research-areas/">Our research</a>
-          <a class="btn btn--ghost" href="/join-us/">Join the lab</a>
+          <a class="btn" href="/research/research-areas">Our research</a>
+          <a class="btn btn--ghost" href="/join-us">Join the lab</a>
         </p>
       </div>
-      <img class="hero-logo" src="/images/logo.svg" alt="SMI Lab: a ship, wind turbine, and circuit-brain above waves" width="1024" height="1024" decoding="async" />
+      {/* Vector, so it stays crisp at any density and needs no srcset. */}
+      <img
+        class="hero-logo"
+        src="/images/logo.svg"
+        alt="SMI Lab logo: a ship, an offshore wind turbine, and a circuit-brain motif above stylised waves"
+        width="1024"
+        height="1024"
+        loading="eager"
+        decoding="async"
+      />
     </div>
   </section>
 
+  {/* Citation count and h-index are deliberately kept off the front page; they
+      live on the publications page, where a reader has gone looking for them. */}
   <section class="proof" aria-label="Lab record at a glance">
     <dl class="wrap proof-grid">
-      <div><dt>Current projects</dt><dd><a href="/research/projects/">{projects.filter((p) => p.status === 'current').length}</a></dd></div>
-      <div><dt>Research areas</dt><dd><a href="/research/research-areas/">{researchAreas.length}</a></dd></div>
-      <div><dt>Public tools</dt><dd><a href="/research/software/">{software.filter((p) => p.status === 'public').length}</a></dd></div>
-      <div><dt>Student researchers</dt><dd><a href="/team/current-members/">{members.filter((m) => m.group !== 'Postdoctoral researchers').length}</a></dd></div>
+      <div><dt>Current projects</dt><dd>{currentProjects.length}</dd></div>
+      <div><dt>Research thrusts</dt><dd>{areas.length}</dd></div>
+      <div><dt>Public tools</dt><dd>{publicPkgs.length}</dd></div>
+      <div><dt>Student researchers</dt><dd>{people.length}</dd></div>
     </dl>
   </section>
 
-  <section class="section updates">
-    <div class="wrap updates-grid">
+  <section class="section">
+    <div class="wrap intro">
       <div>
-        <div class="head"><h2>News</h2><a href="/news/">All news →</a></div>
-        <ul class="list-plain news-list">
-          {latestNews.map((item) => <li>
-            <time datetime={item.date}>{item.display}</time>
-            <a href={`/news/${newsSlug(item)}/`}>{item.title}</a>
-          </li>)}
-        </ul>
+        <h2 class="intro-title">
+          Marine Structural Mechanics and Integrity Lab{' '}
+          <span class="ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
+        </h2>
+
+        {/* The lead that sat here restated the hero tagline, and the paragraph
+            after this one listed the three thrusts in prose directly above the
+            three thrust cards. What remains is the part neither of those says:
+            how mechanics and integrity relate. */}
+        <p class="intro-lead">
+          Structural mechanics provides the foundation: how structures carry load, deform,
+          buckle, and collapse under operational and extreme conditions. Structural integrity
+          builds on that foundation to assess crack initiation and growth, fatigue damage, and
+          fitness for continued service.
+        </p>
       </div>
-      <aside class="recruitment">
-        <h2>Postgraduate research</h2>
-        <p class="eyebrow">{recruitmentStatusLabel()}</p>
-        {recruitmentOpen ? <p><strong>{positionsLabel()}</strong> for the {recruitment.intake}.</p>
-          : <p>There are no open graduate positions at present. Contact us about future opportunities.</p>}
-        <p class="muted">Undergraduate research slots are {recruitment.undergraduateSlotsAvailable ? 'available' : 'currently full'}.</p>
-        <a href="/join-us/">Funding and applications →</a>
+
+      <aside class="glance">
+        <h3>How the work connects</h3>
+        <ol class="chain list-plain">
+          {
+            chain.map((c) => (
+              <li>
+                <strong>{c.step}.</strong> {c.text}
+              </li>
+            ))
+          }
+        </ol>
       </aside>
     </div>
   </section>
 
   <section class="section section--subtle">
     <div class="wrap">
-      <div class="head"><h2>Marine structures research</h2><a href="/research/research-areas/">All research →</a></div>
-      <p class="lead">We combine material testing, numerical modelling and monitoring to assess marine structures, moorings and dynamic power cables.</p>
+      <div class="head">
+        <h2>Research thrusts</h2>
+        <a href="/research/research-areas">All research →</a>
+      </div>
+      <p class="lead thrusts-lead">
+        Nine lines of work, held together by one question: how marine structures fail, and how
+        far ahead of the failure we can see it coming. Follow any card for the methods, the
+        funding behind it, and the papers it rests on.
+      </p>
       <div class="thrusts">
-        {researchAreas.map((area, i) => <a class="thrust" href={`/research/research-areas/#${area.slug}`}>
-          <span class="thrust-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-          <div><h3>{area.title}</h3><p>{area.short}</p>{area.emerging && <span class="emerging">Emerging direction</span>}</div>
-        </a>)}
+        {
+          areas.map((a, i) => (
+            <a class="thrust" href={`/research/research-areas#${a.slug}`}>
+              {/* Deliberately no figure here. Only some thrusts have one, and a
+                  grid where five cards carry an image and four do not reads as
+                  unfinished. `figure` stays in the data and is used on the
+                  research areas page; put it back here once all nine have one. */}
+              <div class="thrust-body">
+                <span class="thrust-n">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{a.title}</h3>
+                <p class="thrust-short">{a.short}</p>
+                <ul class="thrust-keys">
+                  {a.keywords.map((k) => (
+                    <li>{k}</li>
+                  ))}
+                </ul>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="head"><h2>Recent publications</h2><a href="/publications/journal-papers/">All papers →</a></div>
-      <ul class="list-plain papers">
-        {latestPapers.map((paper) => <li>
-          <h3>{paper.doi ? <a href={`https://doi.org/${paper.doi}`}>{paper.title}</a> : paper.title}</h3>
-          <p class="muted">{paper.authors} · {paper.year}</p>
-          <p><em>{paper.venue}</em>{paper.volume && ` ${paper.volume}`}{paper.pages && `: ${paper.pages}`}{paper.inPress && ' · In press'}</p>
-        </li>)}
+      <div class="head">
+        <h2>Research software</h2>
+        <a href="/research/software">Software &amp; facilities →</a>
+      </div>
+      <p class="lead">
+        We treat research software as an output in its own right, developed under version
+        control with automated tests and documentation, and released as the accompanying papers
+        appear.
+      </p>
+      <ul class="pkgs list-plain">
+        {
+          featuredPkgs.map((s) => (
+            <li>
+              <span class="pkg-name">{s.repo ? <a href={s.repo}>{s.name}</a> : s.name}</span>
+              <span class={`pkg-status ${s.status === 'public' ? 'is-public' : ''}`}>
+                {pkgStatus[s.status]}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
+    <div class="wrap values">
+      <div>
+        <h2>Mission and vision</h2>
+        <p class="statement">
+          Advancing structural mechanics and integrity assessment for safe and sustainable
+          marine infrastructure, with particular emphasis on fracture, fatigue, and structural
+          failure.
+        </p>
+        <p>
+          Cracks and fatigue damage often develop where direct observation is difficult. We
+          investigate the mechanics of damage and failure, then turn that understanding into
+          assessment and monitoring methods that engineers can use with confidence.
+        </p>
+      </div>
+      <ul class="value-list list-plain">
+        {site.values.map((value) => <li>{value}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <h2>The team</h2>
+        <a href="/team/current-members">All members →</a>
+      </div>
+      <ul class="people list-plain">
+        {
+          people.map((m) => (
+            <li>
+              {/* A member without a photo yet is normal — someone joins before
+                  their portrait is taken. Passing an empty src to AssetImage
+                  failed the whole build, so the placeholder holds the row's
+                  alignment until the photograph arrives. */}
+              {m.photo ? (
+                <AssetImage
+                  src={m.photo}
+                  alt={`Portrait of ${m.name}`}
+                  sizes="(min-width: 1000px) 170px, (min-width: 600px) 25vw, 45vw"
+                  widths={[180, 280, 360, 480]}
+                />
+              ) : (
+                <span class="p-placeholder" aria-hidden="true" />
+              )}
+              <span class="p-name">{m.name}</span>
+              <span class="p-topic">{m.topic}</span>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
 
   <section class="section section--subtle">
     <div class="wrap">
-      <div class="head"><h2>Research software</h2><a href="/research/software/">Software &amp; facilities →</a></div>
-      <ul class="pkgs list-plain">
-        {featuredSoftware.map((pkg) => <li>
-          <div class="pkg-heading"><h3><a href={`/research/software/#${slugify(pkg.name)}`}>{pkg.name}</a></h3><span class:list={['pkg-status', pkg.status === 'public' && 'is-public']}>{statusLabel[pkg.status]}</span></div>
-          <p>{pkg.short}</p>
-          <a class="pkg-link" href={pkg.repo || `/research/software/#${slugify(pkg.name)}`}>{pkg.repo ? 'Source code →' : 'About this project →'}</a>
-        </li>)}
+      <div class="head">
+        <h2>What's happening</h2>
+        <a href="/news">All news →</a>
+      </div>
+      <ul class="list-plain news-list">
+        {
+          latest.map((n) => (
+            <li>
+              <span class="news-date">{n.pinned ? 'Now open' : n.display}</span>
+              <a href={`/news/${newsSlug(n)}/`}>{n.title}</a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
 
   <section class="section">
-    <div class="wrap">
-      <div class="head"><h2>People</h2><a href="/team/">The team →</a></div>
-      <div class="director-intro">
-        <AssetImage src={d.photo} alt={d.photoAlt} widths={[120, 240]} sizes="96px" />
-        <div>
-          <h3><a href="/team/director/">{d.name}</a> <span lang="ko">{d.nameKo}</span></h3>
-          <p>{d.title}, {site.university}. International papers up to 2025 were published as <strong>{d.formerName}</strong>; Korean-language journals and papers from 2026 use {d.name}.</p>
-          <a href="/team/director/">Biography and author profiles →</a>
-        </div>
-      </div>
-      <ul class="people list-plain">
-        {members.map((member) => <li>
-          {member.photo ? <AssetImage src={member.photo} alt={`Portrait of ${member.name}`} sizes="(min-width: 861px) 160px, 72px" widths={[96, 180, 320]} /> : <span class="p-placeholder" aria-hidden="true" />}
-          <div><span class="p-name">{member.name}</span><span class="p-topic">{member.topic}</span></div>
-        </li>)}
-      </ul>
-      <p class="values">{site.values.join(' · ')}</p>
+    <div class="wrap cta">
+      <h2>Work with us</h2>
+      <p>{recruitment.summary}</p>
+      <p class="muted">
+        <strong>{recruitmentStatusLabel()}:</strong> {positionsLabel()} are available for the{' '}
+        {recruitment.intake}.
+        Undergraduate research slots are {recruitment.undergraduateSlotsAvailable ? 'available' : 'currently full'}.
+      </p>
+      <p>
+        <a class="btn" href="/join-us">Opportunities</a>
+        <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
+      </p>
     </div>
   </section>
 
+  <section class="section section--subtle">
+    <div class="wrap contact">
+      <div>
+        <h2 class="address-title">Find us</h2>
+        <address>
+          {site.department}<br />
+          {site.university}<br />
+          {site.address}
+        </address>
+      </div>
+      <div>
+        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p class="muted">{d.phone}</p>
+        <p class="muted">{d.office}</p>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <style>
-  .hero { background: linear-gradient(150deg, var(--c-navy), var(--c-navy-deep)); color: #fff; padding-block: clamp(2rem, 5vw, 4rem); }
-  .hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; align-items: center; gap: 3rem; }
-  .hero h1 { color: #fff; max-width: 24ch; }
-  .hero-eyebrow { font-size: var(--text-small); letter-spacing: 0.08em; color: #d3e4f5; }
-  .hero-ko { color: #d3e4f5; font-size: var(--text-small); }
-  .hero-tagline { font-size: var(--text-lead); max-width: 51ch; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.5rem 0 0; }
-  .hero-primary { background: #fff; color: #051766; }
-  .hero-primary:hover { background: #eaf4fc; color: #030d3d; }
-  .hero .btn--ghost { color: #fff; border-color: #8e9bbc; }
-  .hero .btn--ghost:hover { background: #ffffff18; }
-  .hero-logo { width: 100%; background: white; padding: 1rem; border-radius: var(--radius); }
-  .proof { background: var(--c-navy-deep); color: white; padding-block: 1.1rem; --c-focus: #fff; }
-  .proof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-block: 0; gap: 1rem; }
-  .proof-grid div { border-left: 1px solid #ffffff38; padding-left: 1rem; }
-  .proof-grid div:first-child { border: 0; padding-left: 0; }
-  .proof dt { font-size: var(--text-small); color: #c4cddd; }
-  .proof dd { margin: 0; font-size: 1.6rem; font-weight: 700; }
-  .proof a { color: #fff; text-decoration: none; }
-  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--c-border-strong); padding-bottom: 0.65rem; margin-bottom: 1.5rem; }
-  .head h2 { margin: 0; }
-  .head > a { font-size: var(--text-small); flex-shrink: 0; }
-  .updates-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem; }
-  .news-list { margin: 0; }
-  .news-list li { padding: 0.8rem 0; border-bottom: 1px solid var(--c-border); }
-  .news-list time { display: block; color: var(--c-text-muted); font-size: var(--text-small); }
-  .recruitment { border-left: 3px solid var(--c-accent); padding: 1.2rem; background: var(--c-bg-subtle); }
-  .recruitment h2 { margin-top: 0; font-size: var(--text-h2); }
-  .recruitment p { margin-bottom: 0.65rem; }
-  .recruitment > a { font-size: var(--text-small); }
-  .thrusts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-  .thrust { display: flex; gap: 0.7rem; padding: 1rem; border: 1px solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: inherit; text-decoration: none; }
-  .thrust:hover { border-color: var(--c-accent); color: inherit; }
-  .thrust-n { color: var(--c-accent); font-size: var(--text-small); padding-top: 0.15rem; }
-  .thrust h3 { font-size: var(--text-h3); line-height: 1.35; margin: 0 0 0.45rem; }
-  .thrust p { color: var(--c-text-muted); font-size: var(--text-body); line-height: 1.45; margin: 0; }
-  .emerging { display: block; color: var(--c-text-muted); font-size: var(--text-small); margin-top: 0.5rem; }
-  .papers { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 0; }
-  .papers h3 { margin: 0 0 0.6rem; font-size: var(--text-h3); line-height: 1.4; }
-  .papers p { font-size: var(--text-small); margin-bottom: 0.4rem; }
-  .pkgs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 0; }
-  .pkgs > li { padding: 1.1rem; border: 1px solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); display: flex; flex-direction: column; }
-  .pkg-heading { display: flex; gap: 0.4rem 0.7rem; flex-wrap: wrap; align-items: center; }
-  .pkg-heading h3 { font-size: var(--text-h3); margin: 0; }
-  .pkg-status { font-size: var(--text-small); color: var(--c-text-muted); }
-  .is-public { color: var(--c-accent); font-weight: 600; }
-  .pkgs p { color: var(--c-text-muted); font-size: var(--text-body); margin: 0.7rem 0; }
-  .pkg-link { margin-top: auto; font-size: var(--text-small); }
-  .director-intro { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 1.4rem; align-items: start; margin-bottom: 2rem; }
-  .director-intro img { width: 96px; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius); }
-  .director-intro h3 { margin: 0 0 0.6rem; }
-  .director-intro h3 span { font-size: var(--text-small); font-weight: 400; }
-  .director-intro p { font-size: var(--text-body); margin-bottom: 0.6rem; }
-  .director-intro > div > a { font-size: var(--text-small); }
-  .people { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.2rem; margin: 0; }
-  .people img, .p-placeholder { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--c-border); margin-bottom: 0.6rem; }
-  .p-placeholder { display: block; background: var(--c-bg-inset); }
-  .p-name { display: block; font-weight: 600; font-size: var(--text-body); }
-  .p-topic { display: block; color: var(--c-text-muted); font-size: var(--text-small); line-height: 1.45; margin-top: 0.2rem; }
-  .values { color: var(--c-text-muted); font-size: var(--text-small); margin: 1.5rem 0 0; }
+  /* Hero -------------------------------------------------------------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--c-navy) 0%, var(--c-navy-deep) 100%);
+    color: #fff;
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+  }
+
+  /* A faint swell across the base of the hero, echoing the logo's waves. */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -1px 0;
+    height: 90px;
+    background-repeat: repeat-x;
+    background-size: 1200px 90px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 90'%3E%3Cpath d='M0 60c150-30 300-30 450 0s300 30 450 0 150-15 300 0v30H0z' fill='%23ffffff' fill-opacity='.05'/%3E%3Cpath d='M0 74c150-26 300-26 450 0s300 26 450 0 150-13 300 0v16H0z' fill='%23ffffff' fill-opacity='.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
+  .hero-logo {
+    width: 100%;
+    max-width: 18rem;
+    justify-self: end;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem;
+  }
+
+  .hero h1 {
+    color: #fff;
+    margin-bottom: 0.45em;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 1rem;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 44ch;
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.9rem;
+    margin-bottom: 0;
+  }
+
+  .hero .btn--ghost {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .hero .btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  .proof {
+    background: var(--c-navy-deep);
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-block: 1.4rem 1.1rem;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-block: 0;
+  }
+
+  .proof-grid div {
+    padding-inline: 1.1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .proof-grid div:first-child {
+    border-left: 0;
+  }
+
+  .proof-grid dt {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.64);
+  }
+
+  .proof-grid dd {
+    margin: 0.15rem 0 0;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+
+  /* Shared section head ----------------------------------------------- */
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 2px solid var(--c-accent);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .head h2 {
+    margin: 0;
+  }
+
+  .head a {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* Intro -------------------------------------------------------------- */
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+
+  .intro-title {
+    margin-top: 0;
+    font-size: 1.35rem;
+  }
+
+  .ko {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--c-text-muted);
+    margin-top: 0.35em;
+  }
+
+  .intro-lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .glance {
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-top: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    position: sticky;
+    top: 1.5rem;
+  }
+
+  .glance h3 {
+    margin-top: 0;
+    font-size: 0.98rem;
+  }
+
+  .glance ul {
+    padding-left: 1.05rem;
+    margin-bottom: 0;
+  }
+
+  .glance li {
+    margin-bottom: 0.65rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .glance li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Thrust cards ------------------------------------------------------- */
+  .thrusts {
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+
+  .thrust {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-top: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .thrust-body {
+    display: block;
+    padding: 1.3rem 1.4rem 1.4rem;
+  }
+
+  .thrust-short {
+    margin: 0 0 0.9rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--c-text-muted, #46484d);
+  }
+
+  /* The keywords carry the visual weight the figure used to, and double as the
+     terms a visitor is likely to be scanning the page for. */
+  .thrust-keys {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .thrust-keys li {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    line-height: 1.3;
+    padding: 0.22em 0.6em;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    color: var(--c-accent);
+    white-space: nowrap;
+  }
+
+  .thrusts-lead {
+    margin: 0 0 1.6rem;
+    max-width: 54ch;
+  }
+
+  .chain {
+    counter-reset: chain;
+  }
+
+  .chain li {
+    margin-bottom: 0.7rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .chain strong {
+    color: var(--c-accent);
+  }
+
+  .thrust:hover {
+    border-color: var(--c-accent);
+    color: inherit;
+  }
+
+  .thrust-n {
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--c-accent);
+  }
+
+  .thrust h3 {
+    margin: 0.4rem 0 0.7rem;
+    font-size: 1.02rem;
+    line-height: 1.35;
+  }
+
+  .thrust ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+
+  .thrust li {
+    font-size: 0.88rem;
+    color: var(--c-text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  /* Software ----------------------------------------------------------- */
+  .pkgs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.7rem;
+    margin-top: 1.4rem;
+  }
+
+  /* Stacked, not a baseline row. Side by side, the status is a flex item that
+     will not shrink below its own text, so a long label pushed out of the card
+     and overlapped the next one. */
+  .pkgs li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.55rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 0.8rem 1rem;
+    max-width: none;
+  }
+
+  .pkg-name {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    /* Package names are single words; a long one breaks rather than overflows. */
+    overflow-wrap: anywhere;
+  }
+
+  .pkg-name a {
+    text-decoration: none;
+  }
+
+  .pkg-status {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    border: 1px solid var(--c-border-strong);
+    border-radius: 999px;
+    padding: 0.1em 0.6em;
+    white-space: nowrap;
+  }
+
+  .pkg-status.is-public {
+    color: var(--c-accent-hover);
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+  }
+
+  /* Mission / values --------------------------------------------------- */
+  .values {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    align-items: start;
+  }
+
+  .values h2 {
+    margin-top: 0;
+  }
+
+  .statement {
+    font-size: 1.08rem;
+    font-style: italic;
+    border-left: 3px solid var(--c-accent);
+    padding-left: 1.1rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .value-list {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0;
+  }
+
+  .value-list li {
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-left: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: 0.8rem 1.1rem;
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+  }
+
+  /* People ------------------------------------------------------------- */
+  .people {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 1.2rem;
+    margin: 0;
+  }
+
+  .people li {
+    max-width: none;
+  }
+
+  .people img,
+  .p-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--c-border);
+    margin-bottom: 0.6rem;
+  }
+
+  .p-placeholder {
+    display: block;
+    background: var(--c-bg-inset);
+  }
+
+  .p-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.94rem;
+  }
+
+  .p-topic {
+    display: block;
+    font-size: 0.83rem;
+    color: var(--c-text-muted);
+    line-height: 1.45;
+    margin-top: 0.15rem;
+  }
+
+  /* News --------------------------------------------------------------- */
+  .news-list li {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1rem;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--c-border);
+    max-width: none;
+  }
+
+  .news-list a {
+    text-decoration: none;
+  }
+
+  .news-list a:hover {
+    text-decoration: underline;
+  }
+
+  .news-date {
+    font-family: var(--font-sans);
+    color: var(--c-text-muted);
+    font-size: 0.84rem;
+  }
+
+  /* CTA + contact ------------------------------------------------------ */
+  .cta {
+    border: 1px solid var(--c-border);
+    border-left: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 2.4rem);
+  }
+
+  .cta h2 {
+    margin-top: 0;
+  }
+
+  .cta .btn {
+    margin-right: 0.6rem;
+  }
+
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1.5rem;
+  }
+
+  .address-title {
+    margin-top: 0;
+  }
+
+  address {
+    font-style: normal;
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+
   @media (max-width: 860px) {
-    .hero-inner { grid-template-columns: minmax(0, 1fr) 8rem; gap: 1.2rem; }
-    .thrusts, .pkgs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .updates-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .people { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .people li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 0.8rem; }
-    .people img, .p-placeholder { width: 72px; }
-  }
-  @media (max-width: 560px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-logo { display: none; }
-    .hero-tagline { font-size: var(--text-body); }
-    .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
-    .proof-grid div:nth-child(odd) { border: 0; padding-left: 0; }
-    .head { flex-wrap: wrap; gap: 0.5rem; }
-    .thrusts, .pkgs, .papers, .people { grid-template-columns: 1fr; }
-    .thrust { padding: 0.85rem; }
-    .director-intro { grid-template-columns: 72px minmax(0, 1fr); gap: 1rem; }
-    .director-intro img { width: 72px; }
-  }
-  @media print {
-    .hero h1, .hero p { color: #000; }
-    .hero-logo, .hero-actions { display: none; }
-    .thrusts, .pkgs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .thrust, .pkgs li, .papers li { break-inside: avoid; }
+    .hero-inner,
+    .intro {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-logo {
+      justify-self: start;
+      max-width: 11rem;
+    }
+
+    .proof-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem 0;
+    }
+
+    .proof-grid div:nth-child(odd) {
+      border-left: 0;
+    }
+
+    .glance {
+      position: static;
+    }
+
+    .news-list li {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
   }
 </style>

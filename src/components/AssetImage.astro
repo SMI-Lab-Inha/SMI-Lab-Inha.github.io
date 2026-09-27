@@ -18,12 +18,10 @@ const {
   loading = 'lazy',
   sizes = '100vw',
   widths = [320, 480, 640, 960],
-  ...attributes
 } = Astro.props;
 ---
 
 <Image
-  {...attributes}
   src={resolveImage(src)}
   alt={alt}
   class={className}

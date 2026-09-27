@@ -4,7 +4,7 @@ import PageHeader from '../components/PageHeader.astro';
 import Pending from '../components/Pending.astro';
 import AssetImage from '../components/AssetImage.astro';
 import { news } from '../data/content';
-import { newsBody, newsSlug, newsTitle, recruitmentStatusLabel } from '../lib/content';
+import { newsBody, newsSlug, recruitmentStatusLabel } from '../lib/content';
 
 const all = news;
 
@@ -42,13 +42,13 @@ const items = [...pinned, ...dated, ...undated];
                 />
               )}
               <div>
-                {item.kind === 'recruitment' ? (
+                {item.pinned ? (
                   <p class="date pin">{recruitmentStatusLabel()}</p>
                 ) : (
                   item.display && <time class="date" datetime={item.date}>{item.display}</time>
                 )}
                 <h2 id={`news-${newsSlug(item)}`}>
-                  <a href={`/news/${newsSlug(item)}/`}>{newsTitle(item)}</a>
+                  <a href={`/news/${newsSlug(item)}/`}>{item.title}</a>
                 </h2>
                 <p>{newsBody(item)}</p>
                 {item.link && (

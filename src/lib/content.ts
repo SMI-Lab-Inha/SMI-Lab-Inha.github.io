@@ -1,7 +1,4 @@
 import { recruitment, type NewsItem, type Publication } from '../data/content';
-import { isRecruitmentOpen } from './recruitment';
-
-export const recruitmentOpen = isRecruitmentOpen(recruitment);
 
 export function slugify(value: string) {
   return value
@@ -13,15 +10,11 @@ export function slugify(value: string) {
 }
 
 export function newsSlug(item: NewsItem) {
-  return item.slug;
+  return slugify(item.title);
 }
 
 export function newsBody(item: NewsItem) {
   return item.kind === 'recruitment' ? recruitment.summary : item.body;
-}
-
-export function newsTitle(item: NewsItem) {
-  return item.kind === 'recruitment' && !recruitmentOpen ? 'Graduate research opportunities' : item.title;
 }
 
 export function positionsLabel() {
@@ -31,13 +24,12 @@ export function positionsLabel() {
 }
 
 export function recruitmentStatusLabel() {
-  if (!recruitmentOpen) return 'Applications closed';
+  if (!recruitment.active) return 'Applications closed';
   if (recruitment.openUntil) {
     const date = new Intl.DateTimeFormat('en-GB', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
-      timeZone: 'UTC',
     }).format(new Date(`${recruitment.openUntil}T00:00:00Z`));
     return `Open until ${date}`;
   }
