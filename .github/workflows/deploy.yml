@@ -39,6 +39,11 @@ jobs:
       - name: Check, build, and validate
         run: npm run validate
 
+      - name: Check navigation and publication filtering
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:browser
+
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: ./dist

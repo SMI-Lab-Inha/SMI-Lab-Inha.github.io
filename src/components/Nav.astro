@@ -124,31 +124,77 @@ function isSectionActive(item: any) {
     });
   }
 
-  toggle?.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!open));
-    nav?.classList.toggle('is-open', !open);
-    toggle.setAttribute('aria-label', open ? 'Open navigation' : 'Close navigation');
-  });
-
-  nav?.querySelectorAll<HTMLButtonElement>('.submenu-toggle').forEach((button) => {
-    button.addEventListener('click', () => {
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-      button.setAttribute('aria-expanded', String(!expanded));
-      button.closest('.has-children')?.classList.toggle('is-expanded', !expanded);
-    });
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
+  const mobile = window.matchMedia('(max-width: 860px)');
+  const disclosures = [...(nav?.querySelectorAll<HTMLButtonElement>('.submenu-toggle') ?? [])];
+  const setExpanded = (button: HTMLButtonElement, open: boolean) => {
+    button.setAttribute('aria-expanded', String(open));
+    button.closest('.has-children')?.classList.toggle('is-expanded', open);
+    button.previousElementSibling?.setAttribute('aria-expanded', String(open));
+  };
+  const closeSubmenus = () => disclosures.forEach((button) => setExpanded(button, false));
+  const closeNavigation = () => {
     toggle?.setAttribute('aria-expanded', 'false');
     toggle?.setAttribute('aria-label', 'Open navigation');
     nav?.classList.remove('is-open');
-    nav?.querySelectorAll('.is-expanded').forEach((item) => item.classList.remove('is-expanded'));
-    nav?.querySelectorAll('.submenu-toggle').forEach((button) =>
-      button.setAttribute('aria-expanded', 'false'),
-    );
-    if (toggle instanceof HTMLElement) toggle.focus();
+    closeSubmenus();
+  };
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    closeSubmenus();
+    toggle.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  });
+  for (const button of disclosures) {
+    const item = button.closest<HTMLElement>('.has-children');
+    const link = button.previousElementSibling as HTMLAnchorElement | null;
+    link?.setAttribute('aria-controls', button.getAttribute('aria-controls') ?? '');
+    setExpanded(button, false);
+    link?.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown') return;
+      event.preventDefault();
+      closeSubmenus();
+      setExpanded(button, true);
+      item?.querySelector<HTMLAnchorElement>('.submenu a')?.focus();
+    });
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      closeSubmenus();
+      setExpanded(button, open);
+    });
+    item?.addEventListener('pointerenter', (event) => {
+      if (mobile.matches || event.pointerType !== 'mouse') return;
+      closeSubmenus();
+      setExpanded(button, true);
+    });
+    item?.addEventListener('pointerleave', () => {
+      if (!mobile.matches && !item.contains(document.activeElement)) setExpanded(button, false);
+    });
+    item?.addEventListener('focusout', (event) => {
+      if (!(event.relatedTarget instanceof Node) || !item.contains(event.relatedTarget)) setExpanded(button, false);
+    });
+  }
+  document.addEventListener('click', (event) => {
+    if (event.target instanceof Node && !header?.contains(event.target)) closeNavigation();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const open = disclosures.find((button) => button.getAttribute('aria-expanded') === 'true');
+    if (open) {
+      closeSubmenus();
+      if (mobile.matches) open.focus();
+      else (open.previousElementSibling as HTMLElement | null)?.focus();
+      event.preventDefault();
+    } else if (mobile.matches && nav?.classList.contains('is-open')) {
+      closeNavigation();
+      if (toggle instanceof HTMLElement) toggle.focus();
+      event.preventDefault();
+    }
+  });
+  mobile.addEventListener('change', () => {
+    const focusWasInNav = nav?.contains(document.activeElement);
+    closeNavigation();
+    if (mobile.matches && focusWasInNav && toggle instanceof HTMLElement) toggle.focus();
   });
 </script>
 
@@ -297,8 +343,9 @@ function isSectionActive(item: any) {
     display: none;
   }
 
-  .has-children:hover > .submenu,
-  .has-children:focus-within > .submenu {
+  .has-children.is-expanded > .submenu,
+  .site-header:not(.nav-enhanced) .has-children:hover > .submenu,
+  .site-header:not(.nav-enhanced) .has-children:focus-within > .submenu {
     display: block;
   }
 
@@ -355,6 +402,8 @@ function isSectionActive(item: any) {
   }
 
   @media (max-width: 860px) {
+    .site-header:not(.nav-enhanced) .submenu { display: block; }
+
     .site-header.nav-enhanced .nav-toggle {
       display: block;
     }

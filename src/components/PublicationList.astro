@@ -185,7 +185,13 @@ function paperId(publication: Publication) {
       if (matches) visible += 1;
     }
     for (const year of years) {
-      year.hidden = !year.querySelector('[data-publication]:not([hidden])');
+      const matches = year.querySelectorAll('[data-publication]:not([hidden])').length;
+      year.hidden = matches === 0;
+      const heading = year.querySelector('h2');
+      const yearCount = year.querySelector('.count');
+      if (yearCount) yearCount.textContent = matches + (matches === 1 ? ' paper' : ' papers');
+      const jump = document.querySelector<HTMLAnchorElement>('.jump a[href="#' + heading?.id + '"]');
+      if (jump) jump.hidden = matches === 0;
     }
     for (const button of tagButtons) {
       button.setAttribute('aria-pressed', String(button.dataset.tagFilter === activeTag));
@@ -215,6 +221,8 @@ function paperId(publication: Publication) {
 </script>
 
 <style>
+  [hidden] { display: none !important; }
+
   .publication-tools {
     display: grid;
     grid-template-columns: minmax(15rem, 1fr) auto;
@@ -368,7 +376,7 @@ function paperId(publication: Publication) {
     color: var(--c-text-muted);
   }
 
-  .pubs li {
+  .pubs li:not([hidden]) {
     display: grid;
     grid-template-columns: 2.4rem 1fr;
     gap: 0.4rem;

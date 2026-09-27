@@ -12,6 +12,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "test:browser": "playwright test",
     "validate:build": "node scripts/validate-build.mjs",
     "validate:html": "html-validate \"dist/**/*.html\"",
     "validate": "npm run check && npm run build && npm run validate:build && npm run validate:html",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.63.0",
     "html-validate": "^11.16.0",
     "typescript": "^6.0.3"
   }
