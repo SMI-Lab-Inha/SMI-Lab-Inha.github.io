@@ -247,9 +247,33 @@ code {
 }
 
 :focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-focus, var(--c-accent));
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Dark surfaces need contrasting controls even when the page theme is light. */
+.site-header,
+.hero,
+.site-footer {
+  --c-focus: #ffffff;
+}
+
+.hero {
+  --c-accent: var(--c-sky);
+  --c-accent-hover: #86c6ec;
+  --c-on-accent: #030d3d;
+}
+
+.site-header .submenu {
+  --c-focus: var(--c-accent);
+}
+
+@media (max-width: 860px) {
+  .site-header .submenu {
+    --c-focus: #ffffff;
+    --c-accent: #ffffff;
+  }
 }
 
 /* --------------------------------------------------------------------------
