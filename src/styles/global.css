@@ -7,18 +7,19 @@
    ========================================================================== */
 
 :root {
-  /* Neutrals */
-  --c-bg: #ffffff;
-  --c-bg-subtle: #f5f7fa;
-  --c-bg-inset: #eef2f7;
-  --c-border: #dde4ed;
-  --c-border-strong: #c3cedd;
+  /* Cool paper background, white surfaces and restrained blue-grey rules. */
+  --c-bg: #f7f9fc;
+  --c-surface: #ffffff;
+  --c-bg-subtle: #edf2f8;
+  --c-bg-inset: #e3ebf5;
+  --c-border: #d6dfea;
+  --c-border-strong: #b8c7da;
 
   /* Text */
-  --c-text: #16202e;
-  --c-text-muted: #5a6a7f;
-  /* Small secondary text must retain at least 4.5:1 contrast against white. */
-  --c-text-faint: #66758a;
+  --c-text: #17243b;
+  --c-text-muted: #4c5e76;
+  /* Secondary text retains contrast on both white and tinted surfaces. */
+  --c-text-faint: #5b6c83;
 
   /* Brand — Inha University's Modern Metallic livery (2025/26):
      Dark Blue #051766, Metallic Sky Blue #53AAE2, White #FFFFFF.
@@ -29,7 +30,7 @@
   --c-sky: #53aae2;
   --c-accent: #051766;
   --c-accent-hover: #030d3d;
-  --c-accent-soft: #eaf4fc;
+  --c-accent-soft: #e2edf8;
   --c-on-accent: #ffffff;
 
   /* Type — Helvetica throughout. macOS resolves the first two names to the real
@@ -41,6 +42,14 @@
   --font-display: var(--font-body);
   --font-sans: var(--font-body);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* A restrained, consistent type scale; body copy remains 16px. */
+  --text-small: 0.875rem;
+  --text-body: 1rem;
+  --text-lead: 1.125rem;
+  --text-h1: clamp(1.875rem, 1.55rem + 1.3vw, 2.25rem);
+  --text-h2: clamp(1.375rem, 1.2rem + 0.65vw, 1.5rem);
+  --text-h3: 1.125rem;
 
   /* Rhythm */
   --measure: 68ch;
@@ -55,6 +64,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --c-bg: #0d1520;
+    --c-surface: #0d1520;
     --c-bg-subtle: #131e2c;
     --c-bg-inset: #182435;
     --c-border: #24354a;
@@ -78,26 +88,28 @@
 
 /* Explicit choices follow the same tokens and override the device setting. */
 :root[data-theme='light'] {
-  --c-bg: #ffffff;
-  --c-bg-subtle: #f5f7fa;
-  --c-bg-inset: #eef2f7;
-  --c-border: #dde4ed;
-  --c-border-strong: #c3cedd;
-  --c-text: #16202e;
-  --c-text-muted: #5a6a7f;
-  --c-text-faint: #66758a;
+  --c-bg: #f7f9fc;
+  --c-surface: #ffffff;
+  --c-bg-subtle: #edf2f8;
+  --c-bg-inset: #e3ebf5;
+  --c-border: #d6dfea;
+  --c-border-strong: #b8c7da;
+  --c-text: #17243b;
+  --c-text-muted: #4c5e76;
+  --c-text-faint: #5b6c83;
   --c-navy: #051766;
   --c-navy-deep: #030d3d;
   --c-sky: #53aae2;
   --c-accent: #051766;
   --c-accent-hover: #030d3d;
-  --c-accent-soft: #eaf4fc;
+  --c-accent-soft: #e2edf8;
   --c-on-accent: #ffffff;
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
   --c-bg: #0d1520;
+  --c-surface: #0d1520;
   --c-bg-subtle: #131e2c;
   --c-bg-inset: #182435;
   --c-border: #24354a;
@@ -174,15 +186,15 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(1.85rem, 1.35rem + 2vw, 2.6rem);
+  font-size: var(--text-h1);
 }
 h2 {
-  font-size: clamp(1.35rem, 1.12rem + 1vw, 1.7rem);
+  font-size: var(--text-h2);
   margin-top: 2.2em;
   letter-spacing: -0.016em;
 }
 h3 {
-  font-size: 1.1rem;
+  font-size: var(--text-h3);
   margin-top: 1.8em;
   letter-spacing: -0.011em;
 }
@@ -194,8 +206,7 @@ h4 {
   color: var(--c-text-muted);
 }
 
-/* Navigation, buttons and small labels stay in the sans face so the serif
-   is reserved for reading matter. */
+/* Controls share the same Helvetica-compatible family as the text. */
 .btn,
 .eyebrow,
 input,
@@ -315,7 +326,7 @@ code {
 }
 
 .card {
-  background: var(--c-bg);
+  background: var(--c-surface);
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
   padding: 1.5rem;
@@ -332,7 +343,7 @@ code {
 /* Utility ----------------------------------------------------------------- */
 
 .lead {
-  font-size: 1.12rem;
+  font-size: var(--text-lead);
   color: var(--c-text-muted);
   max-width: 60ch;
 }
@@ -394,6 +405,7 @@ code {
   :root,
   :root[data-theme] {
     --c-bg: #fff;
+    --c-surface: #fff;
     --c-bg-subtle: #fff;
     --c-bg-inset: #fff;
     --c-text: #000;
