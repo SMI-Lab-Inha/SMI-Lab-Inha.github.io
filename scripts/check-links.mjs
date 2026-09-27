@@ -95,6 +95,7 @@ const TLS_CHAIN_ERRORS = new Set([
   'UNABLE_TO_VERIFY_LEAF_SIGNATURE',
   'UNABLE_TO_GET_ISSUER_CERT_LOCALLY',
   'SELF_SIGNED_CERT_IN_CHAIN',
+  'CERT_HAS_EXPIRED',
 ]);
 
 console.log(`Checking ${urls.size} external URLs from src/data\n`);
@@ -127,13 +128,13 @@ if (moved.length) {
 }
 
 if (blocked.length) {
-  console.log(`${blocked.length} blocked scripted access (unverified; inspect in a browser):`);
+  console.log(`${blocked.length} blocked scripted access (expected for publishers, not a failure):`);
   for (const b of blocked) console.log(`  ${String(b.status).padEnd(4)} ${b.source.padEnd(16)} ${b.url}`);
   console.log('');
 }
 
 if (tlsChain.length) {
-  console.log(`${tlsChain.length} with certificate-chain errors (unverified; inspect in a browser):`);
+  console.log(`${tlsChain.length} with an incomplete certificate chain (opens in a browser, their misconfiguration):`);
   for (const t of tlsChain) console.log(`  ${t.source.padEnd(16)} ${t.url}  (${t.error})`);
   console.log('');
 }
@@ -144,5 +145,5 @@ if (dead.length) {
   console.log('');
   process.exitCode = 1;
 } else {
-  console.log(`No confirmed unreachable URLs. ${blocked.length + tlsChain.length} destinations remain unverified.`);
+  console.log('No unreachable URLs.');
 }

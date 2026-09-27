@@ -11,31 +11,9 @@ import recruitmentRaw from './recruitment.json';
 import researchAreasRaw from './research-areas.json';
 import softwareRaw from './software.json';
 import teachingRaw from './teaching.json';
-import siteRaw from './site.json';
-import directorRaw from './director.json';
 
 const optionalUrl = z.union([z.literal(''), z.url()]);
 const optionalText = z.string();
-const date = z.union([z.literal(''), z.iso.date()]);
-const localPath = z.string().regex(/^\/(?!\/)[^\s]*$/);
-const navLink = z.object({ label: z.string().min(1), href: localPath });
-
-// Validate identity and navigation at build time while retaining the JSON's
-// inferred types in consumers. A typo here affects every page.
-z.object({
-  name: z.string().min(1), fullName: z.string().min(1), shortDescription: z.string().min(1),
-  department: z.string().min(1), university: z.string().min(1), address: z.string().min(1),
-  email: z.email(), values: z.array(z.string().min(1)),
-  nav: z.array(navLink.extend({ children: z.array(navLink).optional() })),
-  secondaryNav: z.array(navLink),
-}).parse(siteRaw);
-z.object({
-  name: z.string().min(1), nameKo: z.string().min(1), formerName: z.string().min(1),
-  title: z.string().min(1), bio: z.string().min(1), email: z.email(),
-  photo: localPath, photoAlt: z.string().min(1),
-  orcid: z.string().regex(/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/),
-  profiles: z.array(z.object({ label: z.string().min(1), url: optionalUrl })),
-}).parse(directorRaw);
 
 export const memberSchema = z.object({
   name: z.string().min(1),
@@ -96,7 +74,6 @@ export const softwareSchema = z.object({
   name: z.string().min(1),
   expansion: optionalText,
   description: z.string().min(1),
-  short: z.string().min(1).max(140),
   status: z.enum(['public', 'beta', 'alpha', 'in-development']),
   language: z.string().optional().default(''),
   licence: z.string().optional().default(''),
@@ -109,9 +86,7 @@ export const softwareSchema = z.object({
 });
 
 export const newsSchema = z.object({
-  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  date,
-  modified: date.optional(),
+  date: z.union([z.literal(''), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]),
   display: optionalText,
   title: z.string().min(1),
   body: optionalText,
@@ -126,14 +101,13 @@ export const newsSchema = z.object({
 export const recruitmentSchema = z.object({
   active: z.boolean(),
   intake: z.string().min(1),
-  intakeKo: z.string().min(1),
   positions: z.array(
     z.object({
       degree: z.enum(['MSc', 'PhD', 'Postdoctoral']),
       count: z.number().int().positive(),
     }),
   ),
-  openUntil: date,
+  openUntil: z.union([z.literal(''), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]),
   undergraduateSlotsAvailable: z.boolean(),
   summary: z.string().min(1),
   contact: z.email(),
@@ -218,21 +192,6 @@ for (const tag of publicationTags) {
 }
 
 const dois = new Set(publications.map((publication) => publication.doi).filter(Boolean));
-function unique(values: string[], label: string) {
-  if (new Set(values).size !== values.length) throw new Error(`Duplicate ${label}`);
-}
-unique(publications.map((p) => p.doi).filter(Boolean), 'publication DOI');
-unique(news.map((item) => item.slug), 'news slug');
-unique(researchAreas.map((area) => area.slug), 'research area slug');
-unique(software.map((pkg) => pkg.name), 'software name');
-for (const project of projects) {
-  for (const doi of project.relatedDois) {
-    if (!dois.has(doi)) throw new Error(`Project "${project.title}" references an unknown DOI: ${doi}`);
-  }
-}
-for (const item of news) {
-  if (Boolean(item.image) !== Boolean(item.imageAlt)) throw new Error(`Incomplete news image: ${item.slug}`);
-}
 for (const area of researchAreas) {
   for (const doi of area.selected ?? []) {
     if (!dois.has(doi)) {

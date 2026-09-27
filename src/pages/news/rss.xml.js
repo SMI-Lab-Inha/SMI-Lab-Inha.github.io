@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 import { news } from '../../data/content';
-import { newsBody, newsSlug, newsTitle } from '../../lib/content';
+import { newsBody, newsSlug } from '../../lib/content';
 import site from '../../data/site.json';
 
 export function GET(context) {
@@ -11,7 +11,7 @@ export function GET(context) {
     items: news
       .filter((item) => item.date)
       .map((item) => ({
-        title: newsTitle(item),
+        title: item.title,
         description: newsBody(item),
         pubDate: new Date(`${item.date}T00:00:00Z`),
         link: `/news/${newsSlug(item)}/`,

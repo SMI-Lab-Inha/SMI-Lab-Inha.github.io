@@ -12,8 +12,6 @@ interface Props {
   description?: string;
   noindex?: boolean;
   ogType?: 'website' | 'article' | 'profile';
-  ogImage?: string;
-  ogImageAlt?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -22,13 +20,9 @@ const {
   description = site.shortDescription,
   noindex = false,
   ogType = 'website',
-  ogImage = '/images/og-banner.png',
-  ogImageAlt = 'SMI Lab — Marine Structural Mechanics and Integrity Lab at Inha University',
   structuredData,
 } = Astro.props;
-const fullPageTitle = Astro.url.pathname === '/'
-  ? 'SMI Lab · Marine Fracture & Fatigue · Inha University'
-  : `${title} · ${site.name}`;
+const fullPageTitle = title === site.fullName ? title : `${title} · ${site.name}`;
 const pageTitle =
   fullPageTitle.length <= 70
     ? fullPageTitle
@@ -203,12 +197,10 @@ const schema = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical.href} />
-    <meta property="og:image" content={new URL(ogImage, canonical).href} />
-    <meta property="og:image:alt" content={ogImageAlt} />
-    {ogImage === '/images/og-banner.png' && <>
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-    </>}
+    <meta property="og:image" content={new URL('/images/og-banner.png', canonical).href} />
+    <meta property="og:image:alt" content="SMI Lab — Marine Structural Mechanics and Integrity Lab at Inha University" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#051766" />

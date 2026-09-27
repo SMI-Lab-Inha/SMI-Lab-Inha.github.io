@@ -2,9 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import AssetImage from '../../components/AssetImage.astro';
-import { news, type NewsItem } from '../../data/content';
-import { newsBody, newsSlug, newsTitle, recruitmentOpen, recruitmentStatusLabel } from '../../lib/content';
-import { resolveImage } from '../../lib/images';
+import { news, recruitment, type NewsItem } from '../../data/content';
+import { newsBody, newsSlug, recruitmentStatusLabel } from '../../lib/content';
 
 export function getStaticPaths() {
   return news.map((item) => ({
@@ -19,31 +18,28 @@ interface Props {
 
 const { item } = Astro.props;
 const body = newsBody(item);
-const displayDate = item.kind === 'recruitment' ? recruitmentStatusLabel() : item.display;
-const articleImage = item.image ? resolveImage(item.image).src : '/images/og-banner.png';
+const displayDate = item.pinned ? recruitmentStatusLabel() : item.display;
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
-  headline: newsTitle(item),
+  headline: item.title,
   description: body,
   datePublished: item.date || undefined,
-  dateModified: item.modified || undefined,
+  dateModified: item.date || undefined,
   mainEntityOfPage: Astro.url.href,
-  image: new URL(articleImage, Astro.site ?? Astro.url.origin).href,
+  image: new URL('/images/og-banner.png', Astro.site ?? Astro.url.origin).href,
   author: { '@id': `${(Astro.site ?? new URL(Astro.url.origin)).origin}/#lab` },
   publisher: { '@id': `${(Astro.site ?? new URL(Astro.url.origin)).origin}/#lab` },
 };
 ---
 
 <Base
-  title={newsTitle(item)}
+  title={item.title}
   description={body}
   ogType="article"
-  ogImage={articleImage}
-  ogImageAlt={item.image ? item.imageAlt : undefined}
   structuredData={articleSchema}
 >
-  <PageHeader eyebrow="News" title={newsTitle(item)} lead={displayDate} />
+  <PageHeader eyebrow="News" title={item.title} lead={displayDate} />
 
   <article class="section">
     <div class="wrap wrap--narrow article-body">
@@ -58,7 +54,7 @@ const articleSchema = {
       <p class="lead">{body}</p>
 
       {
-        item.kind === 'recruitment' && recruitmentOpen && (
+        item.kind === 'recruitment' && recruitment.active && (
           <p><a class="btn" href="/join-us">View open positions</a></p>
         )
       }

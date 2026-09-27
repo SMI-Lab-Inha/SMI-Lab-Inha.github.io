@@ -11,9 +11,8 @@ enhancements cannot be completed responsibly from repository evidence alone.
 - Add real result figures only from approved papers, reports, or lab exports.
   The current diagrams are explicitly labelled as programme and method
   schematics; they must never be described as measured or simulated results.
-- A concise Korean applicant summary is now published from the existing recruitment
-  facts. Longer technical research translations remain optional editorial work.
-  Korean content retains explicit `lang="ko"` markup.
+- Add Korean page copy after a subject-matter expert approves the translation.
+  Existing Korean names and titles retain explicit `lang="ko"` markup.
 - Set `openUntil` and future intake counts in `src/data/recruitment.json` when a
   firm deadline is approved. Home, News, and Opportunities all derive from this
   one record.
@@ -23,10 +22,10 @@ enhancements cannot be completed responsibly from repository evidence alone.
 
 ## Launch actions requiring external access
 
-- Institutional forwarding was checked on 27 September 2026 and reaches the
-  correct GitHub Pages origin. See `docs/domain-cutover.md` for the arrangement.
-- Google verification material is present. Use Search Console to confirm account
-  access, sitemap processing, indexing, and search-query performance.
+- Coordinate the institutional URL-forwarding change with Inha IT by following
+  `docs/domain-cutover.md`.
+- Verify the GitHub Pages origin in Google Search Console, submit its sitemap,
+  and monitor indexing after the forwarding destination changes.
 - Update ORCID, author profiles, the Inha directory, and the GitHub organisation
   profile to the canonical GitHub Pages origin.
 
