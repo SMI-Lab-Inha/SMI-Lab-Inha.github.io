@@ -113,8 +113,10 @@ const figureSize = (src: string) => {
                       const p = cite(doi);
                       return p ? (
                         <li>
+                          <a class="cite-title" href={`https://doi.org/${p.doi}`}>
+                            {p.title}<span aria-hidden="true"> ↗</span>
+                          </a>
                           <span class="cite-authors">{p.authors}</span> ({p.year}).{' '}
-                          <a href={`https://doi.org/${p.doi}`}>{p.title}</a>.{' '}
                           <em>{p.venue}</em>
                           {p.volume && <span> {p.volume}</span>}
                           {p.pages && <span>: {p.pages}</span>}.
@@ -346,6 +348,19 @@ const figureSize = (src: string) => {
 
   .selected a:hover {
     text-decoration: underline;
+  }
+
+  .selected .cite-title {
+    display: block;
+    width: fit-content;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+
+  .selected .cite-title:hover,
+  .selected .cite-title:focus-visible {
+    text-decoration: none;
+    background: var(--c-accent-soft);
   }
 
   .lineage {
