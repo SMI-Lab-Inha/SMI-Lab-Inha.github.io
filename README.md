@@ -5,6 +5,8 @@ Department of Naval Architecture and Ocean Engineering, Inha University.
 
 **Live site:** <https://smil.inha.ac.kr>
 
+**Canonical origin:** <https://smi-lab-inha.github.io>. The institutional address forwards here.
+
 The lab works on the structural integrity of ships and offshore structures: ductile fracture
 and crashworthiness, the fatigue of floating offshore wind moorings and dynamic power cables,
 and the ultimate strength of ship and offshore structures. Research software developed here is
@@ -64,11 +66,25 @@ npx astro check                      # types and Astro diagnostics
 npm run build                        # static build
 node scripts/validate-build.mjs      # site-specific invariants
 npx html-validate "dist/**/*.html"   # HTML conformance
+npm run test:unit                    # citation identities and recruitment expiry
+npm run validate:performance         # HTML, JavaScript, CSS and font budgets
+npx playwright install chromium     # once, for browser checks
+npm run test:browser                 # interactions, citation import and accessibility
 ```
 
 `scripts/validate-build.mjs` checks what a type system cannot: British English in metadata,
 colour contrast, heading order, alt text, JSON-LD validity, internal link targets, and the
 absence of unresolved placeholders.
+
+Browser regressions also gate deployment. They check real visible search results,
+navigation state, light/dark accessibility, responsive layout, citation round trips,
+image styling, print contrast, and theme persistence. Performance budgets are kept
+small because this is a static research site; see `scripts/check-performance-budget.mjs`.
+
+News entries have explicit, unique `slug` values. Preserve these when editing a title.
+Recruitment uses one status calculation across pages, with an inclusive UTC deadline.
+Daily deployments refresh expired deadlines; GitHub scheduling can be delayed. Keep
+`active` and the English/Korean intake labels current when positions change.
 
 ## Images
 

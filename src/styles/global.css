@@ -247,10 +247,26 @@ code {
 }
 
 :focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-focus, var(--c-accent));
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+.site-header,
+.hero,
+.site-footer {
+  --c-focus: #ffffff;
+}
+
+.site-header .submenu {
+  --c-focus: var(--c-accent);
+}
+
+@media (max-width: 860px) {
+  .site-header .submenu { --c-focus: #ffffff; }
+}
+
+[hidden] { display: none !important; }
 
 /* --------------------------------------------------------------------------
    Layout helpers
@@ -375,7 +391,8 @@ code {
    -------------------------------------------------------------------------- */
 
 @media print {
-  :root {
+  :root,
+  :root[data-theme] {
     --c-bg: #fff;
     --c-bg-subtle: #fff;
     --c-bg-inset: #fff;
@@ -398,7 +415,7 @@ code {
 
   /* Navigation, the theme control, the search and filter row, and the skip
      link are all interactive furniture with no meaning on paper. */
-  header nav,
+  .site-header,
   .site-footer,
   .skip-link,
   .publication-tools,
@@ -432,7 +449,16 @@ code {
 
   .hero h1,
   .hero p {
-    color: #000;
+    color: #000 !important;
+  }
+
+  .hero a,
+  .proof,
+  .proof dt,
+  .proof dd,
+  .proof a {
+    color: #000 !important;
+    background: #fff !important;
   }
 
   a {

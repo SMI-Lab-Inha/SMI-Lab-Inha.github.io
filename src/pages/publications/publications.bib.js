@@ -1,10 +1,5 @@
 import { publications } from '../../data/content';
-
-function bibKey(publication) {
-  const surname = publication.authors.split(',')[0].split(' ')[0].replace(/[^A-Za-z]/g, '');
-  const word = publication.title.split(/\s+/).find((part) => part.length > 4)?.replace(/[^A-Za-z]/g, '') || 'paper';
-  return `${surname}${publication.year}${word}`;
-}
+import { citationAuthors, citationKey, pageRange } from '../../lib/citations';
 
 function escapeBib(value) {
   return value.replace(/[{}]/g, (character) => `\\${character}`);
@@ -15,17 +10,17 @@ export function GET() {
     .map((publication) => {
       const type = publication.type === 'conference' ? 'inproceedings' : 'article';
       const fields = [
-        ['author', publication.authors],
+        ['author', citationAuthors(publication.authors).map(({ family, given }) => `${family}, ${given}`).join(' and ')],
         ['title', publication.title],
         [publication.type === 'conference' ? 'booktitle' : 'journal', publication.venue],
         ['year', publication.year],
         ['volume', publication.volume],
-        ['pages', publication.pages],
+        ['pages', pageRange(publication.pages).end ? `${pageRange(publication.pages).start}--${pageRange(publication.pages).end}` : publication.pages],
         ['doi', publication.doi],
         ['keywords', publication.tags.join(', ')],
       ].filter(([, value]) => value);
-      return `@${type}{${bibKey(publication)},\n${fields
-        .map(([key, value]) => `  ${key} = {${escapeBib(value)}}`)
+      return `@${type}{${citationKey(publication)},\n${fields
+        .map(([key, value]) => `  ${key} = {${key === 'title' ? `{${escapeBib(value)}}` : escapeBib(value)}}`)
         .join(',\n')}\n}`;
     })
     .join('\n\n');

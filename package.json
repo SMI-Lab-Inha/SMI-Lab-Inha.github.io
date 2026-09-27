@@ -14,10 +14,13 @@
     "check": "astro check",
     "validate:build": "node scripts/validate-build.mjs",
     "validate:html": "html-validate \"dist/**/*.html\"",
-    "validate": "npm run check && npm run build && npm run validate:build && npm run validate:html",
+    "validate": "npm run check && npm run test:unit && npm run build && npm run validate:build && npm run validate:html && npm run validate:performance",
     "audit": "node scripts/audit.mjs",
     "domain:check": "node scripts/check-domain.mjs",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "test:unit": "node --test tests/content.test.mjs",
+    "test:browser": "playwright test",
+    "validate:performance": "node scripts/check-performance-budget.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
@@ -26,7 +29,13 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@citation-js/core": "^0.9.0",
+    "@citation-js/plugin-bibtex": "^0.9.0",
+    "@playwright/test": "^1.63.0",
     "html-validate": "^11.16.0",
+    "parse5": "^8.0.1",
+    "subset-font": "^2.9.0",
     "typescript": "^6.0.3"
   }
 }

@@ -5,19 +5,18 @@ GitHub Pages. Therefore `smi-lab-inha.github.io` remains the site's public and
 canonical origin. `smil.inha.ac.kr` is an institutional shortcut and must not
 be configured as the GitHub Pages custom domain.
 
-## Current state (verified 27 July 2026)
+## Current state (verified 27 September 2026)
 
 - `smi-lab-inha.github.io` serves the Astro site over HTTPS.
 - `smil.inha.ac.kr` resolves through `cicadmin.inha.ac.kr`.
 - HTTP and HTTPS return a small Inha page using an HTML refresh to send visitors
-  to the legacy Google Site.
+  to `https://smi-lab-inha.github.io`.
 
-Run `npm run domain:check` to inspect the forwarding behaviour. Failure is
-expected until Inha IT replaces the legacy destination.
+Run `npm run domain:check` to inspect the forwarding behaviour. The current forward passes.
 
-## Forwarding request
+## Optional future forwarding improvements
 
-Ask Inha IT to forward `https://smil.inha.ac.kr` to
+The current institutional policy permits meta-refresh forwarding. If that policy changes, ask Inha IT to forward `https://smil.inha.ac.kr` to
 `https://smi-lab-inha.github.io` with these properties, in priority order:
 
 1. Use an HTTP `301 Moved Permanently` or `308 Permanent Redirect`, not an HTML

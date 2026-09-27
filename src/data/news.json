@@ -9,17 +9,20 @@
     "linkText": "Read the details",
     "image": "",
     "imageAlt": "",
-    "pinned": true
+    "pinned": true,
+    "slug": "we-are-recruiting"
   },
   {
     "date": "2026-09-21",
     "display": "September 2026",
     "title": "CableDyn paper accepted by Ocean Engineering",
-    "body": "Ocean Engineering has accepted a paper describing CableDyn, the lab's implicit finite-element solver for mooring lines and dynamic power cables, for a special issue on mooring and cable systems. Three of the lab's undergraduate researchers — Jun Soo Lim, Kyusung Shim and Jinwoo Song — are co-authors. CableDyn is released with its first publication, so the code follows.",
-    "link": "/team/current-members",
-    "linkText": "Meet the team",
+    "body": "Ocean Engineering has accepted a paper describing CableDyn, the lab's implicit finite-element solver for mooring lines and dynamic power cables, for a special issue on mooring and cable systems. Three of the lab's undergraduate researchers — Jun Soo Lim, Kyusung Shim and Jinwoo Song — are co-authors. The paper appears in volume 368, Part 2, article 128332.",
+    "link": "https://doi.org/10.1016/j.oceaneng.2026.128332",
+    "linkText": "Read the paper",
     "image": "",
-    "imageAlt": ""
+    "imageAlt": "",
+    "slug": "cabledyn-paper-accepted-by-ocean-engineering",
+    "modified": "2026-09-27"
   },
   {
     "date": "2026-07-01",
@@ -29,7 +32,8 @@
     "link": "/team/current-members",
     "linkText": "Meet the team",
     "image": "/images/news/csrh-2026.webp",
-    "imageAlt": "Students at the 22nd IACS CSR-H practical training course"
+    "imageAlt": "Students at the 22nd IACS CSR-H practical training course",
+    "slug": "students-complete-the-22nd-iacs-csr-h-practical-training-course"
   },
   {
     "date": "2026-07-01",
@@ -39,7 +43,8 @@
     "link": "https://www.sciencedirect.com/journal/international-journal-of-naval-architecture-and-ocean-engineering",
     "linkText": "The journal",
     "image": "/images/news/ijnaoe.webp",
-    "imageAlt": "International Journal of Naval Architecture and Ocean Engineering"
+    "imageAlt": "International Journal of Naval Architecture and Ocean Engineering",
+    "slug": "editorial-board-appointment-international-journal-of-naval-architecture-and-ocean-engineering"
   },
   {
     "date": "2026-05-15",
@@ -49,7 +54,8 @@
     "link": "",
     "linkText": "",
     "image": "/images/news/teachers-day.webp",
-    "imageAlt": "The lab celebrating Teachers' Day"
+    "imageAlt": "The lab celebrating Teachers' Day",
+    "slug": "teachers-day"
   },
   {
     "date": "2026-02-01",
@@ -59,7 +65,8 @@
     "link": "/team/current-members",
     "linkText": "Meet the team",
     "image": "",
-    "imageAlt": ""
+    "imageAlt": "",
+    "slug": "founding-student-cohort-joins-the-lab"
   },
   {
     "date": "2025-10-01",
@@ -69,7 +76,8 @@
     "link": "",
     "linkText": "",
     "image": "",
-    "imageAlt": ""
+    "imageAlt": "",
+    "slug": "issc-specialist-committee-v-4-appointment"
   },
   {
     "date": "2025-09-22",
@@ -79,7 +87,8 @@
     "link": "",
     "linkText": "",
     "image": "/images/news/issc-2025.webp",
-    "imageAlt": "Professor Seo at the 22nd International Ship and Offshore Structures Congress in Wuxi"
+    "imageAlt": "Professor Seo at the 22nd International Ship and Offshore Structures Congress in Wuxi",
+    "slug": "issc-2025-wuxi"
   },
   {
     "date": "2025-05-29",
@@ -89,7 +98,8 @@
     "link": "",
     "linkText": "",
     "image": "/images/news/madex-2025.webp",
-    "imageAlt": "MADEX 2025 naval seminar in Busan"
+    "imageAlt": "MADEX 2025 naval seminar in Busan",
+    "slug": "madex-2025-naval-seminar"
   },
   {
     "date": "2025-05-29",
@@ -99,7 +109,8 @@
     "link": "https://www.inha.ac.kr/kr/953/subview.do?&enc=Zm5jdDF8QEB8JTJGYmJzJTJGa3IlMkYxMCUyRjQwNjEyJTJGYXJ0Y2xWaWV3LmRvJTNGcGFnZSUzRDElMjZzcmNoQ29sdW1uJTNEJTI2c3JjaFdyZCUzRCUyNmJic0NsU2VxJTNEJTI2YmJzT3BlbldyZFNlcSUzRCUyNnJnc0JnbmRlU3RyJTNEJTI2cmdzRW5kZGVTdHIlM0QlMjZpc1ZpZXdNaW5lJTNEZmFsc2UlMjZwYXNzd29yZCUzRCUyNg==",
     "linkText": "Read the interview",
     "image": "/images/news/inha-interview.webp",
-    "imageAlt": "Interview published on the Inha University homepage"
+    "imageAlt": "Interview published on the Inha University homepage",
+    "slug": "inha-university-interview"
   },
   {
     "date": "2025-05-09",
@@ -109,7 +120,8 @@
     "link": "",
     "linkText": "",
     "image": "/images/news/ksoe-2025.webp",
-    "imageAlt": "Presentation at the KSOE 2025 spring meeting in Busan"
+    "imageAlt": "Presentation at the KSOE 2025 spring meeting in Busan",
+    "slug": "ksoe-2025-spring-meeting"
   },
   {
     "date": "2025-04-30",
@@ -119,7 +131,8 @@
     "link": "https://www.arirang.com/news/view?id=283026&lang=en",
     "linkText": "Watch the interview",
     "image": "/images/news/arirang-tv.webp",
-    "imageAlt": "Arirang TV interview"
+    "imageAlt": "Arirang TV interview",
+    "slug": "arirang-tv-interview"
   },
   {
     "date": "2025-03-31",
@@ -129,7 +142,8 @@
     "link": "https://www.snak.or.kr/snakzine/sub.html?md_no=957",
     "linkText": "SNAKZINE",
     "image": "/images/news/snakzine.webp",
-    "imageAlt": "SNAKZINE new faculty greeting"
+    "imageAlt": "SNAKZINE new faculty greeting",
+    "slug": "snak-greeting"
   },
   {
     "date": "2025-03-01",
@@ -139,6 +153,7 @@
     "link": "",
     "linkText": "",
     "image": "",
-    "imageAlt": ""
+    "imageAlt": "",
+    "slug": "lab-established"
   }
 ]

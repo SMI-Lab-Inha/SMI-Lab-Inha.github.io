@@ -169,6 +169,8 @@ for (const file of htmlFiles) {
     if (!/\bwidth="\d+"/.test(match[0]) || !/\bheight="\d+"/.test(match[0])) {
       fail(file, `image is missing intrinsic dimensions: ${match[0].slice(0, 100)}`);
     }
+    const src = match[0].match(/\bsrc="([^"]+)"/)?.[1];
+    if (src?.startsWith('/') && !assets.has(src)) fail(file, `missing image asset: ${src}`);
   }
 
   const currentCount = (html.match(/aria-current="page"/g) ?? []).length;
@@ -196,7 +198,20 @@ for (const file of htmlFiles) {
 
   for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     try {
-      JSON.parse(match[1]);
+      const graph = JSON.parse(match[1]);
+      const checkImages = (node) => {
+        if (!node || typeof node !== 'object') return;
+        for (const [key, value] of Object.entries(node)) {
+          if ((key === 'image' || key === 'logo') && typeof value === 'string') {
+            const url = new URL(value, 'https://smi-lab-inha.github.io');
+            if (url.origin === 'https://smi-lab-inha.github.io' && !assets.has(url.pathname)) {
+              fail(file, `missing structured-data image: ${value}`);
+            }
+          }
+          if (typeof value === 'object') checkImages(value);
+        }
+      };
+      checkImages(graph);
     } catch (error) {
       fail(file, `invalid JSON-LD: ${error.message}`);
     }
