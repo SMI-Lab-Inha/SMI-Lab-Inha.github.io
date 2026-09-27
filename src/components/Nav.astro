@@ -129,6 +129,7 @@ function isSectionActive(item: any) {
   const setExpanded = (button: HTMLButtonElement, open: boolean) => {
     button.setAttribute('aria-expanded', String(open));
     button.closest('.has-children')?.classList.toggle('is-expanded', open);
+    button.previousElementSibling?.setAttribute('aria-expanded', String(open));
   };
   const closeSubmenus = () => disclosures.forEach((button) => setExpanded(button, false));
   const closeNavigation = () => {
@@ -146,6 +147,16 @@ function isSectionActive(item: any) {
   });
   for (const button of disclosures) {
     const item = button.closest<HTMLElement>('.has-children');
+    const link = button.previousElementSibling as HTMLAnchorElement | null;
+    link?.setAttribute('aria-haspopup', 'true');
+    link?.setAttribute('aria-expanded', 'false');
+    link?.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown') return;
+      event.preventDefault();
+      closeSubmenus();
+      setExpanded(button, true);
+      item?.querySelector<HTMLAnchorElement>('.submenu a')?.focus();
+    });
     button.addEventListener('click', () => {
       const open = button.getAttribute('aria-expanded') !== 'true';
       closeSubmenus();
@@ -171,7 +182,8 @@ function isSectionActive(item: any) {
     const open = disclosures.find((button) => button.getAttribute('aria-expanded') === 'true');
     if (open) {
       closeSubmenus();
-      open.focus();
+      if (mobile.matches) open.focus();
+      else (open.previousElementSibling as HTMLElement | null)?.focus();
       event.preventDefault();
     } else if (mobile.matches && nav?.classList.contains('is-open')) {
       closeNavigation();
@@ -196,11 +208,12 @@ function isSectionActive(item: any) {
   }
 
   .header-inner {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
     align-items: center;
-    gap: 0;
-    padding-block: 0.3rem 0.5rem;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 4.6rem;
+    flex-wrap: wrap;
   }
 
   .brand {
@@ -251,7 +264,7 @@ function isSectionActive(item: any) {
        without this the row has a hard minimum width and the header overflows
        sideways in between. Wrapping to a second line is the lesser evil. */
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: flex-end;
     gap: 0.2rem;
     margin: 0;
     padding: 0;
@@ -326,25 +339,15 @@ function isSectionActive(item: any) {
     display: none;
   }
 
-  .nav-list > .has-children {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
   .submenu-toggle {
     display: none;
-    min-width: 2rem;
-    border: 0;
-    border-radius: 4px;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.1rem;
   }
-  .nav-enhanced .submenu-toggle { display: block; }
-  .submenu-toggle[aria-expanded='true'] span { display: inline-block; transform: rotate(180deg); }
-  .has-children.is-expanded > .submenu { display: block; }
+
+  .has-children.is-expanded > .submenu,
   .site-header:not(.nav-enhanced) .has-children:hover > .submenu,
-  .site-header:not(.nav-enhanced) .has-children:focus-within > .submenu { display: block; }
+  .site-header:not(.nav-enhanced) .has-children:focus-within > .submenu {
+    display: block;
+  }
 
   .submenu a {
     color: var(--c-text);
@@ -370,7 +373,7 @@ function isSectionActive(item: any) {
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 4px;
     width: 2.7rem;
-    height: 2.75rem;
+    height: 2.4rem;
     cursor: pointer;
     position: relative;
   }
@@ -399,10 +402,6 @@ function isSectionActive(item: any) {
   }
 
   @media (max-width: 860px) {
-    .header-inner { grid-template-columns: minmax(0, 1fr) auto; gap: 0 0.8rem; }
-    .brand-text strong { font-size: 0.88rem; }
-    .brand { gap: 0.55rem; }
-    .nav { grid-column: 1 / -1; }
     .site-header:not(.nav-enhanced) .submenu { display: block; }
 
     .site-header.nav-enhanced .nav-toggle {
@@ -450,6 +449,7 @@ function isSectionActive(item: any) {
     }
 
     .submenu-toggle {
+      display: block;
       width: 2.75rem;
       border: 0;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -482,11 +482,11 @@ function isSectionActive(item: any) {
       color: rgba(255, 255, 255, 0.8);
     }
 
+    .submenu a[aria-current='page'] { color: #fff; }
+
     .submenu a:hover {
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
     }
-
-    .submenu a[aria-current='page'] { color: #fff; }
   }
 </style>

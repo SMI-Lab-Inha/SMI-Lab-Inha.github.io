@@ -48,18 +48,27 @@ for (const width of [390, 1440]) {
     await page.goto('/');
     if (width < 861) await page.locator('.nav-toggle').click();
     const button = page.locator('.submenu-toggle').first();
-    // Keyboard activation avoids a preceding mouse hover opening a desktop menu.
-    await button.focus();
-    await page.keyboard.press('Enter');
+    const link = page.locator('.has-children > a').first();
+    if (width < 861) {
+      await button.focus();
+      await page.keyboard.press('Enter');
+      await expect(button).toHaveAttribute('aria-expanded', 'true');
+      await page.keyboard.press('Enter');
+      await expect(button).toHaveAttribute('aria-expanded', 'false');
+      await expect(page.locator('.submenu').first()).toBeHidden();
+      await page.keyboard.press('Enter');
+    } else {
+      await link.focus();
+      await page.keyboard.press('ArrowDown');
+      await expect(page.locator('.submenu a').first()).toBeFocused();
+    }
     await expect(button).toHaveAttribute('aria-expanded', 'true');
+    await expect(link).toHaveAttribute('aria-expanded', 'true');
     await expect(page.locator('.submenu').first()).toBeVisible();
-    await page.keyboard.press('Enter');
-    await expect(button).toHaveAttribute('aria-expanded', 'false');
-    await expect(page.locator('.submenu').first()).toBeHidden();
-    await page.keyboard.press('Enter');
     await page.keyboard.press('Escape');
     await expect(page.locator('.submenu').first()).toBeHidden();
-    await expect(button).toBeFocused();
+    await expect(link).toHaveAttribute('aria-expanded', 'false');
+    await expect(width < 861 ? button : link).toBeFocused();
     if (width < 861) {
       await page.keyboard.press('Escape');
       await expect(page.locator('#primary-nav')).toBeHidden();
