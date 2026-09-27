@@ -47,32 +47,29 @@ for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     if (width < 861) await page.locator('.nav-toggle').click();
-    const button = page.locator('.submenu-toggle').first();
+    await expect(page.locator('.submenu-toggle')).toHaveCount(0);
     const link = page.locator('.has-children > a').first();
     if (width < 861) {
-      await button.focus();
-      await page.keyboard.press('Enter');
-      await expect(button).toHaveAttribute('aria-expanded', 'true');
-      await page.keyboard.press('Enter');
-      await expect(button).toHaveAttribute('aria-expanded', 'false');
-      await expect(page.locator('.submenu').first()).toBeHidden();
-      await page.keyboard.press('Enter');
+      await expect(page.locator('.submenu').first()).toBeVisible();
+      await page.locator('.submenu a').first().focus();
+      await page.keyboard.press('Escape');
+      await expect(page.locator('#primary-nav')).toBeHidden();
+      await expect(page.locator('.nav-toggle')).toBeFocused();
     } else {
       await link.focus();
       await page.keyboard.press('ArrowDown');
       await expect(page.locator('.submenu a').first()).toBeFocused();
-    }
-    await expect(button).toHaveAttribute('aria-expanded', 'true');
-    await expect(link).toHaveAttribute('aria-expanded', 'true');
-    await expect(page.locator('.submenu').first()).toBeVisible();
-    await page.keyboard.press('Escape');
-    await expect(page.locator('.submenu').first()).toBeHidden();
-    await expect(link).toHaveAttribute('aria-expanded', 'false');
-    await expect(width < 861 ? button : link).toBeFocused();
-    if (width < 861) {
+      await expect(link).toHaveAttribute('aria-expanded', 'true');
+      await expect(page.locator('.submenu').first()).toBeVisible();
       await page.keyboard.press('Escape');
-      await expect(page.locator('#primary-nav')).toBeHidden();
-      await expect(page.locator('.nav-toggle')).toBeFocused();
+      await expect(page.locator('.submenu').first()).toBeHidden();
+      await expect(link).toHaveAttribute('aria-expanded', 'false');
+      await expect(link).toBeFocused();
+      await page.locator('main').click({ position: { x: 5, y: 5 } });
+      await link.hover();
+      await expect(page.locator('.submenu').first()).toBeVisible();
+      await page.locator('main').hover({ position: { x: 5, y: 5 } });
+      await expect(page.locator('.submenu').first()).toBeHidden();
     }
   });
 }
@@ -133,7 +130,6 @@ for (const route of ['/', '/join-us/', '/research/', '/research/research-areas/'
     if (route === '/publications/journal-papers/') {
       await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
       await page.locator('.nav-toggle').click();
-      await page.locator('.submenu-toggle').last().click();
       const expanded = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
       expect(expanded.violations).toEqual([]);
     }
