@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { software } from '../../data/content';
+import { slugify } from '../../lib/content';
 
 const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
 
@@ -24,8 +25,8 @@ const softwareSchema = software.map((pkg) => ({
 
 const statusLabel: Record<string, string> = {
   public: 'Public',
-  beta: 'Private — beta, release planned with first publication',
-  alpha: 'Private — alpha, release planned with first publication',
+  beta: 'Private — beta',
+  alpha: 'Private — alpha',
   'in-development': 'In development',
 };
 ---
@@ -49,15 +50,15 @@ const statusLabel: Record<string, string> = {
         Papers based on these tools cite the specific release so that results are reproducible.
       </p>
       <p class="policy">
-        Packages are opened to the public when the paper introducing them is submitted. This
-        protects the priority of the methods while guaranteeing that every published result can
-        be reproduced with released code.
+        Public packages link to their repositories and documentation below. Packages marked
+        private are under development and are not yet available to download. Release status is
+        tracked separately from the publication of an accompanying paper.
       </p>
 
       <div class="stack">
         {
           software.map((s) => (
-            <article class="card pkg">
+            <article class="card pkg" id={slugify(s.name)}>
               <h3>
                 {s.name}
                 {s.expansion && <span class="expansion"> — {s.expansion}</span>}

@@ -4,6 +4,11 @@ dist/
 
 # dependencies
 node_modules/
+test-results/
+playwright-report/
+# Local audit captures; the concise resolution and maintenance notes are tracked.
+docs/reviews/
+docs/homepage-review-*.md
 
 # logs
 npm-debug.log*

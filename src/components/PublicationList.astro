@@ -169,6 +169,7 @@ function paperId(publication: Publication) {
   const papers = [...document.querySelectorAll<HTMLElement>('[data-publication]')];
   const years = [...document.querySelectorAll<HTMLElement>('[data-year-section]')];
   const count = document.querySelector<HTMLElement>('[data-publication-count]');
+  const yearLinks = [...document.querySelectorAll<HTMLAnchorElement>('.jump a')];
 
   const tagButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-tag-filter]')];
 
@@ -186,6 +187,12 @@ function paperId(publication: Publication) {
     }
     for (const year of years) {
       year.hidden = !year.querySelector('[data-publication]:not([hidden])');
+      const visibleInYear = year.querySelectorAll('[data-publication]:not([hidden])').length;
+      const yearCount = year.querySelector('.count');
+      if (yearCount) yearCount.textContent = `${visibleInYear} ${visibleInYear === 1 ? 'paper' : 'papers'}`;
+    }
+    for (const link of yearLinks) {
+      link.hidden = Boolean(document.getElementById(link.hash.slice(1))?.closest<HTMLElement>('[data-year-section]')?.hidden);
     }
     for (const button of tagButtons) {
       button.setAttribute('aria-pressed', String(button.dataset.tagFilter === activeTag));
@@ -368,7 +375,7 @@ function paperId(publication: Publication) {
     color: var(--c-text-muted);
   }
 
-  .pubs li {
+  .pubs li:not([hidden]) {
     display: grid;
     grid-template-columns: 2.4rem 1fr;
     gap: 0.4rem;
@@ -506,7 +513,7 @@ function paperId(publication: Publication) {
       grid-template-columns: 1fr;
     }
 
-    .pubs li {
+    .pubs li:not([hidden]) {
       grid-template-columns: 1fr;
       gap: 0.1rem;
     }

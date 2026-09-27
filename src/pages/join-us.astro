@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import site from '../data/site.json';
 import { recruitment } from '../data/content';
-import { positionsLabel, recruitmentStatusLabel } from '../lib/content';
+import { positionsLabel, recruitmentOpen, recruitmentStatusLabel } from '../lib/content';
 
 const interests = [
   'Ductile fracture, engineering critical assessment, and fitness-for-service evaluation',
@@ -16,7 +16,7 @@ const interests = [
 ---
 
 <Base
-  title="Join us"
+  title="Graduate research positions · Inha University"
   description="Graduate research positions in fracture, fatigue, marine structural mechanics, virtual sensing, and scientific software development at the SMI Lab."
 >
   <PageHeader
@@ -26,11 +26,63 @@ const interests = [
 
   <section class="section">
     <div class="wrap wrap--narrow">
-      <p class="ko" lang="ko">
+      {recruitmentOpen && <p class="ko" lang="ko">
         함께 연구할 대학원생을 모집하고 있습니다. 관심 있는 인하대 조선해양공학과 학부생은
         메일로 연락한 후 면담 바랍니다:{' '}
         <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>}
+
+      <h2>Open positions</h2>
+      {
+        recruitmentOpen ? (
+          <div class="open-positions">
+            <p class="eyebrow">{recruitmentStatusLabel()}</p>
+            <p><strong>{positionsLabel()}</strong> are available for the {recruitment.intake}.</p>
+            <p class="muted">
+              Undergraduate research slots are {recruitment.undergraduateSlotsAvailable
+                ? 'also available.'
+                : 'currently full.'}
+            </p>
+            {!recruitment.openUntil && (
+              <p class="muted">
+                No closing date has been published. Please contact us for the current
+                application timetable.
+              </p>
+            )}
+          </div>
+        ) : (
+          <p>There are no open graduate positions at present.</p>
+        )
+      }
+
+      <h2>What we provide</h2>
+      <ul>
+        <li>A full research assistantship, including tuition support and a monthly stipend.</li>
+        <li>Access to lab computing resources.</li>
+        <li>Conference funding.</li>
+      </ul>
+      <h2>How to get in touch</h2>
+      <p>
+        Email{' '}<a href={`mailto:${site.email}`}>{site.email}</a> with a short description
+        of your interests. For graduate applications, please include:
       </p>
+      <ul>
+        <li>A CV, including your academic record</li>
+        <li>A brief statement of the research problems that interest you and why</li>
+        <li>Your intended start date and funding situation, if known</li>
+      </ul>
+
+
+      <div class="ko" lang="ko">
+        <p><strong>대학원 연구 기회</strong></p>
+        {recruitmentOpen ? <p>모집 인원: {recruitment.positions.map((position) =>
+          (position.degree === 'MSc' ? '석사' : position.degree === 'PhD' ? '박사' : '박사후연구원') + ' ' + position.count + '명').join(', ')}. 입학 시기: {recruitment.intakeKo}.</p>
+          : <p>현재 대학원생 모집이 마감되었습니다.</p>}
+        <p>지원 사항: 등록금 지원, 월 장학금, 연구용 컴퓨팅 자원 및 학회 참가 지원.</p>
+        <p>지원 방법: 학업 성적을 포함한 이력서, 관심 연구 주제와 지원 동기, 희망 입학 시기를 이메일로 보내 주세요.</p>
+        <p>학부 연구생 자리는 {recruitment.undergraduateSlotsAvailable ? '모집 중입니다.' : '현재 마감되었습니다.'}</p>
+      </div>
+
 
       <p>
         Graduate researchers investigate fracture, fatigue, and failure in ships and offshore
@@ -59,40 +111,6 @@ const interests = [
         and fracture, and alternative fuel containment. Collaboration ranges from focused
         technical studies to multi-year funded projects.
       </p>
-
-      <h2>How to get in touch</h2>
-      <p>
-        Email{' '}<a href={`mailto:${site.email}`}>{site.email}</a> with a short description
-        of your interests. For graduate applications, please include:
-      </p>
-      <ul>
-        <li>A CV, including your academic record</li>
-        <li>A brief statement of the research problems that interest you and why</li>
-        <li>Your intended start date and funding situation, if known</li>
-      </ul>
-
-      <h2>Open positions</h2>
-      {
-        recruitment.active ? (
-          <div class="open-positions">
-            <p class="eyebrow">{recruitmentStatusLabel()}</p>
-            <p><strong>{positionsLabel()}</strong> are available for the {recruitment.intake}.</p>
-            <p class="muted">
-              Undergraduate research slots are {recruitment.undergraduateSlotsAvailable
-                ? 'also available.'
-                : 'currently full.'}
-            </p>
-            {!recruitment.openUntil && (
-              <p class="muted">
-                No closing date has been published. Please contact us for the current
-                application timetable.
-              </p>
-            )}
-          </div>
-        ) : (
-          <p>There are no open graduate positions at present.</p>
-        )
-      }
 
       <h2>What we look for</h2>
       <p class="who">
@@ -139,12 +157,6 @@ const interests = [
         the public packages show the standard of work expected from students.
       </p>
 
-      <h2>What we provide</h2>
-      <ul>
-        <li>A full research assistantship, including tuition support and a monthly stipend.</li>
-        <li>Access to lab computing resources.</li>
-        <li>Conference funding.</li>
-      </ul>
     </div>
   </section>
 </Base>
