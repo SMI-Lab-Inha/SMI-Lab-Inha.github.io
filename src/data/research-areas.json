@@ -16,9 +16,6 @@
       "10.1080/17445302.2020.1743552",
       "10.3390/app10207034"
     ],
-    "figure": "/images/research/panel-damage.svg",
-    "figureAlt": "Isometric view of a stiffened steel panel deformed into a dome by an indenter, shaded from pale grey where undamaged to orange and red near the opening, with a torn hole at the crown.",
-    "figureCaption": "Hosford–Coulomb damage in a stiffened panel pushed 225 mm out of plane by a rigid indenter, computed with our own shell VUMAT. Nineteen elements have reached the fracture criterion and been removed, leaving the tear at the crown.",
     "short": "How marine steels neck and tear, measured in tests and written into finite element subroutines.",
     "keywords": [
       "Hosford–Coulomb",
@@ -57,9 +54,6 @@
       "Dropped object impact, and slamming loads on bow and bottom structures",
       "Coupled analysis of collision between floating bodies, where hydrodynamic reaction changes the energy available to damage the structure"
     ],
-    "figure": "/images/research/panel-force.svg",
-    "figureAlt": "Force against indenter displacement: the contact force rises smoothly to a peak of 562 kilonewtons at 189 millimetres, then falls abruptly to about 140 kilonewtons as the plate tears.",
-    "figureCaption": "Contact force through a full penetration event. The structure absorbs energy steadily until the plate tears at 562 kN, after which it sheds three quarters of its load — which is why a fixed failure strain, rather than a calibrated fracture criterion, gets crashworthiness wrong.",
     "selected": [
       "10.1016/j.marstruc.2020.102787",
       "10.3390/met11091402",
@@ -112,9 +106,6 @@
     ],
     "lineage": "This thrust continues the incremental-iterative tradition of simplified progressive collapse analysis developed at Newcastle University, whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
     "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; differentiable numerical implementation in Python and JAX.",
-    "figure": "/images/research/midship-collapse.svg",
-    "figureAlt": "Midship section of a double-hull tanker drawn as several hundred structural elements, coloured blue where in compression near the deck and red where in tension near the bottom shell.",
-    "figureCaption": "The midship section of a 315 m double-hull tanker at its sagging collapse moment, computed with our Smith-type progressive collapse code. The deck is shedding load in compression while the bottom shell is still in tension.",
     "selected": [
       "10.1016/j.oceaneng.2025.123159",
       "10.3390/jmse8120988",
@@ -145,9 +136,6 @@
       "Development of Demonstration Technology for Key Mooring Components of 3MW-class Floating Offshore Wind Turbines, Korea Institute of Energy Technology Evaluation and Planning, 2026-2029",
       "Development of Evaluation Technology for Reliability Enhancement of Dynamic Submarine Cables, Korea Institute of Energy Technology Evaluation and Planning, 2026-2029"
     ],
-    "figure": "/images/research/cable-cross-sections.svg",
-    "figureAlt": "Three dynamic power cable cross-sections drawn to scale, from 33 kilovolt to 220 kilovolt, with conductor, insulation, sheathing, bedding and steel armour layers shown in different colours.",
-    "figureCaption": "Dynamic power cable constructions from 33 kV to 220 kV, resolved layer by layer in CableXsec. Cross-section mechanics is what links a manufacturer's cable design to the stiffness properties a global dynamic analysis needs.",
     "selected": [
       "10.1016/j.oceaneng.2026.126528",
       "10.1016/j.oceaneng.2024.118810"
@@ -175,9 +163,6 @@
       "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines, Inha University New Faculty Research Grant, 2026-2027",
       "Machine Learning-Based Tension Prediction for FOWT Mooring Lines, Inha University New Faculty Research Grant, 2025-2026"
     ],
-    "figure": "/images/research/narx-response-maps.svg",
-    "figureAlt": "A grid of six contour maps over two frequency axes, coloured from blue through green to red, showing second-order response amplitudes for surge-heave, heave-heave and surge-pitch input pairs at sum and difference frequencies.",
-    "figureCaption": "Second-order response maps identified for a dynamic power cable. Maps like these are what let cable curvature be inferred from platform motion, without instrumenting the cable itself.",
     "selected": [
       "10.1016/j.oceaneng.2020.106944",
       "10.1201/9780429298875-34"
