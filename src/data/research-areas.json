@@ -104,7 +104,7 @@
       "Buckling and collapse of ring-stiffened cylindrical shells, including pressure hulls",
       "Differentiable reimplementation of incremental collapse methods in JAX, enabling automatic sensitivities of ultimate strength with respect to scantlings and material parameters"
     ],
-    "lineage": "This thrust continues the incremental-iterative tradition of simplified progressive collapse analysis developed at Newcastle University, whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
+    "lineage": "This thrust continues the incremental-iterative tradition of simplified progressive collapse analysis developed by CS Smith and RS Dow (former Newcastle University Professor in Marine Structures), whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
     "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; differentiable numerical implementation in Python and JAX.",
     "selected": [
       "10.1016/j.oceaneng.2025.123159",
