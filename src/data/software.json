@@ -82,5 +82,29 @@
     "repo": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting",
     "docs": "https://marketplace.visualstudio.com/items?itemName=SMI-Lab.openfast-rosco-syntax-highlighting",
     "featured": false
+  },
+  {
+    "name": "pyULSAN",
+    "expansion": "",
+    "description": "pyULSAN models a hull girder transverse section, computes its elastic and plastic section properties, and evaluates the ultimate bending capacity by the incremental-iterative method of the IACS Common Structural Rules for Bulk Carriers and Oil Tankers (CSR-H), Part 1, Chapter 5, Appendix 2. Heeled bending, strength envelopes and damaged sections for residual strength assessment use the same element idealisation. It ships as a desktop application with a user manual, a theory manual stating every load-end shortening curve, and a verification manual documenting the benchmark models.",
+    "language": "Python",
+    "licence": "",
+    "version": "v0.5.0",
+    "status": "beta",
+    "repo": "",
+    "docs": "",
+    "featured": false
+  },
+  {
+    "name": "OpenFAST GUI",
+    "expansion": "",
+    "description": "A Python desktop environment for OpenFAST and TurbSim: a model browser covering the environment, turbine, support structure and mooring modules, a three-dimensional view of the assembled model, and model checking before a run. Under development against a 95 per cent test coverage target, for use in the graduate course on offshore wind energy.",
+    "language": "Python",
+    "licence": "",
+    "version": "",
+    "status": "in-development",
+    "repo": "",
+    "docs": "",
+    "featured": false
   }
 ]
