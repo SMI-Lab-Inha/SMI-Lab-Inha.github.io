@@ -5,10 +5,10 @@
     "description": "CableDyn is an Apache-2.0 cable and mooring dynamics solver for floating offshore wind turbines and substations, written in modern Fortran 2018. It targets dynamic power cables in the lazy-wave configuration and taut, semi-taut, and catenary moorings, and integrates with OpenFAST as a gated CompMooring = 5 module. Every accuracy and stability claim is gated behind a passing benchmark.",
     "language": "Fortran 2018",
     "licence": "Apache-2.0",
-    "version": "v0.2.3",
-    "status": "alpha",
-    "repo": "",
-    "docs": "",
+    "version": "v0.1.0",
+    "status": "public",
+    "repo": "https://github.com/SMI-Lab-Inha/CableDyn",
+    "docs": "https://cabledyn.readthedocs.io/",
     "featured": true
   },
   {
