@@ -243,6 +243,20 @@ const schema = {
         data-cf-beacon={`{"token": "${site.analytics.cloudflareToken}"}`}
       />
     )}
+
+    {/* GoatCounter, on the same terms: cookieless, no identifier stored, no
+        consent banner needed. It is here as an alternative to Cloudflare for
+        the plain reason that signing up takes a site code and nothing else —
+        the Cloudflare dashboard would not complete its own setup flow for a
+        `github.io` host. Set one of the two, not both. */}
+    {site.analytics?.goatCounterCode && (
+      <script
+        is:inline
+        defer
+        data-goatcounter={`https://${site.analytics.goatCounterCode}.goatcounter.com/count`}
+        src="https://gc.zgo.at/count.js"
+      />
+    )}
   </head>
 
   <body>
