@@ -88,6 +88,7 @@
     "bing": ""
   },
   "analytics": {
-    "cloudflareToken": ""
+    "cloudflareToken": "",
+    "goatCounterCode": ""
   }
 }
