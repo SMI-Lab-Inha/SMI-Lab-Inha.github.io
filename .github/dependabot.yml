@@ -1,23 +1,39 @@
 version: 2
 updates:
+  # One pull request a month, covering everything. This was weekly and split
+  # into two groups, which produced three or four open pull requests at a time
+  # on a repository whose dependencies are a static site generator and its test
+  # tooling. Nothing here is exposed to a visitor at runtime, so there is no
+  # reason to review it weekly.
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
       day: monday
       time: "09:00"
       timezone: Asia/Seoul
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 2
     groups:
-      astro:
+      npm:
         patterns:
-          - astro
-          - "@astrojs/*"
-      development-tooling:
-        dependency-type: development
+          - "*"
+    ignore:
+      # TypeScript is pinned to the major that `astro check` supports. Version
+      # 7.0 is refused outright — "astro check does not currently support
+      # TypeScript 7.0" — and `check` is the first step of `npm run validate`,
+      # so accepting the major breaks CI rather than the site. Astro's own
+      # replacement is @astrojs/ts-content-mapper, still experimental. Revisit
+      # when `astro check` supports 7, not before.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
       timezone: Asia/Seoul
+    open-pull-requests-limit: 1
+    groups:
+      actions:
+        patterns:
+          - "*"
