@@ -77,7 +77,6 @@ export const softwareSchema = z.object({
   status: z.enum(['public', 'beta', 'alpha', 'in-development']),
   language: z.string().optional().default(''),
   licence: z.string().optional().default(''),
-  version: z.string().optional().default(''),
   repo: optionalUrl,
   docs: optionalUrl,
   // Shown on the home page. Set explicitly rather than inferred from status:
