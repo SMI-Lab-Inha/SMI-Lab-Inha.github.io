@@ -29,10 +29,10 @@
     "description": "VANE is a Python library that both drives and post-processes OpenFAST linearisations: an auto-parallelised operating-point sweep, physics-aware mode identification, Campbell diagrams with damping trends and resonance crossings, and state-space export for digital twin development. The system identification layer runs the model it builds, with a Kalman estimator, replay validation, and an operating-point scheduler. It is tested end to end against the four OpenFAST r-test reference turbines.",
     "language": "Python",
     "licence": "Apache-2.0",
-    "version": "",
-    "status": "beta",
-    "repo": "",
-    "docs": "",
+    "version": "v0.1.0",
+    "status": "public",
+    "repo": "https://github.com/SMI-Lab-Inha/VANE",
+    "docs": "https://vane.readthedocs.io",
     "featured": true
   },
   {
