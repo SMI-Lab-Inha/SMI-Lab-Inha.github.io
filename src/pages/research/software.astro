@@ -14,7 +14,6 @@ const softwareSchema = software.map((pkg) => ({
   description: pkg.description,
   programmingLanguage: pkg.language || undefined,
   license: pkg.licence || undefined,
-  softwareVersion: pkg.version || undefined,
   codeRepository: pkg.repo || undefined,
   url: pkg.docs || pkg.repo || undefined,
   author: { '@id': `${origin}/team/director/#person` },
@@ -63,9 +62,9 @@ const statusLabel: Record<string, string> = {
                 {s.expansion && <span class="expansion"> — {s.expansion}</span>}
               </h3>
               <p class="muted">{s.description}</p>
-              {(s.language || s.licence || s.version) && (
+              {(s.language || s.licence) && (
                 <p class="facts">
-                  {[s.language, s.licence, s.version].filter(Boolean).join(' · ')}
+                  {[s.language, s.licence].filter(Boolean).join(' · ')}
                 </p>
               )}
               <p class="status">
