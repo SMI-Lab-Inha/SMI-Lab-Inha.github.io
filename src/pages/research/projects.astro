@@ -4,6 +4,8 @@ import PageHeader from '../../components/PageHeader.astro';
 import Pending from '../../components/Pending.astro';
 import { projects } from '../../data/content';
 
+import { slugify } from '../../lib/content';
+
 const list = [...projects].sort((a, b) => {
   const order = { current: 0, planned: 1, completed: 2 };
   return order[a.status] - order[b.status];
@@ -58,7 +60,7 @@ const groups = [
               </h2>
               <div class="stack">
                 {g.items.map((p) => (
-                  <article class="card">
+                  <article class="card" id={slugify(p.title)}>
                     <p class={`status status--${p.status}`}>{p.status}</p>
                     <h3>{p.title}</h3>
                     {p.titleKo && <p class="ko-title" lang="ko">{p.titleKo}</p>}

@@ -11,9 +11,9 @@
     "featured": true
   },
   {
-    "name": "CableXsec",
+    "name": "CableXSec",
     "expansion": "",
-    "description": "CableXsec is an Apache-2.0 Python library for thermo-mechanical cross-section fatigue analysis of dynamic power cables and SURF — subsea umbilicals, risers, and flowlines. It implements seven levels of physical modelling, from Love and Costello helix kinematics through Mindlin contact and Witz–Tan constitutive modelling to fatigue assessment against DNVGL-RP-0005.",
+    "description": "CableXSec is an Apache-2.0 Python library for thermo-mechanical cross-section fatigue analysis of dynamic power cables and SURF — subsea umbilicals, risers, and flowlines. It implements seven levels of physical modelling, from Love and Costello helix kinematics through Mindlin contact and Witz–Tan constitutive modelling to fatigue assessment against DNVGL-RP-0005.",
     "language": "Python",
     "licence": "Apache-2.0",
     "status": "alpha",

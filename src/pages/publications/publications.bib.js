@@ -1,4 +1,5 @@
 import { publications } from '../../data/content';
+import { acceptanceLabel } from '../../lib/content';
 
 function bibKey(publication) {
   const surname = publication.authors.split(',')[0].split(' ')[0].replace(/[^A-Za-z]/g, '');
@@ -19,6 +20,7 @@ export function GET() {
         ['title', publication.title],
         [publication.type === 'conference' ? 'booktitle' : 'journal', publication.venue],
         ['year', publication.year],
+        ['note', publication.inPress ? acceptanceLabel(publication) : ''],
         ['volume', publication.volume],
         ['pages', publication.pages],
         ['doi', publication.doi],

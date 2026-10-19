@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { software } from '../../data/content';
 
+import { slugify } from '../../lib/content';
+
 const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
 
 // Each package as SoftwareSourceCode, so the tooling is discoverable in its
@@ -56,7 +58,7 @@ const statusLabel: Record<string, string> = {
       <div class="stack">
         {
           software.map((s) => (
-            <article class="card pkg">
+            <article class="card pkg" id={slugify(s.name)}>
               <h3>
                 {s.name}
                 {s.expansion && <span class="expansion"> — {s.expansion}</span>}

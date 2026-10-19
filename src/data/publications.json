@@ -1,5 +1,22 @@
 [
   {
+    "id": "iacs-wave-scatter-fatigue",
+    "openAccess": true,
+    "type": "journal",
+    "authors": "Seo JH",
+    "title": "Effect of the revised IACS North Atlantic wave scatter diagram on fatigue damage in ship structures",
+    "venue": "International Journal of Naval Architecture and Ocean Engineering",
+    "year": "2026",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": [
+      "Fatigue"
+    ],
+    "inPress": true,
+    "acceptedDate": "2026-10-19"
+  },
+  {
     "type": "journal",
     "authors": "Seo JH, Lim JS, Shim KS, Song JW",
     "title": "CableDyn: Curvature-resolving implicit finite-element analysis of mooring lines and dynamic power cables for floating offshore wind",
