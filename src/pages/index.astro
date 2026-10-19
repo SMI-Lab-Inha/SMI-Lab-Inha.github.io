@@ -1,5 +1,4 @@
 ---
-import fs from 'node:fs';
 import Base from '../layouts/Base.astro';
 import AssetImage from '../components/AssetImage.astro';
 import site from '../data/site.json';
@@ -34,16 +33,6 @@ const pkgStatus: Record<string, string> = {
 };
 const currentProjects = projects.filter((project) => project.status === 'current');
 const people = members;
-
-// Intrinsic size read from the file, as on the research areas page, so a card
-// reserves the right box before its figure loads.
-const figureSize = (src: string) => {
-  const svg = fs.readFileSync(`public${src}`, 'utf8').slice(0, 800);
-  const w = svg.match(/\bwidth="([\d.]+)(?:px)?"/);
-  const h = svg.match(/\bheight="([\d.]+)(?:px)?"/);
-  if (!w || !h) throw new Error(`${src} has no intrinsic width and height`);
-  return { width: Math.round(Number(w[1])), height: Math.round(Number(h[1])) };
-};
 
 // This used to list the thrusts, which now sit as cards directly below it. What
 // the cards do not say is how the work connects, so the aside says that instead.
@@ -102,7 +91,7 @@ const chain = [
   <section class="proof" aria-label="Lab record at a glance">
     <dl class="wrap proof-grid">
       <div><dt>Current projects</dt><dd>{currentProjects.length}</dd></div>
-      <div><dt>Research thrusts</dt><dd>{areas.length}</dd></div>
+      <div><dt>Research areas</dt><dd>{areas.length}</dd></div>
       <div><dt>Public tools</dt><dd>{publicPkgs.length}</dd></div>
       <div><dt>Student researchers</dt><dd>{people.length}</dd></div>
     </dl>
@@ -146,11 +135,11 @@ const chain = [
   <section class="section section--subtle">
     <div class="wrap">
       <div class="head">
-        <h2>Research thrusts</h2>
+        <h2>Research areas</h2>
         <a href="/research/research-areas">All research →</a>
       </div>
       <p class="lead thrusts-lead">
-        Nine lines of work, held together by one question: how marine structures fail, and how
+        Six areas of research, held together by one question: how marine structures fail, and how
         far ahead of the failure we can see it coming. Follow any card for the methods, the
         funding behind it, and the papers it rests on.
       </p>
@@ -158,10 +147,7 @@ const chain = [
         {
           areas.map((a, i) => (
             <a class="thrust" href={`/research/research-areas#${a.slug}`}>
-              {/* Deliberately no figure here. Only some thrusts have one, and a
-                  grid where five cards carry an image and four do not reads as
-                  unfinished. `figure` stays in the data and is used on the
-                  research areas page; put it back here once all nine have one. */}
+              {/* Keep the existing text-card design; figures belong on the research page. */}
               <div class="thrust-body">
                 <span class="thrust-n">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{a.title}</h3>
@@ -530,6 +516,8 @@ const chain = [
 
   .thrust-body {
     display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
     padding: 1.3rem 1.4rem 1.4rem;
   }
 
@@ -559,7 +547,7 @@ const chain = [
     border: 1px solid var(--c-border);
     border-radius: 999px;
     color: var(--c-accent);
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .thrusts-lead {

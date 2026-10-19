@@ -1,4 +1,5 @@
 import { publications } from '../../data/content';
+import { acceptanceLabel } from '../../lib/content';
 
 export function GET() {
   const body = publications
@@ -7,6 +8,7 @@ export function GET() {
       return [
         `TY  - ${publication.type === 'conference' ? 'CPAPER' : 'JOUR'}`,
         authors,
+        publication.inPress && `N1  - ${acceptanceLabel(publication)}`,
         `TI  - ${publication.title}`,
         `T2  - ${publication.venue}`,
         `PY  - ${publication.year}`,

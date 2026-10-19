@@ -2,9 +2,11 @@
 import fs from 'node:fs';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { publications, researchAreas as areas } from '../../data/content';
+import { publications, researchAreas as areas, software, projects } from '../../data/content';
+import { acceptanceLabel, publicationAnchor, slugify } from '../../lib/content';
+const packageStatus = { public: 'Public release', alpha: 'Private alpha — ongoing development', beta: 'Private beta — ongoing development', 'in-development': 'Ongoing development' };
 
-// Thrusts store DOIs only; the citation itself is resolved from the publication
+// Areas store publication references; each citation is resolved from its
 // record at build time, so the two can never drift apart.
 const byDoi = new Map(publications.map((p) => [p.doi, p]));
 const cite = (doi: string) => byDoi.get(doi);
@@ -24,7 +26,7 @@ const figureSize = (src: string) => {
 
 <Base
   title="Research areas"
-  description="Ductile fracture, ship collision and grounding, underwater explosion, ultimate strength and progressive collapse, floating offshore wind moorings and dynamic power cable fatigue, virtual sensing, and peridynamic crack modelling."
+  description="Six research areas in marine structural mechanics: strength, fatigue and fracture, dynamics, accidental damage, offshore renewables and operational assessment."
 >
   <PageHeader
     eyebrow="Research"
@@ -44,9 +46,9 @@ const figureSize = (src: string) => {
           safety-critical use. Data-driven methods estimate states and parameters of mechanical
           models; they do not replace those models.
         </p>
-        {/* Nine thrusts make a long page. This lets a reader who arrived for
-            one of them get there without scrolling past the other eight. */}
-        <nav class="jump" aria-label="Research thrusts">
+        {/* Six areas make a long page. This lets a reader who arrived for
+            one of them get there without scrolling past the other five. */}
+        <nav class="jump" aria-label="Research areas">
           <ol>
             {
               areas.map((area, i) => (
@@ -65,10 +67,28 @@ const figureSize = (src: string) => {
       {
         areas.map((area, i) => (
           <article class="area" id={area.slug}>
+            {area.aliases.map((alias) => <span class="legacy-anchor" id={alias} aria-hidden="true" />)}
             <p class="area-index">{String(i + 1).padStart(2, '0')}</p>
             <div>
               <h2>{area.title}</h2>
               <p>{area.summary}</p>
+              {area.highlightSoftware.length > 0 && <div class="software-highlight">
+                <h3>Director’s cable research</h3>
+                {area.highlightSoftware.map((name) => {
+                  const pkg = software.find((item) => item.name === name)!;
+                  return <div>
+                    <h4><a href={'/research/software#' + slugify(pkg.name)}>{pkg.name}</a></h4>
+                    <p>{pkg.description}</p>
+                    <p class="muted">{packageStatus[pkg.status]}</p>
+                    {(pkg.repo || pkg.docs) && <p>
+                      {pkg.repo && <a href={pkg.repo}>Repository</a>}
+                      {pkg.repo && pkg.docs && ' · '}
+                      {pkg.docs && <a href={pkg.docs}>Documentation</a>}
+                    </p>}
+                  </div>;
+                })}
+              </div>}
+              {area.development && <p class="aside"><strong>Ongoing development.</strong> {area.development}</p>}
 
               {area.figure && (
                 <figure class="area-figure">
@@ -84,42 +104,42 @@ const figureSize = (src: string) => {
                 </figure>
               )}
 
-              <h3>Current work includes</h3>
+              <h3>Research topics</h3>
               <ul class="topics">
                 {area.topics.map((topic) => (
                   <li>{topic}</li>
                 ))}
               </ul>
 
-              {'funding' in area && area.funding && (
+              {(area.projectTitles.length > 0 || area.funding?.length) && (
                 <div class="funding">
-                  <h3>Funded by</h3>
+                  <h3>Related funded projects</h3>
                   <ul>
-                    {area.funding.map((f: string) => (
-                      <li>{f}</li>
-                    ))}
+                    {area.projectTitles.length > 0 ? area.projectTitles.map((title) => {
+                      const project = projects.find((item) => item.title === title)!;
+                      return <li><a href={'/research/projects#' + slugify(project.title)}>{project.title}</a>
+                        {' — '}{project.status}, {project.period}. {project.funder}.</li>;
+                    }) : area.funding?.map((f) => <li>{f}</li>)}
                   </ul>
-                  <p>
-                    <a href="/research/projects">All projects</a>
-                  </p>
+                  <p><a href="/research/projects">All projects</a></p>
                 </div>
               )}
 
-              {'selected' in area && area.selected && area.selected.length > 0 && (
+              {((area.selected?.length ?? 0) > 0 || area.selectedIds.length > 0) && (
                 <div class="selected">
                   <h3>Evidence from the publication record</h3>
                   <ol class="list-plain">
-                    {area.selected.map((doi: string) => {
-                      const p = cite(doi);
+                    {[...(area.selected ?? []).map(cite), ...area.selectedIds.map((id) => publications.find((paper) => paper.id === id))].map((p) => {
                       return p ? (
                         <li>
-                          <a class="cite-title" href={`https://doi.org/${p.doi}`}>
-                            {p.title}<span aria-hidden="true"> ↗</span>
+                          <a class="cite-title" href={p.doi ? `https://doi.org/${p.doi}` : `/publications/journal-papers#${publicationAnchor(p)}`}>
+                            {p.title}{p.doi && <span aria-hidden="true"> ↗</span>}
                           </a>
                           <span class="cite-authors">{p.authors}</span> ({p.year}).{' '}
                           <em>{p.venue}</em>
                           {p.volume && <span> {p.volume}</span>}
                           {p.pages && <span>: {p.pages}</span>}.
+                          {p.inPress && <p class="acceptance">{acceptanceLabel(p)}</p>}
                         </li>
                       ) : null;
                     })}
@@ -142,6 +162,12 @@ const figureSize = (src: string) => {
                 </p>
               )}
 
+              {area.software.filter((name) => !area.highlightSoftware.includes(name)).length > 0 && <p class="methods">
+                <strong>Related software.</strong>{' '}
+                {area.software.filter((name) => !area.highlightSoftware.includes(name)).map((name, index) => <>
+                  {index > 0 && ' · '}<a href={'/research/software#' + slugify(name)}>{name}</a>
+                </>)}
+              </p>}
               {'methods' in area && area.methods && (
                 <p class="methods">
                   <strong>Methods and tools.</strong> {area.methods}{' '}
@@ -158,7 +184,7 @@ const figureSize = (src: string) => {
         <div>
           <h2>Cross-cutting capability: research software engineering</h2>
           <p>
-            Every thrust above produces software, and the lab treats that software as a
+            These research areas produce software, and the lab treats that software as a
             research output in its own right. Packages are developed under version control
             with automated test suites, continuous integration, and documentation, and are
             released publicly as the accompanying papers appear. Graduate students in the lab
@@ -174,10 +200,6 @@ const figureSize = (src: string) => {
       <div class="partners">
         <h2>Partnerships and roles</h2>
         <ul>
-          <li>
-            Professor Seo is a member of the ISSC Specialist Committee V.4 — Offshore
-            Renewable Energy for 2025–2028, representing the Republic of Korea.
-          </li>
           <li>
             The lab participates as co-investigator in the MOF-funded BEACON marine workforce
             project (2025–2029) and the MOTIE-funded Digital Shipyard professional training
@@ -197,6 +219,14 @@ const figureSize = (src: string) => {
 </Base>
 
 <style>
+  .legacy-anchor { position: absolute; top: 0; left: 0; scroll-margin-top: 2rem; }
+  .area > div { min-width: 0; }
+  .area h2, .jump a { overflow-wrap: anywhere; }
+  .software-highlight { border-left: 3px solid var(--c-sky); padding-left: 1.2rem; margin-block: 1.5rem; }
+  .software-highlight h4 { text-transform: none; font-size: 1rem; letter-spacing: normal; }
+  .software-highlight p { margin-bottom: 0.6rem; }
+  .acceptance { color: var(--c-text-muted); margin: 0.2rem 0 0; }
+
   .how {
     padding-bottom: 2.2rem;
   }
@@ -239,6 +269,8 @@ const figureSize = (src: string) => {
   }
 
   .area {
+    position: relative;
+    min-width: 0;
     display: grid;
     grid-template-columns: 4rem 1fr;
     gap: 1.5rem;

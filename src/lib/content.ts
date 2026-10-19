@@ -13,6 +13,18 @@ export function newsSlug(item: NewsItem) {
   return slugify(item.title);
 }
 
+export function publicationAnchor(paper: Publication) {
+  return `paper-${paper.id || (paper.doi ? paper.doi.replace(/[^a-zA-Z0-9]+/g, '-') : slugify(paper.title))}`;
+}
+
+export function acceptanceLabel(paper: Publication) {
+  if (!paper.acceptedDate) return 'In press';
+  const date = new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  }).format(new Date(`${paper.acceptedDate}T00:00:00Z`));
+  return `Accepted for publication, ${date}`;
+}
+
 export function newsBody(item: NewsItem) {
   return item.kind === 'recruitment' ? recruitment.summary : item.body;
 }
@@ -46,7 +58,8 @@ export function publicationSchema(items: Publication[], origin: string) {
     '@type': 'ScholarlyArticle',
     headline: paper.title,
     name: paper.title,
-    datePublished: paper.year,
+    datePublished: paper.inPress ? undefined : paper.year,
+    creativeWorkStatus: paper.inPress ? 'Accepted for publication' : undefined,
     isPartOf: { '@type': 'Periodical', name: paper.venue },
     author: paper.authors.split(', ').map((author) =>
       author === 'Seo JH' || author === 'Cerik BC'
@@ -54,7 +67,7 @@ export function publicationSchema(items: Publication[], origin: string) {
         : { '@type': 'Person', name: author },
     ),
     about: paper.tags.length > 0 ? paper.tags : undefined,
-    isAccessibleForFree: paper.openAccess || undefined,
+    isAccessibleForFree: (paper.openAccess && !paper.inPress) || undefined,
     sameAs: paper.doi ? `https://doi.org/${paper.doi}` : undefined,
     identifier: paper.doi ? `https://doi.org/${paper.doi}` : undefined,
   }));

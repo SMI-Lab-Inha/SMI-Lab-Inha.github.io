@@ -40,6 +40,8 @@ export const alumniSchema = z.object({
 });
 
 export const publicationSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/).optional(),
+  acceptedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   type: z.enum(['journal', 'conference']),
   authors: z.string().min(1),
   title: z.string().min(1),
@@ -114,8 +116,21 @@ export const recruitmentSchema = z.object({
 
 export const researchAreaSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
+  aliases: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
+  software: z.array(z.string()).default([]),
+  highlightSoftware: z.array(z.string()).default([]),
+  projectTitles: z.array(z.string()).default([]),
+  selectedIds: z.array(z.string()).default([]),
+  development: optionalText.optional(),
   title: z.string().min(1),
   summary: z.string().min(1),
+  // Mandate opening pages in the locally held ISSC 2025 proceedings.
+  // Keep source provenance in data; committee numbers are not public headings.
+  scopeReference: z.object({
+    volume: z.union([z.literal(1), z.literal(2)]),
+    page: z.number().int().positive(),
+    pdfPage: z.number().int().positive(),
+  }),
   // One line for the card on the home page, where the full summary is too long
   // to read at a glance, plus the terms a visitor might be scanning for.
   short: z.string().min(1).max(120),
@@ -191,7 +206,20 @@ for (const tag of publicationTags) {
 }
 
 const dois = new Set(publications.map((publication) => publication.doi).filter(Boolean));
+const anchors = researchAreas.flatMap((area) => [area.slug, ...area.aliases]);
+if (new Set(anchors).size !== anchors.length) throw new Error('Duplicate research anchor');
+const publicationIds = publications.map((paper) => paper.id).filter(Boolean);
+if (new Set(publicationIds).size !== publicationIds.length) throw new Error('Duplicate publication ID');
 for (const area of researchAreas) {
+  for (const name of [...area.software, ...area.highlightSoftware]) {
+    if (!software.some((pkg) => pkg.name === name)) throw new Error(`Unknown research software: ${name}`);
+  }
+  for (const title of area.projectTitles) {
+    if (!projects.some((project) => project.title === title)) throw new Error(`Unknown research project: ${title}`);
+  }
+  for (const id of area.selectedIds) {
+    if (!publicationIds.includes(id)) throw new Error(`Unknown selected publication: ${id}`);
+  }
   for (const doi of area.selected ?? []) {
     if (!dois.has(doi)) {
       throw new Error(`Research area "${area.slug}" references an unknown DOI: ${doi}`);

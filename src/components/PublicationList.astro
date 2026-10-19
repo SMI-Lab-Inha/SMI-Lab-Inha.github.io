@@ -1,7 +1,7 @@
 ---
 import Pending from './Pending.astro';
 import { type Publication } from '../data/content';
-import { slugify } from '../lib/content';
+import { acceptanceLabel, publicationAnchor } from '../lib/content';
 
 interface Props {
   items: Publication[];
@@ -42,7 +42,7 @@ const tags = [...tagCounts.entries()].sort(
 );
 
 function paperId(publication: Publication) {
-  return `paper-${publication.doi ? publication.doi.replace(/[^a-zA-Z0-9]+/g, '-') : slugify(publication.title)}`;
+  return publicationAnchor(publication);
 }
 ---
 
@@ -130,7 +130,12 @@ function paperId(publication: Publication) {
                     )}
                     {!p.doi && p.inPress && (
                       <p class="pub-doi">
-                        <span class="inpress">In press</span>
+                        <span class="inpress">{acceptanceLabel(p)}</span>
+                        {p.openAccess && (
+                          <span class="oa" title="The paper will be published open access">
+                            Open access upon publication
+                          </span>
+                        )}
                       </p>
                     )}
                     {p.doi && (
