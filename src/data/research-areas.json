@@ -122,19 +122,10 @@
     ],
     "selected": [
       "10.1016/j.marstruc.2020.102787",
-      "10.3390/met11091402",
-      "10.3390/jmse11040699",
-      "10.1016/j.marstruc.2019.03.003",
-      "10.1115/omae2022-81221",
-      "10.1016/j.oceaneng.2022.112930",
-      "10.1201/9781003399759-72",
-      "10.1201/9781003230373-7",
-      "10.1016/j.tws.2016.10.021",
       "10.1016/j.ijimpeng.2020.103697",
-      "10.1016/j.tws.2020.106721",
-      "10.3390/jmse9020117",
-      "10.1080/17445302.2020.1743552",
-      "10.3390/app10207034"
+      "10.1016/j.marstruc.2019.03.003",
+      "10.1016/j.tws.2016.10.021",
+      "10.3390/jmse11040699"
     ],
     "software": [
       "pyULSAN"
@@ -148,11 +139,11 @@
       "mooring-and-cable-integrity",
       "floating-solar"
     ],
-    "summary": "Our focus is floating wind, floating solar and offshore substations, particularly mooring and dynamic power-cable integrity. Professor Jae Hoon Seo’s CableDyn provides global line dynamics; CableXSec is under development for layered cable cross-section mechanics and fatigue assessment. Floating-solar studies address wave response, connectors and float configuration.",
-    "short": "Floating wind, solar and substations, with CableDyn line dynamics and CableXSec cable cross-section development.",
+    "summary": "Our focus is floating wind, floating solar and offshore substations, particularly mooring and dynamic power-cable integrity. Professor Jae Hoon Seo’s CableDyn provides global line dynamics; CableXsec is under development for layered cable cross-section mechanics and fatigue assessment. Floating-solar studies address wave response, connectors and float configuration.",
+    "short": "Floating wind, solar and substations, with CableDyn line dynamics and CableXsec cable cross-section development.",
     "keywords": [
       "CableDyn",
-      "CableXSec",
+      "CableXsec",
       "floating wind and solar",
       "offshore substations"
     ],
@@ -166,14 +157,13 @@
       "Design challenges and standardisation gaps for floating solar systems deployed at sea",
       "Design challenges, structural integrity and standardisation gaps for floating offshore substations"
     ],
-    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn and CableXSec; Bayesian filtering and surrogate modelling in Python.",
+    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn and CableXsec; Bayesian filtering and surrogate modelling in Python.",
     "selected": [
       "10.1016/j.oceaneng.2026.128332",
       "10.1016/j.oceaneng.2026.126528",
       "10.1016/j.oceaneng.2024.118810",
       "10.1016/j.jei.2026.100025",
-      "10.1016/j.oceaneng.2025.120970",
-      "10.1016/j.oceaneng.2025.120525"
+      "10.1016/j.oceaneng.2025.120970"
     ],
     "funding": [
       "Development of Demonstration Technology for Key Mooring Components of 3MW-class Floating Offshore Wind Turbines, Korea Institute of Energy Technology Evaluation and Planning, 2026-2029",
@@ -185,13 +175,13 @@
     ],
     "software": [
       "CableDyn",
-      "CableXSec",
+      "CableXsec",
       "pyBModes",
       "pyIECWind"
     ],
     "highlightSoftware": [
       "CableDyn",
-      "CableXSec"
+      "CableXsec"
     ]
   },
   {
