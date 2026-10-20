@@ -29,34 +29,24 @@
     "software": [
       "pyULSAN",
       "ISUM"
-    ],
-    "scopeReference": {
-      "volume": 1,
-      "page": 419,
-      "pdfPage": 427
-    }
+    ]
   },
   {
     "slug": "fatigue-and-fracture",
     "title": "Fatigue and Fracture",
     "aliases": [
-      "ductile-fracture",
       "fatigue-and-eca",
       "peridynamics"
     ],
-    "summary": "Our work combines fatigue and crack-growth assessment with engineering critical assessment of flaws, and rate-dependent Hosford–Coulomb–DSSE (HC–DSSE) modelling of localised necking and ductile fracture. Material tests support calibration and finite element implementation. Peridynamics is an emerging fracture-modelling method within this area.",
-    "short": "Fatigue crack growth, ductile fracture and flaw assessment, supported by material tests and computational models.",
+    "summary": "Here the structure already contains a defect, the loading is cyclic rather than extreme, and the question is whether it is fit to remain in service. We assess flaws against fracture and fatigue criteria, work on fatigue crack growth in welded joints, and on the wave climate assumptions that fatigue life estimates rest on. Peridynamics is an emerging fracture-modelling method within this area.",
+    "short": "Fatigue crack growth and flaw assessment of structures that already carry a defect.",
     "keywords": [
-      "HC–DSSE",
       "fatigue and crack growth",
       "engineering critical assessment",
+      "welded joints",
       "peridynamics"
     ],
     "topics": [
-      "Calibration of ductile fracture models (Hosford-Coulomb, GTN, BWH instability criteria) for shipbuilding and high-tensile steels",
-      "User material subroutines (VUMAT) for shell and solid elements, including the mesh-size regularisation that shell fracture prediction depends on",
-      "Localised necking as a separate failure mechanism from fracture, and the strain rate and thermal softening effects that govern it",
-      "Material testing across stress states and temperatures, down to sub-zero service conditions",
       "Engineering critical assessment (ECA) and fitness-for-service evaluation of flawed welded structures",
       "Fatigue crack growth in welded joints, and the influence of weld geometry and residual stress",
       "Hull girder fatigue under revised wave scatter diagrams, and the sensitivity of damage ratios to that choice",
@@ -64,24 +54,14 @@
       "Crack initiation and growth in welded steel structures, including the heat-affected zone and weld toe geometry",
       "Hydrogen effects on crack growth in structural steels, and the coupling between hydrogen transport and fracture"
     ],
-    "methods": "Material testing across stress states and temperatures; calibration of Hosford–Coulomb, GTN and BWH criteria; user material subroutines (VUMAT) for shell and solid elements in Abaqus; peridynamic modelling of crack initiation and growth.",
+    "methods": "Fitness-for-service and engineering critical assessment procedures; fatigue crack growth analysis under revised wave scatter data; peridynamic modelling of crack initiation and growth, including coupling to hydrogen transport.",
     "development": "Peridynamics is an emerging method within this area. This is a new research direction rather than an established programme. It has no publication record in the lab yet; the first manuscripts are under review.",
     "selected": [
-      "10.1016/j.ijimpeng.2020.103697",
-      "10.1016/j.tws.2020.106721",
-      "10.3390/jmse9020117",
-      "10.1080/17445302.2020.1743552",
-      "10.3390/app10207034",
       "10.3744/snak.2023.60.4.213"
     ],
     "selectedIds": [
       "iacs-wave-scatter-fatigue"
-    ],
-    "scopeReference": {
-      "volume": 1,
-      "page": 527,
-      "pdfPage": 535
-    }
+    ]
   },
   {
     "slug": "dynamic-response",
@@ -109,25 +89,21 @@
       "CableDyn",
       "VANE",
       "pyBModes"
-    ],
-    "scopeReference": {
-      "volume": 1,
-      "page": 317,
-      "pdfPage": 325
-    }
+    ]
   },
   {
     "slug": "limit-states-during-accidental-and-damage-conditions",
     "title": "Limit States During Accidental and Damage Conditions",
     "aliases": [
       "collision-and-crashworthiness",
-      "blast-and-explosion"
+      "blast-and-explosion",
+      "ductile-fracture"
     ],
-    "summary": "Our work addresses collision, grounding, impact, blast and underwater explosion through fracture-calibrated simulations of plate tearing, perforation and structural damage. We examine residual capacity and how damage, hull whipping and equipment shock affect the survivability of ships and their systems.",
-    "short": "Collision, grounding, impact and explosion: predicting structural tearing, damage and remaining strength.",
+    "summary": "Our work addresses collision, grounding, impact, blast and underwater explosion through fracture-calibrated simulations of plate tearing, perforation and structural damage. The fracture models those simulations rely on are measured and calibrated here, from material tests across stress states and temperatures. We examine residual capacity and how damage affects the survivability of ships and their systems.",
+    "short": "Collision, grounding, impact and explosion — ductile fracture, tearing and remaining strength.",
     "keywords": [
       "collision and grounding",
-      "impact and tearing",
+      "ductile fracture",
       "blast and explosion",
       "residual capacity"
     ],
@@ -138,7 +114,11 @@
       "Coupled analysis of collision between floating bodies, where hydrodynamic reaction changes the energy available to damage the structure",
       "Damage extent prediction for in-compartment explosions in warships",
       "Air blast response of marine grade aluminium plated structures",
-      "Residual capacity of damaged structures, linked to hull-girder ultimate strength assessment"
+      "Residual capacity of damaged structures, linked to hull-girder ultimate strength assessment",
+      "Calibration of ductile fracture models (Hosford-Coulomb, GTN, BWH instability criteria) for shipbuilding and high-tensile steels",
+      "User material subroutines (VUMAT) for shell and solid elements, including the mesh-size regularisation that shell fracture prediction depends on",
+      "Localised necking as a separate failure mechanism from fracture, and the strain rate and thermal softening effects that govern it",
+      "Material testing across stress states and temperatures, down to sub-zero service conditions"
     ],
     "selected": [
       "10.1016/j.marstruc.2020.102787",
@@ -147,19 +127,19 @@
       "10.1016/j.marstruc.2019.03.003",
       "10.1115/omae2022-81221",
       "10.1016/j.oceaneng.2022.112930",
-      "10.1080/17445302.2022.2067415",
       "10.1201/9781003399759-72",
       "10.1201/9781003230373-7",
-      "10.1016/j.tws.2016.10.021"
+      "10.1016/j.tws.2016.10.021",
+      "10.1016/j.ijimpeng.2020.103697",
+      "10.1016/j.tws.2020.106721",
+      "10.3390/jmse9020117",
+      "10.1080/17445302.2020.1743552",
+      "10.3390/app10207034"
     ],
     "software": [
       "pyULSAN"
     ],
-    "scopeReference": {
-      "volume": 2,
-      "page": 1,
-      "pdfPage": 9
-    }
+    "methods": "Explicit nonlinear finite element analysis in Abaqus; material testing across stress states and temperatures; calibration of Hosford–Coulomb, GTN and BWH criteria; user material subroutines (VUMAT) for shell and solid elements, with the mesh-size regularisation that shell fracture prediction depends on."
   },
   {
     "slug": "offshore-renewable-energy",
@@ -212,12 +192,7 @@
     "highlightSoftware": [
       "CableDyn",
       "CableXSec"
-    ],
-    "scopeReference": {
-      "volume": 2,
-      "page": 231,
-      "pdfPage": 239
-    }
+    ]
   },
   {
     "slug": "structural-assessment-during-operations",
@@ -257,11 +232,6 @@
     "projectTitles": [
       "Machine Learning-Based Tension Prediction for FOWT Mooring Lines",
       "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines"
-    ],
-    "scopeReference": {
-      "volume": 2,
-      "page": 483,
-      "pdfPage": 491
-    }
+    ]
   }
 ]

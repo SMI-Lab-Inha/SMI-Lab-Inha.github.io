@@ -118,13 +118,6 @@ export const researchAreaSchema = z.object({
   development: optionalText.optional(),
   title: z.string().min(1),
   summary: z.string().min(1),
-  // Mandate opening pages in the locally held ISSC 2025 proceedings.
-  // Keep source provenance in data; committee numbers are not public headings.
-  scopeReference: z.object({
-    volume: z.union([z.literal(1), z.literal(2)]),
-    page: z.number().int().positive(),
-    pdfPage: z.number().int().positive(),
-  }),
   // One line for the card on the home page, where the full summary is too long
   // to read at a glance, plus the terms a visitor might be scanning for.
   short: z.string().min(1).max(120),
