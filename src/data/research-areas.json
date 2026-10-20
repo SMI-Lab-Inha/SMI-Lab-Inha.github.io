@@ -64,7 +64,7 @@
       "Crack initiation and growth in welded steel structures, including the heat-affected zone and weld toe geometry",
       "Hydrogen effects on crack growth in structural steels, and the coupling between hydrogen transport and fracture"
     ],
-    "methods": "The lab's longest-running line. We measure how shipbuilding and offshore steels deform, neck and fracture under large strain, calibrate fracture models against that data, and implement them as user material subroutines so the models can be used in the explicit finite element analyses that structural assessment actually relies on. Classical finite element fracture mechanics needs the crack path to be anticipated by the mesh. Peridynamics is a nonlocal formulation in which cracks form and branch as a consequence of the material model rather than of the discretisation, which makes it suited to welded joints, where the crack starts at a defect nobody placed and runs through a heat-affected zone whose properties differ from the parent plate.",
+    "methods": "Material testing across stress states and temperatures; calibration of Hosford–Coulomb, GTN and BWH criteria; user material subroutines (VUMAT) for shell and solid elements in Abaqus; peridynamic modelling of crack initiation and growth.",
     "development": "Peridynamics is an emerging method within this area. This is a new research direction rather than an established programme. It has no publication record in the lab yet; the first manuscripts are under review.",
     "selected": [
       "10.1016/j.ijimpeng.2020.103697",
@@ -98,8 +98,7 @@
       "Underwater explosion loading, hull girder whipping, and the effect of hull inelasticity on the whipping response",
       "Shock acceleration at equipment and armament mounts, and its sensitivity to the fracture model used",
       "Nonlinear structural dynamics and transient response under impulsive loading",
-      "Dynamic modelling of moorings and power cables, including lazy-wave shape, curvature and tension",
-      "Coupled analysis of collision between floating bodies, where hydrodynamic reaction changes the energy available to damage the structure"
+      "Dynamic modelling of moorings and power cables, including lazy-wave shape, curvature and tension"
     ],
     "selected": [
       "10.1016/j.oceaneng.2026.128332",
@@ -137,9 +136,7 @@
       "Plate tearing and perforation, including the aluminium structures used in high-speed craft",
       "Dropped object impact, and slamming loads on bow and bottom structures",
       "Coupled analysis of collision between floating bodies, where hydrodynamic reaction changes the energy available to damage the structure",
-      "Underwater explosion loading, hull girder whipping, and the effect of hull inelasticity on the whipping response",
       "Damage extent prediction for in-compartment explosions in warships",
-      "Shock acceleration at equipment and armament mounts, and its sensitivity to the fracture model used",
       "Air blast response of marine grade aluminium plated structures",
       "Residual capacity of damaged structures, linked to hull-girder ultimate strength assessment"
     ],
@@ -189,7 +186,7 @@
       "Design challenges and standardisation gaps for floating solar systems deployed at sea",
       "Design challenges, structural integrity and standardisation gaps for floating offshore substations"
     ],
-    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn and CableXSec; Bayesian filtering and surrogate modelling in Python. Offshore floating solar puts a large, shallow, highly connected array into a wave field that its freshwater predecessors never saw. We work on the hydrodynamic response of these arrays and on the structural consequences of the connector choices that hold them together.",
+    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn and CableXSec; Bayesian filtering and surrogate modelling in Python.",
     "selected": [
       "10.1016/j.oceaneng.2026.128332",
       "10.1016/j.oceaneng.2026.126528",
