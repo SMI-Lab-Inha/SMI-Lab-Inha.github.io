@@ -18,12 +18,6 @@ const optionalText = z.string();
 export const memberSchema = z.object({
   name: z.string().min(1),
   nameKo: optionalText,
-  group: z.enum([
-    'Postdoctoral researchers',
-    'PhD students',
-    "Master's students",
-    'Undergraduate researchers',
-  ]),
   year: optionalText,
   topic: optionalText,
   photo: optionalText,

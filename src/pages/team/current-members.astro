@@ -16,15 +16,11 @@ const peopleSchema = members.map((member) => ({
   alternateName: member.nameKo || undefined,
   affiliation: { '@id': `${origin}/#lab` },
   memberOf: { '@id': `${origin}/#lab` },
-  jobTitle: member.role || member.group.replace(/s$/, ''),
+  jobTitle: member.role || 'Researcher',
   knowsAbout: member.topic || undefined,
   email: member.email || undefined,
 }));
 
-const groups = ['Postdoctoral researchers', 'PhD students', "Master's students", 'Undergraduate researchers'];
-const byGroup = groups
-  .map((g) => ({ group: g, people: members.filter((m) => m.group === g) }))
-  .filter((g) => g.people.length > 0);
 ---
 
 <Base
@@ -37,40 +33,35 @@ const byGroup = groups
   <section class="section">
     <div class="wrap">
       {
-        byGroup.length === 0 ? (
+        members.length === 0 ? (
           <Pending
             what="No lab members are listed yet."
           />
         ) : (
-          byGroup.map((g) => (
-            <div class="group">
-              <h2>{g.group}</h2>
-              <div class="grid">
-                {g.people.map((m) => (
-                  <article class="card person">
-                    {m.photo && (
-                      <AssetImage
-                        src={m.photo}
-                        alt={`Portrait of ${m.name}`}
-                        sizes="(min-width: 1000px) 250px, (min-width: 600px) 40vw, 100vw"
-                        widths={[240, 360, 480, 640]}
-                      />
-                    )}
-                    <h3>{m.name}</h3>
-                    {m.nameKo && <p class="name-ko" lang="ko">{m.nameKo}</p>}
-                    {m.role && <p class="role">{m.role}</p>}
-                    {m.year && <p class="muted year">{m.year}</p>}
-                    {m.topic && <p class="muted">{m.topic}</p>}
-                    {m.email && (
-                      <p>
-                        <a href={`mailto:${m.email}`}>{m.email}</a>
-                      </p>
-                    )}
-                  </article>
-                ))}
-              </div>
-            </div>
-          ))
+          <div class="grid">
+            {members.map((m) => (
+              <article class="card person">
+                {m.photo && (
+                  <AssetImage
+                    src={m.photo}
+                    alt={`Portrait of ${m.name}`}
+                    sizes="(min-width: 1000px) 250px, (min-width: 600px) 40vw, 100vw"
+                    widths={[240, 360, 480, 640]}
+                  />
+                )}
+                <h2>{m.name}</h2>
+                {m.nameKo && <p class="name-ko" lang="ko">{m.nameKo}</p>}
+                {m.role && <p class="role">{m.role}</p>}
+                {m.year && <p class="muted year">{m.year}</p>}
+                {m.topic && <p class="muted">{m.topic}</p>}
+                {m.email && (
+                  <p>
+                    <a href={`mailto:${m.email}`}>{m.email}</a>
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
         )
       }
     </div>
@@ -78,17 +69,6 @@ const byGroup = groups
 </Base>
 
 <style>
-  .group + .group {
-    margin-top: 3rem;
-  }
-
-  .group h2 {
-    margin-top: 0;
-    font-size: 1.25rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--c-border);
-  }
-
   .person img {
     width: 100%;
     aspect-ratio: 3 / 4;
@@ -98,7 +78,7 @@ const byGroup = groups
     background: var(--c-bg-inset);
   }
 
-  .person h3 {
+  .person h2 {
     font-size: 1.08rem;
     margin-bottom: 0.1rem;
   }
