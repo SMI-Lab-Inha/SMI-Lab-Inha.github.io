@@ -20,7 +20,7 @@ test('six areas, legacy anchors and accepted paper remain connected', async ({ p
   for (const id of legacy) await expect(page.locator(`[id="${id}"]`)).toHaveCount(1);
   await expect(page.locator('#fatigue-and-fracture')).toContainText('Peridynamics is an emerging method');
   const cables = page.locator('#offshore-renewable-energy .software-highlight');
-  await expect(cables.locator('h4')).toHaveText(['CableDyn', 'CableXSec']);
+  await expect(cables.locator('h4')).toHaveText(['CableDyn', 'CableXsec']);
   await expect(cables).toContainText('Private alpha — ongoing development');
   await page.locator('#fatigue-and-fracture a[href*="paper-iacs-wave-scatter-fatigue"]').click();
   const paper = page.locator('#paper-iacs-wave-scatter-fatigue');
