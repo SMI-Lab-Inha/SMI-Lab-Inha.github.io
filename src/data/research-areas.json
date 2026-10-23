@@ -66,27 +66,25 @@
   {
     "slug": "dynamic-response",
     "title": "Dynamic Response",
-    "summary": "Our focus is nonlinear structural dynamics, hull whipping and shock response, including the influence of hull inelasticity and fracture modelling. CableDyn extends this work to mooring and power-cable dynamics, resolving line shape, curvature and tension. Hydrodynamic coupling is considered in collision between floating bodies.",
-    "short": "Hull whipping, shock and nonlinear dynamics of moorings and power cables.",
+    "summary": "Our focus is nonlinear structural dynamics, hull whipping and shock response, including the influence of hull inelasticity and fracture modelling. We also work on the linearised modal analysis of floating offshore wind turbines, where the natural frequencies and damping ratios depend on how the rotor azimuth is sampled and averaged. Hydrodynamic coupling is considered in collision between floating bodies.",
+    "short": "Hull whipping, shock response, and the linearised modal analysis of floating wind turbines.",
     "keywords": [
       "nonlinear dynamics",
       "hull whipping",
       "shock response",
-      "CableDyn"
+      "modal analysis"
     ],
     "topics": [
       "Underwater explosion loading, hull girder whipping, and the effect of hull inelasticity on the whipping response",
       "Shock acceleration at equipment and armament mounts, and its sensitivity to the fracture model used",
-      "Nonlinear structural dynamics and transient response under impulsive loading",
-      "Dynamic modelling of moorings and power cables, including lazy-wave shape, curvature and tension"
+      "Nonlinear structural dynamics and transient response under impulsive loading"
     ],
     "selected": [
-      "10.1016/j.oceaneng.2026.128332",
+      "10.3390/jmse14211990",
       "10.1016/j.oceaneng.2022.112930",
       "10.1080/17445302.2022.2067415"
     ],
     "software": [
-      "CableDyn",
       "VANE",
       "pyBModes"
     ]

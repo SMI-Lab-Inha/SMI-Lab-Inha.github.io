@@ -1,5 +1,19 @@
 [
   {
+    "type": "journal",
+    "authors": "Seo JH",
+    "title": "Influence of Azimuth Averaging on the Linearised Modal Analysis of Floating Offshore Wind Turbines",
+    "venue": "Journal of Marine Science and Engineering",
+    "year": "2026",
+    "volume": "14(21)",
+    "pages": "1990",
+    "doi": "10.3390/jmse14211990",
+    "tags": [
+      "Floating offshore wind"
+    ],
+    "openAccess": true
+  },
+  {
     "id": "iacs-wave-scatter-fatigue",
     "openAccess": true,
     "type": "journal",
@@ -25,7 +39,11 @@
     "volume": "368, Part 2",
     "pages": "128332",
     "doi": "10.1016/j.oceaneng.2026.128332",
-    "tags": ["Mooring systems", "Dynamic power cables", "Floating offshore wind"]
+    "tags": [
+      "Mooring systems",
+      "Dynamic power cables",
+      "Floating offshore wind"
+    ]
   },
   {
     "type": "journal",
@@ -36,7 +54,10 @@
     "volume": "",
     "pages": "100025",
     "doi": "10.1016/j.jei.2026.100025",
-    "tags": ["Floating solar", "Hydrodynamics"],
+    "tags": [
+      "Floating solar",
+      "Hydrodynamics"
+    ],
     "openAccess": true
   },
   {
@@ -48,7 +69,10 @@
     "volume": "363, Part 1",
     "pages": "126528",
     "doi": "10.1016/j.oceaneng.2026.126528",
-    "tags": ["Floating offshore wind", "Review"]
+    "tags": [
+      "Floating offshore wind",
+      "Review"
+    ]
   },
   {
     "type": "journal",
@@ -59,7 +83,11 @@
     "volume": "343, Part 1",
     "pages": "123159",
     "doi": "10.1016/j.oceaneng.2025.123159",
-    "tags": ["Ultimate strength", "Stiffened panels", "Machine learning"]
+    "tags": [
+      "Ultimate strength",
+      "Stiffened panels",
+      "Machine learning"
+    ]
   },
   {
     "type": "journal",
@@ -70,7 +98,10 @@
     "volume": "326",
     "pages": "120970",
     "doi": "10.1016/j.oceaneng.2025.120970",
-    "tags": ["Floating solar", "Hydrodynamics"],
+    "tags": [
+      "Floating solar",
+      "Hydrodynamics"
+    ],
     "openAccess": true
   },
   {
@@ -82,7 +113,10 @@
     "volume": "322",
     "pages": "120525",
     "doi": "10.1016/j.oceaneng.2025.120525",
-    "tags": ["Floating solar", "Review"],
+    "tags": [
+      "Floating solar",
+      "Review"
+    ],
     "openAccess": true
   },
   {
@@ -94,7 +128,11 @@
     "volume": "311, Part 1",
     "pages": "118810",
     "doi": "10.1016/j.oceaneng.2024.118810",
-    "tags": ["Dynamic power cables", "Floating offshore wind", "Review"],
+    "tags": [
+      "Dynamic power cables",
+      "Floating offshore wind",
+      "Review"
+    ],
     "openAccess": true
   },
   {
@@ -106,7 +144,9 @@
     "volume": "10(7)",
     "pages": "236",
     "doi": "10.3390/batteries10070236",
-    "tags": ["Battery safety"],
+    "tags": [
+      "Battery safety"
+    ],
     "openAccess": true
   },
   {
@@ -118,7 +158,10 @@
     "volume": "11(4)",
     "pages": "699",
     "doi": "10.3390/jmse11040699",
-    "tags": ["Ductile fracture", "Impact damage"],
+    "tags": [
+      "Ductile fracture",
+      "Impact damage"
+    ],
     "openAccess": true
   },
   {
@@ -130,7 +173,11 @@
     "volume": "18(4)",
     "pages": "558–566",
     "doi": "10.1080/17445302.2022.2067415",
-    "tags": ["Underwater explosion", "Naval structures", "Hull girder"]
+    "tags": [
+      "Underwater explosion",
+      "Naval structures",
+      "Hull girder"
+    ]
   },
   {
     "type": "conference",
@@ -141,7 +188,10 @@
     "volume": "",
     "pages": "651–657",
     "doi": "10.1201/9781003399759-72",
-    "tags": ["Blast loading", "Naval structures"]
+    "tags": [
+      "Blast loading",
+      "Naval structures"
+    ]
   },
   {
     "type": "journal",
@@ -152,7 +202,10 @@
     "volume": "60(4)",
     "pages": "213–221",
     "doi": "10.3744/snak.2023.60.4.213",
-    "tags": ["Ductile fracture", "Low temperature"]
+    "tags": [
+      "Ductile fracture",
+      "Low temperature"
+    ]
   },
   {
     "type": "journal",
@@ -163,7 +216,11 @@
     "volume": "266",
     "pages": "112930",
     "doi": "10.1016/j.oceaneng.2022.112930",
-    "tags": ["Underwater explosion", "Naval structures", "Ductile fracture"]
+    "tags": [
+      "Underwater explosion",
+      "Naval structures",
+      "Ductile fracture"
+    ]
   },
   {
     "type": "conference",
@@ -174,7 +231,10 @@
     "volume": "",
     "pages": "V002T02A016",
     "doi": "10.1115/omae2022-81221",
-    "tags": ["Collision and grounding", "Hydrodynamics"]
+    "tags": [
+      "Collision and grounding",
+      "Hydrodynamics"
+    ]
   },
   {
     "type": "conference",
@@ -185,7 +245,10 @@
     "volume": "",
     "pages": "V002T02A028",
     "doi": "10.1115/omae2022-80686",
-    "tags": ["Underwater explosion", "Naval structures"]
+    "tags": [
+      "Underwater explosion",
+      "Naval structures"
+    ]
   },
   {
     "type": "journal",
@@ -196,7 +259,11 @@
     "volume": "58(6)",
     "pages": "400–406",
     "doi": "10.3744/snak.2021.58.6.400",
-    "tags": ["Underwater explosion", "Naval structures", "Hull girder"]
+    "tags": [
+      "Underwater explosion",
+      "Naval structures",
+      "Hull girder"
+    ]
   },
   {
     "type": "journal",
@@ -207,7 +274,10 @@
     "volume": "11(9)",
     "pages": "1402",
     "doi": "10.3390/met11091402",
-    "tags": ["Ductile fracture", "Collision and grounding"],
+    "tags": [
+      "Ductile fracture",
+      "Collision and grounding"
+    ],
     "openAccess": true
   },
   {
@@ -219,7 +289,11 @@
     "volume": "9(2)",
     "pages": "117",
     "doi": "10.3390/jmse9020117",
-    "tags": ["Localised necking", "Ductile fracture", "Material testing"],
+    "tags": [
+      "Localised necking",
+      "Ductile fracture",
+      "Material testing"
+    ],
     "openAccess": true
   },
   {
@@ -231,7 +305,10 @@
     "volume": "",
     "pages": "57–64",
     "doi": "10.1201/9781003230373-7",
-    "tags": ["Underwater explosion", "Naval structures"]
+    "tags": [
+      "Underwater explosion",
+      "Naval structures"
+    ]
   },
   {
     "type": "journal",
@@ -242,7 +319,10 @@
     "volume": "8(12)",
     "pages": "988",
     "doi": "10.3390/jmse8120988",
-    "tags": ["Ultimate strength", "Hull girder"],
+    "tags": [
+      "Ultimate strength",
+      "Hull girder"
+    ],
     "openAccess": true
   },
   {
@@ -254,7 +334,10 @@
     "volume": "15(sup1)",
     "pages": "208–219",
     "doi": "10.1080/17445302.2020.1743552",
-    "tags": ["Ductile fracture", "Material testing"]
+    "tags": [
+      "Ductile fracture",
+      "Material testing"
+    ]
   },
   {
     "type": "journal",
@@ -265,7 +348,11 @@
     "volume": "146",
     "pages": "103697",
     "doi": "10.1016/j.ijimpeng.2020.103697",
-    "tags": ["Ductile fracture", "Localised necking", "Impact damage"]
+    "tags": [
+      "Ductile fracture",
+      "Localised necking",
+      "Impact damage"
+    ]
   },
   {
     "type": "journal",
@@ -276,7 +363,10 @@
     "volume": "10(20)",
     "pages": "7034",
     "doi": "10.3390/app10207034",
-    "tags": ["Ductile fracture", "Material testing"],
+    "tags": [
+      "Ductile fracture",
+      "Material testing"
+    ],
     "openAccess": true
   },
   {
@@ -288,7 +378,9 @@
     "volume": "8(10)",
     "pages": "756",
     "doi": "10.3390/jmse8100756",
-    "tags": ["Manufacturing"],
+    "tags": [
+      "Manufacturing"
+    ],
     "preprint": "https://doi.org/10.20944/preprints202009.0582.v1",
     "openAccess": true
   },
@@ -301,7 +393,11 @@
     "volume": "73",
     "pages": "102787",
     "doi": "10.1016/j.marstruc.2020.102787",
-    "tags": ["Localised necking", "Ductile fracture", "Collision and grounding"]
+    "tags": [
+      "Localised necking",
+      "Ductile fracture",
+      "Collision and grounding"
+    ]
   },
   {
     "type": "journal",
@@ -312,7 +408,10 @@
     "volume": "151",
     "pages": "106721",
     "doi": "10.1016/j.tws.2020.106721",
-    "tags": ["Ductile fracture", "Low temperature"]
+    "tags": [
+      "Ductile fracture",
+      "Low temperature"
+    ]
   },
   {
     "type": "journal",
@@ -323,7 +422,11 @@
     "volume": "198",
     "pages": "106944",
     "doi": "10.1016/j.oceaneng.2020.106944",
-    "tags": ["Structural health monitoring", "Cylindrical shells", "Impact damage"],
+    "tags": [
+      "Structural health monitoring",
+      "Cylindrical shells",
+      "Impact damage"
+    ],
     "openAccess": true,
     "preprint": "https://strathprints.strath.ac.uk/71195/1/Li_etal_OE_2020_Dent_damage_identification_in_stiffened_cylindrical_structures.pdf"
   },
@@ -336,7 +439,11 @@
     "volume": "",
     "pages": "701–714",
     "doi": "10.1007/978-981-15-4672-3_43",
-    "tags": ["Ductile fracture", "Localised necking", "Collision and grounding"]
+    "tags": [
+      "Ductile fracture",
+      "Localised necking",
+      "Collision and grounding"
+    ]
   },
   {
     "type": "conference",
@@ -347,7 +454,10 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Collision and grounding", "Ductile fracture"]
+    "tags": [
+      "Collision and grounding",
+      "Ductile fracture"
+    ]
   },
   {
     "type": "journal",
@@ -358,7 +468,10 @@
     "volume": "14(sup1)",
     "pages": "219–230",
     "doi": "10.1080/17445302.2019.1565300",
-    "tags": ["Ductile fracture", "Material testing"]
+    "tags": [
+      "Ductile fracture",
+      "Material testing"
+    ]
   },
   {
     "type": "journal",
@@ -369,7 +482,11 @@
     "volume": "187",
     "pages": "106173",
     "doi": "10.1016/j.oceaneng.2019.106173",
-    "tags": ["Collision and grounding", "Localised necking", "Ductile fracture"]
+    "tags": [
+      "Collision and grounding",
+      "Localised necking",
+      "Ductile fracture"
+    ]
   },
   {
     "type": "journal",
@@ -380,7 +497,10 @@
     "volume": "33(3)",
     "pages": "259–271",
     "doi": "10.26748/ksoe.2019.038",
-    "tags": ["Ductile fracture", "Material testing"],
+    "tags": [
+      "Ductile fracture",
+      "Material testing"
+    ],
     "openAccess": true
   },
   {
@@ -392,7 +512,10 @@
     "volume": "66",
     "pages": "27–43",
     "doi": "10.1016/j.marstruc.2019.03.003",
-    "tags": ["Ductile fracture", "Material testing"]
+    "tags": [
+      "Ductile fracture",
+      "Material testing"
+    ]
   },
   {
     "type": "journal",
@@ -403,7 +526,10 @@
     "volume": "173",
     "pages": "415–432",
     "doi": "10.1016/j.oceaneng.2019.01.004",
-    "tags": ["Collision and grounding", "Ductile fracture"]
+    "tags": [
+      "Collision and grounding",
+      "Ductile fracture"
+    ]
   },
   {
     "type": "journal",
@@ -414,7 +540,10 @@
     "volume": "56(1)",
     "pages": "82–93",
     "doi": "10.3744/snak.2019.56.1.082",
-    "tags": ["Ductile fracture", "Material testing"]
+    "tags": [
+      "Ductile fracture",
+      "Material testing"
+    ]
   },
   {
     "type": "conference",
@@ -425,7 +554,11 @@
     "volume": "",
     "pages": "293–302",
     "doi": "10.1201/9780429298875-34",
-    "tags": ["Structural health monitoring", "Cylindrical shells", "Naval structures"]
+    "tags": [
+      "Structural health monitoring",
+      "Cylindrical shells",
+      "Naval structures"
+    ]
   },
   {
     "type": "journal",
@@ -436,7 +569,12 @@
     "volume": "115",
     "pages": "36–47",
     "doi": "10.1016/j.ijimpeng.2018.01.007",
-    "tags": ["Impact damage", "Low temperature", "Stiffened panels", "Material testing"]
+    "tags": [
+      "Impact damage",
+      "Low temperature",
+      "Stiffened panels",
+      "Material testing"
+    ]
   },
   {
     "type": "journal",
@@ -447,7 +585,10 @@
     "volume": "122",
     "pages": "416–424",
     "doi": "10.1016/j.tws.2017.10.030",
-    "tags": ["Ultimate strength", "Impact damage"]
+    "tags": [
+      "Ultimate strength",
+      "Impact damage"
+    ]
   },
   {
     "type": "conference",
@@ -458,7 +599,10 @@
     "volume": "",
     "pages": "V11AT12A008",
     "doi": "10.1115/omae2018-78681",
-    "tags": ["Ductile fracture", "Material testing"]
+    "tags": [
+      "Ductile fracture",
+      "Material testing"
+    ]
   },
   {
     "type": "conference",
@@ -469,7 +613,11 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Aluminium structures", "Slamming", "Manufacturing"]
+    "tags": [
+      "Aluminium structures",
+      "Slamming",
+      "Manufacturing"
+    ]
   },
   {
     "type": "journal",
@@ -480,7 +628,10 @@
     "volume": "22(2)",
     "pages": "301–312",
     "doi": "10.1007/s00773-016-0411-0",
-    "tags": ["Slamming", "Aluminium structures"]
+    "tags": [
+      "Slamming",
+      "Aluminium structures"
+    ]
   },
   {
     "type": "journal",
@@ -491,7 +642,10 @@
     "volume": "110",
     "pages": "123–132",
     "doi": "10.1016/j.tws.2016.10.021",
-    "tags": ["Blast loading", "Aluminium structures"]
+    "tags": [
+      "Blast loading",
+      "Aluminium structures"
+    ]
   },
   {
     "type": "conference",
@@ -502,7 +656,10 @@
     "volume": "",
     "pages": "415–422",
     "doi": "10.1201/9781315157368-54",
-    "tags": ["Collision and grounding", "Aluminium structures"]
+    "tags": [
+      "Collision and grounding",
+      "Aluminium structures"
+    ]
   },
   {
     "type": "conference",
@@ -513,7 +670,10 @@
     "volume": "",
     "pages": "565–572",
     "doi": "10.1201/9781315157368-72",
-    "tags": ["Blast loading", "Aluminium structures"]
+    "tags": [
+      "Blast loading",
+      "Aluminium structures"
+    ]
   },
   {
     "type": "journal",
@@ -524,7 +684,10 @@
     "volume": "46",
     "pages": "1–29",
     "doi": "10.1016/j.marstruc.2015.11.002",
-    "tags": ["Impact damage", "Cylindrical shells"]
+    "tags": [
+      "Impact damage",
+      "Cylindrical shells"
+    ]
   },
   {
     "type": "conference",
@@ -535,7 +698,10 @@
     "volume": "",
     "pages": "79–86",
     "doi": "",
-    "tags": ["Collision and grounding", "Material testing"]
+    "tags": [
+      "Collision and grounding",
+      "Material testing"
+    ]
   },
   {
     "type": "conference",
@@ -546,7 +712,10 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Aluminium structures", "Slamming"]
+    "tags": [
+      "Aluminium structures",
+      "Slamming"
+    ]
   },
   {
     "type": "journal",
@@ -557,7 +726,11 @@
     "volume": "95",
     "pages": "138–151",
     "doi": "10.1016/j.tws.2015.07.004",
-    "tags": ["Ultimate strength", "Cylindrical shells", "Impact damage"]
+    "tags": [
+      "Ultimate strength",
+      "Cylindrical shells",
+      "Impact damage"
+    ]
   },
   {
     "type": "journal",
@@ -568,7 +741,11 @@
     "volume": "84",
     "pages": "108–123",
     "doi": "10.1016/j.ijimpeng.2015.04.011",
-    "tags": ["Impact damage", "Cylindrical shells", "Material testing"]
+    "tags": [
+      "Impact damage",
+      "Cylindrical shells",
+      "Material testing"
+    ]
   },
   {
     "type": "conference",
@@ -579,7 +756,11 @@
     "volume": "",
     "pages": "932–939",
     "doi": "",
-    "tags": ["Impact damage", "Cylindrical shells", "Material testing"]
+    "tags": [
+      "Impact damage",
+      "Cylindrical shells",
+      "Material testing"
+    ]
   },
   {
     "type": "conference",
@@ -590,7 +771,10 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Impact damage", "Cylindrical shells"]
+    "tags": [
+      "Impact damage",
+      "Cylindrical shells"
+    ]
   },
   {
     "type": "journal",
@@ -601,7 +785,10 @@
     "volume": "18(4)",
     "pages": "524–534",
     "doi": "10.1007/s00773-013-0224-3",
-    "tags": ["Ultimate strength", "Cylindrical shells"]
+    "tags": [
+      "Ultimate strength",
+      "Cylindrical shells"
+    ]
   },
   {
     "type": "journal",
@@ -612,7 +799,11 @@
     "volume": "5(1)",
     "pages": "101–115",
     "doi": "10.2478/IJNAOE-2013-0120",
-    "tags": ["Ultimate strength", "Structural reliability", "Naval structures"],
+    "tags": [
+      "Ultimate strength",
+      "Structural reliability",
+      "Naval structures"
+    ],
     "openAccess": true
   },
   {
@@ -624,7 +815,10 @@
     "volume": "",
     "pages": "281–287",
     "doi": "10.1201/b14915-34",
-    "tags": ["Collision and grounding", "Impact damage"]
+    "tags": [
+      "Collision and grounding",
+      "Impact damage"
+    ]
   },
   {
     "type": "conference",
@@ -635,7 +829,11 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Ultimate strength", "Cylindrical shells", "Impact damage"]
+    "tags": [
+      "Ultimate strength",
+      "Cylindrical shells",
+      "Impact damage"
+    ]
   },
   {
     "type": "conference",
@@ -646,7 +844,10 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Collision and grounding", "Cylindrical shells"]
+    "tags": [
+      "Collision and grounding",
+      "Cylindrical shells"
+    ]
   },
   {
     "type": "conference",
@@ -657,7 +858,10 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Ultimate strength", "Cylindrical shells"]
+    "tags": [
+      "Ultimate strength",
+      "Cylindrical shells"
+    ]
   },
   {
     "type": "conference",
@@ -668,6 +872,9 @@
     "volume": "",
     "pages": "",
     "doi": "",
-    "tags": ["Structural reliability", "Cylindrical shells"]
+    "tags": [
+      "Structural reliability",
+      "Cylindrical shells"
+    ]
   }
 ]
