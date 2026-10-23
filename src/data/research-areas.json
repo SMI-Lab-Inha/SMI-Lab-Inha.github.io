@@ -66,18 +66,20 @@
   {
     "slug": "dynamic-response",
     "title": "Dynamic Response",
-    "summary": "Our focus is nonlinear structural dynamics, hull whipping and shock response, including the influence of hull inelasticity and fracture modelling. We also work on the linearised modal analysis of floating offshore wind turbines, where the natural frequencies and damping ratios depend on how the rotor azimuth is sampled and averaged. Hydrodynamic coupling is considered in collision between floating bodies.",
-    "short": "Hull whipping, shock response, and the linearised modal analysis of floating wind turbines.",
+    "summary": "Following the mandate of ISSC Committee II.2 — the dynamic response of marine structures as required for safety and serviceability, whether steady state, transient or random, and the uncertainty in it. Our own work sits in two of the mandate's load categories: accidental loads, through hull girder whipping and shock from underwater explosion and air blast; and environmental loads, through the modal behaviour of floating offshore wind turbines.",
+    "short": "Dynamic response to accidental and environmental loads: whipping, shock and modal behaviour.",
     "keywords": [
-      "nonlinear dynamics",
       "hull whipping",
       "shock response",
-      "modal analysis"
+      "modal analysis",
+      "uncertainty"
     ],
     "topics": [
       "Underwater explosion loading, hull girder whipping, and the effect of hull inelasticity on the whipping response",
       "Shock acceleration at equipment and armament mounts, and its sensitivity to the fracture model used",
-      "Nonlinear structural dynamics and transient response under impulsive loading"
+      "Nonlinear structural dynamics and transient response under impulsive loading",
+      "Dynamic characteristics of floating offshore wind turbines under environmental loading: natural frequencies, damping ratios, and the rotor azimuth sampling and averaging that determine them",
+      "Uncertainty in linearised dynamic models, including the aliasing of tower-passage harmonics and the periodicity discarded by azimuth averaging"
     ],
     "selected": [
       "10.3390/jmse14211990",
@@ -87,7 +89,9 @@
     "software": [
       "VANE",
       "pyBModes"
-    ]
+    ],
+    "methods": "Explicit nonlinear finite element analysis in Abaqus; OpenFAST linearisation with multiblade coordinate transformation and Floquet analysis; our in-house packages VANE and pyBModes.",
+    "development": "Propeller–ice interaction and ice milling is a current student research direction, within the mandate's propeller and ice-induced categories. It has no publication record in the lab yet."
   },
   {
     "slug": "limit-states-during-accidental-and-damage-conditions",
