@@ -42,7 +42,8 @@
   {
     "title": "High-Efficiency Propeller Design for Operation in Both Polar and General Waters",
     "titleKo": "극지/일반해역에서 겸용 가능한 고효율 프로펠러 설계기술 개발",
-    "funder": "Korea Evaluation Institute of Industrial Technology",
+    "funder": "Ministry of Trade, Industry and Resources",
+    "agency": "Korea Evaluation Institute of Industrial Technology (KEIT)",
     "period": "2026/4 – 2029/12",
     "role": "Co-Investigator",
     "status": "current",
@@ -61,6 +62,7 @@
     "title": "BEACON for Future Marine Workforce: Integrating Spatial and Resource Utilization",
     "titleKo": "지속가능한 해양 신산업 인재 양성을 위한 해양공간·자원 활용 연구",
     "funder": "Ministry of Oceans and Fisheries",
+    "agency": "Korea Institute of Marine Science & Technology Promotion (KIMST)",
     "period": "2025/4 – 2029/12",
     "role": "Co-Investigator",
     "status": "current",
@@ -70,7 +72,8 @@
   {
     "title": "Professional Human Resources Training for Digital Shipyard",
     "titleKo": "디지털조선소(DigitalShipYard)전문인력양성",
-    "funder": "Ministry of Trade, Industry and Energy (R&D)",
+    "funder": "Ministry of Trade, Industry and Resources",
+    "agency": "Korea Institute for Advancement of Technology (KIAT)",
     "period": "2026/3 – 2031/3",
     "role": "Co-Investigator",
     "status": "current",
