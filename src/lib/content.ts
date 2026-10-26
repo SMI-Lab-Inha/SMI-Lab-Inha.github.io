@@ -1,4 +1,4 @@
-import { recruitment, type NewsItem, type Publication } from '../data/content';
+import { recruitment, type NewsItem, type Project, type Publication } from '../data/content';
 
 export function slugify(value: string) {
   return value
@@ -23,6 +23,11 @@ export function acceptanceLabel(paper: Publication) {
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
   }).format(new Date(`${paper.acceptedDate}T00:00:00Z`));
   return `Accepted for publication, ${date}`;
+}
+
+// Follows the acknowledgement wording: "supported by <agency>, funded by <funder>".
+export function funderLabel(project: Project) {
+  return project.agency ? `${project.agency}, funded by the ${project.funder}` : project.funder;
 }
 
 export function newsBody(item: NewsItem) {

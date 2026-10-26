@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { publications, researchAreas as areas, software, projects } from '../../data/content';
-import { acceptanceLabel, publicationAnchor, slugify } from '../../lib/content';
+import { acceptanceLabel, funderLabel, publicationAnchor, slugify } from '../../lib/content';
 const packageStatus = { public: 'Public release', alpha: 'Private alpha — ongoing development', beta: 'Private beta — ongoing development', 'in-development': 'Ongoing development' };
 
 // Areas store publication references; each citation is resolved from its
@@ -118,7 +118,7 @@ const figureSize = (src: string) => {
                     {area.projectTitles.length > 0 ? area.projectTitles.map((title) => {
                       const project = projects.find((item) => item.title === title)!;
                       return <li><a href={'/research/projects#' + slugify(project.title)}>{project.title}</a>
-                        {' — '}{project.status}, {project.period}. {project.funder}.</li>;
+                        {' — '}{project.status}, {project.period}. {funderLabel(project)}.</li>;
                     }) : area.funding?.map((f) => <li>{f}</li>)}
                   </ul>
                   <p><a href="/research/projects">All projects</a></p>

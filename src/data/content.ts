@@ -57,6 +57,8 @@ export const projectSchema = z.object({
   title: z.string().min(1),
   titleKo: optionalText,
   funder: z.string().min(1),
+  // The agency that administers the award for the funder, e.g. KETEP for a ministry.
+  agency: optionalText.optional().default(''),
   period: optionalText,
   role: z.enum(['Principal Investigator', 'Co-Investigator']),
   status: z.enum(['current', 'completed', 'planned']),
