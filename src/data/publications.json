@@ -14,6 +14,43 @@
     "openAccess": true
   },
   {
+    "id": "narx-power-cable-curvature",
+    "type": "journal",
+    "authors": "Seo JH, Park SJ",
+    "title": "NARX-based system identification of dynamic power-cable curvature response for a floating offshore wind turbine",
+    "venue": "Ocean Engineering",
+    "year": "2026",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": [
+      "Dynamic power cables",
+      "Floating offshore wind",
+      "Machine learning"
+    ],
+    "inPress": true,
+    "acceptedDate": "2026-10-24"
+  },
+  {
+    "id": "mooring-digital-twin",
+    "type": "journal",
+    "authors": "Seo JH",
+    "title": "Physics-based digital twin for mooring tension monitoring and fatigue assessment of floating offshore wind turbines",
+    "venue": "Ocean Engineering",
+    "year": "2026",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": [
+      "Mooring systems",
+      "Floating offshore wind",
+      "Fatigue",
+      "Structural health monitoring"
+    ],
+    "inPress": true,
+    "acceptedDate": "2026-10-24"
+  },
+  {
     "id": "iacs-wave-scatter-fatigue",
     "openAccess": true,
     "type": "journal",
