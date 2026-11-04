@@ -2,6 +2,22 @@
   {
     "type": "journal",
     "authors": "Seo JH",
+    "title": "Physics-based digital twin for mooring tension monitoring and fatigue-load assessment of floating offshore wind turbines",
+    "venue": "Ocean Engineering",
+    "year": "2026",
+    "volume": "370, Part 2",
+    "pages": "129131",
+    "doi": "10.1016/j.oceaneng.2026.129131",
+    "tags": [
+      "Mooring systems",
+      "Floating offshore wind",
+      "Fatigue",
+      "Structural health monitoring"
+    ]
+  },
+  {
+    "type": "journal",
+    "authors": "Seo JH",
     "title": "Influence of Azimuth Averaging on the Linearised Modal Analysis of Floating Offshore Wind Turbines",
     "venue": "Journal of Marine Science and Engineering",
     "year": "2026",
@@ -27,25 +43,6 @@
       "Dynamic power cables",
       "Floating offshore wind",
       "Machine learning"
-    ],
-    "inPress": true,
-    "acceptedDate": "2026-10-24"
-  },
-  {
-    "id": "mooring-digital-twin",
-    "type": "journal",
-    "authors": "Seo JH",
-    "title": "Physics-based digital twin for mooring tension monitoring and fatigue assessment of floating offshore wind turbines",
-    "venue": "Ocean Engineering",
-    "year": "2026",
-    "volume": "",
-    "pages": "",
-    "doi": "",
-    "tags": [
-      "Mooring systems",
-      "Floating offshore wind",
-      "Fatigue",
-      "Structural health monitoring"
     ],
     "inPress": true,
     "acceptedDate": "2026-10-24"
