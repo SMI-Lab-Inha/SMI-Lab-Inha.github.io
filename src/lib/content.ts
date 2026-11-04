@@ -10,7 +10,7 @@ export function slugify(value: string) {
 }
 
 export function newsSlug(item: NewsItem) {
-  return slugify(item.title);
+  return item.slug || slugify(item.title);
 }
 
 export function publicationAnchor(paper: Publication) {

@@ -88,6 +88,8 @@ export const newsSchema = z.object({
   date: z.union([z.literal(''), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]),
   display: optionalText,
   title: z.string().min(1),
+  // Fixes the URL when a title is reworded after publication.
+  slug: optionalText.optional().default(''),
   body: optionalText,
   link: optionalUrl.or(z.string().startsWith('/')),
   linkText: optionalText,

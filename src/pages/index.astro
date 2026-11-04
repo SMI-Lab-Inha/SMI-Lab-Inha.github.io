@@ -11,7 +11,7 @@ import {
   researchAreas as areas,
   software,
 } from '../data/content';
-import { newsSlug, positionsLabel, recruitmentStatusLabel } from '../lib/content';
+import { newsSlug, positionsLabel } from '../lib/content';
 
 // Same ordering as the news page: pinned first, then newest first by date.
 const latest = [
@@ -43,13 +43,14 @@ const people = members;
           {site.department} · {site.university}
         </p>
         <h1>Marine Structural Mechanics<br />{' '}and Integrity Lab</h1>
+        <p class="hero-ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</p>
         <p class="hero-tagline">
           We study how ships and offshore structures fail by fracture, fatigue and collapse,
           and how to assess structures that are already in service.
         </p>
         <p class="hero-actions">
           <a class="btn" href="/research/research-areas">Our research</a>
-          <a class="btn btn--ghost" href="/join-us">Join the lab</a>
+          <a class="btn btn--ghost" href="/join-us">Join us</a>
         </p>
       </div>
       {/* Vector, so it stays crisp at any density and needs no srcset. */}
@@ -79,22 +80,19 @@ const people = members;
   <section class="section">
     <div class="wrap intro">
       <div>
-        <h2 class="intro-title">
-          Marine Structural Mechanics and Integrity Lab{' '}
-          <span class="ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
-        </h2>
-
-        {/* A "how the work connects" aside sat beside this paragraph until
-            November 2026. Its four steps described only the fracture and
-            sensing lines, not the six areas, and it was removed at the
-            director's request. */}
+        {/* A "how the work connects" aside sat beside this paragraph, and a
+            "Mission and vision" section further down, until November 2026. Both
+            were removed at the director's request; the values from the
+            original site are kept as the line below. */}
         <p class="intro-lead">
           The lab was established in March 2025 in the {site.department} at {site.university}.
           It is directed by <a href="/team/director">Professor {d.name}</a>{' '}
           <span class="name-ko" lang="ko">(서재훈)</span>, who
-          published as Burak Can Cerik until 2025. Current funded work concerns mooring
-          components and dynamic power cables for floating offshore wind.
+          published as Burak Can Cerik until 2025. The three projects it leads concern mooring
+          components, dynamic power cables and mooring line tension estimation for floating
+          offshore wind.
         </p>
+        <p class="values-line">{site.values.join(' · ')}</p>
       </div>
     </div>
   </section>
@@ -107,8 +105,7 @@ const people = members;
       </div>
       <p class="lead thrusts-lead">
         Six areas, following the committee structure of the International Ship and Offshore
-        Structures Congress (ISSC). Each card leads to the topics, funded projects and papers for
-        that area.
+        Structures Congress (ISSC).
       </p>
       <div class="thrusts">
         {
@@ -119,11 +116,6 @@ const people = members;
                 <span class="thrust-n">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{a.title}</h3>
                 <p class="thrust-short">{a.short}</p>
-                <ul class="thrust-keys">
-                  {a.keywords.map((k) => (
-                    <li>{k}</li>
-                  ))}
-                </ul>
               </div>
             </a>
           ))
@@ -158,26 +150,6 @@ const people = members;
   </section>
 
   <section class="section section--subtle">
-    <div class="wrap values">
-      <div>
-        <h2>Mission and vision</h2>
-        <p class="statement">
-          We study fracture, fatigue and structural failure in ships and offshore structures,
-          and develop methods to assess them.
-        </p>
-        <p>
-          Cracks and fatigue damage often develop where they cannot be inspected directly. We
-          study how damage develops and leads to failure, and use the results in methods for
-          assessment and monitoring.
-        </p>
-      </div>
-      <ul class="value-list list-plain">
-        {site.values.map((value) => <li>{value}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section">
     <div class="wrap">
       <div class="head">
         <h2>The team</h2>
@@ -210,7 +182,7 @@ const people = members;
     </div>
   </section>
 
-  <section class="section section--subtle">
+  <section class="section">
     <div class="wrap">
       <div class="head">
         <h2>News</h2>
@@ -229,23 +201,23 @@ const people = members;
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--subtle">
     <div class="wrap cta">
-      <h2>Work with us</h2>
+      <h2>Join us</h2>
       <p>{recruitment.summary}</p>
       <p class="muted">
-        <strong>{recruitmentStatusLabel()}:</strong> {positionsLabel()} are available for the{' '}
+        {positionsLabel()} are available for the{' '}
         {recruitment.intake}.
         Undergraduate research slots are {recruitment.undergraduateSlotsAvailable ? 'available' : 'currently full'}.
       </p>
       <p>
-        <a class="btn" href="/join-us">Join us</a>
+        <a class="btn" href="/join-us">How to apply</a>
         <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
       </p>
     </div>
   </section>
 
-  <section class="section section--subtle">
+  <section class="section">
     <div class="wrap contact">
       <div>
         <h2 class="address-title">Find us</h2>
@@ -317,6 +289,17 @@ const people = members;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.72);
     margin-bottom: 1rem;
+  }
+
+  .hero-ko {
+    margin: -0.2em 0 1.1rem;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .values-line {
+    margin: 0;
+    color: var(--c-text-muted);
   }
 
   .hero-tagline {
@@ -404,20 +387,6 @@ const people = members;
   }
 
   /* Intro -------------------------------------------------------------- */
-  .intro-title {
-    margin-top: 0;
-    font-size: 1.35rem;
-  }
-
-  .ko {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--c-text-muted);
-    margin-top: 0.35em;
-  }
-
   .name-ko {
     white-space: nowrap;
   }
@@ -458,28 +427,6 @@ const people = members;
     font-size: 0.9rem;
     line-height: 1.5;
     color: var(--c-text-muted, #46484d);
-  }
-
-  /* The keywords carry the visual weight the figure used to, and double as the
-     terms a visitor is likely to be scanning the page for. */
-  .thrust-keys {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .thrust-keys li {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    line-height: 1.3;
-    padding: 0.22em 0.6em;
-    border: 1px solid var(--c-border);
-    border-radius: 999px;
-    color: var(--c-accent);
-    white-space: normal;
   }
 
   .thrusts-lead {
@@ -568,42 +515,6 @@ const people = members;
     color: var(--c-accent-hover);
     background: var(--c-accent-soft);
     border-color: var(--c-accent);
-  }
-
-  /* Mission / values --------------------------------------------------- */
-  .values {
-    display: grid;
-    gap: 2.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-    align-items: start;
-  }
-
-  .values h2 {
-    margin-top: 0;
-  }
-
-  .statement {
-    font-size: 1.08rem;
-    font-style: italic;
-    border-left: 3px solid var(--c-accent);
-    padding-left: 1.1rem;
-    margin-bottom: 1.4rem;
-  }
-
-  .value-list {
-    display: grid;
-    gap: 0.7rem;
-    margin: 0;
-  }
-
-  .value-list li {
-    background: var(--c-bg);
-    border: 1px solid var(--c-border);
-    border-left: 3px solid var(--c-accent);
-    border-radius: var(--radius);
-    padding: 0.8rem 1.1rem;
-    font-family: var(--font-display);
-    font-size: 0.98rem;
   }
 
   /* People ------------------------------------------------------------- */
