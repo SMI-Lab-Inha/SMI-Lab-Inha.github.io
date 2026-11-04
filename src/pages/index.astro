@@ -33,27 +33,6 @@ const pkgStatus: Record<string, string> = {
 };
 const currentProjects = projects.filter((project) => project.status === 'current');
 const people = members;
-
-// This used to list the thrusts, which now sit as cards directly below it. What
-// the cards do not say is how the work connects, so the aside says that instead.
-const chain = [
-  {
-    step: 'Measure',
-    text: 'Material tests on shipbuilding and offshore steels over a range of stress states, strain rates and temperatures.',
-  },
-  {
-    step: 'Calibrate',
-    text: 'Fracture and instability criteria fitted to those tests, and implemented as user material subroutines for finite element analysis.',
-  },
-  {
-    step: 'Predict',
-    text: 'Structural analysis of tearing, collapse and shock response, and limit state assessment.',
-  },
-  {
-    step: 'Monitor',
-    text: 'Estimation of loads and fatigue damage in structures in service from a few measurements.',
-  },
-];
 ---
 
 <Base title={site.fullName} description={site.shortDescription}>
@@ -105,30 +84,18 @@ const chain = [
           <span class="ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
         </h2>
 
-        {/* The lead that sat here restated the hero tagline, and the paragraph
-            after this one listed the three thrusts in prose directly above the
-            three thrust cards. What remains is the part neither of those says:
-            how mechanics and integrity relate. */}
+        {/* A "how the work connects" aside sat beside this paragraph until
+            November 2026. Its four steps described only the fracture and
+            sensing lines, not the six areas, and it was removed at the
+            director's request. */}
         <p class="intro-lead">
           The lab was established in March 2025 in the {site.department} at {site.university}.
-          It is directed by <a href="/team/director">Professor {d.name}</a> (서재훈), who
+          It is directed by <a href="/team/director">Professor {d.name}</a>{' '}
+          <span class="name-ko" lang="ko">(서재훈)</span>, who
           published as Burak Can Cerik until 2025. Current funded work concerns mooring
           components and dynamic power cables for floating offshore wind.
         </p>
       </div>
-
-      <aside class="glance">
-        <h3>How the work connects</h3>
-        <ol class="chain list-plain">
-          {
-            chain.map((c) => (
-              <li>
-                <strong>{c.step}.</strong> {c.text}
-              </li>
-            ))
-          }
-        </ol>
-      </aside>
     </div>
   </section>
 
@@ -437,13 +404,6 @@ const chain = [
   }
 
   /* Intro -------------------------------------------------------------- */
-  .intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-    gap: clamp(2rem, 5vw, 3.5rem);
-    align-items: start;
-  }
-
   .intro-title {
     margin-top: 0;
     font-size: 1.35rem;
@@ -458,39 +418,13 @@ const chain = [
     margin-top: 0.35em;
   }
 
+  .name-ko {
+    white-space: nowrap;
+  }
+
   .intro-lead {
     font-size: 1.1rem;
     line-height: 1.6;
-  }
-
-  .glance {
-    background: var(--c-bg-subtle);
-    border: 1px solid var(--c-border);
-    border-top: 3px solid var(--c-accent);
-    border-radius: var(--radius);
-    padding: 1.4rem;
-    position: sticky;
-    top: 1.5rem;
-  }
-
-  .glance h3 {
-    margin-top: 0;
-    font-size: 0.98rem;
-  }
-
-  .glance ul {
-    padding-left: 1.05rem;
-    margin-bottom: 0;
-  }
-
-  .glance li {
-    margin-bottom: 0.65rem;
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .glance li:last-child {
-    margin-bottom: 0;
   }
 
   /* Thrust cards ------------------------------------------------------- */
@@ -551,20 +485,6 @@ const chain = [
   .thrusts-lead {
     margin: 0 0 1.6rem;
     max-width: 54ch;
-  }
-
-  .chain {
-    counter-reset: chain;
-  }
-
-  .chain li {
-    margin-bottom: 0.7rem;
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .chain strong {
-    color: var(--c-accent);
   }
 
   .thrust:hover {
@@ -784,8 +704,7 @@ const chain = [
   }
 
   @media (max-width: 860px) {
-    .hero-inner,
-    .intro {
+    .hero-inner {
       grid-template-columns: 1fr;
     }
 
@@ -801,10 +720,6 @@ const chain = [
 
     .proof-grid div:nth-child(odd) {
       border-left: 0;
-    }
-
-    .glance {
-      position: static;
     }
 
     .news-list li {
