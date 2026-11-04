@@ -11,7 +11,7 @@ import {
   researchAreas as areas,
   software,
 } from '../data/content';
-import { newsSlug, positionsLabel, recruitmentStatusLabel } from '../lib/content';
+import { newsSlug, positionsLabel } from '../lib/content';
 
 // Same ordering as the news page: pinned first, then newest first by date.
 const latest = [
@@ -33,27 +33,6 @@ const pkgStatus: Record<string, string> = {
 };
 const currentProjects = projects.filter((project) => project.status === 'current');
 const people = members;
-
-// This used to list the thrusts, which now sit as cards directly below it. What
-// the cards do not say is how the work connects, so the aside says that instead.
-const chain = [
-  {
-    step: 'Measure',
-    text: 'Material testing establishes what a steel actually does across stress states, strain rates and temperatures.',
-  },
-  {
-    step: 'Calibrate',
-    text: 'Fracture and instability criteria are fitted to that data, then written as user material subroutines so they can be used in production analysis.',
-  },
-  {
-    step: 'Predict',
-    text: 'Structure-scale analysis carries those models through to tearing, collapse and shock response, and on to limit state assessment.',
-  },
-  {
-    step: 'Monitor',
-    text: 'For structures already in service, estimators reconstruct the load and fatigue state from the few measurements that can realistically be obtained.',
-  },
-];
 ---
 
 <Base title={site.fullName} description={site.shortDescription}>
@@ -64,13 +43,14 @@ const chain = [
           {site.department} · {site.university}
         </p>
         <h1>Marine Structural Mechanics<br />{' '}and Integrity Lab</h1>
+        <p class="hero-ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</p>
         <p class="hero-tagline">
-          Fracture and fatigue assessment for ships and offshore structures, grounded in
-          structural mechanics and advanced through sensing, simulation, and software.
+          We study how ships and offshore structures fail by fracture, fatigue and collapse,
+          and how to assess structures that are already in service.
         </p>
         <p class="hero-actions">
           <a class="btn" href="/research/research-areas">Our research</a>
-          <a class="btn btn--ghost" href="/join-us">Join the lab</a>
+          <a class="btn btn--ghost" href="/join-us">Join us</a>
         </p>
       </div>
       {/* Vector, so it stays crisp at any density and needs no srcset. */}
@@ -100,35 +80,20 @@ const chain = [
   <section class="section">
     <div class="wrap intro">
       <div>
-        <h2 class="intro-title">
-          Marine Structural Mechanics and Integrity Lab{' '}
-          <span class="ko" lang="ko">선박해양 구조역학 및 구조건전성평가 연구실</span>
-        </h2>
-
-        {/* The lead that sat here restated the hero tagline, and the paragraph
-            after this one listed the three thrusts in prose directly above the
-            three thrust cards. What remains is the part neither of those says:
-            how mechanics and integrity relate. */}
+        {/* A "how the work connects" aside sat beside this paragraph, and a
+            "Mission and vision" section further down, until November 2026. Both
+            were removed at the director's request; the values from the
+            original site are kept as the line below. */}
         <p class="intro-lead">
-          Structural mechanics provides the foundation: how structures carry load, deform,
-          buckle, and collapse under operational and extreme conditions. Structural integrity
-          builds on that foundation to assess crack initiation and growth, fatigue damage, and
-          fitness for continued service.
+          The lab was established in March 2025 in the {site.department} at {site.university}.
+          It is directed by <a href="/team/director">Professor {d.name}</a>{' '}
+          <span class="name-ko" lang="ko">(서재훈)</span>, who
+          published as Burak Can Cerik until 2025. The three projects it leads concern mooring
+          components, dynamic power cables and mooring line tension estimation for floating
+          offshore wind.
         </p>
+        <p class="values-line">{site.values.join(' · ')}</p>
       </div>
-
-      <aside class="glance">
-        <h3>How the work connects</h3>
-        <ol class="chain list-plain">
-          {
-            chain.map((c) => (
-              <li>
-                <strong>{c.step}.</strong> {c.text}
-              </li>
-            ))
-          }
-        </ol>
-      </aside>
     </div>
   </section>
 
@@ -139,9 +104,8 @@ const chain = [
         <a href="/research/research-areas">All research →</a>
       </div>
       <p class="lead thrusts-lead">
-        Six areas of research, held together by one question: how marine structures fail, and how
-        far ahead of the failure we can see it coming. Follow any card for the methods, the
-        funding behind it, and the papers it rests on.
+        Six areas, following the committee structure of the International Ship and Offshore
+        Structures Congress (ISSC).
       </p>
       <div class="thrusts">
         {
@@ -152,11 +116,6 @@ const chain = [
                 <span class="thrust-n">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{a.title}</h3>
                 <p class="thrust-short">{a.short}</p>
-                <ul class="thrust-keys">
-                  {a.keywords.map((k) => (
-                    <li>{k}</li>
-                  ))}
-                </ul>
               </div>
             </a>
           ))
@@ -172,9 +131,8 @@ const chain = [
         <a href="/research/software">Software &amp; facilities →</a>
       </div>
       <p class="lead">
-        We treat research software as an output in its own right, developed under version
-        control with automated tests and documentation, and released as the accompanying papers
-        appear.
+        We write software for our research. A package is made public when the paper describing
+        it is submitted.
       </p>
       <ul class="pkgs list-plain">
         {
@@ -192,27 +150,6 @@ const chain = [
   </section>
 
   <section class="section section--subtle">
-    <div class="wrap values">
-      <div>
-        <h2>Mission and vision</h2>
-        <p class="statement">
-          Advancing structural mechanics and integrity assessment for safe and sustainable
-          marine infrastructure, with particular emphasis on fracture, fatigue, and structural
-          failure.
-        </p>
-        <p>
-          Cracks and fatigue damage often develop where direct observation is difficult. We
-          investigate the mechanics of damage and failure, then turn that understanding into
-          assessment and monitoring methods that engineers can use with confidence.
-        </p>
-      </div>
-      <ul class="value-list list-plain">
-        {site.values.map((value) => <li>{value}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section">
     <div class="wrap">
       <div class="head">
         <h2>The team</h2>
@@ -245,17 +182,17 @@ const chain = [
     </div>
   </section>
 
-  <section class="section section--subtle">
+  <section class="section">
     <div class="wrap">
       <div class="head">
-        <h2>What's happening</h2>
+        <h2>News</h2>
         <a href="/news">All news →</a>
       </div>
       <ul class="list-plain news-list">
         {
           latest.map((n) => (
             <li>
-              <span class="news-date">{n.pinned ? 'Now open' : n.display}</span>
+              <span class="news-date">{n.pinned ? 'Open now' : n.display}</span>
               <a href={`/news/${newsSlug(n)}/`}>{n.title}</a>
             </li>
           ))
@@ -264,23 +201,23 @@ const chain = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--subtle">
     <div class="wrap cta">
-      <h2>Work with us</h2>
+      <h2>Join us</h2>
       <p>{recruitment.summary}</p>
       <p class="muted">
-        <strong>{recruitmentStatusLabel()}:</strong> {positionsLabel()} are available for the{' '}
+        {positionsLabel()} are available for the{' '}
         {recruitment.intake}.
         Undergraduate research slots are {recruitment.undergraduateSlotsAvailable ? 'available' : 'currently full'}.
       </p>
       <p>
-        <a class="btn" href="/join-us">Opportunities</a>
+        <a class="btn" href="/join-us">How to apply</a>
         <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
       </p>
     </div>
   </section>
 
-  <section class="section section--subtle">
+  <section class="section">
     <div class="wrap contact">
       <div>
         <h2 class="address-title">Find us</h2>
@@ -352,6 +289,17 @@ const chain = [
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.72);
     margin-bottom: 1rem;
+  }
+
+  .hero-ko {
+    margin: -0.2em 0 1.1rem;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .values-line {
+    margin: 0;
+    color: var(--c-text-muted);
   }
 
   .hero-tagline {
@@ -439,60 +387,13 @@ const chain = [
   }
 
   /* Intro -------------------------------------------------------------- */
-  .intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-    gap: clamp(2rem, 5vw, 3.5rem);
-    align-items: start;
-  }
-
-  .intro-title {
-    margin-top: 0;
-    font-size: 1.35rem;
-  }
-
-  .ko {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--c-text-muted);
-    margin-top: 0.35em;
+  .name-ko {
+    white-space: nowrap;
   }
 
   .intro-lead {
     font-size: 1.1rem;
     line-height: 1.6;
-  }
-
-  .glance {
-    background: var(--c-bg-subtle);
-    border: 1px solid var(--c-border);
-    border-top: 3px solid var(--c-accent);
-    border-radius: var(--radius);
-    padding: 1.4rem;
-    position: sticky;
-    top: 1.5rem;
-  }
-
-  .glance h3 {
-    margin-top: 0;
-    font-size: 0.98rem;
-  }
-
-  .glance ul {
-    padding-left: 1.05rem;
-    margin-bottom: 0;
-  }
-
-  .glance li {
-    margin-bottom: 0.65rem;
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .glance li:last-child {
-    margin-bottom: 0;
   }
 
   /* Thrust cards ------------------------------------------------------- */
@@ -528,45 +429,9 @@ const chain = [
     color: var(--c-text-muted, #46484d);
   }
 
-  /* The keywords carry the visual weight the figure used to, and double as the
-     terms a visitor is likely to be scanning the page for. */
-  .thrust-keys {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .thrust-keys li {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    line-height: 1.3;
-    padding: 0.22em 0.6em;
-    border: 1px solid var(--c-border);
-    border-radius: 999px;
-    color: var(--c-accent);
-    white-space: normal;
-  }
-
   .thrusts-lead {
     margin: 0 0 1.6rem;
     max-width: 54ch;
-  }
-
-  .chain {
-    counter-reset: chain;
-  }
-
-  .chain li {
-    margin-bottom: 0.7rem;
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .chain strong {
-    color: var(--c-accent);
   }
 
   .thrust:hover {
@@ -652,42 +517,6 @@ const chain = [
     border-color: var(--c-accent);
   }
 
-  /* Mission / values --------------------------------------------------- */
-  .values {
-    display: grid;
-    gap: 2.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-    align-items: start;
-  }
-
-  .values h2 {
-    margin-top: 0;
-  }
-
-  .statement {
-    font-size: 1.08rem;
-    font-style: italic;
-    border-left: 3px solid var(--c-accent);
-    padding-left: 1.1rem;
-    margin-bottom: 1.4rem;
-  }
-
-  .value-list {
-    display: grid;
-    gap: 0.7rem;
-    margin: 0;
-  }
-
-  .value-list li {
-    background: var(--c-bg);
-    border: 1px solid var(--c-border);
-    border-left: 3px solid var(--c-accent);
-    border-radius: var(--radius);
-    padding: 0.8rem 1.1rem;
-    font-family: var(--font-display);
-    font-size: 0.98rem;
-  }
-
   /* People ------------------------------------------------------------- */
   .people {
     display: grid;
@@ -744,7 +573,7 @@ const chain = [
   }
 
   .news-list a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .news-date {
@@ -786,8 +615,7 @@ const chain = [
   }
 
   @media (max-width: 860px) {
-    .hero-inner,
-    .intro {
+    .hero-inner {
       grid-template-columns: 1fr;
     }
 
@@ -803,10 +631,6 @@ const chain = [
 
     .proof-grid div:nth-child(odd) {
       border-left: 0;
-    }
-
-    .glance {
-      position: static;
     }
 
     .news-list li {

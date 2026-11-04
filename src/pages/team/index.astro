@@ -5,21 +5,21 @@ import d from '../../data/director.json';
 import { alumni } from '../../data/content';
 
 const sections = [
-  { href: '/team/director', title: 'Director', text: `${d.name} — ${d.title}.` },
+  { href: '/team/director', title: 'Director', text: `${d.name}, ${d.title}.` },
   {
     href: '/team/current-members',
     title: 'Current members',
-    text: 'The founding cohort, working across the lab’s research programme.',
+    text: 'The founding cohort of the lab.',
   },
   {
     href: '/team/alumni',
     title: 'Alumni',
-    text: 'Former members, their theses, and where they went next.',
+    text: 'MSc and PhD graduates of the lab.',
   },
 ].filter((section) => section.href !== '/team/alumni' || alumni.length > 0);
 ---
 
-<Base title="Team" description="Professor Jae Hoon Seo and the founding student research cohort of the SMI Lab at Inha University.">
+<Base title="Team" description="Professor Jae Hoon Seo and the student researchers of the SMI Lab at Inha University.">
   <PageHeader eyebrow="People" title="Team" />
 
   <section class="section">

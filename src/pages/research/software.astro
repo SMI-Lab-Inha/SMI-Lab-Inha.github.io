@@ -25,8 +25,8 @@ const softwareSchema = software.map((pkg) => ({
 
 const statusLabel: Record<string, string> = {
   public: 'Public',
-  beta: 'Private — beta, release planned with first publication',
-  alpha: 'Private — alpha, release planned with first publication',
+  beta: 'Private beta, to be released with its first paper',
+  alpha: 'Private alpha, to be released with its first paper',
   'in-development': 'In development',
 };
 ---
@@ -39,20 +39,18 @@ const statusLabel: Record<string, string> = {
   <PageHeader
     eyebrow="Research"
     title="Software & facilities"
-    lead="We build the analysis tools our research needs and release them openly."
+    lead="Software we have written for our research, the commercial tools we use, and our computers."
   />
 
   <section class="section">
     <div class="wrap">
-      <h2 id="in-house">In-house open-source software</h2>
+      <h2 id="in-house">Our packages</h2>
       <p>
-        Each package is developed with version control, automated testing, and documentation.
-        Papers based on these tools cite the specific release so that results are reproducible.
+        Each package is kept under version control with automated tests and documentation.
+        Papers cite the release they used.
       </p>
       <p class="policy">
-        Packages are opened to the public when the paper introducing them is submitted. This
-        protects the priority of the methods while guaranteeing that every published result can
-        be reproduced with released code.
+        Packages are made public when the paper describing them is submitted.
       </p>
 
       <div class="stack">
@@ -98,22 +96,18 @@ const statusLabel: Record<string, string> = {
 
       <h2 id="commercial">Commercial and community software</h2>
       <p>
-        Our simulations run on a stack of industry-standard tools alongside the in-house
-        packages. Abaqus is the platform for nonlinear finite element analysis, including user
-        material subroutines (VUMAT/UMAT) for fracture modelling and explicit dynamics for
-        impact problems. OrcaFlex and OrcaWave handle mooring, cable, and hydrodynamic
-        analysis, and OpenFAST provides coupled aero-hydro-servo-elastic simulation of wind
-        turbines, including batch design load case processing. Altair HyperWorks covers
-        meshing and post-processing. Development is done primarily in Python (NumPy, SciPy,
-        JAX, scikit-learn, PyTorch), with MATLAB used for selected signal processing and
-        control work.
+        Abaqus for nonlinear finite element analysis, with user material subroutines (VUMAT,
+        UMAT) for fracture and explicit dynamics for impact; OrcaFlex and OrcaWave for
+        moorings, cables and hydrodynamics; OpenFAST for coupled simulation of wind turbines,
+        including design load cases; Altair HyperWorks for meshing and post-processing. We
+        program mainly in Python (NumPy, SciPy, JAX, scikit-learn, PyTorch), and use MATLAB for
+        some signal processing and control work.
       </p>
 
       <h2 id="computing">Computing</h2>
       <p>
-        The lab runs a dedicated computational environment for large-scale nonlinear
-        simulation, coupled offshore dynamics, and parametric integrity studies, built around
-        sustained engineering workloads rather than short interactive jobs.
+        The lab has two workstations for nonlinear simulation, coupled offshore dynamics and
+        parametric studies.
       </p>
 
       <div class="machines">
@@ -121,8 +115,7 @@ const statusLabel: Record<string, string> = {
           <p class="eyebrow">Primary simulation workstation</p>
           <h3>SMIL2</h3>
           <p class="muted">
-            Configured for sustained, CPU-intensive simulations, large in-memory models, and
-            extended computational campaigns.
+            Used for long CPU-intensive runs and large models.
           </p>
           <dl>
             <div>
@@ -154,8 +147,7 @@ const statusLabel: Record<string, string> = {
           <p class="eyebrow">Secondary workstation</p>
           <h3>SMIL</h3>
           <p class="muted">
-            Provides dedicated capacity for Abaqus/Explicit ice–structure interaction analyses
-            and expands the lab's parallel simulation capability.
+            Used mainly for Abaqus/Explicit ice–structure interaction analyses.
           </p>
           <dl>
             <div>
