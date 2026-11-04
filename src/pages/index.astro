@@ -39,19 +39,19 @@ const people = members;
 const chain = [
   {
     step: 'Measure',
-    text: 'Material testing establishes what a steel actually does across stress states, strain rates and temperatures.',
+    text: 'Material tests on shipbuilding and offshore steels over a range of stress states, strain rates and temperatures.',
   },
   {
     step: 'Calibrate',
-    text: 'Fracture and instability criteria are fitted to that data, then written as user material subroutines so they can be used in production analysis.',
+    text: 'Fracture and instability criteria fitted to those tests, and implemented as user material subroutines for finite element analysis.',
   },
   {
     step: 'Predict',
-    text: 'Structure-scale analysis carries those models through to tearing, collapse and shock response, and on to limit state assessment.',
+    text: 'Structural analysis of tearing, collapse and shock response, and limit state assessment.',
   },
   {
     step: 'Monitor',
-    text: 'For structures already in service, estimators reconstruct the load and fatigue state from the few measurements that can realistically be obtained.',
+    text: 'Estimation of loads and fatigue damage in structures in service from a few measurements.',
   },
 ];
 ---
@@ -65,8 +65,8 @@ const chain = [
         </p>
         <h1>Marine Structural Mechanics<br />{' '}and Integrity Lab</h1>
         <p class="hero-tagline">
-          Fracture and fatigue assessment for ships and offshore structures, grounded in
-          structural mechanics and advanced through sensing, simulation, and software.
+          We study how ships and offshore structures fail by fracture, fatigue and collapse,
+          and how to assess structures that are already in service.
         </p>
         <p class="hero-actions">
           <a class="btn" href="/research/research-areas">Our research</a>
@@ -110,10 +110,10 @@ const chain = [
             three thrust cards. What remains is the part neither of those says:
             how mechanics and integrity relate. */}
         <p class="intro-lead">
-          Structural mechanics provides the foundation: how structures carry load, deform,
-          buckle, and collapse under operational and extreme conditions. Structural integrity
-          builds on that foundation to assess crack initiation and growth, fatigue damage, and
-          fitness for continued service.
+          The lab was established in March 2025 in the {site.department} at {site.university}.
+          It is directed by <a href="/team/director">Professor {d.name}</a> (서재훈), who
+          published as Burak Can Cerik until 2025. Current funded work concerns mooring
+          components and dynamic power cables for floating offshore wind.
         </p>
       </div>
 
@@ -139,9 +139,9 @@ const chain = [
         <a href="/research/research-areas">All research →</a>
       </div>
       <p class="lead thrusts-lead">
-        Six areas of research, held together by one question: how marine structures fail, and how
-        far ahead of the failure we can see it coming. Follow any card for the methods, the
-        funding behind it, and the papers it rests on.
+        Six areas, following the committee structure of the International Ship and Offshore
+        Structures Congress (ISSC). Each card leads to the topics, funded projects and papers for
+        that area.
       </p>
       <div class="thrusts">
         {
@@ -172,9 +172,8 @@ const chain = [
         <a href="/research/software">Software &amp; facilities →</a>
       </div>
       <p class="lead">
-        We treat research software as an output in its own right, developed under version
-        control with automated tests and documentation, and released as the accompanying papers
-        appear.
+        We write software for our research. A package is made public when the paper describing
+        it is submitted.
       </p>
       <ul class="pkgs list-plain">
         {
@@ -196,14 +195,13 @@ const chain = [
       <div>
         <h2>Mission and vision</h2>
         <p class="statement">
-          Advancing structural mechanics and integrity assessment for safe and sustainable
-          marine infrastructure, with particular emphasis on fracture, fatigue, and structural
-          failure.
+          We study fracture, fatigue and structural failure in ships and offshore structures,
+          and develop methods to assess them.
         </p>
         <p>
-          Cracks and fatigue damage often develop where direct observation is difficult. We
-          investigate the mechanics of damage and failure, then turn that understanding into
-          assessment and monitoring methods that engineers can use with confidence.
+          Cracks and fatigue damage often develop where they cannot be inspected directly. We
+          study how damage develops and leads to failure, and use the results in methods for
+          assessment and monitoring.
         </p>
       </div>
       <ul class="value-list list-plain">
@@ -248,14 +246,14 @@ const chain = [
   <section class="section section--subtle">
     <div class="wrap">
       <div class="head">
-        <h2>What's happening</h2>
+        <h2>News</h2>
         <a href="/news">All news →</a>
       </div>
       <ul class="list-plain news-list">
         {
           latest.map((n) => (
             <li>
-              <span class="news-date">{n.pinned ? 'Now open' : n.display}</span>
+              <span class="news-date">{n.pinned ? 'Open now' : n.display}</span>
               <a href={`/news/${newsSlug(n)}/`}>{n.title}</a>
             </li>
           ))
@@ -274,7 +272,7 @@ const chain = [
         Undergraduate research slots are {recruitment.undergraduateSlotsAvailable ? 'available' : 'currently full'}.
       </p>
       <p>
-        <a class="btn" href="/join-us">Opportunities</a>
+        <a class="btn" href="/join-us">Join us</a>
         <a class="btn btn--ghost" href={`mailto:${site.email}`}>Contact</a>
       </p>
     </div>
@@ -744,7 +742,7 @@ const chain = [
   }
 
   .news-list a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .news-date {

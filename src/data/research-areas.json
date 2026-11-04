@@ -2,7 +2,7 @@
   {
     "slug": "ultimate-strength",
     "title": "Ultimate Strength",
-    "summary": "Our work covers plate and stiffened-panel buckling, hull-girder progressive collapse and ring-stiffened cylindrical shells. We examine unsymmetrical bending, neutral-axis rotation, welding residual stresses and deformation, damage and heeling effects. We are developing ISUM (Idealised Structural Unit Method), a differentiable JAX implementation for ultimate strength and progressive collapse analysis, currently under verification.",
+    "summary": "We study the buckling of plates and stiffened panels, the progressive collapse of hull girders, and ring-stiffened cylindrical shells, including unsymmetrical bending, neutral-axis rotation, welding residual stress and distortion, damage and heel. ISUM, a differentiable implementation of the Idealised Structural Unit Method in JAX, is under verification.",
     "topics": [
       "Progressive collapse of hull girders under combined and unsymmetrical loading, intact and damaged",
       "Ultimate strength of stiffened panels including welding residual stress and deformation effects",
@@ -19,7 +19,7 @@
       "10.1016/j.tws.2015.07.004",
       "10.2478/IJNAOE-2013-0120"
     ],
-    "short": "Buckling and progressive collapse of hull girders, stiffened panels and shells under combined loading.",
+    "short": "Buckling and progressive collapse of hull girders, stiffened panels and shells.",
     "keywords": [
       "progressive collapse",
       "hull girder",
@@ -38,8 +38,8 @@
       "fatigue-and-eca",
       "peridynamics"
     ],
-    "summary": "Here the structure already contains a defect, the loading is cyclic rather than extreme, and the question is whether it is fit to remain in service. We assess flaws against fracture and fatigue criteria, work on fatigue crack growth in welded joints, and on the wave climate assumptions that fatigue life estimates rest on. Peridynamics is an emerging fracture-modelling method within this area.",
-    "short": "Fatigue crack growth and flaw assessment of structures that already carry a defect.",
+    "summary": "This area concerns structures that already contain a flaw and carry cyclic load, and whether they remain fit for service. We assess flaws against fracture and fatigue criteria, study fatigue crack growth in welded joints, and examine the wave scatter data on which fatigue life estimates depend.",
+    "short": "Fatigue crack growth, and the assessment of structures that contain flaws.",
     "keywords": [
       "fatigue and crack growth",
       "engineering critical assessment",
@@ -55,7 +55,7 @@
       "Hydrogen effects on crack growth in structural steels, and the coupling between hydrogen transport and fracture"
     ],
     "methods": "Fitness-for-service and engineering critical assessment procedures; fatigue crack growth analysis under revised wave scatter data; peridynamic modelling of crack initiation and growth, including coupling to hydrogen transport.",
-    "development": "Peridynamics is an emerging method within this area. This is a new research direction rather than an established programme. It has no publication record in the lab yet; the first manuscripts are under review.",
+    "development": "Peridynamics is an emerging method within this area. The lab has no publications on it yet; the first manuscripts are under review.",
     "selected": [
       "10.3744/snak.2023.60.4.213"
     ],
@@ -66,8 +66,8 @@
   {
     "slug": "dynamic-response",
     "title": "Dynamic Response",
-    "summary": "Following the mandate of ISSC Committee II.2, this area is about vibration: the dynamic response of marine structures as required for safety, serviceability and habitability, and the uncertainty in it. Our work covers transient hull girder vibration and whipping under underwater explosion, the shock acceleration this transmits to equipment, and the modal behaviour of floating offshore wind turbines — their natural frequencies, damping ratios, and how far azimuth sampling distorts them.",
-    "short": "Vibration of ships and offshore structures: hull girder whipping, shock and modal behaviour.",
+    "summary": "Following the mandate of ISSC Committee II.2, this area concerns vibration: the dynamic response of marine structures as it bears on safety, serviceability and habitability, and its uncertainty. We work on transient hull girder vibration and whipping under underwater explosion, the shock acceleration transmitted to equipment, and the modal behaviour of floating offshore wind turbines, including their natural frequencies and damping ratios and the effect of azimuth sampling on both.",
+    "short": "Vibration of ships and offshore structures: whipping, shock and modal behaviour.",
     "keywords": [
       "vibration",
       "hull whipping",
@@ -91,7 +91,7 @@
       "pyBModes"
     ],
     "methods": "Explicit nonlinear finite element analysis in Abaqus; OpenFAST linearisation with multiblade coordinate transformation and Floquet analysis; our in-house packages VANE and pyBModes.",
-    "development": "Propeller–ice interaction and ice milling is a current student research direction, within the mandate's propeller-induced and ice-induced vibration categories. It has no publication record in the lab yet."
+    "development": "Propeller–ice interaction and ice milling is a current student topic, within the mandate’s propeller-induced and ice-induced vibration. The lab has no publications on it yet."
   },
   {
     "slug": "limit-states-during-accidental-and-damage-conditions",
@@ -101,8 +101,8 @@
       "blast-and-explosion",
       "ductile-fracture"
     ],
-    "summary": "Our work addresses collision, grounding, impact, blast and underwater explosion through fracture-calibrated simulations of plate tearing, perforation and structural damage. The fracture models those simulations rely on are measured and calibrated here, from material tests across stress states and temperatures. We examine residual capacity and how damage affects the survivability of ships and their systems.",
-    "short": "Collision, grounding, impact and explosion — ductile fracture, tearing and remaining strength.",
+    "summary": "We study collision, grounding, impact, blast and underwater explosion through simulations of plate tearing, perforation and structural damage. The fracture models used in those simulations are calibrated in the lab from material tests over a range of stress states and temperatures. We also assess the residual strength of damaged structures.",
+    "short": "Collision, grounding, impact and explosion: ductile fracture, tearing and residual strength.",
     "keywords": [
       "collision and grounding",
       "ductile fracture",
@@ -141,8 +141,8 @@
       "mooring-and-cable-integrity",
       "floating-solar"
     ],
-    "summary": "Our focus is floating wind, floating solar and offshore substations, particularly mooring and dynamic power-cable integrity. Professor Jae Hoon Seo’s CableDyn provides global line dynamics; CableXsec is under development for layered cable cross-section mechanics and fatigue assessment. Floating-solar studies address wave response, connectors and float configuration.",
-    "short": "Floating wind, solar and substations, with CableDyn line dynamics and CableXsec cable cross-section development.",
+    "summary": "We work on floating wind, floating solar and offshore substations, mainly on the integrity of moorings and dynamic power cables. CableDyn computes the global dynamics of mooring lines and cables; CableXsec, under development, analyses the cable cross-section and its fatigue. The floating solar studies cover wave response, connectors and float arrangement.",
+    "short": "Floating wind, floating solar and offshore substations; mooring and power cable integrity.",
     "keywords": [
       "CableDyn",
       "CableXsec",
@@ -189,7 +189,7 @@
   {
     "slug": "structural-assessment-during-operations",
     "title": "Structural Assessment During Operations",
-    "summary": "Our research develops virtual sensing, system identification, load reconstruction and fatigue monitoring from sparse measurements. Mechanical models and state estimators use platform motions, line-end responses and strain measurements to reconstruct structural response. Structural digital twins are being developed towards operational assessment; real-time decision support remains a research objective.",
+    "summary": "We estimate the loads, structural response and fatigue damage of structures in service from a small number of measurements: platform motions, line-end loads and strains. The methods are virtual sensing, system identification and the inverse finite element method, built on mechanical models. Digital twins for operational assessment are under development.",
     "topics": [
       "Physics-based virtual sensing of mooring line tension from platform motion, using Kalman filtering and related state estimators built on lumped-mass line dynamics",
       "Inverse finite element method for reconstructing displacement and damage fields from sparse strain measurement",
@@ -207,7 +207,7 @@
       "10.1016/j.oceaneng.2020.106944",
       "10.1201/9780429298875-34"
     ],
-    "short": "Reconstructing loads and fatigue state from sparse measurements, with virtual sensing and structural digital twins.",
+    "short": "Estimating loads and fatigue damage in service from a few measurements.",
     "keywords": [
       "virtual sensing",
       "Kalman filtering",
@@ -217,7 +217,7 @@
     "aliases": [
       "virtual-sensing"
     ],
-    "development": "Operational monitoring and structural digital twins remain active research and development. VANE is public; FOWCON is a private alpha-stage package. The completed 2025–2026 surrogate-model project provides a baseline for the ongoing physics-based virtual sensing project.",
+    "development": "VANE is public and FOWCON is in private alpha. The completed 2025–2026 surrogate-model project is the baseline for the current physics-based virtual sensing project.",
     "software": [
       "VANE",
       "FOWCON"

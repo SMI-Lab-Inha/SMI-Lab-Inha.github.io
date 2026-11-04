@@ -218,8 +218,7 @@ li {
 
 a {
   color: var(--c-accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  text-decoration: none;
 }
 
 a:hover {

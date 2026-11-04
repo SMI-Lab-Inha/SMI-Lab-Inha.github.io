@@ -31,7 +31,7 @@ const figureSize = (src: string) => {
   <PageHeader
     eyebrow="Research"
     title="Research"
-    lead="Fracture and fatigue are the core of our structural integrity research, supported by nonlinear structural mechanics and research software."
+    lead="Six areas, following the committee structure of the International Ship and Offshore Structures Congress (ISSC)."
   />
 
   <section class="section">
@@ -39,12 +39,10 @@ const figureSize = (src: string) => {
       <div class="how">
         <h2>How we work</h2>
         <p>
-          We begin with the mechanics of damage and failure: how loads are carried, how cracks
-          form and grow, and how cyclic or extreme loading leads to loss of structural
-          performance. Every assessment method, monitoring model, or software tool is grounded
-          in physics so that its predictions remain interpretable and defensible in
-          safety-critical use. Data-driven methods estimate states and parameters of mechanical
-          models; they do not replace those models.
+          Our methods start from the mechanics of the structure: how load is carried, how
+          cracks start and grow, and how cyclic or extreme loading reduces strength. Where we
+          use data-driven methods, they estimate the states and parameters of mechanical
+          models.
         </p>
         {/* Six areas make a long page. This lets a reader who arrived for
             one of them get there without scrolling past the other five. */}
@@ -73,7 +71,7 @@ const figureSize = (src: string) => {
               <h2>{area.title}</h2>
               <p>{area.summary}</p>
               {area.highlightSoftware.length > 0 && <div class="software-highlight">
-                <h3>Director’s cable research</h3>
+                <h3>Software</h3>
                 {area.highlightSoftware.map((name) => {
                   const pkg = software.find((item) => item.name === name)!;
                   return <div>
@@ -127,7 +125,7 @@ const figureSize = (src: string) => {
 
               {((area.selected?.length ?? 0) > 0 || area.selectedIds.length > 0) && (
                 <div class="selected">
-                  <h3>Evidence from the publication record</h3>
+                  <h3>Selected papers</h3>
                   <ol class="list-plain">
                     {[...(area.selected ?? []).map(cite), ...area.selectedIds.map((id) => publications.find((paper) => paper.id === id))].map((p) => {
                       return p ? (
@@ -152,7 +150,7 @@ const figureSize = (src: string) => {
 
               {'lineage' in area && area.lineage && (
                 <p class="lineage">
-                  <strong>Where this comes from.</strong> {area.lineage}
+                  <strong>Background.</strong> {area.lineage}
                 </p>
               )}
 
@@ -184,12 +182,9 @@ const figureSize = (src: string) => {
         <div>
           <h2>Cross-cutting capability: research software engineering</h2>
           <p>
-            These research areas produce software, and the lab treats that software as a
-            research output in its own right. Packages are developed under version control
-            with automated test suites, continuous integration, and documentation, and are
-            released publicly as the accompanying papers appear. Graduate students in the lab
-            learn this workflow from their first semester, including AI-assisted development
-            practices.
+            Each area produces software. Packages are kept under version control with automated
+            tests and documentation, and are made public when the paper describing them is
+            submitted. Students learn this way of working from their first semester.
           </p>
           <p>
             <a class="btn btn--ghost" href="/research/software">Software &amp; facilities</a>
@@ -201,16 +196,15 @@ const figureSize = (src: string) => {
         <h2>Partnerships and roles</h2>
         <ul>
           <li>
-            The lab participates as co-investigator in the BEACON marine workforce project
+            The lab is a co-investigator in the BEACON marine workforce project
             (Ministry of Oceans and Fisheries, 2025–2029) and the Digital Shipyard professional
             training programme (Ministry of Trade, Industry and Resources, 2026–2031).
           </li>
           <li>
-            We welcome collaboration with classification societies, shipyards, offshore energy
-            and marine technology developers, and research groups working on structural
-            fracture and fatigue assessment, computational mechanics, or condition monitoring.
-            Contact:{' '}
-            <a href="mailto:jaehoon.seo@inha.ac.kr">jaehoon.seo@inha.ac.kr</a>
+            We would welcome collaboration with classification societies, shipyards, offshore
+            energy companies and research groups on fracture and fatigue assessment,
+            computational mechanics and condition monitoring. Please write to{' '}
+            <a href="mailto:jaehoon.seo@inha.ac.kr">jaehoon.seo@inha.ac.kr</a>.
           </li>
         </ul>
       </div>
@@ -251,7 +245,7 @@ const figureSize = (src: string) => {
   }
 
   .jump a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .jump-n {
@@ -379,7 +373,7 @@ const figureSize = (src: string) => {
   }
 
   .selected a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .selected .cite-title {

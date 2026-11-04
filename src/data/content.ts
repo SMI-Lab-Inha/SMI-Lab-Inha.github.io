@@ -71,6 +71,8 @@ export const projectSchema = z.object({
 export const softwareSchema = z.object({
   name: z.string().min(1),
   expansion: optionalText,
+  // One line for the home page list; the description is for the software page.
+  short: optionalText.optional().default(''),
   description: z.string().min(1),
   status: z.enum(['public', 'beta', 'alpha', 'in-development']),
   language: z.string().optional().default(''),
@@ -107,6 +109,8 @@ export const recruitmentSchema = z.object({
   openUntil: z.union([z.literal(''), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]),
   undergraduateSlotsAvailable: z.boolean(),
   summary: z.string().min(1),
+  // Research area slugs listed on Join us. Not every area is recruiting.
+  areas: z.array(z.string()).default([]),
   contact: z.email(),
 });
 
