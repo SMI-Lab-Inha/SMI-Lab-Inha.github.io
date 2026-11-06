@@ -33,19 +33,17 @@
     "id": "narx-power-cable-curvature",
     "type": "journal",
     "authors": "Seo JH, Park SJ",
-    "title": "NARX-based system identification of dynamic power-cable curvature response for a floating offshore wind turbine",
+    "title": "NARX-based nonlinear system identification of dynamic power-cable curvature for a floating offshore wind turbine",
     "venue": "Ocean Engineering",
     "year": "2026",
-    "volume": "",
-    "pages": "",
-    "doi": "",
+    "volume": "370",
+    "pages": "129129",
+    "doi": "10.1016/j.oceaneng.2026.129129",
     "tags": [
       "Dynamic power cables",
       "Floating offshore wind",
       "Machine learning"
-    ],
-    "inPress": true,
-    "acceptedDate": "2026-10-24"
+    ]
   },
   {
     "id": "iacs-wave-scatter-fatigue",
