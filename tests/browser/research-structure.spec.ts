@@ -11,7 +11,7 @@ const legacy = ['ultimate-strength', 'ductile-fracture', 'fatigue-and-eca',
   'peridynamics', 'collision-and-crashworthiness', 'blast-and-explosion',
   'mooring-and-cable-integrity', 'floating-solar', 'virtual-sensing'];
 
-test('six areas, legacy anchors and accepted paper remain connected', async ({ page }) => {
+test('six areas, legacy anchors and the wave-scatter paper remain connected', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.thrust h3')).toHaveText(headings);
   await expect(page.locator('dl div').filter({ has: page.getByText('Research areas', { exact: true }) }).locator('dd')).toHaveText('6');
@@ -22,15 +22,16 @@ test('six areas, legacy anchors and accepted paper remain connected', async ({ p
   const cables = page.locator('#offshore-renewable-energy .software-highlight');
   await expect(cables.locator('h4')).toHaveText(['CableDyn', 'CableXsec']);
   await expect(cables).toContainText('Private alpha — ongoing development');
-  await page.locator('#fatigue-and-fracture a[href*="paper-iacs-wave-scatter-fatigue"]').click();
+  // Published on 2026-11: the area now cites it by DOI rather than by its anchor.
+  await expect(page.locator('#fatigue-and-fracture a[href="https://doi.org/10.1016/j.ijnaoe.2026.100807"]')).toHaveCount(1);
   const paper = page.locator('#paper-iacs-wave-scatter-fatigue');
-  await expect(paper).toContainText('Effect of the revised IACS North Atlantic wave scatter diagram on fatigue damage in ship structures');
-  await expect(paper).toContainText('Seo JH');
-  await expect(paper).toContainText('Accepted for publication, 19 October 2026');
-  await expect(paper.locator('a[href*="doi.org"]')).toHaveCount(0);
   await page.goto('/news/wave-scatter-fatigue-paper-accepted-by-ijnaoe/');
   await page.locator('main a[href*="paper-iacs-wave-scatter-fatigue"]').click();
   await expect(paper).toBeVisible();
+  await expect(paper).toContainText('Effect of the revised IACS North Atlantic wave scatter diagram on fatigue damage in ship structures');
+  await expect(paper).toContainText('Seo JH');
+  await expect(paper).not.toContainText('Accepted for publication');
+  await expect(paper.locator('a[href*="10.1016/j.ijnaoe.2026.100807"]').first()).toBeVisible();
 });
 
 test('all internal page links and fragments resolve in the build', async ({ page }) => {
