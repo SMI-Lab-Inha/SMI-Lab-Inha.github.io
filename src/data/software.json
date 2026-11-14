@@ -12,15 +12,15 @@
     "featured": true
   },
   {
-    "name": "CableXsec",
+    "name": "CableXSec",
     "expansion": "",
     "short": "Cross-section mechanics and fatigue of dynamic power cables.",
-    "description": "A Python library for the thermo-mechanical cross-section analysis of dynamic power cables and of subsea umbilicals, risers and flowlines (SURF). It covers helix kinematics after Love and Costello, contact after Mindlin, the Witz–Tan constitutive model, and fatigue assessment to DNVGL-RP-0005.",
+    "description": "A Python library for the cross-section mechanics of dynamic power cables. It computes the stick–slip of the helical armour wires and the hysteretic bending that follows, the stresses in every wire and component, contact and fretting, temperatures, and the fatigue damage of the armour, conductor and sheaths. It reads the results of global analyses from CableDyn, RIFLEX and OrcaFlex, and exports a hysteretic bending law for use in global analysis.",
     "language": "Python",
     "licence": "Apache-2.0",
-    "status": "alpha",
-    "repo": "",
-    "docs": "",
+    "status": "public",
+    "repo": "https://github.com/SMI-Lab-Inha/CableXSec",
+    "docs": "https://cablexsec.readthedocs.io/",
     "featured": true
   },
   {

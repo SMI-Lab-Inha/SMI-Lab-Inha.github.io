@@ -141,11 +141,11 @@
       "mooring-and-cable-integrity",
       "floating-solar"
     ],
-    "summary": "We work on floating wind, floating solar and offshore substations, mainly on the integrity of moorings and dynamic power cables. CableDyn computes the global dynamics of mooring lines and cables; CableXsec, under development, analyses the cable cross-section and its fatigue. The floating solar studies cover wave response, connectors and float arrangement.",
+    "summary": "We work on floating wind, floating solar and offshore substations, mainly on the integrity of moorings and dynamic power cables. CableDyn computes the global dynamics of mooring lines and cables; CableXSec analyses the cable cross-section and its fatigue. The floating solar studies cover wave response, connectors and float arrangement.",
     "short": "Floating wind, floating solar and offshore substations; mooring and power cable integrity.",
     "keywords": [
       "CableDyn",
-      "CableXsec",
+      "CableXSec",
       "floating wind and solar",
       "offshore substations"
     ],
@@ -159,7 +159,7 @@
       "Design challenges and standardisation gaps for floating solar systems deployed at sea",
       "Design challenges, structural integrity and standardisation gaps for floating offshore substations"
     ],
-    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn and CableXsec; Bayesian filtering and surrogate modelling in Python.",
+    "methods": "OpenFAST and OrcaFlex for coupled and line dynamics; our in-house packages CableDyn and CableXSec; Bayesian filtering and surrogate modelling in Python.",
     "selected": [
       "10.1016/j.oceaneng.2026.128332",
       "10.1016/j.oceaneng.2026.126528",
@@ -177,13 +177,13 @@
     ],
     "software": [
       "CableDyn",
-      "CableXsec",
+      "CableXSec",
       "pyBModes",
       "pyIECWind"
     ],
     "highlightSoftware": [
       "CableDyn",
-      "CableXsec"
+      "CableXSec"
     ]
   },
   {

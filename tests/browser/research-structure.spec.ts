@@ -20,8 +20,8 @@ test('six areas, legacy anchors and the wave-scatter paper remain connected', as
   for (const id of legacy) await expect(page.locator(`[id="${id}"]`)).toHaveCount(1);
   await expect(page.locator('#fatigue-and-fracture')).toContainText('Peridynamics is an emerging method');
   const cables = page.locator('#offshore-renewable-energy .software-highlight');
-  await expect(cables.locator('h4')).toHaveText(['CableDyn', 'CableXsec']);
-  await expect(cables).toContainText('Private alpha — ongoing development');
+  await expect(cables.locator('h4')).toHaveText(['CableDyn', 'CableXSec']);
+  await expect(cables).not.toContainText('Private alpha');
   // Published on 2026-11: the area now cites it by DOI rather than by its anchor.
   await expect(page.locator('#fatigue-and-fracture a[href="https://doi.org/10.1016/j.ijnaoe.2026.100807"]')).toHaveCount(1);
   const paper = page.locator('#paper-iacs-wave-scatter-fatigue');
