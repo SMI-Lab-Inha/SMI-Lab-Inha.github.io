@@ -16,6 +16,9 @@ test('six areas, legacy anchors and the wave-scatter paper remain connected', as
   await page.goto('/');
   await expect(page.locator('.thrust h3')).toHaveText(headings);
   await expect(page.locator('dl div').filter({ has: page.getByText('Research areas', { exact: true }) }).locator('dd')).toHaveText('6');
+  // The landing card names the areas in prose; keep it in the same order.
+  await page.goto('/research/');
+  await expect(page.locator('main')).toContainText('Offshore renewable energy, fatigue and fracture, assessment during operations, accidental and damage conditions, dynamic response, and ultimate strength.');
   await page.goto('/research/research-areas/');
   await expect(page.locator('.area[id] h2')).toHaveText(headings);
   for (const id of legacy) await expect(page.locator(`[id="${id}"]`)).toHaveCount(1);
