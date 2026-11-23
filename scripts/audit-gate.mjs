@@ -8,13 +8,10 @@
 // this script says so when an exempted advisory stops appearing.
 import { spawnSync } from 'node:child_process';
 
-const EXEMPT = {
-  // picomatch <= 4.0.7, ReDoS through repeated extglobs; no patched release.
-  // picomatch runs only at build time inside Astro and Vite, matching the
-  // repository's own file patterns. The deployed site is static files, so no
-  // untrusted pattern ever reaches it. Granted 2026-11-18 by the director.
-  'GHSA-fc5q-39xc-vjpf': 'picomatch ReDoS, build-time only, no fix released',
-};
+// Entry form: 'GHSA-xxxx-xxxx-xxxx': 'why it cannot reach the built site'.
+// History: GHSA-fc5q-39xc-vjpf (picomatch ReDoS) was exempted on 2026-11-18
+// and removed on 2026-11-23, GitHub having withdrawn the advisory.
+const EXEMPT = {};
 
 const BLOCKING = new Set(['high', 'critical']);
 
