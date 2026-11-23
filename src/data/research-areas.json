@@ -1,140 +1,5 @@
 [
   {
-    "slug": "ultimate-strength",
-    "title": "Ultimate Strength",
-    "summary": "We study the buckling of plates and stiffened panels, the progressive collapse of hull girders, and ring-stiffened cylindrical shells, including unsymmetrical bending, neutral-axis rotation, welding residual stress and distortion, damage and heel. ISUM, a differentiable implementation of the Idealised Structural Unit Method in JAX, is under verification.",
-    "topics": [
-      "Progressive collapse of hull girders under combined and unsymmetrical loading, intact and damaged",
-      "Ultimate strength of stiffened panels including welding residual stress and deformation effects",
-      "Buckling and collapse of ring-stiffened cylindrical shells, including pressure hulls",
-      "Plate buckling, neutral-axis rotation and heeling effects in hull-girder strength and residual capacity assessment",
-      "Ongoing development: Differentiable reimplementation of incremental collapse methods in JAX, enabling automatic sensitivities of ultimate strength with respect to scantlings and material parameters"
-    ],
-    "lineage": "This area continues the incremental-iterative tradition of simplified progressive collapse analysis developed by CS Smith and RS Dow (former Newcastle University Professor in Marine Structures), whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
-    "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; ISUM implementation in Python and JAX with automatic differentiation.",
-    "selected": [
-      "10.1016/j.oceaneng.2025.123159",
-      "10.3390/jmse8120988",
-      "10.1016/j.tws.2017.10.030",
-      "10.1016/j.tws.2015.07.004",
-      "10.2478/IJNAOE-2013-0120"
-    ],
-    "short": "Buckling and progressive collapse of hull girders, stiffened panels and shells.",
-    "keywords": [
-      "progressive collapse",
-      "hull girder",
-      "stiffened panels",
-      "ISUM"
-    ],
-    "software": [
-      "pyULSAN",
-      "ISUM"
-    ]
-  },
-  {
-    "slug": "fatigue-and-fracture",
-    "title": "Fatigue and Fracture",
-    "aliases": [
-      "fatigue-and-eca",
-      "peridynamics"
-    ],
-    "summary": "This area concerns structures that already contain a flaw and carry cyclic load, and whether they remain fit for service. We assess flaws against fracture and fatigue criteria, study fatigue crack growth in welded joints, and examine the wave scatter data on which fatigue life estimates depend.",
-    "short": "Fatigue crack growth, and the assessment of structures that contain flaws.",
-    "keywords": [
-      "fatigue and crack growth",
-      "engineering critical assessment",
-      "welded joints",
-      "peridynamics"
-    ],
-    "topics": [
-      "Engineering critical assessment (ECA) and fitness-for-service evaluation of flawed welded structures",
-      "Fatigue crack growth in welded joints, and the influence of weld geometry and residual stress",
-      "Hull girder fatigue under revised wave scatter diagrams, and the sensitivity of damage ratios to that choice",
-      "Defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels",
-      "Crack initiation and growth in welded steel structures, including the heat-affected zone and weld toe geometry",
-      "Hydrogen effects on crack growth in structural steels, and the coupling between hydrogen transport and fracture"
-    ],
-    "methods": "Fitness-for-service and engineering critical assessment procedures; fatigue crack growth analysis under revised wave scatter data; peridynamic modelling of crack initiation and growth, including coupling to hydrogen transport.",
-    "development": "Peridynamics is an emerging method within this area. The lab has no publications on it yet; the first manuscripts are under review.",
-    "selected": [
-      "10.3744/snak.2023.60.4.213"
-    ],
-    "selectedIds": [
-      "iacs-wave-scatter-fatigue"
-    ]
-  },
-  {
-    "slug": "dynamic-response",
-    "title": "Dynamic Response",
-    "summary": "Following the mandate of ISSC Committee II.2, this area concerns vibration: the dynamic response of marine structures as it bears on safety, serviceability and habitability, and its uncertainty. We work on transient hull girder vibration and whipping under underwater explosion, the shock acceleration transmitted to equipment, and the modal behaviour of floating offshore wind turbines, including their natural frequencies and damping ratios and the effect of azimuth sampling on both.",
-    "short": "Vibration of ships and offshore structures: whipping, shock and modal behaviour.",
-    "keywords": [
-      "vibration",
-      "hull whipping",
-      "modal analysis",
-      "shock response"
-    ],
-    "topics": [
-      "Hull girder whipping under underwater explosion loading, and the effect of hull inelasticity on the whipping response",
-      "Shock response and the shock acceleration transmitted to equipment and armament mounts, and its sensitivity to the fracture model used",
-      "Modal behaviour of floating offshore wind turbines: natural frequencies, damping ratios, and the rotor azimuth sampling and averaging that determine them",
-      "Uncertainty in linearised dynamic models, including the aliasing of tower-passage harmonics and the periodicity discarded by azimuth averaging",
-      "Nonlinear structural dynamics and transient response under impulsive loading"
-    ],
-    "selected": [
-      "10.3390/jmse14211990",
-      "10.1016/j.oceaneng.2022.112930",
-      "10.1080/17445302.2022.2067415"
-    ],
-    "software": [
-      "VANE",
-      "pyBModes"
-    ],
-    "methods": "Explicit nonlinear finite element analysis in Abaqus; OpenFAST linearisation with multiblade coordinate transformation and Floquet analysis; our in-house packages VANE and pyBModes.",
-    "development": "Propeller–ice interaction and ice milling is a current student topic, within the mandate’s propeller-induced and ice-induced vibration. The lab has no publications on it yet."
-  },
-  {
-    "slug": "limit-states-during-accidental-and-damage-conditions",
-    "title": "Limit States During Accidental and Damage Conditions",
-    "aliases": [
-      "collision-and-crashworthiness",
-      "blast-and-explosion",
-      "ductile-fracture"
-    ],
-    "summary": "We study collision, grounding, impact, blast and underwater explosion through simulations of plate tearing, perforation and structural damage. The fracture models used in those simulations are calibrated in the lab from material tests over a range of stress states and temperatures. We also assess the residual strength of damaged structures.",
-    "short": "Collision, grounding, impact and explosion: ductile fracture, tearing and residual strength.",
-    "keywords": [
-      "collision and grounding",
-      "ductile fracture",
-      "blast and explosion",
-      "residual capacity"
-    ],
-    "topics": [
-      "Ship collision and grounding analysis with fracture-based failure criteria, up to accidental limit state assessment",
-      "Plate tearing and perforation, including the aluminium structures used in high-speed craft",
-      "Dropped object impact, and slamming loads on bow and bottom structures",
-      "Coupled analysis of collision between floating bodies, where hydrodynamic reaction changes the energy available to damage the structure",
-      "Damage extent prediction for in-compartment explosions in warships",
-      "Air blast response of marine grade aluminium plated structures",
-      "Residual capacity of damaged structures, linked to hull-girder ultimate strength assessment",
-      "Calibration of ductile fracture models (Hosford-Coulomb, GTN, BWH instability criteria) for shipbuilding and high-tensile steels",
-      "User material subroutines (VUMAT) for shell and solid elements, including the mesh-size regularisation that shell fracture prediction depends on",
-      "Localised necking as a separate failure mechanism from fracture, and the strain rate and thermal softening effects that govern it",
-      "Material testing across stress states and temperatures, down to sub-zero service conditions"
-    ],
-    "selected": [
-      "10.1016/j.marstruc.2020.102787",
-      "10.1016/j.ijimpeng.2020.103697",
-      "10.1016/j.marstruc.2019.03.003",
-      "10.1016/j.tws.2016.10.021",
-      "10.3390/jmse11040699"
-    ],
-    "software": [
-      "pyULSAN"
-    ],
-    "methods": "Explicit nonlinear finite element analysis in Abaqus; material testing across stress states and temperatures; calibration of Hosford–Coulomb, GTN and BWH criteria; user material subroutines (VUMAT) for shell and solid elements, with the mesh-size regularisation that shell fracture prediction depends on."
-  },
-  {
     "slug": "offshore-renewable-energy",
     "title": "Offshore Renewable Energy",
     "aliases": [
@@ -187,6 +52,38 @@
     ]
   },
   {
+    "slug": "fatigue-and-fracture",
+    "title": "Fatigue and Fracture",
+    "aliases": [
+      "fatigue-and-eca",
+      "peridynamics"
+    ],
+    "summary": "This area concerns structures that already contain a flaw and carry cyclic load, and whether they remain fit for service. We assess flaws against fracture and fatigue criteria, study fatigue crack growth in welded joints, and examine the wave scatter data on which fatigue life estimates depend.",
+    "short": "Fatigue crack growth, and the assessment of structures that contain flaws.",
+    "keywords": [
+      "fatigue and crack growth",
+      "engineering critical assessment",
+      "welded joints",
+      "peridynamics"
+    ],
+    "topics": [
+      "Engineering critical assessment (ECA) and fitness-for-service evaluation of flawed welded structures",
+      "Fatigue crack growth in welded joints, and the influence of weld geometry and residual stress",
+      "Hull girder fatigue under revised wave scatter diagrams, and the sensitivity of damage ratios to that choice",
+      "Defect assessment for alternative marine fuel containment, including low-temperature toughness of cryogenic steels",
+      "Crack initiation and growth in welded steel structures, including the heat-affected zone and weld toe geometry",
+      "Hydrogen effects on crack growth in structural steels, and the coupling between hydrogen transport and fracture"
+    ],
+    "methods": "Fitness-for-service and engineering critical assessment procedures; fatigue crack growth analysis under revised wave scatter data; peridynamic modelling of crack initiation and growth, including coupling to hydrogen transport.",
+    "development": "Peridynamics is an emerging method within this area. The lab has no publications on it yet; the first manuscripts are under review.",
+    "selected": [
+      "10.3744/snak.2023.60.4.213"
+    ],
+    "selectedIds": [
+      "iacs-wave-scatter-fatigue"
+    ]
+  },
+  {
     "slug": "structural-assessment-during-operations",
     "title": "Structural Assessment During Operations",
     "summary": "We estimate the loads, structural response and fatigue damage of structures in service from a small number of measurements: platform motions, line-end loads and strains. The methods are virtual sensing, system identification and the inverse finite element method, built on mechanical models. Digital twins for operational assessment are under development.",
@@ -226,6 +123,109 @@
     "projectTitles": [
       "Machine Learning-Based Tension Prediction for FOWT Mooring Lines",
       "Physics-Based Virtual Sensing Methodology for Estimating Mooring Line Tension in Floating Offshore Wind Turbines"
+    ]
+  },
+  {
+    "slug": "limit-states-during-accidental-and-damage-conditions",
+    "title": "Limit States During Accidental and Damage Conditions",
+    "aliases": [
+      "collision-and-crashworthiness",
+      "blast-and-explosion",
+      "ductile-fracture"
+    ],
+    "summary": "We study collision, grounding, impact, blast and underwater explosion through simulations of plate tearing, perforation and structural damage. The fracture models used in those simulations are calibrated in the lab from material tests over a range of stress states and temperatures. We also assess the residual strength of damaged structures.",
+    "short": "Collision, grounding, impact and explosion: ductile fracture, tearing and residual strength.",
+    "keywords": [
+      "collision and grounding",
+      "ductile fracture",
+      "blast and explosion",
+      "residual capacity"
+    ],
+    "topics": [
+      "Ship collision and grounding analysis with fracture-based failure criteria, up to accidental limit state assessment",
+      "Plate tearing and perforation, including the aluminium structures used in high-speed craft",
+      "Dropped object impact, and slamming loads on bow and bottom structures",
+      "Coupled analysis of collision between floating bodies, where hydrodynamic reaction changes the energy available to damage the structure",
+      "Damage extent prediction for in-compartment explosions in warships",
+      "Air blast response of marine grade aluminium plated structures",
+      "Residual capacity of damaged structures, linked to hull-girder ultimate strength assessment",
+      "Calibration of ductile fracture models (Hosford-Coulomb, GTN, BWH instability criteria) for shipbuilding and high-tensile steels",
+      "User material subroutines (VUMAT) for shell and solid elements, including the mesh-size regularisation that shell fracture prediction depends on",
+      "Localised necking as a separate failure mechanism from fracture, and the strain rate and thermal softening effects that govern it",
+      "Material testing across stress states and temperatures, down to sub-zero service conditions"
+    ],
+    "selected": [
+      "10.1016/j.marstruc.2020.102787",
+      "10.1016/j.ijimpeng.2020.103697",
+      "10.1016/j.marstruc.2019.03.003",
+      "10.1016/j.tws.2016.10.021",
+      "10.3390/jmse11040699"
+    ],
+    "software": [
+      "pyULSAN"
+    ],
+    "methods": "Explicit nonlinear finite element analysis in Abaqus; material testing across stress states and temperatures; calibration of Hosford–Coulomb, GTN and BWH criteria; user material subroutines (VUMAT) for shell and solid elements, with the mesh-size regularisation that shell fracture prediction depends on."
+  },
+  {
+    "slug": "dynamic-response",
+    "title": "Dynamic Response",
+    "summary": "Following the mandate of ISSC Committee II.2, this area concerns vibration: the dynamic response of marine structures as it bears on safety, serviceability and habitability, and its uncertainty. We work on transient hull girder vibration and whipping under underwater explosion, the shock acceleration transmitted to equipment, and the modal behaviour of floating offshore wind turbines, including their natural frequencies and damping ratios and the effect of azimuth sampling on both.",
+    "short": "Vibration of ships and offshore structures: whipping, shock and modal behaviour.",
+    "keywords": [
+      "vibration",
+      "hull whipping",
+      "modal analysis",
+      "shock response"
+    ],
+    "topics": [
+      "Hull girder whipping under underwater explosion loading, and the effect of hull inelasticity on the whipping response",
+      "Shock response and the shock acceleration transmitted to equipment and armament mounts, and its sensitivity to the fracture model used",
+      "Modal behaviour of floating offshore wind turbines: natural frequencies, damping ratios, and the rotor azimuth sampling and averaging that determine them",
+      "Uncertainty in linearised dynamic models, including the aliasing of tower-passage harmonics and the periodicity discarded by azimuth averaging",
+      "Nonlinear structural dynamics and transient response under impulsive loading"
+    ],
+    "selected": [
+      "10.3390/jmse14211990",
+      "10.1016/j.oceaneng.2022.112930",
+      "10.1080/17445302.2022.2067415"
+    ],
+    "software": [
+      "VANE",
+      "pyBModes"
+    ],
+    "methods": "Explicit nonlinear finite element analysis in Abaqus; OpenFAST linearisation with multiblade coordinate transformation and Floquet analysis; our in-house packages VANE and pyBModes.",
+    "development": "Propeller–ice interaction and ice milling is a current student topic, within the mandate’s propeller-induced and ice-induced vibration. The lab has no publications on it yet."
+  },
+  {
+    "slug": "ultimate-strength",
+    "title": "Ultimate Strength",
+    "summary": "We study the buckling of plates and stiffened panels, the progressive collapse of hull girders, and ring-stiffened cylindrical shells, including unsymmetrical bending, neutral-axis rotation, welding residual stress and distortion, damage and heel. ISUM, a differentiable implementation of the Idealised Structural Unit Method in JAX, is under verification.",
+    "topics": [
+      "Progressive collapse of hull girders under combined and unsymmetrical loading, intact and damaged",
+      "Ultimate strength of stiffened panels including welding residual stress and deformation effects",
+      "Buckling and collapse of ring-stiffened cylindrical shells, including pressure hulls",
+      "Plate buckling, neutral-axis rotation and heeling effects in hull-girder strength and residual capacity assessment",
+      "Ongoing development: Differentiable reimplementation of incremental collapse methods in JAX, enabling automatic sensitivities of ultimate strength with respect to scantlings and material parameters"
+    ],
+    "lineage": "This area continues the incremental-iterative tradition of simplified progressive collapse analysis developed by CS Smith and RS Dow (former Newcastle University Professor in Marine Structures), whose methods for the elasto-plastic collapse of plates and stiffened panels were incorporated into UK naval structural design standards and the submarine design manual, and were later adopted by classification societies for merchant ships. Professor Seo held a post in marine structures at Newcastle University from 2014 to 2017.",
+    "methods": "Nonlinear finite element analysis in Abaqus; Smith-type progressive collapse methods; ISUM implementation in Python and JAX with automatic differentiation.",
+    "selected": [
+      "10.1016/j.oceaneng.2025.123159",
+      "10.3390/jmse8120988",
+      "10.1016/j.tws.2017.10.030",
+      "10.1016/j.tws.2015.07.004",
+      "10.2478/IJNAOE-2013-0120"
+    ],
+    "short": "Buckling and progressive collapse of hull girders, stiffened panels and shells.",
+    "keywords": [
+      "progressive collapse",
+      "hull girder",
+      "stiffened panels",
+      "ISUM"
+    ],
+    "software": [
+      "pyULSAN",
+      "ISUM"
     ]
   }
 ]

@@ -2,10 +2,11 @@ import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
 
+// Ordered by how much of the lab's work each area carries, not by ISSC numbering
+// (director, 2026-11-23).
 const headings = [
-  'Ultimate Strength', 'Fatigue and Fracture', 'Dynamic Response',
-  'Limit States During Accidental and Damage Conditions',
-  'Offshore Renewable Energy', 'Structural Assessment During Operations',
+  'Offshore Renewable Energy', 'Fatigue and Fracture', 'Structural Assessment During Operations',
+  'Limit States During Accidental and Damage Conditions', 'Dynamic Response', 'Ultimate Strength',
 ];
 const legacy = ['ultimate-strength', 'ductile-fracture', 'fatigue-and-eca',
   'peridynamics', 'collision-and-crashworthiness', 'blast-and-explosion',
