@@ -12,6 +12,16 @@
     "pinned": true
   },
   {
+    "date": "2026-11-24",
+    "display": "24 November 2026",
+    "title": "CableXSec paper accepted by Ocean Engineering",
+    "body": "Jae Hoon Seo’s paper “Global-to-local fatigue and fretting loading analysis of dynamic power cables for floating offshore wind turbines” was accepted for publication in Ocean Engineering on 24 November 2026, for a special issue on mooring and cable systems. It is the paper behind CableXSec, the lab’s Python library for the cross-section mechanics and fatigue of dynamic power cables, which is now public.",
+    "link": "/publications/journal-papers#paper-cable-global-local-fatigue-fretting",
+    "linkText": "Publication details",
+    "image": "",
+    "imageAlt": ""
+  },
+  {
     "date": "2026-10-19",
     "display": "19 October 2026",
     "title": "Wave-scatter fatigue paper accepted by IJNAOE",

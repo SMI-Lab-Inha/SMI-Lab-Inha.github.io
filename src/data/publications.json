@@ -1,5 +1,23 @@
 [
   {
+    "id": "cable-global-local-fatigue-fretting",
+    "type": "journal",
+    "authors": "Seo JH",
+    "title": "Global-to-local fatigue and fretting loading analysis of dynamic power cables for floating offshore wind turbines",
+    "venue": "Ocean Engineering",
+    "year": "2026",
+    "volume": "",
+    "pages": "",
+    "doi": "",
+    "tags": [
+      "Dynamic power cables",
+      "Floating offshore wind",
+      "Fatigue"
+    ],
+    "inPress": true,
+    "acceptedDate": "2026-11-24"
+  },
+  {
     "type": "journal",
     "authors": "Seo JH",
     "title": "Physics-based digital twin for mooring tension monitoring and fatigue-load assessment of floating offshore wind turbines",
